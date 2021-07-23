@@ -1,0 +1,29 @@
+
+body {
+    color: map-get($COLOR-PALETTE , font );
+    font-family: "Montserrat";
+    margin-top: $navigation-default-height;
+}
+
+li {
+    list-style: none;
+}
+
+button {
+    display: inline-block;
+    padding: 5px 25px;
+    color: map-get($COLOR_PALETTE, ter);
+    font-weight: 700;
+    text-decoration: none;
+    background-color: transparent;
+    border-radius: 25px;
+    border: 2px solid map-get($COLOR_PALETTE, ter);
+    cursor: pointer;
+    transition: .2s all ease-in-out;
+    
+    &:hover {
+      color: lighten(map-get($COLOR_PALETTE, ter), 15%);
+      border-color: lighten(map-get($COLOR_PALETTE, ter), 15%);
+    }
+      
+}

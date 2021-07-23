@@ -1,0 +1,26 @@
+
+
+// GAP
+$small: .2em;
+$medium: .5em;
+$large: 1em;
+
+// NAVIGATION HEIGHT
+$navigation-default-height: 70px;
+
+
+$COLOR-PALETTE :( 
+    prim:#585858, 
+    sec:#fafafa, 
+    ter:#2046f2, 
+
+    bg: #fff,
+    font: rgb(39, 39, 39),
+    shadow: rgba(227, 224, 224, 0.797),
+);
+
+// RESPONSIVE
+$breakpoints : (
+    mobile: 590px,
+    tablet: 1280px,
+);

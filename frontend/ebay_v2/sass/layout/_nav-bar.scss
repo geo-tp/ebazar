@@ -1,0 +1,223 @@
+
+.nav-bar {
+     position: fixed;
+     top: 0;
+     left:0;
+     width: 100%;
+     height:$navigation-default-height;
+     display: flex;
+     justify-content: space-evenly;
+     align-items: center;
+     color: map-get($COLOR-PALETTE, ter );
+     background-color: map-get($COLOR-PALETTE, sec);
+     @include border-bottom-default;
+     @include small-bottom-shadow;
+
+     
+     &__nav-site {
+         display: flex;
+         align-items: center;
+         cursor: pointer;
+
+         &:hover {
+             opacity: .8;
+         }
+
+         
+         &__nav-burger {
+             display: none;
+             margin-right: $medium;
+         }
+
+         @include tablet-design {
+
+            &__nav-burger {
+                display: block;
+            }  
+         }
+     }
+
+     &__logo {
+         color: map-get($COLOR-PALETTE, font );
+
+         & img {
+             width:12%;
+         }
+
+         @include tablet-design {
+             & img {
+                 display: none;
+             }
+         }
+     }
+
+
+     &__search {
+
+         display: flex;
+         align-items: center;     
+         
+         &-bar {
+            margin-right: $medium;
+            height: 2em;
+    
+            @include mobile-design {
+                display: none;
+            }
+        }
+
+        &-button {
+            color: map-get($COLOR_PALETTE, ter);
+            height: 2em;
+            border-radius: 0 10px 10px 0;
+            @include mobile-design {
+                text-align: center;
+            }
+        }
+
+     }
+
+     
+     &__account {
+
+         text-align: center;
+         cursor: pointer;
+        
+        &:hover {
+            opacity: .7;
+        }
+        
+         &-menu {
+
+        }
+        
+        &-angle {
+            margin-left: $small;
+        }
+
+        &-pseudo {
+            font-size:.8em;
+            margin: 0;
+        }
+    }
+
+    &__menu {
+
+        width:30%;
+        
+        &__link-list {
+            display: flex;
+            justify-content: space-evenly;
+
+            & li {
+                cursor: pointer;
+                border-bottom: 1px solid white;
+            }
+
+            & li:hover {
+                // border-radius: 20px;
+                // padding-left: $small;
+                // padding-right: $small;
+                // color: map-get($COLOR_PALETTE, sec );
+                // padding:0;
+                @include border-bottom-default;
+            }
+        }
+
+        & i {
+            display:none;
+        }
+
+        &--large {
+            // padding:6%;
+
+        }
+
+        @include tablet-design  {
+            
+            width: 80%;
+
+            position: fixed;
+            top: 12%;
+            left: 3%;
+        //  height:100%;
+            z-index: 10;
+            color: map-get($COLOR_PALETTE,font);
+            background-color: map-get($COLOR_PALETTE,sec );
+            border-radius: 20px;
+
+            @include small-border-default;
+            @include small-shadow;
+
+
+            & li {
+                margin: $small;
+                padding: $small;
+            }
+            & li:hover {
+                color: map-get($COLOR_PALETTE, ter);
+                border-bottom: 0;
+            }
+
+            &__link-list {
+                display: block;
+                justify-content: space-evenly;
+                // background-color: red;
+                // padding-left: 10%;
+            }
+    
+            & i {
+                display: block;
+            }
+
+            &--large {
+                display:none;
+                margin: 0;
+            }
+
+        }
+    }
+    
+     &__user {
+        position: fixed;
+        top: 12%;
+        right: 10%;
+        width: 30%;
+        z-index: 10;
+        color: map-get($COLOR_PALETTE,font);
+        background-color: map-get($COLOR_PALETTE,sec );
+        border-radius: 20px;
+
+        @include small-border-default;
+        @include small-shadow;
+
+        & li {
+            margin: $small;
+            padding: $small;
+            cursor:pointer;
+        }
+        & li:hover {
+            color: map-get($COLOR_PALETTE, ter);
+            border-bottom: 0;
+        }
+
+        &-button {
+            width: 20%;
+            margin: 0 auto;
+            & button {
+            margin: $medium;
+            }
+
+            @include tablet-design {
+                width: 60%;
+                text-align: left;
+            }
+        }
+
+        @include tablet-design  {
+            
+            width: 80%;
+            right: 3%;
+        }
+     }
+}

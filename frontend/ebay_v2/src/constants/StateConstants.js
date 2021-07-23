@@ -1,0 +1,4 @@
+export const GET_STATES = "GET_STATES"
+export const GET_STATES_ERROR = "GET_STATE_ERROR"
+export const GET_STATES_SUCCESS = "GET_STATE_SUCCESS"
+

@@ -1,0 +1,1 @@
+export const SubCategorySelector = ({subCategories}) => subCategories

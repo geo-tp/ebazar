@@ -1,0 +1,212 @@
+@import "https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,900&display=swap";
+body {
+  color: #272727;
+  font-family: "Montserrat";
+  margin-top: 70px;
+}
+
+li {
+  list-style: none;
+}
+
+button {
+  display: inline-block;
+  padding: 5px 25px;
+  color: #2046f2;
+  font-weight: 700;
+  text-decoration: none;
+  background-color: transparent;
+  border-radius: 25px;
+  border: 2px solid #2046f2;
+  cursor: pointer;
+  transition: 0.2s all ease-in-out;
+}
+button:hover {
+  color: #6882f6;
+  border-color: #6882f6;
+}
+
+.close-menu-cross {
+  color: #2046f2;
+  position: absolute;
+  top: 3%;
+  left: 93%;
+  cursor: pointer;
+}
+@media screen and (max-width: 590px) {
+  .close-menu-cross {
+    left: 90%;
+  }
+}
+
+.nav-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  color: #2046f2;
+  background-color: #fafafa;
+  border-bottom: 1px solid #585858;
+  box-shadow: 0px 10px 30px 0px rgba(227, 224, 224, 0.797);
+}
+.nav-bar__nav-site {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.nav-bar__nav-site:hover {
+  opacity: 0.8;
+}
+.nav-bar__nav-site__nav-burger {
+  display: none;
+  margin-right: 0.5em;
+}
+@media screen and (max-width: 1280px) {
+  .nav-bar__nav-site__nav-burger {
+    display: block;
+  }
+}
+.nav-bar__logo {
+  color: #272727;
+}
+.nav-bar__logo img {
+  width: 12%;
+}
+@media screen and (max-width: 1280px) {
+  .nav-bar__logo img {
+    display: none;
+  }
+}
+.nav-bar__search {
+  display: flex;
+  align-items: center;
+}
+.nav-bar__search-bar {
+  margin-right: 0.5em;
+  height: 2em;
+}
+@media screen and (max-width: 590px) {
+  .nav-bar__search-bar {
+    display: none;
+  }
+}
+.nav-bar__search-button {
+  color: #2046f2;
+  height: 2em;
+  border-radius: 0 10px 10px 0;
+}
+@media screen and (max-width: 590px) {
+  .nav-bar__search-button {
+    text-align: center;
+  }
+}
+.nav-bar__account {
+  text-align: center;
+  cursor: pointer;
+}
+.nav-bar__account:hover {
+  opacity: 0.7;
+}
+.nav-bar__account-angle {
+  margin-left: 0.2em;
+}
+.nav-bar__account-pseudo {
+  font-size: 0.8em;
+  margin: 0;
+}
+.nav-bar__menu {
+  width: 30%;
+}
+.nav-bar__menu__link-list {
+  display: flex;
+  justify-content: space-evenly;
+}
+.nav-bar__menu__link-list li {
+  cursor: pointer;
+  border-bottom: 1px solid white;
+}
+.nav-bar__menu__link-list li:hover {
+  border-bottom: 1px solid #585858;
+}
+.nav-bar__menu i {
+  display: none;
+}
+@media screen and (max-width: 1280px) {
+  .nav-bar__menu {
+    width: 80%;
+    position: fixed;
+    top: 12%;
+    left: 3%;
+    z-index: 10;
+    color: #272727;
+    background-color: #fafafa;
+    border-radius: 20px;
+    border: 1px solid #2046f2;
+    box-shadow: 0px 10px 20px 5px rgba(227, 224, 224, 0.797);
+  }
+  .nav-bar__menu li {
+    margin: 0.2em;
+    padding: 0.2em;
+  }
+  .nav-bar__menu li:hover {
+    color: #2046f2;
+    border-bottom: 0;
+  }
+  .nav-bar__menu__link-list {
+    display: block;
+    justify-content: space-evenly;
+  }
+  .nav-bar__menu i {
+    display: block;
+  }
+  .nav-bar__menu--large {
+    display: none;
+    margin: 0;
+  }
+}
+.nav-bar__user {
+  position: fixed;
+  top: 12%;
+  right: 10%;
+  width: 30%;
+  z-index: 10;
+  color: #272727;
+  background-color: #fafafa;
+  border-radius: 20px;
+  border: 1px solid #2046f2;
+  box-shadow: 0px 10px 20px 5px rgba(227, 224, 224, 0.797);
+}
+.nav-bar__user li {
+  margin: 0.2em;
+  padding: 0.2em;
+  cursor: pointer;
+}
+.nav-bar__user li:hover {
+  color: #2046f2;
+  border-bottom: 0;
+}
+.nav-bar__user-button {
+  width: 20%;
+  margin: 0 auto;
+}
+.nav-bar__user-button button {
+  margin: 0.5em;
+}
+@media screen and (max-width: 1280px) {
+  .nav-bar__user-button {
+    width: 60%;
+    text-align: left;
+  }
+}
+@media screen and (max-width: 1280px) {
+  .nav-bar__user {
+    width: 80%;
+    right: 3%;
+  }
+}
+
+/*# sourceMappingURL=styles.css.map */
