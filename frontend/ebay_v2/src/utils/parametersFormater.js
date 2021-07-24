@@ -14,7 +14,9 @@ export const parametersFormater = (method, body=null) => {
 
 
     switch (method) {
+
         case "GET":
+        case "DELETE":
             return {method: method, headers:headers}
 
 
@@ -23,6 +25,7 @@ export const parametersFormater = (method, body=null) => {
         case "POST":
             return {method: method, headers:headers, body:JSON.stringify(body)}
 
+            
         default:
             return {};
     }

@@ -57,7 +57,6 @@ export const fetchEditObject = (object) => {
         }
 
         let parameters = parametersFormater("PATCH", object)
-        console.log("PARAMS", parameters)
 
         return fetch(url, parameters)
                     .then(rslt => {

@@ -5,6 +5,7 @@ import { initialState } from "./RootReducers";
 export const BidReducer = (state=initialState.detailledObjectBids, action) => {
 
     switch (action.type) {
+        
         case GET_BIDS_OF_OBJECT:
             return {...state, loading:true}
 
@@ -13,8 +14,8 @@ export const BidReducer = (state=initialState.detailledObjectBids, action) => {
 
         case GET_BIDS_OF_OBJECT_SUCCESS:
             return {...state, loading: false, loaded: true, items:action.payload.bids}
-    
+
         default:
-            break;
+            return state
     }
 }

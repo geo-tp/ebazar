@@ -1,4 +1,5 @@
-import { DELETE_ACCOUNT, DELETE_ACCOUNT_ERROR, DELETE_ACCOUNT_SUCCESS, 
+import { CREATE_ACCOUNT, CREATE_ACCOUNT_ERROR, CREATE_ACCOUNT_SUCCESS, 
+         DELETE_ACCOUNT, DELETE_ACCOUNT_ERROR, DELETE_ACCOUNT_SUCCESS, 
          EDIT_ACCOUNT, EDIT_ACCOUNT_ERROR, EDIT_ACCOUNT_SUCCESS, 
          GET_ACCOUNT, GET_ACCOUNT_ERROR, GET_ACCOUNT_SUCCESS,
          GET_CONNECTED, GET_CONNECTED_ERROR, GET_CONNECTED_SUCCESS, 
@@ -34,6 +35,21 @@ export const getDisconnectedSuccess = () => ({
     payload: {}
 })
 
+export const createAccount = (registrationInfos) => ({
+    type: CREATE_ACCOUNT,
+    payload: {registrationInfos:registrationInfos}
+})
+
+export const createAccountError = (error) => ({
+    type: CREATE_ACCOUNT_ERROR,
+    payload:{error:error}
+})
+
+export const createAccountSuccess = () => ({
+    type: CREATE_ACCOUNT_SUCCESS,
+    payload:{}
+})
+
 
 export const getAccount = (userId) => ({
     type: GET_ACCOUNT,
@@ -45,9 +61,9 @@ export const getAccountError = (error) => ({
     payload: {error:error}
 })
 
-export const getAccountSuccess = (userAndToken) => ({
+export const getAccountSuccess = (user) => ({
     type: GET_ACCOUNT_SUCCESS,
-    payload: {userAndToken:userAndToken}
+    payload: {user:user}
 })
 
 export const editAccount = (userId, modification) => ({

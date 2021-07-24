@@ -1,4 +1,5 @@
 import { combineReducers } from "redux";
+import { AuthReducer } from "./AuthReducer";
 import { BidReducer } from "./BidReducer";
 import { CategoryReducer } from "./CategoryReducer";
 import { detailledObjectReducer } from "./DetailledObjectReducer";
@@ -9,7 +10,7 @@ import { SubCategoryReducer } from "./SubCategoryReducer";
 
 export function initState() {
     
-    const storeFields = ["objects", "offerBanners", "categories", "subCategories", 
+    const storeFields = ["auth", "objects", "offerBanners", "categories", "subCategories", 
                          "detailledObject", "detailledObjectBids"]
 
     let store = {}
@@ -27,17 +28,19 @@ export function initState() {
                     item : {},
 
                 }
+                break;
 
             case "auth":
-                
-            store[field] = {
+                    
+                store[field] = {
 
-                loading: false,
-                error: false, 
-                connected: false,
+                    loading: false,
+                    error: false, 
+                    connected: false,
 
-                userInfos: {}
-            }
+                    userInfos: {}
+                }
+                break
         
             default:                
                 store[field] = {
@@ -60,6 +63,7 @@ export const initialState = initState()
 
 export const RootReducer = (state=initialState, action) => {
     return{
+        auth: AuthReducer(state.auth, action),
         objects: ObjectReducer(state.objects, action),
         detailledObject: detailledObjectReducer(state.detailledObject, action),
         detailledObjectBids: BidReducer(state.detailledObjectBids, action),

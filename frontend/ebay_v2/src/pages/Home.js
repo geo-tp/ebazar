@@ -10,6 +10,7 @@ import { categorySelector } from "../selectors/CategorySelector"
 import { offerBannerSelector } from "../selectors/OfferBannerSelector";
 import { fetchDetailledObject } from "../thunks/DetailledObjectThunk";
 import { fetchBidsOfObject } from "../thunks/BidThunk";
+import { fetchLogin } from "../thunks/AuthThunk"
 
 import {detailledObjectSelector} from "../selectors/DetailledObjectSelector"
 
@@ -32,6 +33,8 @@ class Home extends Component {
 
         props.fetchDetailledObject(1)
         props.fetchBidsOfObject(1)
+
+        props.fetchLogin("geo@mail.com", "adminadmin")
 
 
     }
@@ -78,7 +81,8 @@ const HomeStore = connect(
         fetchOfferBanners: () => dispatch(fetchOfferBanners()),
         fetchSubCategories: (categoryId) => dispatch(fetchSubCategories(categoryId)),
         fetchDetailledObject: (objectId) => dispatch(fetchDetailledObject(objectId)),
-        fetchBidsOfObject: (objectId) => dispatch(fetchBidsOfObject(objectId))
+        fetchBidsOfObject: (objectId) => dispatch(fetchBidsOfObject(objectId)),
+        fetchLogin: (mail, password) => dispatch(fetchLogin(mail, password))
     }))
 )(Home)
 

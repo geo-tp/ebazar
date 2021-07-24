@@ -55,12 +55,12 @@ export const deleteMessage = (message) => ({
 })
 
 export const deleteMessageError = (error) => ({
-    type: DELETE_MESSAGES_ERROR,
+    type: DELETE_MESSAGE_ERROR,
     payload: {error:error}
 })
 
 export const deleteMessageSuccess = () => ({
-    type:DELETE_MESSAGES_SUCCESS,
+    type:DELETE_MESSAGE_SUCCESS,
     payload: {}
 })
 

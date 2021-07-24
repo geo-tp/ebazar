@@ -28,7 +28,7 @@ export const editImageOfObjectError = (error) => ({
     payload: {error:error}
 })
 
-export const editImageObjectSuccess = (image) => ({
+export const editImageOfObjectSuccess = (image) => ({
     type:EDIT_IMAGE_OF_OBJECT_SUCCESS,
     payload: {image:image}
 })
@@ -38,14 +38,14 @@ export const deleteImageOfObject = (imageId) => ({
     payload: {imageId:imageId}
 })
 
-export const deleteImageObjectError = (error) => ({
+export const deleteImageofObjectError = (error) => ({
     type: DELETE_IMAGE_OF_OBJECT_ERROR,
     payload: {error:error}
 })
 
-export const deleteImageObjectSuccess = () => ({
+export const deleteImageOfObjectSuccess = (imageId) => ({
     type: DELETE_IMAGE_OF_OBJECT_SUCCESS,
-    payload: {}
+    payload: {imageId:imageId}
 })
 
 export const createImageOfObject = (image) => ({
@@ -53,12 +53,12 @@ export const createImageOfObject = (image) => ({
     payload: {image:image}
 })
 
-export const createImageObjectError = (error) => ({
+export const createImagOfeObjectError = (error) => ({
     type: CREATE_IMAGE_OF_OBJECT_ERROR,
     payload: {error:error}
 })
 
-export const createImageObjectSuccess = (image) => ({
+export const createImageOfObjectSuccess = (image) => ({
     type: CREATE_IMAGE_OF_OBJECT_SUCCESS,
     payload: {image:image}
 })
