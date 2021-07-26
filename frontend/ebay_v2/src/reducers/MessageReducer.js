@@ -12,8 +12,20 @@ export const MessageReducer = (state=initialState.messages, action) => {
                     error:action.payload.error}
 
         case GET_MESSAGES_SUCCESS:
+            
+            let messages = action.payload.messages
+            let temp = {}
+
+            if (action.payload.type=="receiver") {
+                temp["received_messages"] = messages
+            }
+
+            else {
+                temp["sended_messages"] = messages
+            }
+
             return {...state, loading:false, 
-                    messages:action.payload.messages}
+                    ...temp}
         default:
             return state
     }

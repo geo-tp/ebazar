@@ -1,4 +1,4 @@
-import { GET_SELECTIONS, GET_SELECTIONS_SUCCESS } from "../constants/SelectionConstants";
+import { GET_SELECTIONS, GET_SELECTIONS_SUCCESS, GET_SELECTIONS_ERROR } from "../constants/SelectionConstants";
 import { initState } from "./RootReducers";
 
 
@@ -14,6 +14,6 @@ export const SelectionReducer = (state=initState.selections, action) => {
         case GET_SELECTIONS_SUCCESS:
             return {...state, loading:false, items:action.type.selections}
         default:
-            break;
+            return state;
     }
 } 

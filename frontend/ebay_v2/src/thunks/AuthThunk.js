@@ -4,6 +4,7 @@ import { createAccount, createAccountSuccess, createAccountError,
          getAccount, getAccountError, getAccountSuccess, 
          getConnected, getConnectedError, getConnectedSuccess, 
          getDisconnected, getDisconnectedError, getDisconnectedSuccess } from "../actions/AuthActions";
+import { NOT_FOUND } from "../utils/errors";
          
 import { parametersFormater } from "../utils/parametersFormater";
 import { urlFormater } from "../utils/urlFormater";
@@ -22,7 +23,7 @@ export const fetchLogin = (mail, password) => {
         return fetch(url, params)
             .then(rslt => {
                 if (!rslt.ok) {
-                    throw new Error("Error - 404 Not Found")
+                    throw new Error(NOT_FOUND)
                 }
 
                 return rslt.json()

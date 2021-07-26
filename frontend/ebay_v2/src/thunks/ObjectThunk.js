@@ -2,6 +2,7 @@ import { getObjects, getObjectsSuccess, getObjectsError,
          editObject, editObjectSuccess, editObjectError} from "../actions/ObjectActions"
 import { urlFormater } from "../utils/urlFormater"
 import {parametersFormater} from "../utils/parametersFormater"
+import { NOT_FOUND } from "../utils/errors"
 
 
 
@@ -25,7 +26,7 @@ export const fetchObjects = (filter=null) => {
         return fetch(url, parameters)
                     .then(rslt => {
                         if (!rslt.ok) {
-                            throw new Error("Error - 404 Not Found")
+                            throw new Error(NOT_FOUND)
                         }
 
                         return rslt.json()

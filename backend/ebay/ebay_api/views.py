@@ -14,7 +14,7 @@ from django.http import JsonResponse
 
 from rest_framework.decorators import api_view, renderer_classes
 from rest_framework.renderers import JSONRenderer, TemplateHTMLRenderer
-from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly, AllowAny
+from rest_framework.permissions import AllowAny, AllowAny, AllowAny
 from rest_framework import status
 
 from django.utils.decorators import method_decorator
@@ -35,6 +35,8 @@ class OfferBannerViewSet(viewsets.ModelViewSet):
 
     permission_classes = [permissions.AllowAny]
 
+    pagination_class = None
+
 
     @method_decorator(cache_page(600))
     def list(self, request, *args, **kwargs):
@@ -50,7 +52,7 @@ class StateOfObjectViewSet(viewsets.ModelViewSet):
     pagination_class = None
 
 
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.AllowAny]
 
     @method_decorator(cache_page(600))
     def list(self, request, *args, **kwargs):
@@ -71,7 +73,7 @@ class DurationViewSet(viewsets.ModelViewSet):
     pagination_class = None
 
 
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.AllowAny]
 
 class CategoryViewSet(viewsets.ModelViewSet):
 
@@ -85,7 +87,7 @@ class CategoryViewSet(viewsets.ModelViewSet):
 
     pagination_class = None
 
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [AllowAny]
 
     @method_decorator(cache_page(600))
     def list(self, request, *args, **kwargs):
@@ -103,7 +105,7 @@ class SelectionViewSet(viewsets.ModelViewSet):
 
     pagination_class = None
 
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [AllowAny]
 
     @method_decorator(cache_page(600))
     def list(self, request, *args, **kwargs):
@@ -120,7 +122,7 @@ class SubCategoryViewSet(viewsets.ModelViewSet):
 
     pagination_class = None
 
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [AllowAny]
 
     @method_decorator(cache_page(600))
     def list(self, request, *args, **kwargs):
@@ -203,6 +205,9 @@ class ImageViewSet(viewsets.ModelViewSet):
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
     filterset_fields = ["obj"]
 
+    pagination_class = None
+
+
     permission_classes = [AllowAny]
 
     def create(self, request, *args, **kwargs):
@@ -221,6 +226,9 @@ class BidViewSet(viewsets.ModelViewSet):
                        filters.OrderingFilter]
     ordering_fields = ['price']
     filterset_fields = ["obj"]
+
+    pagination_class = None
+
 
     permission_classes = [AllowAny]
 
@@ -277,7 +285,7 @@ class MessageViewSet(viewsets.ModelViewSet):
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
     filterset_fields = ["sender", "reciever"]
 
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
     @checkUserMatching
     @checkSenderIsNotReceiver
@@ -285,9 +293,9 @@ class MessageViewSet(viewsets.ModelViewSet):
 
         return super().create(request, *args, **kwargs)
 
-    @restrictedEndPoint
-    def list(self, request, *args, **kwargs):
-        pass
+    # @restrictedEndPoint
+    # def list(self, request, *args, **kwargs):
+    #     pass
 
 class PurchasedObjectViewsSet(viewsets.ModelViewSet):
 
@@ -320,7 +328,7 @@ class PurchasedObjectViewsSet(viewsets.ModelViewSet):
 #     filterset_fields = ["user"]
 #     ordering_fields = ["id"]
 
-#     permission_classes = [IsAuthenticated]
+#     permission_classes = [AllowAny]
 
 
 class OperationViewSet(viewsets.ModelViewSet):
@@ -334,7 +342,7 @@ class OperationViewSet(viewsets.ModelViewSet):
     filterset_fields = ["user"]
     ordering_fields = ["id"]
 
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
 
 class FollowedObjectViewSet(viewsets.ModelViewSet):
@@ -347,7 +355,7 @@ class FollowedObjectViewSet(viewsets.ModelViewSet):
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
     filterset_fields = ["user", "obj"]
 
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
     @checkUserMatching
     def create(self, request, *args, **kwargs):
@@ -404,7 +412,7 @@ class QuestionViewSet(viewsets.ModelViewSet):
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
     filterset_fields = ["obj"]
 
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
     @checkUserMatching
     @checkSenderIsNotReceiver
@@ -412,9 +420,9 @@ class QuestionViewSet(viewsets.ModelViewSet):
 
         return super().create(request, *args, **kwargs)
 
-    @restrictedEndPoint
-    def list(self, request, *args, **kwargs):
-        pass
+    # @restrictedEndPoint
+    # def list(self, request, *args, **kwargs):
+    #     pass
 
 
 class AnswerViewSet(viewsets.ModelViewSet):
@@ -425,7 +433,7 @@ class AnswerViewSet(viewsets.ModelViewSet):
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
     filterset_fields = ["question"]
 
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
     @restrictedEndPoint
     def list(self, request, *args, **kwargs):

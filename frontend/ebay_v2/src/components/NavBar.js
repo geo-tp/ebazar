@@ -1,5 +1,5 @@
 import { Component } from "react";
-import logo from "./../assets/logo.png"
+import logo from "./../assets/img/logo.png"
 
 let id = 0
 

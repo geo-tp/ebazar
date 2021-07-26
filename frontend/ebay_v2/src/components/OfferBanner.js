@@ -1,6 +1,9 @@
 import { Component, createRef } from "react";
-import { request_formatter } from "../../../GLOBAL";
-import "./style.css"
+import { connect } from "react-redux";
+import { offerBannerSelector } from "../selectors/OfferBannerSelector";
+import { fetchOfferBanners } from "../thunks/OfferBannerThunk";
+import PropTypes from "prop-types"
+
 
 class OfferBanner extends Component {
 
@@ -23,7 +26,8 @@ class OfferBanner extends Component {
     }
 
     componentDidMount() {
-
+        this.props.fetchOfferBanners()
+        // this.generateRefs()
     }
     
     scrollInterval() {
@@ -36,7 +40,7 @@ class OfferBanner extends Component {
     generateRefs = () => {
         
         let refs = []
-        for(let i = 0 ; i < this.state.offer_banners.length ; i++) {
+        for(let i = 0 ; i < this.props.offerBanners.items.length ; i++) {
             refs.push(createRef())
         }
 
@@ -51,8 +55,6 @@ class OfferBanner extends Component {
     
 
     handleLeftClick = () => {
-
-        console.log("INDEX", this.state.actual_index)
 
         switch (this.state.actual_index) {
             case 0:
@@ -88,67 +90,32 @@ class OfferBanner extends Component {
 
         this.state.refs_table[this.state.actual_index+i].current.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' })
         this.setState({actual_index: this.state.actual_index+i})
-        // console.log("INDEX", this.state.actual_index)
-
-        // switch (this.state.actual_index) {
-        //     case this.state.offer_banners.length-1:
-
-        //         this.setState({
-        //             actual_index: 0,
-        //             actual_banner: this.state.offer_banners[0]
-        //         })
-        //         break;
-
-        //     default:
-        //         this.setState({
-        //             actual_index: this.state.actual_index + 1,
-        //             actual_banner: this.state.offer_banners[this.state.actual_index+1]
-        //         })
     }
-    // }
-
-    // requestForOfferBanner() {
-
-    //     let url = request_formatter({
-    //         model: "offer-banner"
-    //     })
-
-    //     fetch(url)
-    //         .then(rslt => rslt.json())
-    //         .then(json_rslt =>
-    //             this.setState({
-    //                 offer_banners: json_rslt.results,
-    //                 actual_banner: json_rslt.results[0],
-    //                 actual_index: 0
-    //             }, () => this.generateRefs()))
-    // }
 
     render() {
         return (
-            <div className="main-wrapper-offer-banner">
+            <div className="offer-banner">
 
                 <i onClick={() => this.handleRightClick()} id="left-arrow-banner">
-                    <i class="fa fa-2x fa-arrow-right" />
+                    <i class="fa fa-2x fa-arrow-right offer-banner__left-arrow" />
                 </i>
 
                 <i onClick={() => this.handleLeftClick()} id="right-arrow-banner">
-                    <i class="fa fa-2x fa-arrow-left" />
+                    <i class="fa fa-2x fa-arrow-left offer-banner__right-arrow" />
                 </i>
 
                 <h4>Offres Exclusives</h4>
 
-                <div className="main-offer-banner" ref={this.scroll_box_ref}>
+                <div className="offer-banner__scroll-box" ref={this.scroll_box_ref}>
                     {this.state.refs_table &&
-                        <div>
-                            <div className="banner-scroll-box">
-                                {this.state.offer_banners.map((banner, index) => {
+                            <div className="offer-banner__scroll-box__container">
+                                {this.props.offerBanners.loaded && this.props.offerBanners.items.map((banner, index) => {
                                     return <img ref={this.state.refs_table[index]} 
-                                                className="image-offer-banner" 
+                                                className="offer-banner__scroll-box__container__image" 
                                                 src={banner.image} />
 
                                 })}
                             </div>
-                        </div>
                     }
                 </div>
             </div>
@@ -156,4 +123,18 @@ class OfferBanner extends Component {
     }
 }
 
-export default OfferBanner
+const OfferBannerStore = connect (
+    (state) => ({
+        offerBanners: offerBannerSelector(state)
+    }),
+    (dispatch) => ({
+        fetchOfferBanners : () => dispatch(fetchOfferBanners())
+    })
+)(OfferBanner)
+
+OfferBanner.propType = {
+    offerBanners: PropTypes.object.isRequired,
+    fetchOfferBanners: PropTypes.func.isRequired
+}
+
+export default OfferBannerStore

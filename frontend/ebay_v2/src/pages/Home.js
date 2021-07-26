@@ -1,7 +1,6 @@
 import { Component } from "react";
 import { objectSelector } from "../selectors/ObjectSelectors";
 import { connect } from "react-redux"
-import { getObjects } from "../actions/ObjectActions"
 import { fetchEditObject, fetchObjects } from "../thunks/ObjectThunk";
 import { fetchCategories } from "../thunks/CategoryThunk"
 import { fetchSubCategories } from "../thunks/SubCategoryThunk"
@@ -11,12 +10,20 @@ import { offerBannerSelector } from "../selectors/OfferBannerSelector";
 import { fetchDetailledObject } from "../thunks/DetailledObjectThunk";
 import { fetchBidsOfObject } from "../thunks/BidThunk";
 import { fetchLogin } from "../thunks/AuthThunk"
+import { fetchSelections } from "../thunks/SelectionThunk"
+import { fetchMessages } from "../thunks/MessageThunk"
 
 import {detailledObjectSelector} from "../selectors/DetailledObjectSelector"
+import { fetchQuestionsOfUser } from "../thunks/ReceivedQuestionThunk";
+import { fetchQuestionsOfObject } from "../thunks/QuestionOfObjectThunk";
+import CategoryBannerStore from "../components/CategoryBanner";
+import OfferBannerStore from "../components/OfferBanner";
+
 
 class Home extends Component {
 
     constructor(props) {
+
         super(props)
 
         this.state = { inter: 1 }
@@ -36,6 +43,9 @@ class Home extends Component {
 
         props.fetchLogin("geo@mail.com", "adminadmin")
 
+        props.fetchMessages(1)
+
+        props.fetchQuestionsOfObject(1)
 
     }
 
@@ -45,7 +55,6 @@ class Home extends Component {
     // }
 
     render() {
-
         // if (this.state.inter && this.props.objects.items.hasOwnProperty("results")) {
         //     let object = this.props.objects.items.results[0]
         //     console.log("OBJJECJTJJEJCT", this.props.objects)
@@ -60,7 +69,8 @@ class Home extends Component {
         console.log(this.props.categories)
         return (
             <div>
-                <p>{JSON.stringify(this.props.offerBanners)}</p>
+                <CategoryBannerStore/>
+                <OfferBannerStore/>
             </div>
         )
     }
@@ -82,7 +92,11 @@ const HomeStore = connect(
         fetchSubCategories: (categoryId) => dispatch(fetchSubCategories(categoryId)),
         fetchDetailledObject: (objectId) => dispatch(fetchDetailledObject(objectId)),
         fetchBidsOfObject: (objectId) => dispatch(fetchBidsOfObject(objectId)),
-        fetchLogin: (mail, password) => dispatch(fetchLogin(mail, password))
+        fetchQuestionsOfObject: (objectId) => dispatch(fetchQuestionsOfObject(objectId)),
+        fetchLogin: (mail, password) => dispatch(fetchLogin(mail, password)),
+        fetchSelections: () => dispatch(fetchSelections()),
+        fetchMessages: (userId) => dispatch(fetchMessages(userId)),
+        fetchReceivedQuestions: (userId) => dispatch(fetchQuestionsOfUser(userId))
     }))
 )(Home)
 

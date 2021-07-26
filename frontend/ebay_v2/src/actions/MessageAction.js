@@ -14,9 +14,9 @@ export const getMessagesError = (error) => ({
     payload: {error:error}
 })
 
-export const getMesssagesSuccess = (messages) => ({
+export const getMessagesSuccess = (messages, type) => ({
     type: GET_MESSAGES_SUCCESS,
-    payload: {messages:messages}
+    payload: {messages:messages, type:type}
 })
 
 export const createMessages = (message) => ({

@@ -1,51 +1,33 @@
 import { Component } from "react";
-import {request_formatter} from "../../../GLOBAL";
-import RoundCategorieBox from "./Components/RoundCategorieBox"
-import './style.css'
+// import {request_formatter} from "../../../GLOBAL";
+import RoundCategorieBox from "./RoundCategoryBox"
+// import './style.css'
 import {withRouter} from "react-router-dom"
-import Loading from "../Loading/Loading";
+// import Loading from "../Loading/Loading";
 import PropTypes from "prop-types"
 import {categorySelector} from "../selectors/CategorySelector"
 import {fetchCategories} from "../thunks/CategoryThunk"
+import { connect } from "react-redux";
+import Loading from "./Loading";
+import { keyHandler } from "../utils/keyHandler";
+
 
 class CategoryBanner extends Component {
-
-    // constructor(props) {
-    //     super(props)
-
-    //     this.state = {
-    //         queryset: null,
-    //     }
-
-    //     this.requestQuerySet()
-    // }
     
-    // componentDidMount() {
+    componentDidMount() {
         
-    // }
-
-    // requestQuerySet = () => {
-        
-    //     let url = request_formatter({
-    //             model: "category"
-    //         })
-
-
-    //     fetch(url)
-    //         .then(res => res.json())
-    //         .then(json => this.setState({queryset : json}))
-    // }
+        this.props.fetchCategories()
+    }
     
-
     render() {
         return(
             <div>
                 <h4>Catégories</h4>
-                <div class="main-categories">
-                    {this.props.loaded && this.props.items.map(category => {
-                        return <RoundCategorieBox category={category}/>
+                <div className="main-categories">
+                    {this.props.categories.loaded && this.props.categories.items.map(category => {
+                        return <RoundCategorieBox key={keyHandler()} category={category}/>
                     })}
-                    {!this.props.loaded && <Loading/>}
+                    {!this.props.categories.loaded && <Loading/>}
                 </div>
             </div>
         )
@@ -57,9 +39,9 @@ const CategoryBannerStore = connect(
         categories:categorySelector(state)
     }),
     (dispatch) => ({
-        fetchCategories: () => fetchCategories()
+        fetchCategories: () => dispatch(fetchCategories())
     })
-)
+)(CategoryBanner)
 
 CategoryBanner.propTypes = {
 
@@ -67,4 +49,4 @@ CategoryBanner.propTypes = {
     fetchCategories: PropTypes.func.isRequired
  }
 
-export default CategoryBanner
+export default CategoryBannerStore

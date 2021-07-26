@@ -1,6 +1,7 @@
 import { getOfferBanner, getOfferBannerError, getOfferBannerSuccess } from "../actions/OfferBannerActions";
 import { parametersFormater } from "../utils/parametersFormater";
 import { urlFormater } from "../utils/urlFormater";
+import {NOT_FOUND} from "../utils/errors"
 
 
 export const fetchOfferBanners = () => {
@@ -17,7 +18,7 @@ export const fetchOfferBanners = () => {
         return fetch(url, params)
                         .then(rslt => {
                             if (!rslt.ok) {
-                                throw new Error("Error - 404 Not Found")
+                                throw new Error(NOT_FOUND)
                             }
 
                             return rslt.json()

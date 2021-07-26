@@ -1,4 +1,7 @@
-import { CREATE_IMAGE_OF_OBJECT, CREATE_IMAGE_OF_OBJECT_ERROR, DELETE_IMAGE_OF_OBJECT, DELETE_IMAGE_OF_OBJECT_ERROR, DELETE_IMAGE_OF_OBJECT_SUCCESS, EDIT_IMAGE_OF_OBJECT, EDIT_IMAGE_OF_OBJECT_ERROR, GET_IMAGES_OF_OBJECT, GET_IMAGES_OF_OBJECT_ERROR, GET_IMAGES_OF_OBJECT_SUCCESS } from "../constants/ImageConstants";
+import { CREATE_IMAGE_OF_OBJECT, CREATE_IMAGE_OF_OBJECT_ERROR, CREATE_IMAGE_OF_OBJECT_SUCCESS, 
+         DELETE_IMAGE_OF_OBJECT, DELETE_IMAGE_OF_OBJECT_ERROR, DELETE_IMAGE_OF_OBJECT_SUCCESS, 
+         EDIT_IMAGE_OF_OBJECT, EDIT_IMAGE_OF_OBJECT_ERROR, EDIT_IMAGE_OF_OBJECT_SUCCESS,
+         GET_IMAGES_OF_OBJECT, GET_IMAGES_OF_OBJECT_ERROR, GET_IMAGES_OF_OBJECT_SUCCESS } from "../constants/ImageConstants";
 import { initialState } from "./RootReducers";
 
 export const ImageReducer = (state=initialState.imagesOfObject, action) => {
@@ -12,7 +15,7 @@ export const ImageReducer = (state=initialState.imagesOfObject, action) => {
                     error:action.payload.error}
 
         case GET_IMAGES_OF_OBJECT_SUCCESS:
-            return {...state, loading:fakse, loaded:true, 
+            return {...state, loading:false, loaded:true, 
                     images:action.payload.images}
 
         case CREATE_IMAGE_OF_OBJECT:
@@ -32,7 +35,7 @@ export const ImageReducer = (state=initialState.imagesOfObject, action) => {
             return {...state, loading:true}
 
         case EDIT_IMAGE_OF_OBJECT_ERROR:
-            return {...state, loading:false, error:error}
+            return {...state, loading:false, error:action.payload.error}
 
         case EDIT_IMAGE_OF_OBJECT_SUCCESS:
 

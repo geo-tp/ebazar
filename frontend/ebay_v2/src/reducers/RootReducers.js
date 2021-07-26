@@ -3,15 +3,22 @@ import { AuthReducer } from "./AuthReducer";
 import { BidReducer } from "./BidReducer";
 import { CategoryReducer } from "./CategoryReducer";
 import { detailledObjectReducer } from "./DetailledObjectReducer";
+import { MessageReducer } from "./MessageReducer";
+import { QuestionOfObjectReducer } from "./QuestionOfObjectReducer"
 import { ObjectReducer } from "./ObjectReducer";
 import { OfferBannerReducer } from "./OfferBannerReducer";
 import { SubCategoryReducer } from "./SubCategoryReducer";
-
+import { ImageReducer } from "./ImageReducer"
+import { ReceivedQuestionReducer } from "./ReceivedQuestionReducer";
+import { SelectionReducer } from "./SelectionReducer";
 
 export function initState() {
     
-    const storeFields = ["auth", "objects", "offerBanners", "categories", "subCategories", 
-                         "detailledObject", "detailledObjectBids"]
+    const storeFields = ["auth", "questions", "messages", 
+                         "objects", "offerBanners", "categories", "subCategories", 
+                         "detailledObject", "detailledObjectBids", "detailledObjectQuestions", 
+                         "detailledObjectImages",
+                         "states", "operations", "durations", "selections" ]
 
     let store = {}
     for (let field of storeFields) {
@@ -41,6 +48,18 @@ export function initState() {
                     userInfos: {}
                 }
                 break
+
+            case "messages":
+
+                store[field] = {
+
+                    loading: false,
+                    error: false,
+                    connected: false,
+
+                    sended_messages : {},
+                    received_messages : {}
+                }
         
             default:                
                 store[field] = {
@@ -64,12 +83,21 @@ export const initialState = initState()
 export const RootReducer = (state=initialState, action) => {
     return{
         auth: AuthReducer(state.auth, action),
+        messages: MessageReducer(state.messages, action),
+        questions: ReceivedQuestionReducer(state.questions, action),
+
         objects: ObjectReducer(state.objects, action),
+        
         detailledObject: detailledObjectReducer(state.detailledObject, action),
         detailledObjectBids: BidReducer(state.detailledObjectBids, action),
+        detailledObjectImages: ImageReducer(state.detailledObjectImages, action),
+        detailledObjectQuestions: QuestionOfObjectReducer(state.detailledObjectQuestions, action),
+        
+        
+        offerBanners: OfferBannerReducer(state.offerBanners, action),
+        selections: SelectionReducer(state.selections, action),
         categories: CategoryReducer(state.categories, action),
         subCategories: SubCategoryReducer(state.subCategories, action),
-        offerBanners: OfferBannerReducer(state.offerBanners, action),
 
     }
 }
