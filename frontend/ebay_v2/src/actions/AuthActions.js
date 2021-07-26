@@ -1,4 +1,4 @@
-import { CREATE_ACCOUNT, CREATE_ACCOUNT_ERROR, CREATE_ACCOUNT_SUCCESS, 
+import { ACCEPT_COOKIE, CREATE_ACCOUNT, CREATE_ACCOUNT_ERROR, CREATE_ACCOUNT_SUCCESS, 
          DELETE_ACCOUNT, DELETE_ACCOUNT_ERROR, DELETE_ACCOUNT_SUCCESS, 
          EDIT_ACCOUNT, EDIT_ACCOUNT_ERROR, EDIT_ACCOUNT_SUCCESS, 
          GET_ACCOUNT, GET_ACCOUNT_ERROR, GET_ACCOUNT_SUCCESS,
@@ -93,5 +93,10 @@ export const deleteAccountError = (error) => ({
 
 export const deleteAccountSuccess = () => ({
     type: DELETE_ACCOUNT_SUCCESS,
+    payload:{}
+})
+
+export const acceptCookie = () => ({
+    type: ACCEPT_COOKIE,
     payload:{}
 })

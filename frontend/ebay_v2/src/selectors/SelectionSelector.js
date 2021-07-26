@@ -1,0 +1,2 @@
+
+const selectionSelector = ({selections}) => selections

@@ -18,6 +18,7 @@ import { fetchQuestionsOfUser } from "../thunks/ReceivedQuestionThunk";
 import { fetchQuestionsOfObject } from "../thunks/QuestionOfObjectThunk";
 import CategoryBannerStore from "../components/CategoryBanner";
 import OfferBannerStore from "../components/OfferBanner";
+import CookieBannerStore from "../components/CookieBanner";
 
 
 class Home extends Component {
@@ -71,6 +72,7 @@ class Home extends Component {
             <div>
                 <CategoryBannerStore/>
                 <OfferBannerStore/>
+                <CookieBannerStore/>
             </div>
         )
     }

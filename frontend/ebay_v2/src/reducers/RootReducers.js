@@ -44,6 +44,7 @@ export function initState() {
                     loading: false,
                     error: false, 
                     connected: false,
+                    cookieAccept: false,
 
                     userInfos: {}
                 }
