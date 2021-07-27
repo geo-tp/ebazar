@@ -1,9 +1,5 @@
 import { Component } from "react";
-// import {request_formatter} from "../../../GLOBAL";
 import RoundCategorieBox from "./RoundCategoryBox"
-// import './style.css'
-import {withRouter} from "react-router-dom"
-// import Loading from "../Loading/Loading";
 import PropTypes from "prop-types"
 import {categorySelector} from "../selectors/CategorySelector"
 import {fetchCategories} from "../thunks/CategoryThunk"

@@ -17,7 +17,7 @@ class CookieBanner extends Component{
                 <div className="banniere-cookie-main">
                     <p>Veuillez accepter les conditions d'usage des cookies pour profiter pleinement d'EBAZAR. <a href="">Voir les conditions</a></p>
                     <div>
-                        <button onClick={() => this.setCookieAccepted()}>Accepter</button>
+                        <button onClick={() => this.props.setCookieAccepted()}>Accepter</button>
                         <form action="https://google.fr">
                             <button type="submit">Refuser</button>
                         </form>

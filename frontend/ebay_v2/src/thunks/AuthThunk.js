@@ -1,14 +1,13 @@
 import { createAccount, createAccountSuccess, createAccountError, 
          deleteAccount, deleteAccountError, deleteAccountSuccess, 
-         editAccount, editAccountError, editAccountSuccess, 
-         getAccount, getAccountError, getAccountSuccess, 
          getConnected, getConnectedError, getConnectedSuccess, 
          getDisconnected, getDisconnectedError, getDisconnectedSuccess } from "../actions/AuthActions";
+import { addTokenToBasicHeader } from "../utils/APIConfig";
+
 import { NOT_FOUND } from "../utils/errors";
          
 import { parametersFormater } from "../utils/parametersFormater";
 import { urlFormater } from "../utils/urlFormater";
-
 
 export const fetchLogin = (mail, password) => {
     return (dispatch) => {
@@ -30,6 +29,7 @@ export const fetchLogin = (mail, password) => {
             })
 
             .then(userAndToken => {
+                console.log("USERANDTO", userAndToken)
                 dispatch(getConnectedSuccess(userAndToken))
             })
 
@@ -101,65 +101,6 @@ export const fetchRegistration = (registrationInfos) => {
     }
 }
 
-export const fetchAccount = (userId) => {
-    return(dispatch) => {
-        dispatch(getAccount(userId))
-
-        let url = urlFormater({
-            model: "user",
-            pk: userId
-        })
-
-        let params = parametersFormater("GET")
-
-        return fetch(url, params)
-            .then(rslt => {
-                if (!rslt.ok) {
-                    throw new Error ("Error - 404 Not Found")
-                }
-
-                return rslt.json()
-            })
-
-            .then(account => {
-                dispatch(getAccountSuccess(account))
-            })
-
-            .catch(error => {
-                dispatch(getAccountError(error))
-            })
-    }
-}
-
-export const fetchEditAccount = (userId, modification) => {
-    return(dispatch) => {
-        dispatch(editAccount(userId, modification))
-
-        let url = urlFormater({
-            model: "user",
-            pk: userId
-        })
-
-        let params = parametersFormater("PATCH", modification)
-
-        return fetch(url, params)
-            .then(rslt => {
-                if (!rslt.ok) {
-                    throw new Error("Error - 404 Not Found")
-                }
-
-                return rslt.json()
-            })
-
-            .then(userModified => {
-                dispatch(editAccountSuccess(userModified))
-            })
-
-            .catch(error => {
-                dispatch(editAccountError(error))
-            })
-    }
-}
 
 export const fetchDeleteAccount = (userId) => {
 

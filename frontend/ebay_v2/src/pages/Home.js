@@ -19,6 +19,7 @@ import { fetchQuestionsOfObject } from "../thunks/QuestionOfObjectThunk";
 import CategoryBannerStore from "../components/CategoryBanner";
 import OfferBannerStore from "../components/OfferBanner";
 import CookieBannerStore from "../components/CookieBanner";
+import ObjectListStore from "../components/ObjectList";
 
 
 class Home extends Component {
@@ -29,24 +30,24 @@ class Home extends Component {
 
         this.state = { inter: 1 }
         // if (!props.objects.loaded) {
-        props.fetchObjects()
+        // props.fetchObjects()
         // }
 
         // if (!props.categories.loaded) {
-        props.fetchCategories()
-        // }
-        props.fetchOfferBanners()
+        // props.fetchCategories()
+        // // }
+        // props.fetchOfferBanners()
 
-        props.fetchSubCategories(1)
+        // props.fetchSubCategories(1)
 
-        props.fetchDetailledObject(1)
-        props.fetchBidsOfObject(1)
+        // props.fetchDetailledObject(1)
+        // props.fetchBidsOfObject(1)
 
         props.fetchLogin("geo@mail.com", "adminadmin")
 
-        props.fetchMessages(1)
+        // props.fetchMessages(1)
 
-        props.fetchQuestionsOfObject(1)
+        // props.fetchQuestionsOfObject(1)
 
     }
 
@@ -73,6 +74,7 @@ class Home extends Component {
                 <CategoryBannerStore/>
                 <OfferBannerStore/>
                 <CookieBannerStore/>
+                <ObjectListStore listLabel="Home"/>
             </div>
         )
     }

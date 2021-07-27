@@ -1,15 +1,23 @@
 
 import { BASIC_HEADER } from "../utils/APIConfig";
 import {store} from "../store/store"
+import { tokenSelector } from "../selectors/AuthSelectors";
 
+const addTokenIfExist = () => {
 
+    let token = tokenSelector(store.getState().auth)
+
+    if (token) {
+        BASIC_HEADER.append("Authorization", "token " + token)
+    }
+
+}
 
 export const parametersFormater = (method, body=null) => {
 
-    let headers = BASIC_HEADER
-
-    if (store.token) {
-        headers["Authorization"] = "token " + store.token
+    // not add token if it's already done
+    if (!BASIC_HEADER.get("authorization")) {
+        addTokenIfExist()
     }
 
 
@@ -17,13 +25,13 @@ export const parametersFormater = (method, body=null) => {
 
         case "GET":
         case "DELETE":
-            return {method: method, headers:headers}
+            return {method: method, headers:BASIC_HEADER}
 
 
         case "PUT":
         case "PATCH":
         case "POST":
-            return {method: method, headers:headers, body:JSON.stringify(body)}
+            return {method: method, headers:BASIC_HEADER, body:JSON.stringify(body)}
 
             
         default:

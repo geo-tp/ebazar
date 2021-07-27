@@ -8,9 +8,11 @@ import {
   Redirect
 } from "react-router-dom";
 
-import {Provider, connect} from "react-redux"
+
+import {Provider} from "react-redux"
 
 import {store} from "../store/store"
+import Footer from "../components/Footer";
 
 function App() {
 
@@ -30,7 +32,10 @@ function App() {
 
           </Switch>
 
+          <Footer/>
+
         </div>
+
 
       </Router>
 

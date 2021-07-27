@@ -1,5 +1,5 @@
 import { getObjects, getObjectsSuccess, getObjectsError,
-         editObject, editObjectSuccess, editObjectError} from "../actions/ObjectActions"
+         editObject, editObjectSuccess, editObjectError, getNextObjectPage, getNextObjectPageSuccess, getNextObjectPageError} from "../actions/ObjectActions"
 import { urlFormater } from "../utils/urlFormater"
 import {parametersFormater} from "../utils/parametersFormater"
 import { NOT_FOUND } from "../utils/errors"
@@ -76,5 +76,28 @@ export const fetchEditObject = (object) => {
                         console.log(error)
                         dispatch(editObjectError(error))
                     })
+    }
+}
+
+export const fetchNextObjectsPage = (nextUrl) => {
+    return(dispatch) => {
+        dispatch(getNextObjectPage(nextUrl))
+
+        fetch(nextUrl)
+            .then(rslt => {
+                if (!rslt.ok) {
+                    throw new Error(NOT_FOUND)
+                }
+
+                return rslt.json()
+            })
+
+            .then(objects => {
+                dispatch(getNextObjectPageSuccess(objects))
+            })
+
+            .catch(error => {
+                dispatch(getNextObjectPageError(error))
+            })
     }
 }

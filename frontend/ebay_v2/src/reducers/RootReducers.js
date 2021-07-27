@@ -11,13 +11,15 @@ import { SubCategoryReducer } from "./SubCategoryReducer";
 import { ImageReducer } from "./ImageReducer"
 import { ReceivedQuestionReducer } from "./ReceivedQuestionReducer";
 import { SelectionReducer } from "./SelectionReducer";
+import { UserReducer } from "./UserReducer";
 
 export function initState() {
     
-    const storeFields = ["auth", "questions", "messages", 
-                         "objects", "offerBanners", "categories", "subCategories", 
-                         "detailledObject", "detailledObjectBids", "detailledObjectQuestions", 
-                         "detailledObjectImages",
+    const storeFields = ["auth", 
+                         "user", "questions", "messages", 
+                         "objects", 
+                         "detailledObject", "detailledObjectBids", "detailledObjectQuestions", "detailledObjectImages",
+                         "offerBanners", "categories", "subCategories", 
                          "states", "operations", "durations", "selections" ]
 
     let store = {}
@@ -45,8 +47,21 @@ export function initState() {
                     error: false, 
                     connected: false,
                     cookieAccept: false,
+                    
+                    token: null,
+                    basicUser: {}
+                }
+                break
 
-                    userInfos: {}
+            case "user":
+
+                store[field] = {
+
+                    loading: false,
+                    error: false, 
+                    loaded: false,
+                    
+                    user: {}
                 }
                 break
 
@@ -61,6 +76,7 @@ export function initState() {
                     sended_messages : {},
                     received_messages : {}
                 }
+                break
         
             default:                
                 store[field] = {
@@ -84,6 +100,8 @@ export const initialState = initState()
 export const RootReducer = (state=initialState, action) => {
     return{
         auth: AuthReducer(state.auth, action),
+
+        user: UserReducer(state.user, action),
         messages: MessageReducer(state.messages, action),
         questions: ReceivedQuestionReducer(state.questions, action),
 
@@ -93,7 +111,6 @@ export const RootReducer = (state=initialState, action) => {
         detailledObjectBids: BidReducer(state.detailledObjectBids, action),
         detailledObjectImages: ImageReducer(state.detailledObjectImages, action),
         detailledObjectQuestions: QuestionOfObjectReducer(state.detailledObjectQuestions, action),
-        
         
         offerBanners: OfferBannerReducer(state.offerBanners, action),
         selections: SelectionReducer(state.selections, action),

@@ -52,7 +52,7 @@ class UserSerializer(serializers.ModelSerializer):
 # )
 
 class CustomTokenSerializer(serializers.ModelSerializer):
-    user = UserSerializer(read_only=True)
+    user = BasicUserSerializer(read_only=True)
 
     class Meta:
         model = TokenModel
