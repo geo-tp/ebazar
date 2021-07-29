@@ -1,7 +1,7 @@
 import { Component } from "react";
 import RoundCategorieBox from "./RoundCategoryBox"
 import PropTypes from "prop-types"
-import {categorySelector} from "../selectors/CategorySelector"
+import {categorySelector} from "../selectors/CategorySelectors"
 import {fetchCategories} from "../thunks/CategoryThunk"
 import { connect } from "react-redux";
 import Loading from "./Loading";

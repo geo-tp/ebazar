@@ -1,15 +1,13 @@
-import { combineReducers } from "redux";
 import { AuthReducer } from "./AuthReducer";
 import { BidReducer } from "./BidReducer";
 import { CategoryReducer } from "./CategoryReducer";
 import { detailledObjectReducer } from "./DetailledObjectReducer";
 import { MessageReducer } from "./MessageReducer";
-import { QuestionOfObjectReducer } from "./QuestionOfObjectReducer"
+import { QuestionReducer } from "./QuestionReducer"
 import { ObjectReducer } from "./ObjectReducer";
 import { OfferBannerReducer } from "./OfferBannerReducer";
 import { SubCategoryReducer } from "./SubCategoryReducer";
 import { ImageReducer } from "./ImageReducer"
-import { ReceivedQuestionReducer } from "./ReceivedQuestionReducer";
 import { SelectionReducer } from "./SelectionReducer";
 import { UserReducer } from "./UserReducer";
 
@@ -71,10 +69,10 @@ export function initState() {
 
                     loading: false,
                     error: false,
-                    connected: false,
+                    loaded: false,
 
-                    sended_messages : {},
-                    received_messages : {}
+                    sendedMessages : {},
+                    receivedMessages : {}
                 }
                 break
         
@@ -103,14 +101,14 @@ export const RootReducer = (state=initialState, action) => {
 
         user: UserReducer(state.user, action),
         messages: MessageReducer(state.messages, action),
-        questions: ReceivedQuestionReducer(state.questions, action),
+        questions: QuestionReducer(state.questions, action),
 
         objects: ObjectReducer(state.objects, action),
         
         detailledObject: detailledObjectReducer(state.detailledObject, action),
         detailledObjectBids: BidReducer(state.detailledObjectBids, action),
         detailledObjectImages: ImageReducer(state.detailledObjectImages, action),
-        detailledObjectQuestions: QuestionOfObjectReducer(state.detailledObjectQuestions, action),
+        detailledObjectQuestions: QuestionReducer(state.detailledObjectQuestions, action),
         
         offerBanners: OfferBannerReducer(state.offerBanners, action),
         selections: SelectionReducer(state.selections, action),

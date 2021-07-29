@@ -1,5 +1,6 @@
 import { getObjects, getObjectsSuccess, getObjectsError,
-         editObject, editObjectSuccess, editObjectError, getNextObjectPage, getNextObjectPageSuccess, getNextObjectPageError} from "../actions/ObjectActions"
+         editObject, editObjectSuccess, editObjectError, 
+         getNextObjectPage, getNextObjectPageSuccess, getNextObjectPageError} from "../actions/ObjectActions"
 import { urlFormater } from "../utils/urlFormater"
 import {parametersFormater} from "../utils/parametersFormater"
 import { NOT_FOUND } from "../utils/errors"
@@ -77,6 +78,17 @@ export const fetchEditObject = (object) => {
                         dispatch(editObjectError(error))
                     })
     }
+}
+
+export const fetchCreateObject = (objectForm) => {
+
+    let url = urlFormater({
+        model: "object"
+    })
+
+    let params = parametersFormater("POST", objectForm)
+    
+    return fetch()
 }
 
 export const fetchNextObjectsPage = (nextUrl) => {

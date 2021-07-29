@@ -5,8 +5,8 @@ import { fetchEditObject, fetchObjects } from "../thunks/ObjectThunk";
 import { fetchCategories } from "../thunks/CategoryThunk"
 import { fetchSubCategories } from "../thunks/SubCategoryThunk"
 import { fetchOfferBanners } from "../thunks/OfferBannerThunk"
-import { categorySelector } from "../selectors/CategorySelector"
-import { offerBannerSelector } from "../selectors/OfferBannerSelector";
+import { categorySelector } from "../selectors/CategorySelectors"
+import { offerBannerSelector } from "../selectors/OfferBannerSelectors";
 import { fetchDetailledObject } from "../thunks/DetailledObjectThunk";
 import { fetchBidsOfObject } from "../thunks/BidThunk";
 import { fetchLogin } from "../thunks/AuthThunk"
@@ -14,12 +14,13 @@ import { fetchSelections } from "../thunks/SelectionThunk"
 import { fetchMessages } from "../thunks/MessageThunk"
 
 import {detailledObjectSelector} from "../selectors/DetailledObjectSelector"
-import { fetchQuestionsOfUser } from "../thunks/ReceivedQuestionThunk";
-import { fetchQuestionsOfObject } from "../thunks/QuestionOfObjectThunk";
+import { fetchQuestionsOfObject, fetchQuestionsOfUser } from "../thunks/QuestionThunk";
 import CategoryBannerStore from "../components/CategoryBanner";
 import OfferBannerStore from "../components/OfferBanner";
 import CookieBannerStore from "../components/CookieBanner";
 import ObjectListStore from "../components/ObjectList";
+import { MessagingPanelStore } from "../components/MessagingPanel";
+import { ObjectFormStore } from "../components/ObjectForm";
 
 
 class Home extends Component {
@@ -33,9 +34,7 @@ class Home extends Component {
         // props.fetchObjects()
         // }
 
-        // if (!props.categories.loaded) {
         // props.fetchCategories()
-        // // }
         // props.fetchOfferBanners()
 
         // props.fetchSubCategories(1)
@@ -43,11 +42,11 @@ class Home extends Component {
         // props.fetchDetailledObject(1)
         // props.fetchBidsOfObject(1)
 
-        props.fetchLogin("geo@mail.com", "adminadmin")
+        // props.fetchLogin("geo@mail.com", "adminadmin")
+        props.fetchQuestionsOfUser(2)
 
-        // props.fetchMessages(1)
-
-        // props.fetchQuestionsOfObject(1)
+        props.fetchMessages(2, "receiver")
+        props.fetchMessages(2, "sender")
 
     }
 
@@ -74,7 +73,9 @@ class Home extends Component {
                 <CategoryBannerStore/>
                 <OfferBannerStore/>
                 <CookieBannerStore/>
-                <ObjectListStore listLabel="Home"/>
+                {/* <ObjectListStore listLabel="Home"/> */}
+                <MessagingPanelStore datailInViewIndex="1" dataSetType="receivedMessages"/>
+                <ObjectFormStore/>
             </div>
         )
     }
@@ -97,16 +98,11 @@ const HomeStore = connect(
         fetchDetailledObject: (objectId) => dispatch(fetchDetailledObject(objectId)),
         fetchBidsOfObject: (objectId) => dispatch(fetchBidsOfObject(objectId)),
         fetchQuestionsOfObject: (objectId) => dispatch(fetchQuestionsOfObject(objectId)),
+        fetchQuestionsOfUser: (userId) => dispatch(fetchQuestionsOfUser(userId)),
         fetchLogin: (mail, password) => dispatch(fetchLogin(mail, password)),
         fetchSelections: () => dispatch(fetchSelections()),
-        fetchMessages: (userId) => dispatch(fetchMessages(userId)),
-        fetchReceivedQuestions: (userId) => dispatch(fetchQuestionsOfUser(userId))
+        fetchMessages: (userId, type) => dispatch(fetchMessages(userId, type)),
     }))
 )(Home)
-
-
-
-
-
 
 export default HomeStore

@@ -2,7 +2,7 @@ from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from django.http import HttpResponse
 from users.models import CustomUser as User
-from .models import Object
+from .models import Object, Question, Message
 
 from rest_framework import status
 import datetime
@@ -122,13 +122,42 @@ def checkSenderIsNotReceiver(func):
 
         else:
 
-            if request.data["sender"] == request.data["reciever"]:
+            if request.data["sender"] == request.data["receiver"]:
                 return Response({"detail": "You can't send a message to yourself"})
 
             else:
                 return func(self, request, *args, **kwargs)
 
     return inner
+
+def checkUserIsReceiver(endpoint_type):
+    """
+    Check si une question/message est adressé a l'utilisateur qui fait la requete GET
+    """
+
+    def decorator(func):
+
+        def inner(self, request, pk):
+
+            if endpoint_type == "question":
+                q = Question.objects.get(id=pk)
+                obj = Object.objects.get(id=q.obj.id)
+                
+                if request.user == obj.user:
+                    return func(self, request, pk)
+
+            elif endpoint_type == "message":
+
+                m = Message.objects.get(id=pk)
+
+                if requeser.user == m.receiver:
+                    return func(self, request, pk)
+
+            return Response({"detail": "You're not the receiver"}, 
+                    status=status.HTTP_401_UNAUTHORIZED)
+        return inner
+
+    return decorator
 
 def checkUserMatching(func):
     """

@@ -15,16 +15,15 @@ export const MessageReducer = (state=initialState.messages, action) => {
             
             let messages = action.payload.messages
             let temp = {}
-
             if (action.payload.type=="receiver") {
-                temp["received_messages"] = messages
+                temp["receivedMessages"] = messages
             }
 
             else {
-                temp["sended_messages"] = messages
+                temp["sendedMessages"] = messages
             }
 
-            return {...state, loading:false, 
+            return {...state, loading:false, loaded:true,
                     ...temp}
         default:
             return state

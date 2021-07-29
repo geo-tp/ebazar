@@ -131,8 +131,8 @@ class Message(models.Model):
     answered = models.BooleanField(default=0)
     viewed = models.BooleanField(default=0)
 
-    sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name="sender")
-    reciever = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reciever')
+    sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name="message_sender")
+    receiver = models.ForeignKey(User, on_delete=models.CASCADE, related_name='message_receiver')
 
     date=models.DateTimeField(auto_now_add=True)
 
@@ -143,7 +143,9 @@ class Question(models.Model):
     viewed = models.BooleanField(default=0)
 
     obj = models.ForeignKey(Object, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name="question_sender")
+    receiver = models.ForeignKey(User, on_delete=models.CASCADE, related_name='question_receiver')
 
     date = models.DateTimeField(auto_now_add=True)
 

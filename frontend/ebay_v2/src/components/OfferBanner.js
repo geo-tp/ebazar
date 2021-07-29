@@ -1,6 +1,6 @@
 import { Component, createRef } from "react";
 import { connect } from "react-redux";
-import { offerBannerSelector } from "../selectors/OfferBannerSelector";
+import { offerBannerSelector } from "../selectors/OfferBannerSelectors";
 import { fetchOfferBanners } from "../thunks/OfferBannerThunk";
 import PropTypes from "prop-types"
 

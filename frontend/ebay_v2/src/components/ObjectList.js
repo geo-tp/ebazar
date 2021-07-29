@@ -15,11 +15,11 @@ class ObjectList extends Component {
             <div id="main-object-list">
                     <h4>{this.props.listLabel}</h4>
                     <div id="main-object-list__wrapper" >
-                        {/* {this.props.objects.loaded && 
+                        {this.props.objects.loaded && 
                         this.props.objects.items != {} && 
                         this.props.objects.items.results.map(object => {
                             return <Obj object={object}/>
-                        })} */}
+                        })}
                     </div>
                     {/* {this.props.objects.items.results.length == 0 && <p style={{"text-align": "center"}}>Aucune enchère pour le moment</p>} */}
                     <div className="main-object-list__container">

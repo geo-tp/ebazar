@@ -24,7 +24,7 @@ from django.views.decorators.cache import cache_page
 import datetime
 
 from .functions_utils import checkUserMatching, checkUserIsOwner,\
-                             checkSenderIsNotReceiver, restrictedEndPoint
+                             checkSenderIsNotReceiver, restrictedEndPoint, checkUserIsReceiver
 
 
 class OfferBannerViewSet(viewsets.ModelViewSet):
@@ -283,7 +283,7 @@ class MessageViewSet(viewsets.ModelViewSet):
     serializer_class = MessageSerializer
 
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
-    filterset_fields = ["sender", "reciever"]
+    filterset_fields = ["sender", "receiver"]
 
     permission_classes = [AllowAny]
 
@@ -410,7 +410,7 @@ class QuestionViewSet(viewsets.ModelViewSet):
     serializer_class = QuestionSerializer
 
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
-    filterset_fields = ["obj"]
+    filterset_fields = ["obj", "sender", "receiver"]
 
     permission_classes = [AllowAny]
 
@@ -420,6 +420,13 @@ class QuestionViewSet(viewsets.ModelViewSet):
 
         return super().create(request, *args, **kwargs)
 
+    @checkUserIsReceiver("question")
+    def retrieve(self, request, pk):
+        question = Question.objects.get(id=pk)
+        question.viewed = 1
+        question.save()
+
+        return super().retrieve(request, pk)
     # @restrictedEndPoint
     # def list(self, request, *args, **kwargs):
     #     pass

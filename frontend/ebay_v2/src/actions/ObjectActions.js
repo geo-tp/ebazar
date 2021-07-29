@@ -1,8 +1,13 @@
-import { EDIT_OBJECT, EDIT_OBJECT_ERROR, EDIT_OBJECT_SUCCESS, 
+import { CREATE_OBJECT, EDIT_OBJECT, EDIT_OBJECT_ERROR, EDIT_OBJECT_SUCCESS, 
          GET_NEXT_OBJECTS_PAGE, GET_NEXT_OBJECTS_PAGE_ERROR, GET_NEXT_OBJECTS_PAGE_SUCCESS, 
          GET_OBJECTS, GET_OBJECTS_ERROR, GET_OBJECTS_SUCCESS } from "../constants/ObjectConstants";
 
 
+
+export const createObjects = () => ({
+    type: CREATE_OBJECT,
+    payload: {}
+})
 
 export const getObjects = () => ({
     type: GET_OBJECTS,

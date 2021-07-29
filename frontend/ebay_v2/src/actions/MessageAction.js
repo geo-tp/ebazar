@@ -1,8 +1,23 @@
 import { CREATE_MESSAGE, CREATE_MESSAGE_ERROR, CREATE_MESSAGE_SUCCESS,
          DELETE_MESSAGE, DELETE_MESSAGE_ERROR, DELETE_MESSAGE_SUCCESS, 
          EDIT_MESSAGE, EDIT_MESSAGE_ERROR, EDIT_MESSAGE_SUCCESS, 
+         GET_MESSAGE, GET_MESSAGE_ERROR, GET_MESSAGE_SUCCESS,
          GET_MESSAGES, GET_MESSAGES_ERROR, GET_MESSAGES_SUCCESS } from "../constants/MessagesConstants";
 
+export const getMessage = (messageId) => ({
+    type: GET_MESSAGE,
+    payload: {messageId: messageId}
+})
+
+export const getMessageError = (error) => ({
+    type:GET_MESSAGE_ERROR,
+    payload: {error:error}
+})
+
+export const getMessageSuccess = (message) => ({
+    type: GET_MESSAGE_SUCCESS,
+    payload: {message:message}
+})
 
 export const getMessages = (userId) => ({
     type: GET_MESSAGES,
@@ -19,19 +34,19 @@ export const getMessagesSuccess = (messages, type) => ({
     payload: {messages:messages, type:type}
 })
 
-export const createMessages = (message) => ({
+export const createMessage = () => ({
     type: CREATE_MESSAGE,
-    payload: {message:message}
+    payload: {}
 })
 
-export const createMessagesError = (error) => ({
+export const createMessageError = (error) => ({
     type: CREATE_MESSAGE_ERROR,
     payload: {error:error}
 })
 
-export const createMessagesSuccess = (message) => ({
+export const createMessageSuccess = () => ({
     type: CREATE_MESSAGE_SUCCESS,
-    payload: {message:message}
+    payload: {}
 })
 
 export const editMessage = (messageId, newMessage) => ({

@@ -283,7 +283,7 @@ class MessagesAndQuestionsSerializer(serializers.ModelSerializer):
     def get_recieved_messages(self, instance):
 
         try:
-            messages = Message.objects.filter(reciever=instance.id).order_by("-date")
+            messages = Message.objects.filter(receiver=instance.id).order_by("-date")
         except:
             messages = None
 
@@ -313,8 +313,8 @@ class MessagesAndQuestionsSerializer(serializers.ModelSerializer):
         sended_message = []
         for message in messages:
             mess = MessageSerializer().to_representation(message)
-            user = User.objects.get(id=message.reciever.id)
-            mess["reciever"] = BasicUserSerializer().to_representation(user)
+            user = User.objects.get(id=message.receiver.id)
+            mess["receiver"] = BasicUserSerializer().to_representation(user)
 
             sended_message.append(mess)
 
@@ -516,6 +516,8 @@ class DetailledUserSerializer(serializers.ModelSerializer):
 
         rep["card_number"] = self._hide_parts_of_payment_method(rep["card_number"])
         rep["iban"] = self._hide_parts_of_payment_method(rep["iban"])
+
+        rep['balance'] = BalanceSerializer().to_representation(instance)
         
         nb_active_objects, active_objects = self._get_filtered_objects(instance, isActive=1)
         rep["active_objects"] = active_objects
@@ -543,7 +545,7 @@ class DetailledUserSerializer(serializers.ModelSerializer):
 
         received_message = MessagesAndQuestionsSerializer.get_recieved_messages(instance)
         rep["number_of_messages"] = len(received_message)
-        rep["recieved_messages"] = MessagesAndQuestionsSerializer.serialize_received_messages(received_message[:5])
+        rep["received_messages"] = MessagesAndQuestionsSerializer.serialize_received_messages(received_message[:5])
 
         rep["number_of_questions"] = MessagesAndQuestionsSerializer.number_of_questions(instance)
         
