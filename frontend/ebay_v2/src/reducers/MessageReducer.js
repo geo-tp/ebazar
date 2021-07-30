@@ -1,30 +1,40 @@
-import { GET_MESSAGES, GET_MESSAGES_ERROR, GET_MESSAGES_SUCCESS } from "../constants/MessagesConstants";
+import { GET_SENDED_MESSAGES, GET_SENDED_MESSAGES_ERROR, GET_SENDED_MESSAGES_SUCCESS,
+         GET_RECEIVED_MESSAGES, GET_RECEIVED_MESSAGES_ERROR, GET_RECEIVED_MESSAGES_SUCCESS } from "../constants/MessagesConstants";
 import { initialState } from "./RootReducers";
 
-export const MessageReducer = (state=initialState.messages, action) => {
+export const SendedMessageReducer = (state=initialState.sendedMessages, action) => {
 
     switch (action.type) {
-        case GET_MESSAGES:
+        case GET_SENDED_MESSAGES:
             return {...state, loading:true}
     
-        case GET_MESSAGES_ERROR:
+        case GET_SENDED_MESSAGES_ERROR:
             return {...state, loading:false, 
                     error:action.payload.error}
 
-        case GET_MESSAGES_SUCCESS:
+        case GET_SENDED_MESSAGES_SUCCESS:
             
-            let messages = action.payload.messages
-            let temp = {}
-            if (action.payload.type=="receiver") {
-                temp["receivedMessages"] = messages
-            }
-
-            else {
-                temp["sendedMessages"] = messages
-            }
-
             return {...state, loading:false, loaded:true,
-                    ...temp}
+                    items: action.payload.messages}
+        default:
+            return state
+    }
+}
+
+export const ReceivedMessageReducer = (state=initialState.receivedMessages, action) => {
+
+    switch (action.type) {
+        case GET_RECEIVED_MESSAGES:
+            return {...state, loading:true}
+    
+        case GET_RECEIVED_MESSAGES_ERROR:
+            return {...state, loading:false, 
+                    error:action.payload.error}
+
+        case GET_RECEIVED_MESSAGES_SUCCESS:
+            
+            return {...state, loading:false, loaded:true,
+                    items: action.payload.messages}
         default:
             return state
     }

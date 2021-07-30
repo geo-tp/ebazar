@@ -22,20 +22,22 @@ class MessagesTable extends Component {
                 <div className="button-box">
                     <div className="message-table-questions-button">
                         <button onClick={() => this.handleClick("questions_set", 1)}
-                                className="fa fa-2x fa-question" id={this.state.selected == 1 && "selected-table-index"}></button>
+                                className="fa fa-2x fa-question" id={this.state.selected == 1 ? "selected-table-index" : null}></button>
                     </div>
                     <button onClick={() => this.handleClick("messages_set", 2)}
-                            className="fa fa-2x fa-envelope" id={this.state.selected == 2 && "selected-table-index"}></button>
+                            className="fa fa-2x fa-envelope" id={this.state.selected == 2 ? "selected-table-index" : null}></button>
 
                     <button onClick={() => this.handleClick("sended_messages_set", 3)}
-                            className="fa fa-2x fa-paper-plane" id={this.state.selected == 3 && "selected-table-index"}></button>
+                            className="fa fa-2x fa-paper-plane" id={this.state.selected == 3 ? "selected-table-index" : null}></button>
                 </div>
                 <div className="table-box">
                     <table>
                         <thead>
+                            <tr>
                                     <th>Sujet</th>
                                     <th>Nom</th>
                                     <th>Date</th>
+                            </tr>
                         </thead>
                         <tbody>
                             {this.props.type == "messages_set" &&
@@ -51,7 +53,9 @@ class MessagesTable extends Component {
                             })}
 
                             {!this.props.data.length &&
-                                <p style={{"text-align": "center"}}>Rien pour le moment</p>
+                                <tr>
+                                    <td><p>Rien pour le moment</p></td>
+                                </tr>
                             }
                             {this.props.type == "questions_set"  &&
                             this.props.data.map((question, table_index) => {

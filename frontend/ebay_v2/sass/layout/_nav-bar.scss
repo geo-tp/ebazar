@@ -10,6 +10,8 @@
      align-items: center;
      color: map-get($COLOR-PALETTE, ter );
      background-color: map-get($COLOR-PALETTE, sec);
+     z-index: 30;
+
      @include border-bottom-default;
      @include small-bottom-shadow;
 

@@ -8,7 +8,7 @@ import PropTypes from "prop-types"
 import { connect } from "react-redux";
 import { receivedMessageSelector, sendedMessageSelector } from "../selectors/MessageSelector";
 import { questionSelector } from "../selectors/QuestionSelectors";
-import { fetchMessages } from "../thunks/MessageThunk";
+import { fetchSendedMessages, fetchReceivedMessages } from "../thunks/MessageThunk";
 import {fetchQuestionsOfUser} from "../thunks/QuestionThunk"
 
 
@@ -18,36 +18,32 @@ class MessagingPanel extends Component {
     constructor(props) {
         super(props)
 
-        let dataSetInView;
-        switch (this.props.dataSetType) {
-            case "sendedMessages":
-                dataSetInView = this.props.sendedMessages
-                break;
-            case "receivedMessages":
-                dataSetInView = this.props.receivedMessages
-                break;
-        
-            default:
-                dataSetInView = this.props.questions.items
-        }
-          
-
         this.state = {
+            isInit: 0,    
 
-            dataInViewIndex : this.props.dataInViewIndex,
-            dataInView: this.props.sendedMessages,
+            dataSetInView: this.props[this.props.dataSetType]
 
-            dataSetInView: dataSetInView
         }
 
     }
 
+    initView = () => {
+
+        this.setState({
+            isInit: 1,
+
+            dataInView: this.state.dataSetInView.items.results[this.props.dataInViewIndex ? this.props.dataInViewIndex : 0],
+        }, console.log("STATE", this.state))
+
+          
+    }
+
     handleDataChange = (set_name) => {
         this.setState ({
-            dataSetType: this.state.data[set_name],
-            actual_type : set_name,
-            selected_data_index: 1,
-            data_in_view: this.state.data[set_name] && this.state.data[set_name][0]
+            dataSetType: this.props[set_name],
+            // actual_type : set_name,
+            dataInViewIndex: 1,
+            dataInView: this.props.receivedMessages.results[0]
         })
     }
 
@@ -63,24 +59,32 @@ class MessagingPanel extends Component {
 
     render = () => {
 
+        console.log("RECEIVED MESS", this.props[this.props.dataSetType])
+
+        if (this.state.dataSetInView.loaded && !this.state.isInit) {
+
+            this.initView()
+        }
+
+
             return(
                 <div className="main-message-panel">
-                    {/* <h3>Messagerie</h3>
+                    <h3>Messagerie</h3>
                     <div className="main-message-panel__messages-wrapper">
                             {this.state.dataSetInView && <MessagesTable
                                 handleDataChange={this.handleDataChange}
                                 handleDataInViewChange={this.handleDataInViewChange}
-                                data={this.state.actual_set}
-                                selected_data_index={this.state.selected_data_index}
-                                type={this.state.actual_type}
-                                data_in_view={this.state.data_in_view}/>}
+                                data={this.state.dataSetInView}
+                                selected_data_index={this.state.dataInViewIndex}
+                                type={this.state.dataSetType}
+                                data_in_view={this.state.dataInView}/>}
                         <div className="main-message-panel__messages-wrapper__messages-details">
-                            {this.state.dataSetInView && this.state.dataSetInView.includes("questions") ? 
+                            {this.state.dataSetInView && this.state.dataSetInView.hasOwnProperty("questions") ? 
                             
                             this.props.questions && <QuestionView question={this.state.dataInView}/>
                             :
 
-                            this.props.messages && <MessageView message={this.state.dataInView}/>}
+                            this.state.dataInView && <MessageView message={this.state.dataInView}/>}
                             {!this.state.dataSetInView && <div style={{"text-align":"center"}}><Loading/></div>}
 
                         
@@ -89,7 +93,7 @@ class MessagingPanel extends Component {
                                     confirmation_data_send={this.state.confirmation_data_send}
                                     requestSendData={this.requestSendData}/>}
                                     </div>
-                    </div> */}
+                    </div>
                 </div>
             )
         }
@@ -104,8 +108,9 @@ export const MessagingPanelStore = connect(
         questions: questionSelector(state)
     }),
     (dispatch) => ({
-        // fetchMessages: dispatch((userId) => fetchMessages(userId)),
-        // fetchQuestionsOfUser: dispatch((userId) => fetchQuestionsOfUser(userId))
+        fetchSendedMessages: dispatch((userId) => fetchSendedMessages(userId)),
+        fetchReceivedMessages: dispatch((userId) => fetchReceivedMessages(userId)),
+        fetchQuestionsOfUser: dispatch((userId) => fetchQuestionsOfUser(userId))
     })
 
 )(MessagingPanel)
@@ -120,7 +125,8 @@ MessagingPanel.propTypes = {
     receivedMessages: PropTypes.object.isRequired,
     questions: PropTypes.object.isRequired,
 
-    fetchMessages: PropTypes.func.isRequired,
+    fetchSendedMessages: PropTypes.func.isRequired,
+    fetchReceivedMessages: PropTypes.func.isRequired,
     fetchQuestionsOfUser: PropTypes.func.isRequired
 }
 

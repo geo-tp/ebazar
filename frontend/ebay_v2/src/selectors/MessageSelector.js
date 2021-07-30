@@ -1,2 +1,3 @@
-export const receivedMessageSelector = ({messages}) => messages.receivedMessages
-export const sendedMessageSelector = ({messages}) => messages.sendedMessages
+export const receivedMessageSelector = ({sendedMessages}) => sendedMessages
+export const sendedMessageSelector = ({receivedMessages}) => receivedMessages
+

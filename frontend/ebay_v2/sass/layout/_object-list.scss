@@ -1,0 +1,32 @@
+.main-object-list {
+ 
+    margin: 0 auto;
+
+    &__wrapper {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        
+        & div {
+            flex-basis: 20%;
+
+            @include tablet-design {
+                flex-basis: 40%;
+            }
+            @include mobile-design {
+                flex-basis: 90%;
+            }
+        }
+    }
+    
+    &__container {
+        text-align: center;
+        margin: 2em;
+
+        &__view-more-button {
+            text-align: center;
+        }
+    }
+
+    
+}

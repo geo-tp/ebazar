@@ -1,0 +1,12 @@
+
+.main-category-banner {
+
+    margin-top: 100px;
+
+    &__container {
+        display: flex;
+        overflow-x: scroll;
+        padding: 1em;
+        margin: 1%;
+    }
+}

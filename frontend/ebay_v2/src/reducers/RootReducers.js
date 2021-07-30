@@ -2,7 +2,7 @@ import { AuthReducer } from "./AuthReducer";
 import { BidReducer } from "./BidReducer";
 import { CategoryReducer } from "./CategoryReducer";
 import { detailledObjectReducer } from "./DetailledObjectReducer";
-import { MessageReducer } from "./MessageReducer";
+import { SendedMessageReducer, ReceivedMessageReducer } from "./MessageReducer";
 import { QuestionReducer } from "./QuestionReducer"
 import { ObjectReducer } from "./ObjectReducer";
 import { OfferBannerReducer } from "./OfferBannerReducer";
@@ -14,7 +14,7 @@ import { UserReducer } from "./UserReducer";
 export function initState() {
     
     const storeFields = ["auth", 
-                         "user", "questions", "messages", 
+                         "user", "questions", "sendedMessages", "receivedMessages", 
                          "objects", 
                          "detailledObject", "detailledObjectBids", "detailledObjectQuestions", "detailledObjectImages",
                          "offerBanners", "categories", "subCategories", 
@@ -62,19 +62,6 @@ export function initState() {
                     user: {}
                 }
                 break
-
-            case "messages":
-
-                store[field] = {
-
-                    loading: false,
-                    error: false,
-                    loaded: false,
-
-                    sendedMessages : {},
-                    receivedMessages : {}
-                }
-                break
         
             default:                
                 store[field] = {
@@ -100,7 +87,8 @@ export const RootReducer = (state=initialState, action) => {
         auth: AuthReducer(state.auth, action),
 
         user: UserReducer(state.user, action),
-        messages: MessageReducer(state.messages, action),
+        sendedMessages: SendedMessageReducer(state.sendedMessages, action),
+        receivedMessages: ReceivedMessageReducer(state.receivedMessages, action),
         questions: QuestionReducer(state.questions, action),
 
         objects: ObjectReducer(state.objects, action),

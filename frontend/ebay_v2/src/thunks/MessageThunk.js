@@ -1,4 +1,7 @@
-import { createMessage, createMessageError, createMessageSuccess, getMessages, getMessagesError, getMessagesSuccess } from "../actions/MessageAction"
+import { createMessage, createMessageError, createMessageSuccess, 
+         getSendedMessages, getSendedMessagesError, getSendedMessagesSuccess,
+         getReceivedMessages, getReceivedMessagesError, getReceivedMessagesSuccess } from "../actions/MessageAction"
+
 import { NOT_FOUND } from "../utils/errors"
 import { parametersFormater } from "../utils/parametersFormater"
 import { urlFormater } from "../utils/urlFormater"
@@ -33,14 +36,14 @@ export const fetchMessage = (messageId) => {
     }
 
 
-export const fetchMessages = (userId, filter) => {
+export const fetchSendedMessages = (userId) => {
     return (dispatch) => {
 
-        dispatch(getMessages(userId))
+        dispatch(getSendedMessages(userId))
 
         let url = urlFormater({
             model: "message",
-            filter_field: filter,
+            filter_field: 'sender',
             filter_value: userId
         })
 
@@ -57,14 +60,49 @@ export const fetchMessages = (userId, filter) => {
 
 
             .then(messages => {
-                dispatch(getMessagesSuccess(messages, filter))
+                dispatch(getSendedMessagesSuccess(messages))
             })
 
             .catch(error => {
-                dispatch(getMessagesError(error))
+                dispatch(getSendedMessagesError(error))
             })
     }
 }
+
+export const fetchReceivedMessages = (userId) => {
+    return (dispatch) => {
+
+        dispatch(getReceivedMessages(userId))
+
+        let url = urlFormater({
+            model: "message",
+            filter_field: "receiver",
+            filter_value: userId
+        })
+
+        let params = parametersFormater('GET')
+
+        return fetch(url, params)
+            .then(rslt => {
+                if (!rslt.ok) {
+                    throw new Error(NOT_FOUND)
+                }
+
+                return rslt.json()
+            })
+
+
+            .then(messages => {
+                dispatch(getReceivedMessagesSuccess(messages))
+            })
+
+            .catch(error => {
+                dispatch(getReceivedMessagesError(error))
+            })
+    }
+}
+
+
 
 
 export const fetchCreateMessage = (senderId, receiverId, title, text) => {

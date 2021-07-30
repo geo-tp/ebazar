@@ -5,9 +5,9 @@ class Footer extends Component {
     render() {
         return(
             <div>
-                <footer class="footer">
-                    <div class="footer__wrapper">
-                        <a class="footer-wrapper__logo logo" href="#0">EBAZAR</a>
+                <footer className="footer">
+                    <div className="footer__wrapper">
+                        <a className="footer-wrapper__logo logo" href="#0">EBAZAR</a>
                     </div>
                     <div className="footer-wrapper__infos">
                         <ul>

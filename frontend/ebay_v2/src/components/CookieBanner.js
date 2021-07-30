@@ -12,9 +12,9 @@ class CookieBanner extends Component{
 
     render() {
         return(
-            <div className="banniere-cookie-box">
+            <div className="main-banner-cookie">
             { !this.props.cookieAccept &&
-                <div className="banniere-cookie-main">
+                <div className="main-banner-cookie__container">
                     <p>Veuillez accepter les conditions d'usage des cookies pour profiter pleinement d'EBAZAR. <a href="">Voir les conditions</a></p>
                     <div>
                         <button onClick={() => this.props.setCookieAccepted()}>Accepter</button>

@@ -17,9 +17,9 @@ class CategoryBanner extends Component {
     
     render() {
         return(
-            <div>
+            <div className="main-category-banner">
                 <h4>Catégories</h4>
-                <div className="main-categories">
+                <div className="main-category-banner__container">
                     {this.props.categories.loaded && this.props.categories.items.map(category => {
                         return <RoundCategorieBox key={keyHandler()} category={category}/>
                     })}

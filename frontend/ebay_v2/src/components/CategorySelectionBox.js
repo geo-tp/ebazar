@@ -1,5 +1,6 @@
 import { Component } from "react";
 import PropTypes from "prop-types"
+import { keyHandler } from "../utils/keyHandler";
 
 class CategorySelectionBox extends Component {
 
@@ -17,10 +18,10 @@ class CategorySelectionBox extends Component {
                     {this.props.categoryType == "category" && <option>-</option>}
                     {this.props.categories.loaded && this.props.categories.items.map((cat) => {
                         if (cat.id == this.props.selected) {
-                            return <option selected="selected" value={cat.id}>{cat.title}</option>
+                            return <option key={keyHandler()} selected="selected" value={cat.id}>{cat.title}</option>
                         }
                         else {
-                            return <option value={cat.id}>{cat.title}</option>
+                            return <option key={keyHandler()} value={cat.id}>{cat.title}</option>
                         }
                     })}
                 </select>

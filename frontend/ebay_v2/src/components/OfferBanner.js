@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { offerBannerSelector } from "../selectors/OfferBannerSelectors";
 import { fetchOfferBanners } from "../thunks/OfferBannerThunk";
 import PropTypes from "prop-types"
+import { keyHandler } from "../utils/keyHandler";
 
 
 class OfferBanner extends Component {
@@ -12,9 +13,8 @@ class OfferBanner extends Component {
 
         
         this.state = {
-            offer_banners: null,
-            actual_banner: null,
-            actual_index: null,
+            actual_banner: this.props.offerBanners[0],
+            actual_index: 0,
 
             refs_table: null,
             intervalIsActive:0,
@@ -22,15 +22,14 @@ class OfferBanner extends Component {
 
         this.scroll_box_ref = createRef()
 
-
-    }
-
-    componentDidMount() {
-        this.props.fetchOfferBanners()
-        // this.generateRefs()
     }
     
-    scrollInterval() {
+
+    // componentDidMount() {
+    //     this.generateRefs()
+    // }
+    
+    scrollInterval =() => {
         this.scrollInterval  = setInterval(() => {
             this.handleRightClick();
           }, 6000);
@@ -47,7 +46,6 @@ class OfferBanner extends Component {
         this.setState({refs_table: refs}, ()=>this.render())
         
         if (this.state.intervalIsActive == 0) {
-            this.scrollInterval()
             this.setState({intervalIsActive:1})
         }
 
@@ -60,15 +58,15 @@ class OfferBanner extends Component {
             case 0:
 
                 this.setState({
-                    actual_index: this.state.offer_banners.length-1,
-                    actual_banner: this.state.offer_banners[this.state.offer_banners.length-1]
+                    actual_index: this.props.offerBanners.length-1,
+                    actual_banner: this.props.offerBanners[this.props.offerBanners.length-1]
                 })
                 break;
 
             default:
                 this.setState({
                     actual_index: this.state.actual_index - 1,
-                    actual_banner: this.state.offer_banners[this.state.actual_index-1]
+                    actual_banner: this.props.offerBanners[this.state.actual_index-1]
                 })
         }
 
@@ -78,7 +76,6 @@ class OfferBanner extends Component {
     handleRightClick() {
 
         let i = 0
-        
         if (this.state.actual_index == this.state.refs_table.length-1) {
             i = (this.state.refs_table.length-1)*-1
         }
@@ -93,25 +90,29 @@ class OfferBanner extends Component {
     }
 
     render() {
+
+        {this.props.offerBanners.loaded && !this.state.refs_table && this.generateRefs()}
+
         return (
-            <div className="offer-banner">
+            <div className="main-offer-banner">
 
                 <i onClick={() => this.handleRightClick()} id="left-arrow-banner">
-                    <i class="fa fa-2x fa-arrow-right offer-banner__left-arrow" />
+                    <i className="fa fa-2x fa-arrow-right main-offer-banner__left-arrow" />
                 </i>
 
                 <i onClick={() => this.handleLeftClick()} id="right-arrow-banner">
-                    <i class="fa fa-2x fa-arrow-left offer-banner__right-arrow" />
+                    <i className="fa fa-2x fa-arrow-left main-offer-banner__right-arrow" />
                 </i>
 
                 <h4>Offres Exclusives</h4>
 
-                <div className="offer-banner__scroll-box" ref={this.scroll_box_ref}>
+                <div className="main-offer-banner__scroll-box" ref={this.scroll_box_ref}>
                     {this.state.refs_table &&
-                            <div className="offer-banner__scroll-box__container">
+                            <div className="main-offer-banner__scroll-box__container">
                                 {this.props.offerBanners.loaded && this.props.offerBanners.items.map((banner, index) => {
-                                    return <img ref={this.state.refs_table[index]} 
-                                                className="offer-banner__scroll-box__container__image" 
+                                    console.log("banner", banner)
+                                    return <img key={keyHandler()} ref={this.state.refs_table[index]} 
+                                                className="main-offer-banner__scroll-box__container__image" 
                                                 src={banner.image} />
 
                                 })}

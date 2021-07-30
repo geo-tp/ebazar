@@ -7,7 +7,7 @@ class RoundCategorieBox extends Component {
 
     render() {
         return(
-            <div className="round-box-category">
+            <div className="round-category-box">
                 <Link to={"/cat/"+this.props.category.id}>
                         <img src={this.props.category.img}></img>
                </Link>

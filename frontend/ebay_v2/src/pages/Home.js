@@ -11,7 +11,7 @@ import { fetchDetailledObject } from "../thunks/DetailledObjectThunk";
 import { fetchBidsOfObject } from "../thunks/BidThunk";
 import { fetchLogin } from "../thunks/AuthThunk"
 import { fetchSelections } from "../thunks/SelectionThunk"
-import { fetchMessages } from "../thunks/MessageThunk"
+import { fetchSendedMessages, fetchReceivedMessages } from "../thunks/MessageThunk"
 
 import {detailledObjectSelector} from "../selectors/DetailledObjectSelector"
 import { fetchQuestionsOfObject, fetchQuestionsOfUser } from "../thunks/QuestionThunk";
@@ -30,12 +30,12 @@ class Home extends Component {
         super(props)
 
         this.state = { inter: 1 }
-        // if (!props.objects.loaded) {
-        // props.fetchObjects()
-        // }
+        if (!props.objects.loaded) {
+        props.fetchObjects()
+        }
 
         // props.fetchCategories()
-        // props.fetchOfferBanners()
+        props.fetchOfferBanners()
 
         // props.fetchSubCategories(1)
 
@@ -45,8 +45,8 @@ class Home extends Component {
         // props.fetchLogin("geo@mail.com", "adminadmin")
         props.fetchQuestionsOfUser(2)
 
-        props.fetchMessages(2, "receiver")
-        props.fetchMessages(2, "sender")
+        props.fetchSendedMessages(2)
+        props.fetchReceivedMessages(2)
 
     }
 
@@ -73,7 +73,7 @@ class Home extends Component {
                 <CategoryBannerStore/>
                 <OfferBannerStore/>
                 <CookieBannerStore/>
-                {/* <ObjectListStore listLabel="Home"/> */}
+                <ObjectListStore listLabel="Home"/>
                 <MessagingPanelStore datailInViewIndex="1" dataSetType="receivedMessages"/>
                 <ObjectFormStore/>
             </div>
@@ -101,7 +101,9 @@ const HomeStore = connect(
         fetchQuestionsOfUser: (userId) => dispatch(fetchQuestionsOfUser(userId)),
         fetchLogin: (mail, password) => dispatch(fetchLogin(mail, password)),
         fetchSelections: () => dispatch(fetchSelections()),
-        fetchMessages: (userId, type) => dispatch(fetchMessages(userId, type)),
+        fetchSendedMessages: (userId) => dispatch(fetchSendedMessages(userId)),
+        fetchReceivedMessages: (userId) => dispatch(fetchReceivedMessages(userId)),
+
     }))
 )(Home)
 

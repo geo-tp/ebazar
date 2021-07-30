@@ -248,7 +248,7 @@ class ObjectForm extends Component {
                             <tr>
                                 <td>Image principale</td>
                                 <td>
-                                    <img class="object-form-main-image" src={this.state.mainImage}></img>
+                                    <img className="object-form-main-image" src={this.state.mainImage}></img>
                                     <input 
                                            onChange={e => this.setState({mainImage: e.target.files[0]})} 
                                            name="mainImage" 
@@ -267,7 +267,7 @@ class ObjectForm extends Component {
                             </tr>
                             <tr>
                                 <td>Categorie</td>
-                                <td>CategorySelectionBox
+                                <td>
                                     <CategorySelectionBox categories = {this.props.categories}
                                                           handleChoiceChange={this.handleCategoryChange} 
                                                           categoryType="category"
@@ -275,7 +275,8 @@ class ObjectForm extends Component {
                                 </td>
                             </tr>
                             <tr>
-                                <td>Sous-categorie</td>Categorie
+                                <td>Sous-categorie</td>
+
                                 <td>
                                     {this.state.category && 
                                         <CategorySelectionBox categories = {this.props.subcategories}
@@ -284,6 +285,7 @@ class ObjectForm extends Component {
                                                               categoryType="subcategory"
                                                               selected={this.state.subcategory}/>} 
                                 </td>
+                            </tr>
                             <tr hidden>
                                 <td>User</td>
                                 <td>
@@ -291,10 +293,9 @@ class ObjectForm extends Component {
                                     <input name="isActive"  value="1"></input>
                                 </td>
                             </tr>
-                            </tr>
                         </tbody>
                     </table>
-                    <button class="submit">Envoyer</button>
+                    <button className="submit">Envoyer</button>
                     <p>{this.state.confirmation_message}</p>
                 </form>
             </div>
