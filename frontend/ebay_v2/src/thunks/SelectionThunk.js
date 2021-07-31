@@ -23,8 +23,8 @@ export const fetchSelections = () => {
                         return rslt.json()
                     })
 
-                    .then(states => {
-                        dispatch(getSelectionsSuccess(states))
+                    .then(selections => {
+                        dispatch(getSelectionsSuccess(selections))
                     })
 
                     .catch(error => {

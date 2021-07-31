@@ -23,8 +23,8 @@ class ObjectList extends Component {
                     <div className="main-object-list__container">
                         {this.props.objects.items.next && 
                         <button 
-                            className="main-object-list__container__next-button" 
-                            onClick={e => this.fetchNextObjectsPage(this.props.objects.items.next)}>
+                            className="main-object-list__container__view-more-button" 
+                            onClick={e => this.props.fetchNextObjectsPage(this.props.objects.items.next)}>
                             View More
                         </button>}
                     </div>

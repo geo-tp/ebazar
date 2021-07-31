@@ -24,17 +24,20 @@ export const ObjectReducer = (state=initialState.objects, action) => {
             return {...state, loading:false, loaded: true,
                        items: action.payload.objects}         
 
+
         case GET_NEXT_OBJECTS_PAGE:
 
-            return {...state, loading:true, loaded:false}
+            return {...state, loading:true}
 
         case GET_NEXT_OBJECTS_PAGE_ERROR:
+            console.log("ERROR", action.payload.error)
             return {...state, loading:false, loaded:false, error:action.payload.error}
 
         case GET_NEXT_OBJECTS_PAGE_SUCCESS:
-            return {...state, loading:false, loaded:true, 
+            let results = [...state.items.results, ...action.payload.objects.results]
+            return {...state, loading:false, 
                     items: {...action.payload.objects, 
-                            results: [...state.objects.items.results, ...action.payload.objects.results]}
+                            results: results}
             }
             
         case EDIT_OBJECT:

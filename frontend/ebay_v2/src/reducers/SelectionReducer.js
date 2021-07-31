@@ -9,10 +9,10 @@ export const SelectionReducer = (state=initState.selections, action) => {
             return {...state, loading:true}
     
         case GET_SELECTIONS_ERROR:
-            return {...state, loading:false, error:action.type.error}
+            return {...state, loading:false, error:action.payload.error}
 
         case GET_SELECTIONS_SUCCESS:
-            return {...state, loading:false, items:action.type.selections}
+            return {...state, loading:false, loaded: true, items:action.payload.selections}
         default:
             return state;
     }

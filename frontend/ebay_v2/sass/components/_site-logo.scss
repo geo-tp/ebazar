@@ -1,0 +1,10 @@
+.site-logo {
+    color: map-get($COLOR-PALETTE, font );
+    
+    &--center {
+        text-align: center;
+    }
+    @include tablet-design {
+ 
+    }
+}

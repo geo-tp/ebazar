@@ -13,6 +13,7 @@ import {Provider} from "react-redux"
 
 import {store} from "../store/store"
 import Footer from "../components/Footer";
+import CategoryStore from "../pages/Category";
 
 function App() {
 
@@ -28,6 +29,10 @@ function App() {
 
             <Route path="/home">
               <Home/>
+            </Route>
+
+            <Route path="/category/:categoryId">
+              <CategoryStore/>
             </Route>
 
           </Switch>

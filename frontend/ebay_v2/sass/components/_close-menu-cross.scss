@@ -3,13 +3,10 @@
  .close-menu-cross {
      color: map-get($COLOR_PALETTE, ter );
      position: absolute;
-     top: 3%;
-     left: 93%;
+     top: 2%;
+     right:5%;
      cursor: pointer;
 
-      @include mobile-design {
-          left: 90%;
-      }
  }
 
  

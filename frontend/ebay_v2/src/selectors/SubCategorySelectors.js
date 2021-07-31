@@ -1,1 +1,1 @@
-export const SubCategorySelector = ({subCategories}) => subCategories
+export const subCategorySelector = ({subCategories}) => subCategories

@@ -16,6 +16,7 @@ export const fetchObjects = (filter=null) => {
         if (filter) {
             urlParams = {...urlParams, ...filter}
         }
+        console.log("FILTER", urlParams)
         let url = urlFormater(
             urlParams
         )
@@ -93,10 +94,13 @@ export const fetchCreateObject = (objectForm) => {
 
 export const fetchNextObjectsPage = (nextUrl) => {
     return(dispatch) => {
-        dispatch(getNextObjectPage(nextUrl))
+        dispatch(getNextObjectPage())
 
-        fetch(nextUrl)
-            .then(rslt => {
+        let params = parametersFormater("GET")
+
+        return fetch(nextUrl, params)
+            .then((rslt )=> {
+                console.log("rslt", rslt)
                 if (!rslt.ok) {
                     throw new Error(NOT_FOUND)
                 }
@@ -104,11 +108,11 @@ export const fetchNextObjectsPage = (nextUrl) => {
                 return rslt.json()
             })
 
-            .then(objects => {
+            .then((objects) => {
                 dispatch(getNextObjectPageSuccess(objects))
             })
 
-            .catch(error => {
+            .catch((error) => {
                 dispatch(getNextObjectPageError(error))
             })
     }

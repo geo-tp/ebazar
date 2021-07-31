@@ -1,2 +1,2 @@
 
-const selectionSelector = ({selections}) => selections
+export const selectionSelector = ({selections}) => selections

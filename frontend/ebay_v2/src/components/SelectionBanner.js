@@ -1,25 +1,32 @@
 import { Component } from "react";
 import {fetchSelections} from "../thunks/SelectionThunk"
-import {selectionSelector} from "../selectors/SelectionSelector"
+import {selectionSelector} from "../selectors/SelectionSelectors"
 import PropTypes from "prop-types"
+import { connect } from "react-redux"
+import RoundSelectionBox from "./RoundSelectionBox";
 
 
 class SelectionBanner extends Component {
+
+    constructor(props) {
+        super(props)
+
+        if (!this.props.selections.length) {
+            this.props.fetchSelections()
+        }
+    }
 
     render() {
         return(
             <div className="main-selection-banner">
                 <div>
                     <h4>Notre selection du moment</h4>
-                    <div className="main-selection-banner__caroussel">
-                        {this.state.selections && 
+                    <div className="main-selection-banner__container">
+                        {this.props.selections.loaded && 
                             
                             this.props.selections.items.map((object, index) => {
                                 return(
-                                    <div className="main-selection-banner__caroussel__container">
-                                        <img className="main-selection-banner__caroussel__container__image" src={object.img} />
-                                        <p className="main-selection-banner__caroussel__container__title">{object.title}</p>
-                                    </div>
+                                    <RoundSelectionBox object={object}/>
                                 )
                         })}
                     </div>
@@ -37,7 +44,7 @@ const SelectionBannerStore = connect(
     (dispatch) => ({
         fetchSelections: () => dispatch(fetchSelections())
     })
-)
+)(SelectionBanner)
 
 SelectionBanner.propTypes = {
     selections: PropTypes.object.isRequired,

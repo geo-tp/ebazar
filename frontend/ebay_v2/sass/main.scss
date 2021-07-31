@@ -3,11 +3,25 @@
 @import "./base/fonts";
 @import "./utils/mixin";
 @import "./base/base";
+@import './base/positioning';
+
+
 @import "./components/close-menu-cross";
 @import "./components/round-category-box";
 @import "./components/object.scss";
+@import "./components/round-selection-box";
+@import "./components//site-logo";
+
+
 @import "./layout/cookie-banner";
+@import "./layout/footer";
 @import "./layout/object-list";
 @import "./layout/category-banner";
+@import "./layout/sub-category-banner";
 @import "./layout/nav-bar";
 @import "./layout/offer-banner";
+@import "./layout/selection-banner";
+
+
+@import "./pages/home";
+@import "./pages/category";

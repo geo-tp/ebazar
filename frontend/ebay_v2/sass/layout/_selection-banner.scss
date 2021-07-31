@@ -1,0 +1,11 @@
+
+.main-selection-banner {
+
+    &__container {
+        display: flex;
+        justify-content: space-around;
+        
+        @include tablet-design {
+        }
+    }
+}

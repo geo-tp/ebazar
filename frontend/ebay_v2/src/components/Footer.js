@@ -5,11 +5,12 @@ class Footer extends Component {
     render() {
         return(
             <div>
-                <footer className="footer">
-                    <div className="footer__wrapper">
-                        <a className="footer-wrapper__logo logo" href="#0">EBAZAR</a>
+                <footer className="main-footer">
+                    <div className="main-footer__wrapper">
+                    <h2 className="site-logo--center">EBAZAR</h2>
+
                     </div>
-                    <div className="footer-wrapper__infos">
+                    <div className="main-footer__infos">
                         <ul>
                             <li>A propos D'EBAZAR</li>
                             <li>Contactez nous</li>

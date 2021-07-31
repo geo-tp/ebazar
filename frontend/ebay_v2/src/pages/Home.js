@@ -21,7 +21,7 @@ import CookieBannerStore from "../components/CookieBanner";
 import ObjectListStore from "../components/ObjectList";
 import { MessagingPanelStore } from "../components/MessagingPanel";
 import { ObjectFormStore } from "../components/ObjectForm";
-
+import SelectionBannerStore from "../components/SelectionBanner";
 
 class Home extends Component {
 
@@ -67,15 +67,13 @@ class Home extends Component {
         // console.log("OBJJECJTJJEJCT", this.props.objects)
         // object.title = "CHANGEEEEEEEEEEEEED"
         // this.props.fetchEditObject(object)
-        console.log(this.props.categories)
         return (
-            <div>
+            <div className="main-home-page">
                 <CategoryBannerStore/>
                 <OfferBannerStore/>
-                <CookieBannerStore/>
+                <SelectionBannerStore/>
                 <ObjectListStore listLabel="Home"/>
-                <MessagingPanelStore datailInViewIndex="1" dataSetType="receivedMessages"/>
-                <ObjectFormStore/>
+                <CookieBannerStore/>
             </div>
         )
     }

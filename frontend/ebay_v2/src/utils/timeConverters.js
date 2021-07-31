@@ -1,8 +1,7 @@
 
 export function convertRawDateToCondensed(date) {
     return date.split("T")[0]
-    
-    
+       
 }
 
 export function convertDateToTimeLeft(date) {
@@ -14,6 +13,25 @@ export function convertDateToTimeLeft(date) {
 
     return convertSecondsToDuration(left)
 
+}
+
+export function convertSecondsToHours(seconds) {
+
+    let sec = Math.floor(seconds % 60)
+    let min = Math.floor(seconds / 60)
+    let hour = Math.floor((min / 60)/24)
+
+    min = min % 60
+
+    return {sec:sec, min:min, hour:hour}
+
+}
+
+export function convertSecondsToDays(seconds) {
+
+    let aDayInSeconds = 86400
+
+    return Math.floor(seconds / aDayInSeconds)
 }
 
 export function convertSecondsToDuration(time) {
