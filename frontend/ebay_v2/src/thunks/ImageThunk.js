@@ -4,7 +4,7 @@ import { parametersFormater } from "../utils/parametersFormater"
 import { urlFormater } from "../utils/urlFormater"
 
 
-export const fetchImages = (objectId) => {
+export const fetchImagesOfObject = (objectId) => {
     return (dispatch) => {
 
         dispatch(getImagesOfObject(objectId))

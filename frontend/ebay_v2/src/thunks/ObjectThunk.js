@@ -6,6 +6,38 @@ import {parametersFormater} from "../utils/parametersFormater"
 import { NOT_FOUND } from "../utils/errors"
 
 
+// export const fetchObject = (objectId) => {
+
+//     return (dispatch) => {
+//         dispatch(getObject())
+
+//         let url = urlFormater({
+//             model: "object",
+//             pk: objectId,
+//         })
+
+//         let params = parametersFormater("GET")
+
+//         return fetch(url, params)
+//                 .then(rslt => {
+
+//                     if (!rslt.ok) {
+//                         throw new Error(NOT_FOUND)
+//                     }
+
+//                     return rslt.json()
+//                 })
+
+//                 .then(object => {
+//                     dispatch(getObjectSuccess(object))
+//                 })
+
+//                 .catch(error => {
+//                     dispatch(getObjectError(error))
+//                 })
+//     }
+// }
+
 
 export const fetchObjects = (filter=null) => {
     return (dispatch) => {

@@ -5,12 +5,15 @@ import { connect } from "react-redux";
 import { objectSelector } from "../selectors/ObjectSelectors";
 import { fetchNextObjectsPage } from "../thunks/ObjectThunk";
 
+
 class ObjectList extends Component {
 
     render = () => {
 
         return(
             <div className="main-object-list">
+                    {this.props.objects.items.results.length == 0 && 
+                            <h4 className="main-object-list__no-object">Aucune enchère pour le moment.</h4>}
                     <h4>{this.props.listLabel}</h4>
                     <div className="main-object-list__wrapper" >
                         {this.props.objects.loaded && 

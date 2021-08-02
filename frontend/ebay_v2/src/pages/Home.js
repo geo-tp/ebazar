@@ -19,8 +19,6 @@ import CategoryBannerStore from "../components/CategoryBanner";
 import OfferBannerStore from "../components/OfferBanner";
 import CookieBannerStore from "../components/CookieBanner";
 import ObjectListStore from "../components/ObjectList";
-import { MessagingPanelStore } from "../components/MessagingPanel";
-import { ObjectFormStore } from "../components/ObjectForm";
 import SelectionBannerStore from "../components/SelectionBanner";
 
 class Home extends Component {
@@ -47,6 +45,8 @@ class Home extends Component {
 
         props.fetchSendedMessages(2)
         props.fetchReceivedMessages(2)
+
+        props.fetchQuestionsOfObject(2)
 
     }
 
@@ -101,6 +101,7 @@ const HomeStore = connect(
         fetchSelections: () => dispatch(fetchSelections()),
         fetchSendedMessages: (userId) => dispatch(fetchSendedMessages(userId)),
         fetchReceivedMessages: (userId) => dispatch(fetchReceivedMessages(userId)),
+        fetchQuestionsOfObject: (objectId) => dispatch(fetchQuestionsOfObject(objectId))
 
     }))
 )(Home)

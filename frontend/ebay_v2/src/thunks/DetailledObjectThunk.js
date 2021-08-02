@@ -8,7 +8,7 @@ export const fetchDetailledObject = (objectId) => {
         dispatch(getDetailledObject(objectId))
         
         let url = urlFormater({
-            model: "object",
+            model: "detailled-object",
             pk: objectId
         })
 

@@ -53,8 +53,8 @@ class ObjectSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Object
-        fields = ["id", "title", "actualPrice", "description", "state",
-                  "durationInDays", "reservePrice", "shippingPrice",
+        fields = ["id", "title", "actualPrice",
+                  "durationInDays", "shippingPrice",
                   "returnPolicy", "mainImage", "category", "subcategory",
                   "user", "creationDate", "endingDate", "isActive", "isSelled" ]
         # endingDate= serializers.SerializerMethodField(required=False)
@@ -570,41 +570,6 @@ class DetailledObjectSerializer(serializers.ModelSerializer):
         
         return img
     
-    def bids_to_dict(self, queryset):
-
-        def hidePartOfEmail(email):
-
-            hidden_email = email[0:2] + '****' + email[-4:]
-
-            return hidden_email
-
-        count = 1
-        bids = []
-
-        for bid in queryset:
-            bids.append( {"price": bid.price, 
-                          "user": hidePartOfEmail(bid.user.email)})
-            count +=1
-        return bids
-
-    def question_answer_to_dict(self, queryset):
-
-        questions = []
-        for question in queryset:
-            questionAndAnswer = {}
-            questionAndAnswer["question"] = question.questionText
-            
-            try:
-                answer = Answer.objects.filter(question=question)[0]
-                questionAndAnswer["answer"] = answer.answerText
-            except: 
-                continue
-
-            questions.append(questionAndAnswer)
-            
-        return questions
-        # rep["sended_messages"] = self._get_sended_messages(instance)
-
     def is_item_followed(self, request_user, obj):
 
         try:
@@ -623,28 +588,18 @@ class DetailledObjectSerializer(serializers.ModelSerializer):
         obj = instance
     
         mainImage = "http://" + request.get_host() + obj.mainImage.url
-        images = Image.objects.filter(obj=obj)
-        bids = Bid.objects.filter(obj=obj)
         state = StateOfObject.objects.get(id=obj.state.id).title
-        questions = Question.objects.filter(obj=obj)
         user = User.objects.get(email=obj.user.email)
         category = Category.objects.get(id=obj.category.id).title
         subcategory = SubCategory.objects.get(id=obj.subcategory.id).title
 
         full_details_object = obj.get_fields()
 
-
+        full_details_object["mainImage"] = mainImage
         full_details_object["state"] = state
         full_details_object["user"] = user.username
         full_details_object["category"] = category
         full_details_object["subcategory"] = subcategory
-        full_details_object["numberOfBids"] = len(bids)
-        full_details_object["bids"] = self.bids_to_dict(bids)
-        # full_details_object["numberOfImages"] = len(images)
-        del full_details_object["mainImage"]
-        full_details_object["images"] = [mainImage] + self.images_to_dict(request, images)
-        full_details_object["numberofQuestions"] = len(questions)
-        full_details_object["questions"] = self.question_answer_to_dict(questions)
         full_details_object["isFollowed"] = self.is_item_followed(request.user, obj)
         full_details_object["isOwner"] = isOwner(request, obj)
 

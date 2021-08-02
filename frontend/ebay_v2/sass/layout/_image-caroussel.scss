@@ -1,0 +1,41 @@
+.main-image-caroussel {
+
+    position: relative;
+    width: 52.5%;
+    box-shadow: 5px 8px 30px 1px rgba(0,0,0,.21);
+    z-index: 2;
+    text-align: center;
+
+    @include tablet-design {
+        width: 90%;
+    }
+    
+    img {
+        display: block;
+        width: 100%;
+        z-index: auto;
+    }
+    
+    &__image-counter {
+
+    }
+
+    &__left-arrow {
+        position: absolute;
+        top: 50%;
+        left: 5%;
+        width: 5px;
+    
+        background-color: rgba(255, 255, 255, 0.664); 
+    }
+
+
+    &__right-arrow {
+        position: absolute;
+        top: 50%;
+        right: 5%;
+        width: 5px;
+    
+        background-color: rgba(255, 255, 255, 0.664); 
+    }
+}

@@ -3,6 +3,7 @@ import { urlFormater } from "../utils/urlFormater"
 import { getCategories, getCategoriesError, getCategoriesSuccess} from "../actions/CategoryActions"
 import { NOT_FOUND } from "../utils/errors"
 
+
 export const fetchCategories = () => {
     return (dispatch) => {
         dispatch(getCategories())

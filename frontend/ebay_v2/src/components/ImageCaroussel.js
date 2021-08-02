@@ -1,6 +1,10 @@
 import { Component } from "react";
 import { imageSelector } from "../selectors/ImageSelector";
 import PropTypes from "prop-types"
+import { connect } from "react-redux";
+import { fetchImagesOfObject } from "../thunks/ImageThunk";
+import { detailledObjectSelector } from "../selectors/DetailledObjectSelector";
+
 
 
 class ImageCaroussel extends Component {
@@ -10,6 +14,9 @@ class ImageCaroussel extends Component {
         this.state = {
             current_index: 0,
         }
+
+        this.props.fetchImagesOfObject(this.props.detailledObject.item.id)
+        
     }
 
     handleChangeImageCLick = (direction) => {
@@ -48,18 +55,22 @@ class ImageCaroussel extends Component {
 
     render() {
 
-        if (!this.props.images.loaded) {
-            return
-        }
 
+
+        console.log("IMAGE ITM", this.state.current_index)
         return (
             <div className="main-image-caroussel">
-                <img src={this.props.image.items[this.state.current_index]} />
+                <img src={!!this.props.images.loaded &&
+                                    
+                                    this.state.current_index == 0 ?
+                                                    this.props.detailledObject.item.mainImage
+                                                                  : 
+                                                    this.props.images.items.length && this.props.images.items[0].imageOfObject} />
                 <label className="main-image-caroussel__image-counter">{this.state.current_index+1} / {this.props.images.items.length}</label>
                 <button onClick={() => this.handleChangeImageCLick("left")} 
-                        className="fa fa-arrow-circle-left main_mage_caroussel__left-arrow"></button>
+                        className="fa fa-arrow-circle-left main-image-caroussel__left-arrow"></button>
                 <button onClick={() => this.handleChangeImageCLick("right")} 
-                        className="fa fa-arrow-circle-right main_mage_caroussel__right-arrow"></button>
+                        className="fa fa-arrow-circle-right main-image-caroussel__right-arrow"></button>
             </div>
         )
     }
@@ -67,12 +78,19 @@ class ImageCaroussel extends Component {
 
 export const ImageCarousselStore = connect(
     (state) => ({
-        images: imageSelector(state)
+        images: imageSelector(state),
+        detailledObject: detailledObjectSelector(state)
+    }),
+    (dispatch) => ({
+        fetchImagesOfObject: (objectId) => dispatch(fetchImagesOfObject(objectId))
     })
 )(ImageCaroussel)
 
 ImageCaroussel.propTypes = {
-    images: PropTypes.object.isRequired
+    images: PropTypes.object.isRequired,
+    detailledObject: PropTypes.object.isRequired,
+
+    fetchImagesOfObject: PropTypes.object.isRequired
 }
 
 export default ImageCarousselStore

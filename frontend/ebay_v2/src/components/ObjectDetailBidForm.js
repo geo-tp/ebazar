@@ -1,4 +1,5 @@
 import { Component } from "react";
+import { connect } from "react-redux";
 
 
 
@@ -57,4 +58,17 @@ class ObjectDetailBidForm extends Component {
     }
 }
 
-export default BidBox
+ObjectDetailBidForm.propType = {
+
+}
+
+const ObjectDetailBidFormStore = connect(
+    (state) => ({
+
+    }),
+    (dispatch) => ({
+
+    })
+)(ObjectDetailBidForm)
+
+export default ObjectDetailBidFormStore

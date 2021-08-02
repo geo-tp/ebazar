@@ -13,6 +13,7 @@
 @import "./components//site-logo";
 
 
+@import "./layout/grids";
 @import "./layout/cookie-banner";
 @import "./layout/footer";
 @import "./layout/object-list";
@@ -21,6 +22,9 @@
 @import "./layout/nav-bar";
 @import "./layout/offer-banner";
 @import "./layout/selection-banner";
+@import "./layout/detailled-object";
+@import "./layout/detailled-object-question.scss";
+@import "./layout/image-caroussel";
 
 
 @import "./pages/home";

@@ -17,16 +17,15 @@ class Obj extends Component{
 
     handleObjectClick(id) {
 
-        let o = window.location.origin
-        window.location = window.location.origin + "/object/"+ id
+        window.location = window.location.origin + "/detail/"+ id
     }   
         
 
     render() {
 
-        if (this.state.redirection) {
-            return <Redirect to={"/object/"+this.state.redirect_to_index}/>
-        }
+        // if (this.state.redirection) {
+        //     return <Redirect to={"/object/"+this.state.redirect_to_index}/>
+        // }
 
         return(
             <div className="main-object"

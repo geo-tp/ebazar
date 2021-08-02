@@ -3,7 +3,7 @@ import { BidReducer } from "./BidReducer";
 import { CategoryReducer } from "./CategoryReducer";
 import { detailledObjectReducer } from "./DetailledObjectReducer";
 import { SendedMessageReducer, ReceivedMessageReducer } from "./MessageReducer";
-import { QuestionReducer } from "./QuestionReducer"
+import { QuestionReducer, QuestionOfObjectReducer } from "./QuestionReducer"
 import { ObjectReducer } from "./ObjectReducer";
 import { OfferBannerReducer } from "./OfferBannerReducer";
 import { SubCategoryReducer } from "./SubCategoryReducer";
@@ -96,7 +96,7 @@ export const RootReducer = (state=initialState, action) => {
         detailledObject: detailledObjectReducer(state.detailledObject, action),
         detailledObjectBids: BidReducer(state.detailledObjectBids, action),
         detailledObjectImages: ImageReducer(state.detailledObjectImages, action),
-        detailledObjectQuestions: QuestionReducer(state.detailledObjectQuestions, action),
+        detailledObjectQuestions: QuestionOfObjectReducer(state.detailledObjectQuestions, action),
         
         offerBanners: OfferBannerReducer(state.offerBanners, action),
         selections: SelectionReducer(state.selections, action),

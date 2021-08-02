@@ -1,5 +1,4 @@
 import { getBidsOfObject, getBidsOfObjectError, getBidsOfObjectSuccess } from "../actions/BidActions";
-import { getOfferBannerError } from "../actions/OfferBannerActions";
 import { parametersFormater } from "../utils/parametersFormater";
 import { urlFormater } from "../utils/urlFormater";
 import {NOT_FOUND} from "../utils/errors"

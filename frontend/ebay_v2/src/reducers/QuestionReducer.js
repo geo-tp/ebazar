@@ -8,17 +8,6 @@ export const QuestionReducer = (state=initialState.questions, action) => {
 
     switch (action.type) {
 
-        case GET_QUESTIONS_OF_OBJECT:
-            return {...state, loading: true}
-        
-        case GET_QUESTIONS_OF_OBJECT_ERROR:
-            return {...state, loading: false, 
-                    error:action.payload.error}
-
-        case GET_QUESTIONS_OF_OBJECT_SUCCESS:
-            return {...state, loading: false, loaded:true,
-                     items:action.payload.questions}
-
         case GET_QUESTIONS_OF_USER:
         return {...state, loading: true}
     
@@ -32,5 +21,23 @@ export const QuestionReducer = (state=initialState.questions, action) => {
 
         default:
             return state
+    }
+}
+
+export const QuestionOfObjectReducer = (state=initialState.detailledObjectQuestions, action) => {
+
+    switch (action.type) {
+        
+        case GET_QUESTIONS_OF_OBJECT:
+            return {...state, loading: true}
+        
+        case GET_QUESTIONS_OF_OBJECT_ERROR:
+            return {...state, loading: false, 
+                    error:action.payload.error}
+
+        case GET_QUESTIONS_OF_OBJECT_SUCCESS:
+            return {...state, loading: false, loaded:true,
+                     items:action.payload.questions}
+
     }
 }

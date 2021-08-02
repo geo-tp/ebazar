@@ -1,5 +1,6 @@
 import { EDIT_OBJECT, EDIT_OBJECT_ERROR, EDIT_OBJECT_SUCCESS, 
          GET_NEXT_OBJECTS_PAGE, GET_NEXT_OBJECTS_PAGE_ERROR, GET_NEXT_OBJECTS_PAGE_SUCCESS,
+         GET_OBJECT, GET_OBJECT_ERROR, GET_OBJECT_SUCCESS,
          GET_OBJECTS, GET_OBJECTS_ERROR, GET_OBJECTS_SUCCESS } from "../constants/ObjectConstants";
 import {initialState} from '../reducers/RootReducers'
 
@@ -60,3 +61,20 @@ export const ObjectReducer = (state=initialState.objects, action) => {
             return state
     }
 }
+
+// export const DetailledObjectReducer = (state=initialState.detailledObject, action) => {
+
+//     switch (action.type) {
+//         case GET_OBJECT:
+//             return {...state, loading:true}
+
+//         case GET_OBJECT_ERROR:
+//             return {...state, loading:false, error:action.payload.error}
+
+//         case GET_OBJECT_SUCCESS:
+//             return {...state, loading:false, loaded:true, item:action.payload.object}
+    
+//         default:
+//             return state
+//     }
+// }

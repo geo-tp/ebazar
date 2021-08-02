@@ -3,6 +3,7 @@ import PropTypes from "prop-types"
 import { connect } from "react-redux";
 import { subCategorySelector } from "../selectors/SubCategorySelectors";
 import {fetchSubCategories} from "../thunks/SubCategoryThunk"
+import { fetchObjects } from "../thunks/ObjectThunk";
 
 class SubCategoryBanner extends Component {
 
@@ -10,7 +11,6 @@ class SubCategoryBanner extends Component {
         super(props)
         this.props.fetchSubCategories(this.props.categoryId)
     }
-
 
     render() {
         return(
@@ -20,7 +20,9 @@ class SubCategoryBanner extends Component {
                     {this.props.subCategories.loaded && this.props.subCategories.items.map(subcat => {
                         return(          
                              <div className="main-sub-category__container__button-box">
-                                <button className="main-sub-category__container__button-box__button">{subcat.title}</button>
+                                <button onClick={() => this.props.fetchObjects({filter_field:"subcategory", 
+                                                                                filter_value: subcat.id})}
+                                    className="main-sub-category__container__button-box__button">{subcat.title}</button>
                             </div>
                         )
                     })}
@@ -36,7 +38,8 @@ const SubCategoryBannerStore = connect(
         subCategories: subCategorySelector(state)
     }),
     (dispatch) => ({
-        fetchSubCategories: (categoryId) => dispatch(fetchSubCategories(categoryId))
+        fetchSubCategories: (categoryId) => dispatch(fetchSubCategories(categoryId)),
+        fetchObjects: (filter) => dispatch(fetchObjects(filter)),
     })
 )(SubCategoryBanner)
 
@@ -45,7 +48,8 @@ SubCategoryBanner.propTypes = {
     categoryId: PropTypes.string.isRequired,
 
     subCategories: PropTypes.object.isRequired,
-    fetchSubCategories: PropTypes.func.isRequired
+    fetchSubCategories: PropTypes.func.isRequired,
+    fetchObjects: PropTypes.func.isRequired
 }
 
 

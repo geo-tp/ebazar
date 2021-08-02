@@ -14,6 +14,7 @@ import {Provider} from "react-redux"
 import {store} from "../store/store"
 import Footer from "../components/Footer";
 import CategoryStore from "../pages/Category";
+import DetailStore from "../pages/Detail";
 
 function App() {
 
@@ -35,6 +36,9 @@ function App() {
               <CategoryStore/>
             </Route>
 
+            <Route path="/detail/:objectId">
+              <DetailStore/>
+            </Route>
           </Switch>
 
           <Footer/>

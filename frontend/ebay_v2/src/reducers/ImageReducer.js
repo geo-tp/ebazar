@@ -16,7 +16,7 @@ export const ImageReducer = (state=initialState.imagesOfObject, action) => {
 
         case GET_IMAGES_OF_OBJECT_SUCCESS:
             return {...state, loading:false, loaded:true, 
-                    images:action.payload.images}
+                    items:action.payload.images}
 
         case CREATE_IMAGE_OF_OBJECT:
             return {...state, loading:true}
