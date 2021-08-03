@@ -13,6 +13,13 @@
      opacity: .95;
      z-index: 30;
 
+    @include wide-screen-design {
+
+        width: 1980px;
+        left:0;
+        right:0%;
+        margin: 0 auto;
+    }
 
 
      @include border-bottom-default;
@@ -20,6 +27,7 @@
 
      
      &__nav-site {
+        max-width: $max-width-screen;
          margin-left: 20px;
          display: flex;
          align-items: center;
@@ -69,17 +77,6 @@
     
             @include mobile-design {
                 display: none;
-            }
-        }
-
-        &-button {
-            color: map-get($COLOR_PALETTE, ter);
-            height: 2em;
-            border-radius: 0 10px 10px 0;
-            @include mobile-design {
-                text-align: center;
-                border-radius: 10px;
-
             }
         }
 

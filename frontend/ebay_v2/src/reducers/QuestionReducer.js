@@ -4,7 +4,7 @@ import { GET_QUESTIONS_OF_OBJECT, GET_QUESTIONS_OF_OBJECT_ERROR, GET_QUESTIONS_O
 import { initialState } from "./RootReducers";
 
 
-export const QuestionReducer = (state=initialState.questions, action) => {
+export const QuestionReducer = (state=initialState.detailledObjectQuestions, action) => {
 
     switch (action.type) {
 
@@ -38,6 +38,9 @@ export const QuestionOfObjectReducer = (state=initialState.detailledObjectQuesti
         case GET_QUESTIONS_OF_OBJECT_SUCCESS:
             return {...state, loading: false, loaded:true,
                      items:action.payload.questions}
+
+        default:
+            return state
 
     }
 }

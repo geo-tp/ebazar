@@ -6,6 +6,10 @@ from users.serializers import UserSerializer
 from users.serializers import BasicUserSerializer, ExpeditionUserSerializer
 from .functions_utils import isOwner
 from .glob import GLOBAL
+from .functions_utils import hidePartOfData
+from rest_framework.response import Response
+from rest_framework import status
+from django.core import serializers as ser
 
 class OfferBannerSerializer(serializers.ModelSerializer):
 
@@ -155,9 +159,19 @@ class BalanceSerializer(serializers.ModelSerializer):
 
 class BidSerializer(serializers.ModelSerializer):
 
+    user = BasicUserSerializer()
+
     class Meta:
         model = Bid
-        fields = "__all__"
+        fields = ["id", "price", "user"]
+
+    def to_representation(self, instance, request=None):
+
+        rep = super().to_representation(instance)
+        rep["user"]["username"] = hidePartOfData(rep["user"]["username"])
+
+        return rep
+
 
 class MessageSerializer(serializers.ModelSerializer):
 
@@ -554,6 +568,53 @@ class DetailledUserSerializer(serializers.ModelSerializer):
 
         return rep
 
+class QuestionAndAnwserOfObjectSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = object
+        fields = ["receiver", "question", "sender", "answer"]
+
+
+    # def question_answer_to_dict(self, queryset):
+
+    #     questions = []
+    #     for question in queryset:
+    #         questionAndAnswer = {}
+    #         questionAndAnswer["receiver"] = question.receiver
+    #         questionAndAnswer["question"] = question.questionText
+            
+    #         try:
+    #             answer = Answer.objects.get(question=question)
+    #             questionAndAnswer['sender']
+    #             questionAndAnswer["answer"] = answer.answerText
+    #         except: 
+    #             continue
+
+    #         questions.append(questionAndAnswer)
+            
+    #     return  questions
+
+
+    def question_answer_to_dict(self, question):
+
+
+            questionAndAnswer = {}
+            questionAndAnswer["receiver"] = question.receiver
+            questionAndAnswer["question"] = question.questionText
+            
+            try:
+                answer = Answer.objects.get(question=question)
+                questionAndAnswer['sender'] = answer.sender
+                questionAndAnswer["answer"] = answer.answerText
+            except: 
+                continue
+
+            
+        return  questionAndAnswer
+
+    def to_representation(self, instance, request=None):
+        return 
+
 class DetailledObjectSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -590,8 +651,10 @@ class DetailledObjectSerializer(serializers.ModelSerializer):
         mainImage = "http://" + request.get_host() + obj.mainImage.url
         state = StateOfObject.objects.get(id=obj.state.id).title
         user = User.objects.get(email=obj.user.email)
-        category = Category.objects.get(id=obj.category.id).title
-        subcategory = SubCategory.objects.get(id=obj.subcategory.id).title
+        category = CategorySerializer().to_representation(
+            Category.objects.get(id=obj.category.id))
+        subcategory = SubCategorySerializer().to_representation(
+            SubCategory.objects.get(id=obj.subcategory.id))
 
         full_details_object = obj.get_fields()
 

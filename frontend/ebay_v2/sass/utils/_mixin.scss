@@ -27,3 +27,8 @@
     }
 }
 
+@mixin wide-screen-design {
+    @media screen and (min-width: map-get($breakpoints, wide-screen)) {
+        @content;
+    }
+}

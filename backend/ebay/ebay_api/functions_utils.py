@@ -7,9 +7,10 @@ from .models import Object, Question, Message
 from rest_framework import status
 import datetime
 
+def hidePartOfData(data):
 
-# d1 = datetime.datetime.now()
-# d2 = datetime.datetime(2021, 6, 15)
+    return data[0:1] + '****' + data[-1:]
+
 
 
 def remaningTimeToBid(c_time, e_time):

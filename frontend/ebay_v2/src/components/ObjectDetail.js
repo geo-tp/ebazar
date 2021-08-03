@@ -14,6 +14,7 @@ import ObjectDetailBidFormStore from "./ObjectDetailBidForm";
 import { connect } from "react-redux";
 import { fetchDetailledObject } from "../thunks/DetailledObjectThunk";
 import { fetchObjects } from "../thunks/ObjectThunk";
+import { fetchBidsOfObject } from "../thunks/BidThunk";
 
 
 class ObjectDetail extends Component {
@@ -23,12 +24,12 @@ class ObjectDetail extends Component {
         this.state = {
             remainingTime: 0,
             remainingText: "",
-            showBidBox: 0,
-            showBidList: 0,
+            showBidBox: false,
+            showBidList: false,
         }
 
         this.props.fetchDetailledObject(this.props.detailledObjectId)
-                .then(() => this.props.fetchObjects())
+        this.props.fetchBidsOfObject(this.props.detailledObjectId)
 
     }
 
@@ -74,23 +75,12 @@ class ObjectDetail extends Component {
 
     handleBidBoxClick = () => {
 
-        if (this.state.showBidBox) {
-            this.setState({ showBidBox: 0 })
-        }
-
-        else {
-            this.setState({ showBidBox: 1 })
-        }
+        this.setState({showBidBox: !this.state.showBidBox})
     }
 
     handleBidListClick = () => {
-        if (this.state.showBidList) {
-            this.setState({ showBidList: 0 })
-        }
+        this.setState({showBidList: !this.state.showBidList})
 
-        else {
-            this.setState({ showBidList: 1 })
-        }
     }
 
 
@@ -101,7 +91,15 @@ class ObjectDetail extends Component {
                 {this.props.detailledObject.loaded &&
                 <div className="main-detailled-object">
                     <section className="wrapper">
-                        <h3>{this.props.title}</h3>
+                        <p className ="main-detailled-object__category">
+                            <Link to={'/category/'+this.props.detailledObject.item.category.id}>
+                                {this.props.detailledObject.item.category.title}
+                            </Link>
+                                        /
+                            <Link to={'/category/'+this.props.detailledObject.item.category.id}>
+                                {this.props.detailledObject.item.subcategory.title}
+                            </Link>
+                        </p>
                         <h2 className="main-detailled-object__title">{this.props.detailledObject.item.title}</h2>
                         <div className="main-detailled-object__wrapper">
                             <ul className="main-detailled-object__list">
@@ -109,50 +107,64 @@ class ObjectDetail extends Component {
                                     <div className="main-detailled-object__content">
                                         <div className="main-detailled-object__content-blurb">
                                             <h3 className="main-detailled-object__content-blurb__heading">{this.props.detailledObject.item.actualPrice} €</h3>
-                                            <a className='main-detailled-object__content-blurb__bid-list' onClick={() => this.handleBidListClick()}><p>{this.props.detailledObjectBids && this.props.detailledObjectBids.items.length} enchère(s)</p></a>
-
-                                            {this.props.detailledObject.item.isActive == "False" ?
-
-                                                <h4 className="main-detailled-object__content-blurb__sale-over">Vente terminée</h4>
-                                                :
-                                                <div>
-                                                    {this.props.detailledObject.item.isFollowed ?
+                                            {this.props.detailledObject.item.isFollowed ?
                                                         <p><button onClick={() => this.requestUnfollowObject()} class="button-unfollow">Ne plus suivre</button></p>
                                                         :
                                                         this.props.isConnected && this.props.detailledObject.item.isActive ?
                                                             <p><button onClick={() => this.requestFollowObject()} class="button-follow">Suivre</button></p>
                                                             :
                                                             <p><Link to="/auth"><button class="button-follow">Suivre</button></Link></p>
-                                                    }
-                                                    {this.props.detailledObject.loaded && <ObjectDetailBidListStore />}
+                                            }
+                                            <a className='main-detailled-object__content-blurb__bid-list' onClick={() => this.handleBidListClick()}>
+                                                <p className="main-detailled-object__content-blurb__bid-list__bid-number">
+                                                    {this.props.detailledObjectBids.items.length && 
+                                                            this.props.detailledObjectBids.items.length+" enchère(s)"}
+                                                </p>
+                                            </a>
+                                            {!!this.state.showBidList && <ObjectDetailBidListStore />}
+
+                                            {this.props.detailledObject.item.isActive == "False" ?
+
+                                                <h4 className="main-detailled-object__content-blurb__sale-over">Vente terminée</h4>
+                                                :
+                                                <div>
+
                                                     <div className="remaining-time-box">
                                                         <p id="ramaining-time-box__time"> Il reste {this.state.remainingText}</p>
                                                     </div>
                                                     {this.props.isConnected ?
-                                                        <button onClick={() => this.handleBidBoxClick()} class="button-bid">Enchérir</button>
+                                                        <button onClick={() => this.handleBidBoxClick()} className="button-open-bid">Enchérir</button>
                                                         :
-                                                        <Link to="/auth"><button id="button-bid">Enchérir</button></Link>
+                                                        <Link to="/auth"><button className="button-open-bid">Enchérir</button></Link>
                                                     }
-                                                    <ObjectDetailBidFormStore />
+                                                    {!!this.state.showBidBox && <ObjectDetailBidFormStore />}
                                                 </div>
                                             }
                                             <div className="description-box">
-                                                <p className="descption-box__description">{this.props.detailledObject.item.description}</p>
+                                                <p className="description-box__description">{this.props.detailledObject.item.description}</p>
                                                 {/* <p>{this.props.obj['bids'].numberOfBids}</p> */}
                                                 <table>
                                                     <tbody>
                                                         <tr>
-                                                            <td>Etat :</td>
+                                                            <td>Etat</td>
                                                             <td>{this.props.detailledObject.item.state}</td>
                                                         </tr>
                                                         <tr>
-                                                            <td>Livraison :</td>
+                                                            <td>Livraison</td>
                                                             <td>{this.props.detailledObject.item.shippingPrice} €</td>
                                                         </tr>
                                                         <tr>
-                                                            <td>Retour :</td>
+                                                            <td>Retour</td>
                                                             {this.props.detailledObject.item.returnPolicy ? <td>Non</td>
                                                                 : <td>Oui</td>}
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Vendeur</td>
+                                                            <td>
+                                                                <Link to={"/user/" + this.props.detailledObject.item.user}>
+                                                                    {this.props.detailledObject.item.user}
+                                                                </Link>
+                                                            </td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -160,7 +172,6 @@ class ObjectDetail extends Component {
 
                                         </div>
                                         {!!this.props.detailledObject.item.isOwner && <p><Link to={"/modifier/" + this.props.detailledObject.item.id}><button>Modifier</button></Link></p>}
-                                        <Link to={"/user/" + this.props.detailledObject.item.user}><span>Vendeur :</span>{this.props.detailledObject.item.user}</Link>
                                     </div>
                                     {this.props.detailledObject.loaded  && <ImageCarousselStore />}
                                 </li>
@@ -184,6 +195,7 @@ export const ObjectDetailStore = connect(
     }),
     (dispatch) => ({
         fetchDetailledObject: (objectId) => dispatch(fetchDetailledObject(objectId)),
+        fetchBidsOfObject: (objectId) => dispatch(fetchBidsOfObject(objectId)),
         fetchObjects: (filter) => dispatch(fetchObjects(filter)),
     })
 )(ObjectDetail)

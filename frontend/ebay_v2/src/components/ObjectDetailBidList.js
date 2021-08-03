@@ -7,28 +7,29 @@ import { connect } from "react-redux";
 
 class ObjectDetailBidList extends Component {
 
-    constructor(props) {
-        super(props)
-        this.props.fetchBidsOfObject(this.props.detailledObject.item.id)
-    }
+    // constructor(props) {
+    //     super(props)
+    //     this.props.fetchBidsOfObject(this.props.detailledObject.item.id)
+    // }
 
     render() {
         return(
             
-            <div class="bid-list">
-                {this.props.bids.loaded && this.props.bids.items.map((bid) => {
+            <div className="bid-list">
 
+                    <table>
+                        <tbody>
+                {this.props.bids.loaded && this.props.bids.items.map((bid) => {
                     return(
-                        <table>
-                            <tbody>
                                 <tr>
-                                    <td>{bid.user}</td>
+                                    <td>{bid.user.username}</td>
                                     <td>{bid.price}€</td>
                                 </tr>
+                            )
 
-                            </tbody>
-                        </table>
-                )})}
+                        })}
+                        </tbody>
+                    </table>
                 {!!this.props.bids.loaded == 0 && <p>Aucune enchère pour le moment</p>}
             </div>
         )

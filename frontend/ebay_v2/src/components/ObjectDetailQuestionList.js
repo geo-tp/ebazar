@@ -51,7 +51,7 @@ class ObjectDetailQuestionList extends Component {
 
     render() {
         return(
-            <div className='wrapper--large'>
+            <div className='wrapper'>
 
                 <div className="main-detailled-object-questions">
 
@@ -62,7 +62,7 @@ class ObjectDetailQuestionList extends Component {
                         <p>{this.state.error}</p>
                     </div>
                     <div className="main-detailled-object-question__box">
-                    {this.props.questions.loaded && this.props.questions.items.map((question) => {
+                    {this.props.questions.loaded && this.props.questions.items.results.map((question) => {
                         return (
                             <div className="main-detailled-object-question__object-questions__q-and-a">
                                 <p className="main-detailled-object-question__object-questions__q-and-a__question-label">Question</p>

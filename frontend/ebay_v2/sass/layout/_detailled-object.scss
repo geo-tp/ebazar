@@ -1,19 +1,31 @@
+
+.description-box {
+
+	& td {
+	width: 5%;
+	// text-align: left;
+	}
+	
+	& tr {
+		border-bottom: 1px solid grey;
+	}
+}
+
 .main-detailled-object {
-	position: relative;
-	width: 100%;
-	padding: 120px 0 60px 0;
-	background-color: map-get($COLOR-PALETTE, bg );
+
+	max-height: 100%;
+	max-width: 1000px;
+	margin: 0 auto;
+	padding-top: 50px;
+
+	&__category {
+		text-align: center;
+		margin-bottom: 0;
+	}
 	
 	&__title {
 		text-align: center;
 		font-weight: bold;
-	}
-    
-	&__wrapper {
-		position: relative;
-		max-width: 90%;
-		height: 100%;
-		margin: 0 auto;
 	}
 
 	&__list {
@@ -59,16 +71,21 @@
 		background-color: white;
 		margin: 2%;
 
-        &__blurb {
+        &-blurb {
 			
             h3 {
-                font-size: 54px
+                font-size: 54px;
             }   
             p {
                 max-width: 350px
             }
-        }
-    }
+			&__bid-list {
+				&__bid-number {
+					cursor: pointer;
+					color: map-get($COLOR-PALETTE, ter);
+				}
+        	}
+    	}
 				
 	&__visual {
 		position: relative;
@@ -142,6 +159,9 @@
 				p {
                 max-width: 300px;
                 }
+
+
+				}
             }
         }	
 
@@ -151,7 +171,8 @@
         }
     }
     }
-			
+
+	
 	@media (max-width: 767px) {
 
         .main-detailled-object {
@@ -187,3 +208,5 @@
             }
         }
     }
+
+	

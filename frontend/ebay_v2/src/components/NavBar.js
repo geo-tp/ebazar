@@ -43,10 +43,11 @@ class NavBar extends Component {
         return(
             <div className="nav-bar">
 
-                <div className="nav-bar__nav-site">
-                    <span className="nav-bar__nav-site__nav-burger"
-                          onClick={() => this.setState({menuIsOpen: !this.state.menuIsOpen,
+                <div className="nav-bar__nav-site" 
+                    onClick={() => this.setState({menuIsOpen: !this.state.menuIsOpen,
                                                         accountMenuIsOpen: false})}>
+                    <span className="nav-bar__nav-site__nav-burger">
+ 
                         <i className="fas fa fa-2x fa-bars"></i>
                     </span>
                     <h2 className="nav-bar__logo"> <img alt="logo" src={logo}/> EBAZAR</h2>
@@ -60,7 +61,7 @@ class NavBar extends Component {
 
                 <div className="nav-bar__search">
                     <input className="nav-bar__search-bar" type="text"></input>
-                    <button className="fas fa fa-search nav-bar__search-button"></button>
+                    <button className="fas fa fa-search button-search"></button>
                 </div>
 
                 <div onClick={() => this.setState({accountMenuIsOpen : !this.state.accountMenuIsOpen,

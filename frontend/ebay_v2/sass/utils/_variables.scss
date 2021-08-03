@@ -14,13 +14,22 @@ $COLOR-PALETTE :(
     sec:#fafafa, 
     ter:#2046f2, 
 
+    price: rgb(213, 156, 0),
+
     bg: #fff,
     font: rgb(39, 39, 39),
     shadow: rgba(227, 224, 224, 0.797),
+
+    error: #d06767,
+    success: rgb(71, 136, 71),
 );
 
 // RESPONSIVE
 $breakpoints : (
     mobile: 590px,
     tablet: 1280px,
+    wide-screen: 2380px,
 );
+
+//MAX SCREEN
+$max-width-screen: 1980px;
