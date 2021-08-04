@@ -571,49 +571,25 @@ class DetailledUserSerializer(serializers.ModelSerializer):
 class QuestionAndAnwserOfObjectSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = object
-        fields = ["receiver", "question", "sender", "answer"]
-
-
-    # def question_answer_to_dict(self, queryset):
-
-    #     questions = []
-    #     for question in queryset:
-    #         questionAndAnswer = {}
-    #         questionAndAnswer["receiver"] = question.receiver
-    #         questionAndAnswer["question"] = question.questionText
-            
-    #         try:
-    #             answer = Answer.objects.get(question=question)
-    #             questionAndAnswer['sender']
-    #             questionAndAnswer["answer"] = answer.answerText
-    #         except: 
-    #             continue
-
-    #         questions.append(questionAndAnswer)
-            
-    #     return  questions
-
-
-    def question_answer_to_dict(self, question):
-
-
-            questionAndAnswer = {}
-            questionAndAnswer["receiver"] = question.receiver
-            questionAndAnswer["question"] = question.questionText
-            
-            try:
-                answer = Answer.objects.get(question=question)
-                questionAndAnswer['sender'] = answer.sender
-                questionAndAnswer["answer"] = answer.answerText
-            except: 
-                continue
-
-            
-        return  questionAndAnswer
+        model = Question
+        fields = ["id", "questionText", "obj", 
+                  "answered", "sender", "receiver"]
 
     def to_representation(self, instance, request=None):
-        return 
+        rep = super().to_representation(instance)
+
+        try:
+            answer = Answer.objects.get(question=instance.id)
+            rep ["answerText"] = answer.answerText
+        except:
+            pass
+
+        # if answer:
+
+        # else: rep["answerText"] = ""
+
+        return rep
+
 
 class DetailledObjectSerializer(serializers.ModelSerializer):
 

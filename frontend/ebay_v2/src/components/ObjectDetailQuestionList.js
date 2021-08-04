@@ -1,7 +1,7 @@
 import { Component } from "react";
 import PropTypes from "prop-types"
 import { connect } from "react-redux";
-import { questionSelector } from "../selectors/QuestionSelectors";
+import { questionOfObjectSelector, questionSelector } from "../selectors/QuestionSelectors";
 import { fetchQuestionsOfObject } from "../thunks/QuestionThunk";
 import { detailledObjectSelector } from "../selectors/DetailledObjectSelector";
 
@@ -15,7 +15,6 @@ class ObjectDetailQuestionList extends Component {
             error: ""
         }
 
-        this.props.fetchQuestionsOfObject(this.props.detailledObject.item.id)
     }
 
     // handleQuestionClick = (e) => {
@@ -66,14 +65,15 @@ class ObjectDetailQuestionList extends Component {
                         return (
                             <div className="main-detailled-object-question__object-questions__q-and-a">
                                 <p className="main-detailled-object-question__object-questions__q-and-a__question-label">Question</p>
-                                <p className="main-detailled-object-question__object-questions__q-and-a__question"><strong>{question.question}</strong></p>
+                                <p className="main-detailled-object-question__object-questions__q-and-a__question"><strong>{question.questionText}</strong></p>
                                 <p className="main-detailled-object-question__object-questions__q-and-a__answer-label">Réponse</p>
-                                <p className="main-detailled-object-question__object-questions__q-and-a__answer">{question.answer}</p>
+                                <p className="main-detailled-object-question__object-questions__q-and-a__answer">{question.answerText}</p>
                             </div>                        
                         )
                     })}
                     </div>
-                    {this.props.questions.items.length == 0 && <p>Aucune question pour le moment</p>}
+                    {this.props.questions.loaded && this.props.questions.items.results.length == 0 && 
+                                    <p>Aucune question pour le moment</p>}
                 </div>
             </div>
         )
@@ -86,11 +86,10 @@ ObjectDetailQuestionList.propType = {
 
     fetchQuestionsOfObject: PropTypes.func.isRequired,
 }
-
 export const ObjectDetailQuestionListStore = connect (
     (state) => ({
         detailledObject: detailledObjectSelector(state),
-        questions: questionSelector(state)
+        questions: questionOfObjectSelector(state),
     }),
     (dispatch) => ({
         fetchQuestionsOfObject: (objectId) => dispatch(fetchQuestionsOfObject(objectId))

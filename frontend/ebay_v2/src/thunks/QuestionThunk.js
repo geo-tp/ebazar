@@ -11,9 +11,9 @@ export const fetchQuestionsOfObject = (objectId) => {
         dispatch(getQuestionsOfObject(objectId))
         
         let url = urlFormater({
-            model: "question",
-            filter_field : "obj",
-            filter_value: objectId
+            model: "question-and-answer",
+            filter_fields : ["obj", "answered"],
+            filter_values: [objectId,true]
         })
 
         let params = parametersFormater("GET")

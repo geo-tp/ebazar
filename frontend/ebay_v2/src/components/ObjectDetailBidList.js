@@ -30,6 +30,7 @@ class ObjectDetailBidList extends Component {
                         })}
                         </tbody>
                     </table>
+                    
                 {!!this.props.bids.loaded == 0 && <p>Aucune enchère pour le moment</p>}
             </div>
         )

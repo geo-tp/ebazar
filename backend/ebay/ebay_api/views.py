@@ -420,7 +420,7 @@ class QuestionViewSet(viewsets.ModelViewSet):
 
         return super().create(request, *args, **kwargs)
 
-    @checkUserIsReceiver("question")
+    # @checkUserIsReceiver("question")
     def retrieve(self, request, pk):
         question = Question.objects.get(id=pk)
         question.viewed = 1
@@ -433,21 +433,21 @@ class QuestionViewSet(viewsets.ModelViewSet):
 
 class QuestionAndAnswerViewSet(viewsets.ModelViewSet):
 
-    http_method_names = ["get"]
+    # http_method_names = ["get"]
 
     queryset = Question.objects.all()
     serializer_class = QuestionAndAnwserOfObjectSerializer
 
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
-    filterset_fields = ["obj"]
+    filterset_fields = ["obj", "answered"]
 
     permission_classes = [AllowAny]
 
 
-    def retrieve(self, request, pk):
-        questions = Question.objects.filter(obj=pk)
-        rep = self.question_answer_to_dict(questions)
-        return Response(data=rep, status=status.HTTP_200_OK)
+    # def retrieve(self, request, pk):
+    #     questions = Question.objects.filter(obj=pk)
+    #     rep = self.question_answer_to_dict(questions)
+    #     return Response(data=rep, status=status.HTTP_200_OK)
 
 class AnswerViewSet(viewsets.ModelViewSet):
 

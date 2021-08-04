@@ -15,6 +15,7 @@ import { connect } from "react-redux";
 import { fetchDetailledObject } from "../thunks/DetailledObjectThunk";
 import { fetchObjects } from "../thunks/ObjectThunk";
 import { fetchBidsOfObject } from "../thunks/BidThunk";
+import { fetchQuestionsOfObject } from "../thunks/QuestionThunk";
 
 
 class ObjectDetail extends Component {
@@ -22,20 +23,24 @@ class ObjectDetail extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            remainingTime: 0,
+            remainingTime: null,
             remainingText: "",
             showBidBox: false,
             showBidList: false,
+            intervalStarted : false
         }
 
         this.props.fetchDetailledObject(this.props.detailledObjectId)
         this.props.fetchBidsOfObject(this.props.detailledObjectId)
+        this.props.fetchQuestionsOfObject(this.props.detailledObjectId)
+
+        this.interval = setInterval(() => this.updateRemainingTime(), 1000)
+
 
     }
 
     componentDidMount() {
-        this.setRemainingTime()
-        this.interval = setInterval(() => this.updateRemainingTime(), 1000)
+
     }
 
     // componentDidUpdate(prevProps) {
@@ -45,32 +50,38 @@ class ObjectDetail extends Component {
     //     }
     // }
 
-    // componentWillReceiveProps(newprops) {
-    //     this.requestForDetailledObject()
-    // }
+    componentWillUnmount() {
+        clearInterval(this.interval);
+      }
 
 
     setRemainingTime = () => {
 
         let now = new Date()
-        let ending = new Date(this.props.detailledObject.endingDate)
-
+        let ending = new Date(this.props.detailledObject.item.endingDate)
+        console.log("dddd", ending)
         let remaining = (ending - now) / 1000
         this.setState({ remainingTime: remaining })
+
+        console.log("SETREM", remaining)
 
     }
 
     updateRemainingTime = () => {
 
-        let remaining = this.state.remainingTime
+        
+        if (this.state.remainingTime) {
+        
+            let remaining = this.state.remainingTime
 
-        let jours = convertSecondsToDays(remaining)
-        let { sec, min, hour } = convertSecondsToHours(remaining)
-        this.setState({
-            remainingText: jours + "jour(s) " + hour + "heure(s) " +
-                min + "minutes " + sec + "seconde(s)",
-            remainingTime: this.state.remainingTime - 1
-        })
+            let jours = convertSecondsToDays(remaining)
+            let { sec, min, hour } = convertSecondsToHours(remaining)
+            this.setState({
+                remainingText: jours + "jour(s) " + hour + "heure(s) " +
+                    min + "minutes " + sec + "seconde(s)",
+                remainingTime: remaining - 1
+            })
+        }
     }
 
     handleBidBoxClick = () => {
@@ -85,6 +96,14 @@ class ObjectDetail extends Component {
 
 
     render() {
+
+        if (this.props.detailledObject.loaded && !this.state.remainingTime) {
+            this.setRemainingTime()            
+
+        }
+
+        console.log("REM", this.state.remainingTime, this.props.detailledObject.loaded)
+
         return (
             <div>
                 {!this.props.detailledObject.loaded && <Loading />}
@@ -194,9 +213,12 @@ export const ObjectDetailStore = connect(
         detailledObjectImages: detailledObjectImageSelector(state),
     }),
     (dispatch) => ({
+        fetchObjects: (filter) => dispatch(fetchObjects(filter)),
+
         fetchDetailledObject: (objectId) => dispatch(fetchDetailledObject(objectId)),
         fetchBidsOfObject: (objectId) => dispatch(fetchBidsOfObject(objectId)),
-        fetchObjects: (filter) => dispatch(fetchObjects(filter)),
+        fetchQuestionsOfObject: (objectId) => dispatch(fetchQuestionsOfObject(objectId))
+
     })
 )(ObjectDetail)
 
@@ -209,7 +231,10 @@ ObjectDetail.propTypes = {
     detailledObjectBids: PropTypes.object.isRequired,
     detailledObjectImages: PropTypes.object.isRequired,
 
-    fetchDetailledObject: PropTypes.func.isRequired
+    fetchDetailledObject: PropTypes.func.isRequired,
+    fetchBidsOfObject: PropTypes.func.isRequired,
+    fetchQuestionsOfObject: PropTypes.func.isRequired
+
 }
 
 export default ObjectDetailStore
