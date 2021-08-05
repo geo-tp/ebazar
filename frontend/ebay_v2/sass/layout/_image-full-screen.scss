@@ -1,0 +1,29 @@
+
+.main-image-full-screen {
+    display: flex;
+    justify-content:center;
+    width:80%;
+    max-width: $max-width-screen;
+    max-height: 80%;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    z-index: 30;
+    
+    
+    @include tablet-design {
+        display: none
+        
+    }
+    
+    @include small-bottom-shadow;
+    
+    & img {
+        width:70%;
+
+        // margin: 0 auto;
+        // height:50%;
+    }
+}

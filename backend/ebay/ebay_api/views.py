@@ -19,7 +19,7 @@ from rest_framework import status
 
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
-
+from rest_framework import pagination
 
 import datetime
 
@@ -227,8 +227,6 @@ class BidViewSet(viewsets.ModelViewSet):
     ordering_fields = ['price']
     filterset_fields = ["obj"]
 
-    pagination_class = None
-
 
     permission_classes = [AllowAny]
 
@@ -391,7 +389,6 @@ class BiddedObjectByUserViewSet(viewsets.ModelViewSet):
     serializer_class = BiddedObjectByUserSerializer
 
     def retrieve(self, request, pk):
-        print("PK", pk, "REQUEST", request)
         rep = self.serializer_class().to_representation(request, pk)
         page = self.paginate_queryset(rep)
 
@@ -433,7 +430,12 @@ class QuestionViewSet(viewsets.ModelViewSet):
 
 class QuestionAndAnswerViewSet(viewsets.ModelViewSet):
 
+    class CustomPaginate(pagination.PageNumberPagination):
+        page_size = 3
+
     # http_method_names = ["get"]
+
+    pagination_class = CustomPaginate
 
     queryset = Question.objects.all()
     serializer_class = QuestionAndAnwserOfObjectSerializer

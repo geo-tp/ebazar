@@ -4,6 +4,7 @@ import PropTypes from "prop-types"
 import { connect } from "react-redux";
 import { fetchImagesOfObject } from "../thunks/ImageThunk";
 import { detailledObjectSelector } from "../selectors/DetailledObjectSelector";
+import ImageFullScreen from "./ImageFullScreen";
 
 
 
@@ -12,39 +13,66 @@ class ImageCaroussel extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            current_index: 0,
+            currentIndex: 0,
+            isInit: false,
+            displayFullResolution:false
+
+        }
+        
+        this.initImages()
+        
+    }
+    
+    async initImages() {
+        
+        await this.props.fetchImagesOfObject(this.props.detailledObject.item.id)
+
+        let images =  [{imageOfObject: this.props.detailledObject.item.mainImage}]
+
+        if (this.props.images.items.length) {
+            images = [...this.props.images.items, ...images]
+            
         }
 
-        this.props.fetchImagesOfObject(this.props.detailledObject.item.id)
-        
+        this.setState({
+            images : images,
+            isInit: true
+        })
+
+    }
+
+    handleFullResolutionDisplay = () => {
+        this.setState({
+            displayFullResolution: !this.state.displayFullResolution})
     }
 
     handleChangeImageCLick = (direction) => {
 
-        let current_index = this.state.current_index
         switch (direction) {
+
             case "left":
-                if (this.state.current_index) {
+                if (this.state.currentIndex) {
+
                     this.setState({
-                        current_index: current_index - 1,
+                        currentIndex: this.state.currentIndex-1,
                     })
                 }
+
                 else {
-                    this.setState({
-                        current_index: this.props.images.items.length-1,
-                    })
+                    this.setState({currentIndex: this.state.images.length-1})
                 }
                 break;
+
             case 'right':
-                if (this.state.current_index < this.state.images.items.length - 1) {
+                if (this.state.currentIndex < this.state.images.length-1) {
                     this.setState({
-                        current_index: current_index + 1,
+                        currentIndex: this.state.currentIndex + 1,
                     })
                 }
 
                 else {
                     this.setState({
-                        current_index: 0,
+                        currentIndex: 0,
                     })
                 }
                 break;
@@ -54,19 +82,18 @@ class ImageCaroussel extends Component {
 
 
     render() {
-
-
-
-        console.log("IMAGE ITM", this.state.current_index)
+        console.log(this.state.images)
+        console.log(this.state.currentIndex)
         return (
             <div className="main-image-caroussel">
-                <img src={!!this.props.images.loaded &&
-                                    
-                                    this.state.current_index == 0 ?
-                                                    this.props.detailledObject.item.mainImage
-                                                                  : 
-                                                    this.props.images.items.length && this.props.images.items[0].imageOfObject} />
-                <label className="main-image-caroussel__image-counter">{this.state.current_index+1} / {this.props.images.items.length}</label>
+                <img onClick={() => this.setState({displayFullResolution:true})}
+                     src={this.state.isInit &&
+                                                    this.state.images && this.state.images[this.state.currentIndex].imageOfObject} />
+                
+                {this.state.displayFullResolution &&
+                                            <ImageFullScreen image={this.state.images[this.state.currentIndex].imageOfObject }
+                                                             handleFullResolutionDisplay={this.handleFullResolutionDisplay}/>}
+                <label className="main-image-caroussel__image-counter">{this.state.currentIndex+1} / {this.props.images.items.length+1}</label>
                 <button onClick={() => this.handleChangeImageCLick("left")} 
                         className="fa fa-arrow-circle-left main-image-caroussel__left-arrow"></button>
                 <button onClick={() => this.handleChangeImageCLick("right")} 

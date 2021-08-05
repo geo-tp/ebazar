@@ -11,7 +11,8 @@ export const fetchBidsOfObject = (objectId) => {
         let url = urlFormater({
             model: "bid",
             filter_field: "obj",
-            filter_value: objectId
+            filter_value: objectId,
+            ordering: "-price"
         })
 
 

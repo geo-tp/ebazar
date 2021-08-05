@@ -14,13 +14,22 @@
         display: block;
         width: 100%;
         z-index: auto;
+        cursor: pointer;
+
+        @include  tablet-design {
+            cursor: default;
+        }
+
     }
     
     &__image-counter {
 
         position: absolute;
+        background-color: white;
         right: 50%;
         bottom: 1%;
+        padding: 3px;
+        border-radius: 10px;
 
     }
 

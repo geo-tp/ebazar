@@ -15,7 +15,7 @@ class Sqlite:
         parent_folder = os.path.dirname(os.getcwd())
         os.chdir(parent_folder)
 
-        return 'ebay/backend/ebay/db.sqlite3'
+        return 'ebay/db.sqlite3'
 
     def connectToSQLite(self):
 

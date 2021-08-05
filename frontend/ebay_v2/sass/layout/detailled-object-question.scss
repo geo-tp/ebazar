@@ -2,43 +2,50 @@
 .main-detailled-object-questions {
     // display: flex;
     text-align: center;
-    justify-content: space-around;
     background-color: white;
-    width: 100%;
+    // width: 100%;
     margin: auto;
-    flex-wrap: wrap;
-    overflow-y: scroll;
-    height: 300px;
-
-    & > div {
-        flex-basis: 50%;
-    }
-
+    
     &___question-form {
-
+        
     }
-
+    
     &__box{
-
-        background-color: rgba(245, 245, 245, 0.671);
-        margin: 3%;
-        padding: 2%;
-        width: 30%;
-        box-shadow: 3px 3px 6px 3px rgba(209, 205, 205, 0.26);
-
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        
         &__q-and-a {
+            background-color: lighten( map-get($COLOR-PALETTE, prim ), 60%);
+            margin: 3%;
+            padding: 2%;
+            box-shadow: 3px 3px 6px 3px rgba(209, 205, 205, 0.26);
+            flex-basis: 20%;
 
+            @include tablet-design {
+                flex-basis: 31%;
+
+            }
+
+            @include mobile-design {
+                flex-basis: 100%;
+
+            }
+            
             &__question-label {
 
                 text-align: left;
+                color:map-get($COLOR-PALETTE, ter )
             }
 
             &__question {
 
             }
 
-            &__answer_label {
+            &__answer-label {
                 text-align: left;
+                color:map-get($COLOR-PALETTE, ter )
+
 
             }
 

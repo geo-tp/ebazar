@@ -19,7 +19,7 @@ class ObjectDetailBidList extends Component {
 
                     <table>
                         <tbody>
-                {this.props.bids.loaded && this.props.bids.items.map((bid) => {
+                {this.props.bids.loaded && this.props.bids.items.results.map((bid) => {
                     return(
                                 <tr>
                                     <td>{bid.user.username}</td>
@@ -31,7 +31,7 @@ class ObjectDetailBidList extends Component {
                         </tbody>
                     </table>
                     
-                {!!this.props.bids.loaded == 0 && <p>Aucune enchère pour le moment</p>}
+                {!!this.props.bids.items.count == 0 && <p>Aucune enchère pour le moment</p>}
             </div>
         )
     }

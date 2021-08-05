@@ -2,7 +2,7 @@ import { Component } from "react";
 import PropTypes from "prop-types"
 import { connect } from "react-redux";
 import { questionOfObjectSelector, questionSelector } from "../selectors/QuestionSelectors";
-import { fetchQuestionsOfObject } from "../thunks/QuestionThunk";
+import { fetchNextQuestionsOfObjectPage, fetchQuestionsOfObject } from "../thunks/QuestionThunk";
 import { detailledObjectSelector } from "../selectors/DetailledObjectSelector";
 
 
@@ -55,23 +55,32 @@ class ObjectDetailQuestionList extends Component {
                 <div className="main-detailled-object-questions">
 
                     <h4>QUESTIONS SUR L'OBJET</h4>
-                    <div className="main-detailled-object-question__question-form">
+                    <div className="main-detailled-object-questions__question-form">
                         <p><input  onChange={e => this.setState({questionText:e.target.value})} value={this.state.questionText} placeholder="Poser votre question"/></p>
                         <button onClick={e => this.handleQuestionClick(e)}>Envoyer</button>
                         <p>{this.state.error}</p>
                     </div>
-                    <div className="main-detailled-object-question__box">
+                    <div className="main-detailled-object-questions__box">
                     {this.props.questions.loaded && this.props.questions.items.results.map((question) => {
                         return (
-                            <div className="main-detailled-object-question__object-questions__q-and-a">
-                                <p className="main-detailled-object-question__object-questions__q-and-a__question-label">Question</p>
-                                <p className="main-detailled-object-question__object-questions__q-and-a__question"><strong>{question.questionText}</strong></p>
-                                <p className="main-detailled-object-question__object-questions__q-and-a__answer-label">Réponse</p>
-                                <p className="main-detailled-object-question__object-questions__q-and-a__answer">{question.answerText}</p>
+                            <div className="main-detailled-object-questions__box__q-and-a">
+                                <p className="main-detailled-object-questions__box__q-and-a__question-label">Question</p>
+                                <p className="main-detailled-object-questions__box__q-and-a__question"><strong>{question.questionText}</strong></p>
+                                <p className="main-detailled-object-questions__box__q-and-a__answer-label">Réponse</p>
+                                <p className="main-detailled-object-questions__box__q-and-a__answer">{question.answerText}</p>
                             </div>                        
                         )
                     })}
                     </div>
+                    {this.props.questions.loaded && this.props.questions.items.next &&
+                        <button onClick={ () => this.props.fetchNextQuestionsOfObjectPage(
+                                                            this.props.questions.items.next
+                                                            )
+                                        } 
+                                className="">
+                                Voir plus
+                        </button>
+                    }
                     {this.props.questions.loaded && this.props.questions.items.results.length == 0 && 
                                     <p>Aucune question pour le moment</p>}
                 </div>
@@ -92,7 +101,8 @@ export const ObjectDetailQuestionListStore = connect (
         questions: questionOfObjectSelector(state),
     }),
     (dispatch) => ({
-        fetchQuestionsOfObject: (objectId) => dispatch(fetchQuestionsOfObject(objectId))
+        fetchQuestionsOfObject: (objectId) => dispatch(fetchQuestionsOfObject(objectId)),
+        fetchNextQuestionsOfObjectPage: (url) => dispatch(fetchNextQuestionsOfObjectPage(url))
     })
 
 )(ObjectDetailQuestionList)

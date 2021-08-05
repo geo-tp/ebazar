@@ -7,9 +7,8 @@ body {
 
     @include wide-screen-design {
 
-        width: 1980px;
-        left:0;
-        right:0%;
+        width: $max-width-screen;
+        padding-top: 70px;
         margin: 0 auto;
         background-color: map-get($COLOR-PALETTE, bg);
     }
@@ -39,5 +38,7 @@ button {
 }
 
 .App {
-    box-shadow: 0px 100px 300px 0px map-get($COLOR_PALETTE, shadow);
+    box-shadow: 0px 100px 300px 0px lighten(map-get($COLOR_PALETTE, shadow), 50%);
+    padding: 20px;
+
 }

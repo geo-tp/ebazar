@@ -98,11 +98,14 @@ class ObjectDetail extends Component {
     render() {
 
         if (this.props.detailledObject.loaded && !this.state.remainingTime) {
-            this.setRemainingTime()            
+            this.setRemainingTime()
+            this.props.fetchObjects(
+                {
+                    ordering: "-endingDate", 
+                }
 
+            )         
         }
-
-        console.log("REM", this.state.remainingTime, this.props.detailledObject.loaded)
 
         return (
             <div>
@@ -136,8 +139,7 @@ class ObjectDetail extends Component {
                                             }
                                             <a className='main-detailled-object__content-blurb__bid-list' onClick={() => this.handleBidListClick()}>
                                                 <p className="main-detailled-object__content-blurb__bid-list__bid-number">
-                                                    {this.props.detailledObjectBids.items.length && 
-                                                            this.props.detailledObjectBids.items.length+" enchère(s)"}
+                                                    {this.props.detailledObjectBids.items.count+" enchère(s)"}
                                                 </p>
                                             </a>
                                             {!!this.state.showBidList && <ObjectDetailBidListStore />}

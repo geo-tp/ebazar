@@ -19,13 +19,13 @@ class Detail extends Component {
     constructor(props) {
         super(props)
 
-        // this.props.fetchObjects()
     }
 
     render() {
         return(
             <div>
                 <ObjectDetailStore detailledObjectId={this.props.match.params.objectId}/>
+                <h3> </h3>
                 <ObjectListStore/>
             </div>
         )

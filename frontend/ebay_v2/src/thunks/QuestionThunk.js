@@ -1,4 +1,5 @@
 import { getQuestionsOfObject, getQuestionsOfObjectError, getQuestionsOfObjectSuccess,
+         getNextQuestionsOfObjectPage, getNextQuestionsOfObjectPageError, getNextQuestionsOfObjectPageSuccess,
          getQuestionsOfUser, getQuestionsOfUserError, getQuestionsOfUserSuccess } from "../actions/QuestionActions.js"
 import { parametersFormater } from "../utils/parametersFormater"
 import { urlFormater } from "../utils/urlFormater"
@@ -34,6 +35,32 @@ export const fetchQuestionsOfObject = (objectId) => {
             .catch(error => {
                 dispatch(getQuestionsOfObjectError(error))
             })
+    }
+}
+
+export const fetchNextQuestionsOfObjectPage = (url) => {
+    return (dispatch) => {
+
+        dispatch(getNextQuestionsOfObjectPage())
+
+        let params = parametersFormater("GET")
+
+        return fetch(url, params)
+                    .then(rslt => {
+                        if (!rslt.ok) {
+                            throw new Error(NOT_FOUND)
+                        }
+
+                        return rslt.json()
+                    })
+
+                    .then(questions => {
+                        dispatch(getNextQuestionsOfObjectPageSuccess(questions))
+                    })
+
+                    .catch(error => {
+                        dispatch(getNextQuestionsOfObjectPageError(error))
+                    })
     }
 }
 
