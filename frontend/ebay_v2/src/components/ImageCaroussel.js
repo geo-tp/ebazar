@@ -82,8 +82,6 @@ class ImageCaroussel extends Component {
 
 
     render() {
-        console.log(this.state.images)
-        console.log(this.state.currentIndex)
         return (
             <div className="main-image-caroussel">
                 <img onClick={() => this.setState({displayFullResolution:true})}
@@ -103,15 +101,6 @@ class ImageCaroussel extends Component {
     }
 }
 
-export const ImageCarousselStore = connect(
-    (state) => ({
-        images: imageSelector(state),
-        detailledObject: detailledObjectSelector(state)
-    }),
-    (dispatch) => ({
-        fetchImagesOfObject: (objectId) => dispatch(fetchImagesOfObject(objectId))
-    })
-)(ImageCaroussel)
 
 ImageCaroussel.propTypes = {
     images: PropTypes.object.isRequired,
@@ -120,4 +109,4 @@ ImageCaroussel.propTypes = {
     fetchImagesOfObject: PropTypes.object.isRequired
 }
 
-export default ImageCarousselStore
+export default ImageCaroussel

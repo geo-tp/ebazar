@@ -73,4 +73,4 @@ class AccountActivity extends Component {
     }
 }
 
-export default AccountPanel
+export default AccountActivity

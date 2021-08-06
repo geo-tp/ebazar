@@ -207,22 +207,22 @@ class ObjectDetail extends Component {
     }
 }
 
-export const ObjectDetailStore = connect(
-    (state) => ({
-        detailledObject: detailledObjectSelector(state),
-        detailledObjectQuestions: detailledObjectQuestionSelector(state),
-        detailledObjectBids: detailledObjectBidSelector(state),
-        detailledObjectImages: detailledObjectImageSelector(state),
-    }),
-    (dispatch) => ({
-        fetchObjects: (filter) => dispatch(fetchObjects(filter)),
+// export const ObjectDetailStore = connect(
+//     (state) => ({
+//         detailledObject: detailledObjectSelector(state),
+//         detailledObjectQuestions: detailledObjectQuestionSelector(state),
+//         detailledObjectBids: detailledObjectBidSelector(state),
+//         detailledObjectImages: detailledObjectImageSelector(state),
+//     }),
+//     (dispatch) => ({
+//         fetchObjects: (filter) => dispatch(fetchObjects(filter)),
 
-        fetchDetailledObject: (objectId) => dispatch(fetchDetailledObject(objectId)),
-        fetchBidsOfObject: (objectId) => dispatch(fetchBidsOfObject(objectId)),
-        fetchQuestionsOfObject: (objectId) => dispatch(fetchQuestionsOfObject(objectId))
+//         fetchDetailledObject: (objectId) => dispatch(fetchDetailledObject(objectId)),
+//         fetchBidsOfObject: (objectId) => dispatch(fetchBidsOfObject(objectId)),
+//         fetchQuestionsOfObject: (objectId) => dispatch(fetchQuestionsOfObject(objectId))
 
-    })
-)(ObjectDetail)
+//     })
+// )(ObjectDetail)
 
 ObjectDetail.propTypes = {
 
@@ -239,4 +239,4 @@ ObjectDetail.propTypes = {
 
 }
 
-export default ObjectDetailStore
+export default ObjectDetail

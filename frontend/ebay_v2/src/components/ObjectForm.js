@@ -303,26 +303,26 @@ class ObjectForm extends Component {
     }
 }
 
-export const ObjectFormStore = connect(
-    (state) => ({
+// export const ObjectFormStore = connect(
+//     (state) => ({
 
-        user: userSelector(state),
-        states: stateSelector(state),
-        durations: durationSelector(state),
+//         user: userSelector(state),
+//         states: stateSelector(state),
+//         durations: durationSelector(state),
 
-        categories: categorySelector(state),
-        subcategories: subCategorySelector(state)
+//         categories: categorySelector(state),
+//         subcategories: subCategorySelector(state)
 
 
-    }),
-    (dispatch) => ({
-        fetchStates: () => dispatch(fetchStates()),
-        fetchDurations: () => dispatch(fetchDurations()),
-        fetchCreateObject: (objectForm) => dispatch(fetchCreateObject(objectForm)),
-        fetchCategories: () => dispatch(fetchCategories()),
-        fetchSubCategories: (categoryId) => dispatch(fetchSubCategories(categoryId))
-    })
-)(ObjectForm)
+//     }),
+//     (dispatch) => ({
+//         fetchStates: () => dispatch(fetchStates()),
+//         fetchDurations: () => dispatch(fetchDurations()),
+//         fetchCreateObject: (objectForm) => dispatch(fetchCreateObject(objectForm)),
+//         fetchCategories: () => dispatch(fetchCategories()),
+//         fetchSubCategories: (categoryId) => dispatch(fetchSubCategories(categoryId))
+//     })
+// )(ObjectForm)
 
 ObjectForm.propTypes = {
 
@@ -341,4 +341,4 @@ ObjectForm.propTypes = {
 }
 
 
-export default ObjectFormStore
+export default ObjectForm

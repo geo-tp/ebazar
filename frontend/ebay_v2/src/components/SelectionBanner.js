@@ -36,19 +36,19 @@ class SelectionBanner extends Component {
     }
 }
 
-const SelectionBannerStore = connect(
-    (state) => ({
-        selections: selectionSelector(state)
-    }),
+// const SelectionBannerStore = connect(
+//     (state) => ({
+//         selections: selectionSelector(state)
+//     }),
 
-    (dispatch) => ({
-        fetchSelections: () => dispatch(fetchSelections())
-    })
-)(SelectionBanner)
+//     (dispatch) => ({
+//         fetchSelections: () => dispatch(fetchSelections())
+//     })
+// )(SelectionBanner)
 
 SelectionBanner.propTypes = {
     selections: PropTypes.object.isRequired,
     fetchSelections: PropTypes.func.isRequired
 }
 
-export default SelectionBannerStore
+export default SelectionBanner

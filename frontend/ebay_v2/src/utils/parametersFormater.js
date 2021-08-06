@@ -1,6 +1,6 @@
 
 import { BASIC_HEADER } from "../utils/APIConfig";
-import {store} from "../store/store"
+import {store} from "../index"
 import { tokenSelector } from "../selectors/AuthSelectors";
 
 const addTokenIfExist = () => {

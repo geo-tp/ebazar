@@ -29,14 +29,6 @@ class CookieBanner extends Component{
     }
 }
 
-const CookieBannerStore = connect(
-    (state) => ({
-        cookieAccept: cookieAcceptSelector(state.auth)
-    }),
-    (dispatch) => ({
-        setCookieAccepted: () => dispatch(acceptCookie())
-    })
-)(CookieBanner)
 
 CookieBanner.propTypes = {
     cookieAccepted: PropTypes.number,
@@ -44,4 +36,4 @@ CookieBanner.propTypes = {
  }
 
 
-export default CookieBannerStore
+export default CookieBanner

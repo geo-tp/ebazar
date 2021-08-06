@@ -38,15 +38,15 @@ class ObjectDetailBidList extends Component {
 }
 
 
-export const ObjectDetailBidListStore = connect(
-    (state) => ({
-        detailledObject: detailledObjectSelector(state),
-        bids: detailledObjectBidSelector(state)
-    }),
-    (dispatch) => ({
-        fetchBidsOfObject: (objectId) => dispatch(fetchBidsOfObject(objectId))
-    })
-)(ObjectDetailBidList)
+// export const ObjectDetailBidListStore = connect(
+//     (state) => ({
+//         detailledObject: detailledObjectSelector(state),
+//         bids: detailledObjectBidSelector(state)
+//     }),
+//     (dispatch) => ({
+//         fetchBidsOfObject: (objectId) => dispatch(fetchBidsOfObject(objectId))
+//     })
+// )(ObjectDetailBidList)
     
     ObjectDetailBidList.propType = {
         detailledObject: PropTypes.object.isRequired,
@@ -55,4 +55,4 @@ export const ObjectDetailBidListStore = connect(
         fetchBidsOfObject: PropTypes.func.isRequired,
     }
 
-export default ObjectDetailBidListStore
+export default ObjectDetailBidList

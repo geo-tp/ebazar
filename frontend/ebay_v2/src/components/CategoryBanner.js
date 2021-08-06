@@ -30,19 +30,10 @@ class CategoryBanner extends Component {
     }
 }
 
-const CategoryBannerStore = connect(
-    (state) => ({
-        categories:categorySelector(state)
-    }),
-    (dispatch) => ({
-        fetchCategories: () => dispatch(fetchCategories())
-    })
-)(CategoryBanner)
-
 CategoryBanner.propTypes = {
 
     categories: PropTypes.object.isRequired,
     fetchCategories: PropTypes.func.isRequired
  }
 
-export default CategoryBannerStore
+export default CategoryBanner

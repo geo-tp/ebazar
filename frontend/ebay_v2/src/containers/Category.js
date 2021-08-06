@@ -8,6 +8,8 @@ import { categorySelector } from "../selectors/CategorySelectors";
 import { objectSelector } from "../selectors/ObjectSelectors";
 import { fetchObjects } from "../thunks/ObjectThunk";
 import { withRouter } from "react-router";
+import { subCategorySelector } from "../selectors/SubCategorySelectors";
+import { fetchSubCategories } from "../thunks/SubCategoryThunk";
 
 class Category extends Component {
 
@@ -43,10 +45,12 @@ class Category extends Component {
 const CategoryStore = connect(
     (state) => ({
         categories: categorySelector(state),
+        subCategories: subCategorySelector(state),
         objects: objectSelector(state)
     }),
     (dispatch) => ({
         fetchCategories: () => dispatch(fetchCategories()),
+        fetchSubCategories: (categoryId) => dispatch(fetchSubCategories(categoryId)),
         fetchObjects: (filter) => dispatch(fetchObjects(filter))
     })
 )(Category)
@@ -58,6 +62,8 @@ Category.propTypes = {
     objects: PropTypes.object.isRequired,
 
     fetchCategories: PropTypes.func.isRequired,
+    fetchSubCategories: PropTypes.func.isRequired,
+
     fetchObjects: PropTypes.func.isRequired
 }
 

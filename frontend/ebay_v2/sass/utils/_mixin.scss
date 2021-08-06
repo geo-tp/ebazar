@@ -1,5 +1,5 @@
 @mixin border-bottom-default {
-    border-bottom: 1px solid map-get($COLOR_PALETTE, prim);
+    border-bottom: 1px solid lighten(map-get($COLOR_PALETTE, prim), 50%);
 }
 
 

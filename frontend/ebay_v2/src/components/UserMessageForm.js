@@ -69,10 +69,5 @@ class UserMessageForm extends Component {
     }
 }
 
-const UserMessageFormStore = connect(
-    (state) => ({
-        type: fetchEdi
-    })
-)
 
 export default UserMessageForm

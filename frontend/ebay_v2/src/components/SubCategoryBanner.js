@@ -33,15 +33,15 @@ class SubCategoryBanner extends Component {
 }
 
 
-const SubCategoryBannerStore = connect(
-    (state) => ({
-        subCategories: subCategorySelector(state)
-    }),
-    (dispatch) => ({
-        fetchSubCategories: (categoryId) => dispatch(fetchSubCategories(categoryId)),
-        fetchObjects: (filter) => dispatch(fetchObjects(filter)),
-    })
-)(SubCategoryBanner)
+// const SubCategoryBannerStore = connect(
+//     (state) => ({
+//         subCategories: subCategorySelector(state)
+//     }),
+//     (dispatch) => ({
+//         fetchSubCategories: (categoryId) => dispatch(fetchSubCategories(categoryId)),
+//         fetchObjects: (filter) => dispatch(fetchObjects(filter)),
+//     })
+// )(SubCategoryBanner)
 
 SubCategoryBanner.propTypes = {
     
@@ -54,4 +54,4 @@ SubCategoryBanner.propTypes = {
 
 
 
-export default SubCategoryBannerStore
+export default SubCategoryBanner

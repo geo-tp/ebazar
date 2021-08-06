@@ -124,18 +124,18 @@ class OfferBanner extends Component {
     }
 }
 
-const OfferBannerStore = connect (
-    (state) => ({
-        offerBanners: offerBannerSelector(state)
-    }),
-    (dispatch) => ({
-        fetchOfferBanners : () => dispatch(fetchOfferBanners())
-    })
-)(OfferBanner)
+// const OfferBannerStore = connect (
+//     (state) => ({
+//         offerBanners: offerBannerSelector(state)
+//     }),
+//     (dispatch) => ({
+//         fetchOfferBanners : () => dispatch(fetchOfferBanners())
+//     })
+// )(OfferBanner)
 
 OfferBanner.propType = {
     offerBanners: PropTypes.object.isRequired,
     fetchOfferBanners: PropTypes.func.isRequired
 }
 
-export default OfferBannerStore
+export default OfferBanner

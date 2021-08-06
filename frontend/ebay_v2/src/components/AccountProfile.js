@@ -1,35 +1,36 @@
 import {Component} from "react"
-import {request_formatter,BASIC_HEADER } from "../../../GLOBAL"
-import "./style.css"
+import PropType from "prop-types"
+
+// import {request_formatter,BASIC_HEADER } from "../../../GLOBAL"
 
 
 
-class Profile extends Component {
+class AccountProfile extends Component {
 
     constructor(props) {
         super(props)
 
         this.state = {
-            username: this.props.user.username,
-            first_name: this.props.user.first_name,
-            last_name: this.props.user.last_name,
-            email: this.props.user.email,
-            date_of_birth: this.props.user.date_of_birth,
-            street_number: this.props.user.street_number,
-            street_type: this.props.user.street_type,
-            street_name: this.props.user.street_name,
-            city_number: this.props.user.city_number,
-            city: this.props.user.city,
-            phone_number: this.props.user.phone_number,
-            paypal_email: this.props.user.paypal_email,
-            iban: this.props.user.iban,
-            card_number: this.props.user.card_number,
-            card_expiration: this.props.user.card_expiration,
-            card_owner_name: this.props.user.card_owner_name,
+            // username: this.props.user.username,
+            // first_name: this.props.user.first_name,
+            // last_name: this.props.user.last_name,
+            // email: this.props.user.email,
+            // date_of_birth: this.props.user.date_of_birth,
+            // street_number: this.props.user.street_number,
+            // street_type: this.props.user.street_type,
+            // street_name: this.props.user.street_name,
+            // city_number: this.props.user.city_number,
+            // city: this.props.user.city,
+            // phone_number: this.props.user.phone_number,
+            // paypal_email: this.props.user.paypal_email,
+            // iban: this.props.user.iban,
+            // card_number: this.props.user.card_number,
+            // card_expiration: this.props.user.card_expiration,
+            // card_owner_name: this.props.user.card_owner_name,
 
-            confirm_address_save : "",
-            confirm_card_save : "",
-            confirm_payment_save: ""
+            // confirm_address_save : "",
+            // confirm_card_save : "",
+            // confirm_payment_save: ""
 
         }
     }
@@ -39,45 +40,45 @@ class Profile extends Component {
 
         e.preventDefault()
 
-        let card_number = e.target['card-number'].value
-        let card_expiration = e.target["card-expiration"].value
-        let card_owner_name = e.target["card-owner-name"].value
+        // let card_number = e.target['card-number'].value
+        // let card_expiration = e.target["card-expiration"].value
+        // let card_owner_name = e.target["card-owner-name"].value
 
-        let url = request_formatter({
-            model: "user",
-            pk: this.props.user.id
-        })
+        // let url = request_formatter({
+        //     model: "user",
+        //     pk: this.props.user.id
+        // })
 
-        let headers = BASIC_HEADER
-        headers["Authorization"] = "token " + this.props.token
-        headers["Content-Type"] = "application/json"
+        // let headers = BASIC_HEADER
+        // headers["Authorization"] = "token " + this.props.token
+        // headers["Content-Type"] = "application/json"
 
-        // delete headers["Content-Type"]
+        // // delete headers["Content-Type"]
 
-        fetch(url, {
-            method: "PATCH",
-            headers: headers,
-            body: JSON.stringify({
-                card_number: card_number,
-                card_expiration: card_expiration,
-                card_owner_name: card_owner_name
+        // fetch(url, {
+        //     method: "PATCH",
+        //     headers: headers,
+        //     body: JSON.stringify({
+        //         card_number: card_number,
+        //         card_expiration: card_expiration,
+        //         card_owner_name: card_owner_name
 
-            })
-        })
-            .then(rslt => {
-                if (rslt.status == 200) {
-                    this.setState({confirm_card_save: "Vos modifications ont été enregistrées"})
-                }
+        //     })
+        // })
+        //     .then(rslt => {
+        //         if (rslt.status == 200) {
+        //             this.setState({confirm_card_save: "Vos modifications ont été enregistrées"})
+        //         }
 
-                else {
-                    this.setState({confirm_card_save: "Une erreur s'est produite"})
-                }
-            })
+        //         else {
+        //             this.setState({confirm_card_save: "Une erreur s'est produite"})
+        //         }
+        //     })
 
-            .catch(() => {
-                this.setState({confirm_card_save: "Une erreur s'est produite"})
+        //     .catch(() => {
+        //         this.setState({confirm_card_save: "Une erreur s'est produite"})
 
-            })
+            // })
 
     }
 
@@ -85,39 +86,39 @@ class Profile extends Component {
         
         e.preventDefault()
 
-        let url = request_formatter({
-            model: "user",
-            pk: this.props.user.id
-        })
+        // let url = request_formatter({
+        //     model: "user",
+        //     pk: this.props.user.id
+        // })
 
-        let headers = BASIC_HEADER
-        headers["Authorization"] = "token " + this.props.token
-        headers["Content-Type"] = "application/json"
+        // let headers = BASIC_HEADER
+        // headers["Authorization"] = "token " + this.props.token
+        // headers["Content-Type"] = "application/json"
 
-        fetch(url, {
-            method: "PATCH",
-            headers: headers,
-            body: JSON.stringify({
-                street_number: this.state.street_number,
-                street_type: this.state.street_type,
-                street_name: this.state.street_name,
-                city_number: this.state.city_number,
-                city: this.state.city
-        })})
-            .then(rslt => {
-                if (rslt.status == 200) {
-                    this.setState({confirm_address_save: "Vos modifications ont été enregistrées"})
-                }
+        // fetch(url, {
+        //     method: "PATCH",
+        //     headers: headers,
+        //     body: JSON.stringify({
+        //         street_number: this.state.street_number,
+        //         street_type: this.state.street_type,
+        //         street_name: this.state.street_name,
+        //         city_number: this.state.city_number,
+        //         city: this.state.city
+        // })})
+        //     .then(rslt => {
+        //         if (rslt.status == 200) {
+        //             this.setState({confirm_address_save: "Vos modifications ont été enregistrées"})
+        //         }
 
-                else {
-                    this.setState({confirm_address_save: "Une erreur s'est produite"})
-                }
-            })
+        //         else {
+        //             this.setState({confirm_address_save: "Une erreur s'est produite"})
+        //         }
+        //     })
 
-            .catch(() => {
-                this.setState({confirm_address_save: "Une erreur s'est produite"})
+        //     .catch(() => {
+        //         this.setState({confirm_address_save: "Une erreur s'est produite"})
 
-            })
+        //     })
 
     
         
@@ -126,37 +127,37 @@ class Profile extends Component {
     handlePaymentSave = (e) => {
         e.preventDefault()
 
-        let url = request_formatter({
-            model: "user",
-            pk: this.props.user.id
-        })
+        // let url = request_formatter({
+        //     model: "user",
+        //     pk: this.props.user.id
+        // })
 
-        let headers = BASIC_HEADER
-        headers["Authorization"] = "token " + this.props.token
-        headers["Content-Type"] = "application/json"
+        // let headers = BASIC_HEADER
+        // headers["Authorization"] = "token " + this.props.token
+        // headers["Content-Type"] = "application/json"
 
 
-        fetch(url, {
-            method: "PATCH",
-            headers: headers,
-            body: JSON.stringify({
-                paypal: this.state.paypal,
-                iban: this.state.iban,
-        })})
-        .then(rslt => {
-            if (rslt.status == 200) {
-                this.setState({confirm_payment_save: "Vos modifications ont été enregistrées"})
-            }
+        // fetch(url, {
+        //     method: "PATCH",
+        //     headers: headers,
+        //     body: JSON.stringify({
+        //         paypal: this.state.paypal,
+        //         iban: this.state.iban,
+        // })})
+        // .then(rslt => {
+        //     if (rslt.status == 200) {
+        //         this.setState({confirm_payment_save: "Vos modifications ont été enregistrées"})
+        //     }
 
-            else {
-                this.setState({confirm_payment_save: "Une erreur s'est produite"})
-            }
-        })
+        //     else {
+        //         this.setState({confirm_payment_save: "Une erreur s'est produite"})
+        //     }
+        // })
 
-        .catch(() => {
-            this.setState({confirm_payment_save: "Une erreur s'est produite"})
+        // .catch(() => {
+        //     this.setState({confirm_payment_save: "Une erreur s'est produite"})
 
-        })
+        // })
     }
     render() {
         return(
@@ -279,4 +280,9 @@ class Profile extends Component {
     }
 }
 
-export default Profile
+AccountProfile.propTypes = {
+    user: PropType.object.isRequired,
+    
+}
+
+export default AccountProfile

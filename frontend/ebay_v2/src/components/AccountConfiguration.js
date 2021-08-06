@@ -1,5 +1,5 @@
 import PropType from "prop-types"
-
+import { Component } from "react"
 
 class AccountConfiguration extends Component {
 

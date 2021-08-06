@@ -12,14 +12,14 @@ import { fetchBidsOfObject } from "../thunks/BidThunk";
 import { fetchLogin } from "../thunks/AuthThunk"
 import { fetchSelections } from "../thunks/SelectionThunk"
 import { fetchSendedMessages, fetchReceivedMessages } from "../thunks/MessageThunk"
-
+import {PropTypes} from "prop-types"
 import {detailledObjectSelector} from "../selectors/DetailledObjectSelector"
 import { fetchQuestionsOfObject, fetchQuestionsOfUser } from "../thunks/QuestionThunk";
-import CategoryBannerStore from "../components/CategoryBanner";
-import OfferBannerStore from "../components/OfferBanner";
-import CookieBannerStore from "../components/CookieBanner";
-import ObjectListStore from "../components/ObjectList";
-import SelectionBannerStore from "../components/SelectionBanner";
+import CategoryBanner from "../components/CategoryBanner";
+import OfferBanner from "../components/OfferBanner";
+import CookieBanner from "../components/CookieBanner";
+import ObjectList from "../components/ObjectList";
+import SelectionBanner from "../components/SelectionBanner";
 
 class Home extends Component {
 
@@ -69,14 +69,27 @@ class Home extends Component {
         // this.props.fetchEditObject(object)
         return (
             <div className="main-home-page">
-                <CategoryBannerStore/>
-                <OfferBannerStore/>
-                <SelectionBannerStore/>
-                <ObjectListStore listLabel="Home"/>
-                <CookieBannerStore/>
+                <CategoryBanner/>
+                <OfferBanner/>
+                <SelectionBanner/>
+                <ObjectList listLabel="Home"/>
+                <CookieBanner/>
             </div>
         )
     }
+}
+
+Home.propTypes = {
+    objects: PropTypes.object.isRequired,
+    categories: PropTypes.object.isRequired,
+    offerBanners: PropTypes.object.isRequired,
+    detailledObject: PropTypes.object.isRequired,
+
+    fetchObjects: PropTypes.func.isRequired,
+    fetchCategories: PropTypes.func.isRequired,
+    fetchOfferBanners: PropTypes.func.isRequired,
+    fetchSubCategories: PropTypes.func.isRequired,
+    fetchSelections: PropTypes.func.isRequired,
 }
 
 
@@ -89,19 +102,10 @@ const HomeStore = connect(
     }),
     (dispatch => ({
         fetchObjects: () => dispatch(fetchObjects()),
-        fetchEditObject: (object) => dispatch(fetchEditObject(object)),
         fetchCategories: () => dispatch(fetchCategories()),
         fetchOfferBanners: () => dispatch(fetchOfferBanners()),
         fetchSubCategories: (categoryId) => dispatch(fetchSubCategories(categoryId)),
-        fetchDetailledObject: (objectId) => dispatch(fetchDetailledObject(objectId)),
-        fetchBidsOfObject: (objectId) => dispatch(fetchBidsOfObject(objectId)),
-        fetchQuestionsOfObject: (objectId) => dispatch(fetchQuestionsOfObject(objectId)),
-        fetchQuestionsOfUser: (userId) => dispatch(fetchQuestionsOfUser(userId)),
-        fetchLogin: (mail, password) => dispatch(fetchLogin(mail, password)),
         fetchSelections: () => dispatch(fetchSelections()),
-        fetchSendedMessages: (userId) => dispatch(fetchSendedMessages(userId)),
-        fetchReceivedMessages: (userId) => dispatch(fetchReceivedMessages(userId)),
-        fetchQuestionsOfObject: (objectId) => dispatch(fetchQuestionsOfObject(objectId))
 
     }))
 )(Home)

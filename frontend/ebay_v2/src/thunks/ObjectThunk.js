@@ -48,7 +48,6 @@ export const fetchObjects = (filter=null) => {
         if (filter) {
             urlParams = {...urlParams, ...filter}
         }
-        console.log("FILTER", urlParams)
         let url = urlFormater(
             urlParams
         )

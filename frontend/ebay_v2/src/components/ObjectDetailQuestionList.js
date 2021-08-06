@@ -95,17 +95,17 @@ ObjectDetailQuestionList.propType = {
 
     fetchQuestionsOfObject: PropTypes.func.isRequired,
 }
-export const ObjectDetailQuestionListStore = connect (
-    (state) => ({
-        detailledObject: detailledObjectSelector(state),
-        questions: questionOfObjectSelector(state),
-    }),
-    (dispatch) => ({
-        fetchQuestionsOfObject: (objectId) => dispatch(fetchQuestionsOfObject(objectId)),
-        fetchNextQuestionsOfObjectPage: (url) => dispatch(fetchNextQuestionsOfObjectPage(url))
-    })
+// export const ObjectDetailQuestionListStore = connect (
+//     (state) => ({
+//         detailledObject: detailledObjectSelector(state),
+//         questions: questionOfObjectSelector(state),
+//     }),
+//     (dispatch) => ({
+//         fetchQuestionsOfObject: (objectId) => dispatch(fetchQuestionsOfObject(objectId)),
+//         fetchNextQuestionsOfObjectPage: (url) => dispatch(fetchNextQuestionsOfObjectPage(url))
+//     })
 
-)(ObjectDetailQuestionList)
+// )(ObjectDetailQuestionList)
 
-export default ObjectDetailQuestionListStore
+export default ObjectDetailQuestionList
 

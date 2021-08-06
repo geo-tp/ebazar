@@ -79,7 +79,7 @@ def restrictedEndPoint(func):
 
 def checkUserIsOwner(func):
     """
-    Decorateur pour checker si l'utilisateur qui fait la requete est le meme que l'utilisateur de l'item
+    Decorateur pour checker si l'utilisateur qui fait la requete est le meme que le createur de la data
     """
     def inner(self, request, pk, *args, **kwargs):
 
@@ -151,7 +151,7 @@ def checkUserIsReceiver(endpoint_type):
 
                 m = Message.objects.get(id=pk)
 
-                if requeser.user == m.receiver:
+                if request.user == m.receiver:
                     return func(self, request, pk)
 
             return Response({"detail": "You're not the receiver"}, 
@@ -175,7 +175,6 @@ def checkUserMatching(func):
         elif request.data.get("sender", 0):
             data_user = request.data["sender"]
         
-        print("REQUEST", request.data)
         if (request.user != "AnonymousUser"):
             # try:
                 if request.user.id == int(data_user):

@@ -557,15 +557,6 @@ class DetailledUserSerializer(serializers.ModelSerializer):
         rep["nb_purchased_objects"] = nb_purchased_objects
         rep["purchased_objects"] = purchased_objects
 
-        received_message = MessagesAndQuestionsSerializer.get_recieved_messages(instance)
-        rep["number_of_messages"] = len(received_message)
-        rep["received_messages"] = MessagesAndQuestionsSerializer.serialize_received_messages(received_message[:5])
-
-        rep["number_of_questions"] = MessagesAndQuestionsSerializer.number_of_questions(instance)
-        
-        request = self.context.get('request')
-        rep["questions"] = MessagesAndQuestionsSerializer.get_questions(request, instance)
-
         return rep
 
 class QuestionAndAnwserOfObjectSerializer(serializers.ModelSerializer):

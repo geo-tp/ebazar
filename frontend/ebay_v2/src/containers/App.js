@@ -1,5 +1,5 @@
 import Header from "../components/Header";
-import Home from "../pages/Home"
+import Home from "../containers/Home"
 import {
   BrowserRouter as Router,
   Switch,
@@ -9,46 +9,47 @@ import {
 } from "react-router-dom";
 
 
-import {Provider} from "react-redux"
 
-import {store} from "../store/store"
 import Footer from "../components/Footer";
-import CategoryStore from "../pages/Category";
-import DetailStore from "../pages/Detail";
+import CategoryStore from "../containers/Category";
+import DetailStore from "../containers/Detail";
+import Account from "../containers/Account";
 
 function App() {
 
   return (
-    <Provider store={store}>
 
-      <Router>
-        <div className="App">
-          
-          <Header/>
+    <Router>
+      <div className="App">
+        
+        <Header/>
 
-          <Switch>
+        <Switch>
 
-            <Route path="/home">
-              <Home/>
-            </Route>
+          <Route path="/home">
+            <Home/>
+          </Route>
 
-            <Route path="/category/:categoryId">
-              <CategoryStore/>
-            </Route>
+          <Route path="/category/:categoryId">
+            <CategoryStore/>
+          </Route>
 
-            <Route path="/detail/:objectId">
-              <DetailStore/>
-            </Route>
-          </Switch>
+          <Route path="/detail/:objectId">
+            <DetailStore/>
+          </Route>
 
-          <Footer/>
+          <Route path="/auth">
+            <Account/>
+          </Route>
+        </Switch>
 
-        </div>
+        <Footer/>
+
+      </div>
 
 
-      </Router>
+    </Router>
 
-    </Provider>
   );
 }
 

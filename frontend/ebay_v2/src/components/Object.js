@@ -1,6 +1,7 @@
 import { Component } from "react";
 import { convertDateToTimeLeft } from "../utils/timeConverters";
 import {Redirect} from 'react-router';
+import PropTypes from 'prop-types'
 
 
 class Obj extends Component{
@@ -55,6 +56,11 @@ class Obj extends Component{
         )
     }
 
+
+}
+
+Obj.propTypes = {
+    object: PropTypes.object.isRequired
 
 }
 

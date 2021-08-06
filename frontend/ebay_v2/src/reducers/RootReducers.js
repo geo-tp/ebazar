@@ -15,6 +15,8 @@ export function initState() {
     
     const storeFields = ["auth", 
                          "user", "questions", "sendedMessages", "receivedMessages", 
+                         "userActiveObjects", "userEndedObjects", "userFollowedObjects",
+                         "userPurchasedObjects", "userSelledObjects", "userBiddedObjects",
                          "objects", 
                          "detailledObject", "detailledObjectBids", "detailledObjectQuestions", "detailledObjectImages",
                          "offerBanners", "categories", "subCategories", 
@@ -62,6 +64,8 @@ export function initState() {
                     user: {}
                 }
                 break
+
+
         
             default:                
                 store[field] = {

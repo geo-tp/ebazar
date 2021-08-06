@@ -25,7 +25,7 @@ class Detail extends Component {
         return(
             <div>
                 <ObjectDetailStore detailledObjectId={this.props.match.params.objectId}/>
-                <h3> </h3>
+                <h3>Recommandés pour vous</h3>
                 <ObjectListStore/>
             </div>
         )
@@ -35,7 +35,7 @@ class Detail extends Component {
 const DetailStore = connect(
     (state) => ({
         objects: objectSelector(state),
-
+        
         detailledObject: detailledObjectSelector(state),
         detailledObjectQuestions: detailledObjectQuestionSelector(state),
         detailledObjectBids: detailledObjectBidSelector(state),
@@ -60,6 +60,7 @@ Detail.propTypes = {
     detailledObjectBids: PropTypes.object.isRequired,
 
     fetchObjects: PropTypes.func.isRequired,
+    fetchDetailledObjects: PropTypes.func.isRequired,
 }
 
 export default withRouter(DetailStore)

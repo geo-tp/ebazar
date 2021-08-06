@@ -62,13 +62,13 @@ ObjectDetailBidForm.propType = {
 
 }
 
-const ObjectDetailBidFormStore = connect(
-    (state) => ({
+// const ObjectDetailBidFormStore = connect(
+//     (state) => ({
 
-    }),
-    (dispatch) => ({
+//     }),
+//     (dispatch) => ({
 
-    })
-)(ObjectDetailBidForm)
+//     })
+// )(ObjectDetailBidForm)
 
-export default ObjectDetailBidFormStore
+export default ObjectDetailBidForm
