@@ -16,6 +16,7 @@ export const fetchStates = () => {
 
         return fetch(url, params)
             .then(rslt => {
+                console.log("RSLT", rslt)
                 if (!rslt.ok) {
                     throw new Error(NOT_FOUND)
                 }
@@ -23,12 +24,11 @@ export const fetchStates = () => {
                 return rslt.json()
             })
 
-            .then(states => {
+            .then((states) => {
                 dispatch(getStatesSuccess(states))
             })
 
             .catch(error => {
-                console.log(error)
                 dispatch(getStatesError(error))
             })
     }

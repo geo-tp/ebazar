@@ -9,7 +9,6 @@ class SubCategoryBanner extends Component {
 
     constructor(props) {
         super(props)
-        this.props.fetchSubCategories(this.props.categoryId)
     }
 
     render() {
@@ -45,11 +44,8 @@ class SubCategoryBanner extends Component {
 
 SubCategoryBanner.propTypes = {
     
-    categoryId: PropTypes.string.isRequired,
-
     subCategories: PropTypes.object.isRequired,
-    fetchSubCategories: PropTypes.func.isRequired,
-    fetchObjects: PropTypes.func.isRequired
+    fetchObjects: PropTypes.func.isRequired,
 }
 
 

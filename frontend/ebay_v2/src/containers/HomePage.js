@@ -1,7 +1,7 @@
 import { Component } from "react";
 import { objectSelector } from "../selectors/ObjectSelectors";
 import { connect } from "react-redux"
-import { fetchEditObject, fetchObjects } from "../thunks/ObjectThunk";
+import { fetchEditObject, fetchNextObjectsPage, fetchObjects } from "../thunks/ObjectThunk";
 import { fetchCategories } from "../thunks/CategoryThunk"
 import { fetchSubCategories } from "../thunks/SubCategoryThunk"
 import { fetchOfferBanners } from "../thunks/OfferBannerThunk"
@@ -17,9 +17,9 @@ import {detailledObjectSelector} from "../selectors/DetailledObjectSelector"
 import { fetchQuestionsOfObject, fetchQuestionsOfUser } from "../thunks/QuestionThunk";
 import CategoryBanner from "../components/CategoryBanner";
 import OfferBanner from "../components/OfferBanner";
-import CookieBanner from "../components/CookieBanner";
 import ObjectList from "../components/ObjectList";
 import SelectionBanner from "../components/SelectionBanner";
+import { selectionSelector } from "../selectors/SelectionSelectors";
 
 class Home extends Component {
 
@@ -28,52 +28,27 @@ class Home extends Component {
         super(props)
 
         this.state = { inter: 1 }
-        if (!props.objects.loaded) {
         props.fetchObjects()
-        }
 
-        // props.fetchCategories()
+        props.fetchSelections()
+
+        props.fetchCategories()
         props.fetchOfferBanners()
 
-        // props.fetchSubCategories(1)
+        props.fetchSubCategories(1)
 
-        // props.fetchDetailledObject(1)
-        // props.fetchBidsOfObject(1)
-
-        // props.fetchLogin("geo@mail.com", "adminadmin")
-        props.fetchQuestionsOfUser(2)
-
-        props.fetchSendedMessages(2)
-        props.fetchReceivedMessages(2)
-
-        props.fetchQuestionsOfObject(2)
 
     }
 
-    // componentDidMount() {
-
-
-    // }
 
     render() {
-        // if (this.state.inter && this.props.objects.items.hasOwnProperty("results")) {
-        //     let object = this.props.objects.items.results[0]
-        //     console.log("OBJJECJTJJEJCT", this.props.objects)
-        //     object.title = "CHANGEEEEEEEEEEEEED"
-        //     this.props.fetchEditObject(object)
-        //     this.setState({inter: 0})
-        // }
-        // let object = this.props.objects[0]
-        // console.log("OBJJECJTJJEJCT", this.props.objects)
-        // object.title = "CHANGEEEEEEEEEEEEED"
-        // this.props.fetchEditObject(object)
         return (
             <div className="main-home-page">
-                <CategoryBanner/>
-                <OfferBanner/>
-                <SelectionBanner/>
-                <ObjectList listLabel="Home"/>
-                <CookieBanner/>
+                <CategoryBanner categories={this.props.categories}/>
+                <OfferBanner offerBanners={this.props.offerBanners}/>
+                <SelectionBanner selections={this.props.selections}/>
+                <ObjectList listLabel="Home" objects={this.props.objects}
+                            fetchNextObjectsPage={this.props.fetchNextObjectsPage}/>
             </div>
         )
     }
@@ -84,6 +59,7 @@ Home.propTypes = {
     categories: PropTypes.object.isRequired,
     offerBanners: PropTypes.object.isRequired,
     detailledObject: PropTypes.object.isRequired,
+    selections: PropTypes.object.isRequired,
 
     fetchObjects: PropTypes.func.isRequired,
     fetchCategories: PropTypes.func.isRequired,
@@ -92,16 +68,17 @@ Home.propTypes = {
     fetchSelections: PropTypes.func.isRequired,
 }
 
-
-const HomeStore = connect(
+const HomePage = connect(
     (state) => ({
         objects: objectSelector(state),
         categories: categorySelector(state),
         offerBanners: offerBannerSelector(state),
         detailledObject: detailledObjectSelector(state),
+        selections: selectionSelector(state),
     }),
     (dispatch => ({
         fetchObjects: () => dispatch(fetchObjects()),
+        fetchNextObjectsPage: (url) => dispatch(fetchNextObjectsPage(url)),
         fetchCategories: () => dispatch(fetchCategories()),
         fetchOfferBanners: () => dispatch(fetchOfferBanners()),
         fetchSubCategories: (categoryId) => dispatch(fetchSubCategories(categoryId)),
@@ -110,4 +87,4 @@ const HomeStore = connect(
     }))
 )(Home)
 
-export default HomeStore
+export default HomePage

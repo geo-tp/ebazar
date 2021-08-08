@@ -1,5 +1,4 @@
-import { GET_ACCOUNT_SUCCESS } from "../constants/AuthConstants";
-import { GET_DURATIONS } from "../constants/DurationConstants";
+import { GET_DURATIONS, GET_DURATIONS_ERROR, GET_DURATIONS_SUCCESS } from "../constants/DurationConstants";
 import { initialState } from "./RootReducers";
 
 export const DurationReducer = (state=initialState.durations, action) => {
@@ -12,11 +11,11 @@ export const DurationReducer = (state=initialState.durations, action) => {
             return {...state, loading:false, 
                     error:action.payload.error}
 
-        case GET_ACCOUNT_SUCCESS:
+        case GET_DURATIONS_SUCCESS:
             return {...state, loading: false, loaded:true,
-                    durations:action.payload.durations}
+                    items:action.payload.durations}
     
         default:
-            break;
+            return state;
     }
 }

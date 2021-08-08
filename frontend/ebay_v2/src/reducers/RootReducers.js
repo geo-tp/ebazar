@@ -10,6 +10,8 @@ import { SubCategoryReducer } from "./SubCategoryReducer";
 import { ImageReducer } from "./ImageReducer"
 import { SelectionReducer } from "./SelectionReducer";
 import { UserReducer } from "./UserReducer";
+import { DurationReducer } from "./DurationReducer";
+import { StateReducer } from "./StateReducer";
 
 export function initState() {
     
@@ -101,6 +103,10 @@ export const RootReducer = (state=initialState, action) => {
         detailledObjectBids: BidReducer(state.detailledObjectBids, action),
         detailledObjectImages: ImageReducer(state.detailledObjectImages, action),
         detailledObjectQuestions: QuestionOfObjectReducer(state.detailledObjectQuestions, action),
+
+        durations: DurationReducer(state.durations, action),
+        states: StateReducer(state.states, action),
+
         
         offerBanners: OfferBannerReducer(state.offerBanners, action),
         selections: SelectionReducer(state.selections, action),

@@ -10,10 +10,10 @@ import { keyHandler } from "../utils/keyHandler";
 
 class CategoryBanner extends Component {
     
-    componentDidMount() {
+    // componentDidMount() {
         
-        this.props.fetchCategories()
-    }
+    //     this.props.fetchCategories()
+    // }
     
     render() {
         return(
@@ -33,7 +33,6 @@ class CategoryBanner extends Component {
 CategoryBanner.propTypes = {
 
     categories: PropTypes.object.isRequired,
-    fetchCategories: PropTypes.func.isRequired
  }
 
 export default CategoryBanner

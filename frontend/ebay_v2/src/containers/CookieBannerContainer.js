@@ -6,10 +6,6 @@ import { acceptCookie } from "../actions/AuthActions"
 
 class CookieBanner extends Component{
 
-    handleAcceptClick() {
-        this.props.setCookieAccepted(1)
-    }
-
     render() {
         return(
             <div className="main-banner-cookie">
@@ -17,7 +13,7 @@ class CookieBanner extends Component{
                 <div className="main-banner-cookie__container">
                     <p>Veuillez accepter les conditions d'usage des cookies pour profiter pleinement d'EBAZAR. <a href="">Voir les conditions</a></p>
                     <div>
-                        <button onClick={() => this.props.setCookieAccepted()}>Accepter</button>
+                        <button onClick={() => this.props.acceptCookie()}>Accepter</button>
                         <form action="https://google.fr">
                             <button type="submit">Refuser</button>
                         </form>
@@ -31,9 +27,18 @@ class CookieBanner extends Component{
 
 
 CookieBanner.propTypes = {
-    cookieAccepted: PropTypes.number,
-    setCookieAccepted: PropTypes.func
+    cookieAccept: PropTypes.number,
+    setCookieAccept: PropTypes.func
  }
 
+ export const CookieBannerStore = connect(
+     (state) => ({
+        cookieAccept: cookieAcceptSelector(state.auth)
+     }),
+     (dispatch) => ({
+         setCookieAccept: () => dispatch(acceptCookie())
+     })
+ )(CookieBanner)
 
-export default CookieBanner
+
+export default CookieBannerStore

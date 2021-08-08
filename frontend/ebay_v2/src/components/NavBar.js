@@ -1,4 +1,5 @@
 import { Component } from "react";
+import { Link } from "react-router-dom";
 import logo from "./../assets/img/logo.png"
 
 let id = 0
@@ -10,6 +11,8 @@ class NavBar extends Component {
         this.state = {
             menuIsOpen: false,
             accountMenuIsOpen: false,
+
+            redirectToAuth: false,
         }
     }
 
@@ -23,16 +26,16 @@ class NavBar extends Component {
                    className=" fa fa-close fa-2x close-menu-cross"></i>
                 <ul className="nav-bar__menu__link-list">
                     <li id={id++}>
-                        <p>A Suivre</p>
+                        <p>Populaires</p>
                     </li>
                     <li id={id++}>
-                        <p>Populaire</p>
+                        <p>Séléctions</p>
                     </li>
                     <li id={id++}>
-                        <p>Vendre</p>
+                        <p>Nouveautés</p>
                     </li>
                     <li id={id++}>
-                        <p>Menu</p>
+                        <p>Bon plans</p>
                     </li>
                 </ul>
 
@@ -50,7 +53,9 @@ class NavBar extends Component {
  
                         <i className="fas fa fa-2x fa-bars"></i>
                     </span>
-                    <h2 className="nav-bar__logo"> <img alt="logo" src={logo}/> EBAZAR</h2>
+                    <Link className="nav-bar__logo" to="/home/">
+                        <h2 > <img alt="logo" src={logo}/> EBAZAR</h2>
+                    </Link>
                 </div>
                 
                 {this.state.menuIsOpen ? 
@@ -64,16 +69,23 @@ class NavBar extends Component {
                     <button className="fas fa fa-search button-search"></button>
                 </div>
 
-                <div onClick={() => this.setState({accountMenuIsOpen : !this.state.accountMenuIsOpen,
-                                                     menuIsOpen: false})}
+                <div 
+                    onClick={
+                        
+                        () => this.setState({accountMenuIsOpen : !this.state.accountMenuIsOpen,
+                                                     menuIsOpen: false})
+                                                    
+                    }
                      className="nav-bar__account">
+
+                         
                     <i className="fas fa fa-2x fa-user nav-bar__account-menu"></i>
                     {this.state.accountMenuIsOpen ?
                         <i className="fas fa fa-angle-up nav-bar__account-angle"></i>
                                                   :
                         <i className="fas fa fa-angle-down nav-bar__account-angle"></i>
                     }
-                    <p className="nav-bar__account-pseudo">PsuedoUser</p>
+                    {this.props.auth.isConnected && <p className="nav-bar__account-pseudo">PsuedoUser</p>}
                 </div>
 
 
@@ -83,7 +95,7 @@ class NavBar extends Component {
                            className=" fa fa-close fa-2x close-menu-cross">    
                         </i>
 
-                        {!this.props.user ?
+                        {this.props.auth.isConnected?
                         <ul>
                             <li id={id++}>
                                 <p>Profile</p>
@@ -105,9 +117,9 @@ class NavBar extends Component {
                         <ul className="nav-bar__user-button">
                             <li id={id++}>
                                 <p>Connectez vous :</p>
-                                <button>Connexion</button>
+                                <Link to="/auth/"><button>Connexion</button></Link>
                                 <p>Pas de compte ?</p>
-                                <button>Inscription</button>
+                                <Link to="/auth/"><button>Inscription</button></Link>
                             </li>
                         </ul>
                         

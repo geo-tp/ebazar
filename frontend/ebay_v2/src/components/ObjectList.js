@@ -37,20 +37,11 @@ class ObjectList extends Component {
     }
 }
 
-const ObjectListStore = connect (
-    (state) => ({
-        objects: objectSelector(state)
-    }),
-    (dispatch) => ({
-        fetchNextObjectsPage: (url) => dispatch(fetchNextObjectsPage(url))
-    })
-)(ObjectList)
-
-
 ObjectList.propTypes = {
     objects: PropTypes.object.isRequired,
+    fetchNextObjectsPage: PropTypes.func.isRequired,
     listLabel: PropTypes.string.isRequired,
 }
 
 
-export default ObjectListStore
+export default ObjectList

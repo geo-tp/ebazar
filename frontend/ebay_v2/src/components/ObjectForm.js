@@ -19,7 +19,7 @@ class ObjectForm extends Component {
     constructor(props) {
         super(props)
 
-        { !this.props.categories.loaded && this.props.fetchCategories() }
+        // { !this.props.categories.loaded && this.props.fetchCategories() }
 
         if (this.props.object) {
 
@@ -70,16 +70,6 @@ class ObjectForm extends Component {
                 confirmation_message: "",
 
             })
-        }
-    }
-
-    componentDidMount() {
-        if (!this.props.durations) {
-            this.props.fetchDurations()
-        }
-
-        if (!this.props.states) {
-            this.props.fetchStates()
         }
     }
 
@@ -146,7 +136,7 @@ class ObjectForm extends Component {
                         <tbody>
                             <tr>
                                 <td>Titre</td>
-                                <td className="field">
+                                <td className="main-sale-form__field">
                                     <input maxLength="50"
                                         name="title"
                                         onChange={e => this.setState({ title: e.target.value })}
@@ -156,10 +146,15 @@ class ObjectForm extends Component {
                             </tr>
                             <tr>
                                 <td>Description</td>
-                                <td className="field"><textarea maxLength="1000"
-                                    name="description"
-                                    onChange={e => this.setState({ description: e.target.value })}
-                                    value={this.state.description} required></textarea></td>
+                                <td className="main-sale-form__field">
+                                    <textarea 
+                                        className="main-sale-form__field__description"
+                                        maxLength="1000"
+                                        name="description"
+                                        onChange={e => this.setState({ description: e.target.value })}
+                                        value={this.state.description} required>
+                                    </textarea>
+                                </td>
                             </tr>
                             <tr>
                                 <td>Prix de Départ</td>
@@ -177,7 +172,7 @@ class ObjectForm extends Component {
                                         onChange={e => this.setState({ state: e.target.value })}
                                         value={this.state.state} required>
                                         <option>-</option>
-                                        {this.props.states && this.props.states.map((state) => {
+                                        {this.props.states.loaded && this.props.states.items.map((state) => {
                                             if (state.id == this.state.state) {
 
                                                 return <option selected="selected" value={state.id}>{state.title}</option>
@@ -199,7 +194,7 @@ class ObjectForm extends Component {
                                         value={this.state.duration} required>
 
                                         <option>-</option>
-                                        {this.props.durations && this.props.durations.map((duration) => {
+                                        {this.props.durations.loaded && this.props.durations.items.map((duration) => {
 
                                             if (duration.time == this.state.duration) {
                                                 return <option selected="selected" value={duration.time}>{duration.time} jours</option>
@@ -238,7 +233,7 @@ class ObjectForm extends Component {
                                 <td><input maxLength="20" type="number"
                                     placeholder='€' name="returnPolicy"
                                     onChange={e => this.setState({ returnPolicy: e.target.checked })}
-                                    value={this.state.returnPolicy} className="int-field"
+                                    value={this.state.returnPolicy} className="main-sale-form__int-field"
                                     type="checkbox">
                                 </input>
                                     <p>(cocher pour accepter)</p>
@@ -248,11 +243,11 @@ class ObjectForm extends Component {
                             <tr>
                                 <td>Image principale</td>
                                 <td>
-                                    <img className="object-form-main-image" src={this.state.mainImage}></img>
+                                    <img className="main-sale-form__main-image" src={this.state.mainImage}></img>
                                     <input
                                         onChange={e => this.setState({ mainImage: e.target.files[0] })}
                                         name="mainImage"
-                                        className="field"
+                                        className="main-sale-form__field"
                                         type="file" required>
                                     </input>
                                 </td>
@@ -335,9 +330,6 @@ ObjectForm.propTypes = {
 
     object: PropTypes.object,
 
-    fetchStates: PropTypes.func.isRequired,
-    fetchDurations: PropTypes.func.isRequired,
-    fechCreateObject: PropTypes.func.isRequired,
 }
 
 

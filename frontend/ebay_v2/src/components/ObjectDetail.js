@@ -7,10 +7,10 @@ import {
     detailledObjectBidSelector, detailledObjectImageSelector,
     detailledObjectQuestionSelector, detailledObjectSelector
 } from "../selectors/DetailledObjectSelector";
-import ImageCarousselStore from "./ImageCaroussel";
-import ObjectDetailQuestionListStore from "./ObjectDetailQuestionList"
-import ObjectDetailBidListStore from "./ObjectDetailBidList"
-import ObjectDetailBidFormStore from "./ObjectDetailBidForm";
+import ImageCaroussel from "./ImageCaroussel";
+import ObjectDetailQuestionList from "./ObjectDetailQuestionList"
+import ObjectDetailBidList from "./ObjectDetailBidList"
+import ObjectDetailBidForm from "./ObjectDetailBidForm";
 import { connect } from "react-redux";
 import { fetchDetailledObject } from "../thunks/DetailledObjectThunk";
 import { fetchObjects } from "../thunks/ObjectThunk";
@@ -29,10 +29,6 @@ class ObjectDetail extends Component {
             showBidList: false,
             intervalStarted : false
         }
-
-        this.props.fetchDetailledObject(this.props.detailledObjectId)
-        this.props.fetchBidsOfObject(this.props.detailledObjectId)
-        this.props.fetchQuestionsOfObject(this.props.detailledObjectId)
 
         this.interval = setInterval(() => this.updateRemainingTime(), 1000)
 
@@ -63,7 +59,6 @@ class ObjectDetail extends Component {
         let remaining = (ending - now) / 1000
         this.setState({ remainingTime: remaining })
 
-        console.log("SETREM", remaining)
 
     }
 
@@ -98,13 +93,7 @@ class ObjectDetail extends Component {
     render() {
 
         if (this.props.detailledObject.loaded && !this.state.remainingTime) {
-            this.setRemainingTime()
-            this.props.fetchObjects(
-                {
-                    ordering: "-endingDate", 
-                }
-
-            )         
+            this.setRemainingTime()      
         }
 
         return (
@@ -142,7 +131,7 @@ class ObjectDetail extends Component {
                                                     {this.props.detailledObjectBids.items.count+" enchère(s)"}
                                                 </p>
                                             </a>
-                                            {!!this.state.showBidList && <ObjectDetailBidListStore />}
+                                            {!!this.state.showBidList && <ObjectDetailBidList  bids={this.props.detailledObjectBids} />}
 
                                             {this.props.detailledObject.item.isActive == "False" ?
 
@@ -158,7 +147,7 @@ class ObjectDetail extends Component {
                                                         :
                                                         <Link to="/auth"><button className="button-open-bid">Enchérir</button></Link>
                                                     }
-                                                    {!!this.state.showBidBox && <ObjectDetailBidFormStore />}
+                                                    {!!this.state.showBidBox && <ObjectDetailBidForm />}
                                                 </div>
                                             }
                                             <div className="description-box">
@@ -194,10 +183,12 @@ class ObjectDetail extends Component {
                                         </div>
                                         {!!this.props.detailledObject.item.isOwner && <p><Link to={"/modifier/" + this.props.detailledObject.item.id}><button>Modifier</button></Link></p>}
                                     </div>
-                                    {this.props.detailledObject.loaded  && <ImageCarousselStore />}
+                                    {this.props.detailledObject.loaded  && <ImageCaroussel 
+                                                                                        detailledObject={this.props.detailledObject}
+                                                                                        images={this.props.detailledObjectImages} />}
                                 </li>
                             </ul>
-                            {this.props.detailledObject.loaded && <ObjectDetailQuestionListStore />}
+                            {this.props.detailledObject.loaded && <ObjectDetailQuestionList questions={this.props.detailledObjectQuestions} />}
                             
                         </div>
                     </section>
@@ -226,16 +217,14 @@ class ObjectDetail extends Component {
 
 ObjectDetail.propTypes = {
 
-    detailledObjectId : PropTypes.string.isRequired,
-
     detailledObject: PropTypes.object.isRequired,
     detailledObjectQuestions: PropTypes.object.isRequired,
     detailledObjectBids: PropTypes.object.isRequired,
     detailledObjectImages: PropTypes.object.isRequired,
 
-    fetchDetailledObject: PropTypes.func.isRequired,
-    fetchBidsOfObject: PropTypes.func.isRequired,
-    fetchQuestionsOfObject: PropTypes.func.isRequired
+    // fetchDetailledObject: PropTypes.func.isRequired,
+    // fetchBidsOfObject: PropTypes.func.isRequired,
+    // fetchQuestionsOfObject: PropTypes.func.isRequired
 
 }
 

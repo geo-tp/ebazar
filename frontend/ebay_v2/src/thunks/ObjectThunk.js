@@ -52,8 +52,6 @@ export const fetchObjects = (filter=null) => {
             urlParams
         )
 
-        console.log(url)
-
         let parameters = parametersFormater("GET")
 
         return fetch(url, parameters)

@@ -1,0 +1,79 @@
+
+.main-auth {
+
+    display: flex;
+    justify-content: space-evenly;
+
+    text-align: center;
+
+    margin: 3%;
+
+    @include tablet-design {
+        display: block;
+    }
+
+    & input {
+        margin: 1em;
+
+        @include tablet-design {
+            height: 50px;
+            width: 80%;
+            font-size: 1.5em;
+        }
+    }
+
+    &__connection-box {
+        padding:2%;
+        background-color: white;
+        border-radius: 20px;
+        width: 25%;
+        box-shadow: 10px 0px 40px 20px rgba(194, 194, 194, 0.164);
+        border: 1px solid rgb(226, 222, 222);
+        /* padding: 10em; */
+
+        @include tablet-design {
+            width:90%;
+            margin-bottom: 1em;
+        }
+
+    }
+
+    &__register-box {
+        box-shadow: 6px 6px 12px 12px rgba(194, 194, 194, 0.1);
+        box-shadow: 10px 0px 40px 20px rgba(194, 194, 194, 0.164);
+        border: 1px solid rgb(226, 222, 222);
+        background-color: white;
+        width: 25%;
+        padding:2%;
+        border-radius: 20px;
+
+        @include tablet-design {
+            width: 90%;
+        }
+
+    }
+}
+
+
+@media screen and (max-width: 980px) {
+
+    .main-box{
+        display: block;
+
+    }
+
+    .main-box input {
+        height: 50px;
+        width: 80%
+    }
+
+    .register-box {
+        width: 90%;
+    }
+    .connection-box {
+        width: 90%;
+        margin-bottom: 10%;
+    }
+
+
+}

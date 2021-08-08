@@ -53,6 +53,7 @@
 
      &__logo {
          color: map-get($COLOR-PALETTE, font );
+         text-decoration: none;
 
          & img {
              width:12%;
@@ -109,7 +110,7 @@
 
     &__menu {
 
-        width:30%;
+        width:40%;
         
         &__link-list {
             display: flex;
@@ -139,11 +140,22 @@
 
         }
 
+        &__link-list {
+            & li {
+
+                margin: .5em;
+
+                &:hover {
+                    opacity: .7;
+                }
+            }
+        }
+
         @include tablet-design  {
             
             width: 30%;
 
-            position: fixed;
+            position: absolute;
             top: $navigation-default-height+5px;
             left: 1%;
         //  height:100%;
@@ -189,10 +201,10 @@
     }
     
      &__user {
-        position: fixed;
+        position: absolute;
         top: $navigation-default-height+5px;
         right: 1%;
-        width: 10%;
+        width: 17%;
         z-index: 10;
         color: map-get($COLOR_PALETTE,font);
         background-color: map-get($COLOR_PALETTE,sec );
@@ -212,21 +224,22 @@
         }
 
         &-button {
-            width: 20%;
+            // width: 20%;
             margin: 0 auto;
             & button {
             margin: $medium;
+            margin-left: 0;
             }
 
             @include tablet-design {
-                width: 30%;
-                text-align: left;
+                // width: 30%;
+                text-align: center;
             }
         }
 
         @include tablet-design  {
             
-            width: 30%;
+            width: 35%;
             right: 3%;
         }
 

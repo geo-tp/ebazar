@@ -1,6 +1,6 @@
 import { Component } from "react";
-import ObjectsList from "./../components/ObjectList";
-import SubCategoryBannerStore from "../components/SubCategoryBanner";
+import ObjectsList from "../components/ObjectList";
+import SubCategoryBanner from "../components/SubCategoryBanner";
 import PropTypes from "prop-types"
 import { connect } from "react-redux";
 import { fetchCategories } from "../thunks/CategoryThunk";
@@ -23,6 +23,8 @@ class Category extends Component {
             this.props.fetchCategories()
         }
 
+        this.props.fetchSubCategories(this.props.match.params.categoryId)
+
     }
 
     render() {
@@ -32,7 +34,10 @@ class Category extends Component {
                 <h3 className="main-category-page__selected-category" >{this.props.categories.loaded && 
                         <img src={this.props.categories.items[this.props.match.params.categoryId-1].img}/>}</h3>
 
-                <SubCategoryBannerStore categoryId={this.props.match.params.categoryId}/>
+                <SubCategoryBanner  categoryId={this.props.match.params.categoryId}
+                                    fetchObjects={this.props.fetchObjects}
+                                    subCategories={this.props.subCategories}/>
+
                 {this.props.objects.loaded  && 
                 
                     <ObjectsList listLabel="Enchères en cours"
@@ -42,7 +47,7 @@ class Category extends Component {
     }
 }
 
-const CategoryStore = connect(
+const CategoryPage = connect(
     (state) => ({
         categories: categorySelector(state),
         subCategories: subCategorySelector(state),
@@ -68,4 +73,4 @@ Category.propTypes = {
 }
 
 
-export default withRouter(CategoryStore)
+export default withRouter(CategoryPage)

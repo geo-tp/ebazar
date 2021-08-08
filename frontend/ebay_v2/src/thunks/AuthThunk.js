@@ -4,6 +4,8 @@ import { createAccount, createAccountSuccess, createAccountError,
          getDisconnected, getDisconnectedError, getDisconnectedSuccess } from "../actions/AuthActions";
 import { addTokenToBasicHeader } from "../utils/APIConfig";
 
+import {API_LOGIN, API_LOGOUT, API_REGISTRATION, API_USER} from "../utils/apiEndPoints"
+
 import { NOT_FOUND } from "../utils/errors";
          
 import { parametersFormater } from "../utils/parametersFormater";
@@ -14,7 +16,7 @@ export const fetchLogin = (mail, password) => {
         dispatch(getConnected(mail, password))
 
         let url = urlFormater({
-            model: "rest-auth/login"
+            model: API_LOGIN
         })
 
         let params = parametersFormater("POST", {email:mail, password:password})
@@ -46,7 +48,7 @@ export const fetchLogout = (userId) => {
         dispatch(getDisconnected(userId))
 
         let url = urlFormater({
-            model: "rest-auth/logout"
+            model: API_LOGOUT
         })
 
         let params = parametersFormater("POST", {})
@@ -76,7 +78,7 @@ export const fetchRegistration = (registrationInfos) => {
         dispatch(createAccount(registrationInfos))
 
         let url = urlFormater({
-            model: "rest-auth/registration"
+            model: API_REGISTRATION
         })
 
         let params = parametersFormater("POST", registrationInfos)
@@ -84,7 +86,7 @@ export const fetchRegistration = (registrationInfos) => {
         return fetch(url, params)
             .then(rslt => {
                 if(!rslt.ok) {
-                    throw new Error('Error - 404 Not Found')
+                    throw new Error(NOT_FOUND)
                 }
 
                 return rslt.json()
@@ -108,7 +110,7 @@ export const fetchDeleteAccount = (userId) => {
         dispatch(deleteAccount(userId))
 
         let url = urlFormater({
-            model: "user",
+            model: API_USER,
             pk: userId
         })
 

@@ -1,5 +1,3 @@
-import Header from "../components/Header";
-import Home from "../containers/Home"
 import {
   BrowserRouter as Router,
   Switch,
@@ -8,12 +6,16 @@ import {
   Redirect
 } from "react-router-dom";
 
-
-
+import HeaderContainer from "./HeaderContainer";
+import HomePage from "./HomePage"
 import Footer from "../components/Footer";
-import CategoryStore from "../containers/Category";
-import DetailStore from "../containers/Detail";
-import Account from "../containers/Account";
+import CategoryPage from "./CategoryPage";
+import DetailPage from "./DetailPage";
+import AccountPage from "./AccountPage";
+import CookieBannerContainer from "./CookieBannerContainer";
+import SellPage from "./SellPage";
+import AuthPage from "./AuthPage";
+
 
 function App() {
 
@@ -22,26 +24,37 @@ function App() {
     <Router>
       <div className="App">
         
-        <Header/>
+        <HeaderContainer/>
 
         <Switch>
 
           <Route path="/home">
-            <Home/>
+            <HomePage/>
+          </Route>
+
+          <Route path="/sell">
+            <SellPage/>
           </Route>
 
           <Route path="/category/:categoryId">
-            <CategoryStore/>
+            <CategoryPage/>
           </Route>
 
           <Route path="/detail/:objectId">
-            <DetailStore/>
+            <DetailPage/>
           </Route>
 
           <Route path="/auth">
-            <Account/>
+            <AuthPage/>
           </Route>
+
+          <Route path="/account">
+            <AccountPage/>
+          </Route>
+
         </Switch>
+
+        <CookieBannerContainer/>
 
         <Footer/>
 

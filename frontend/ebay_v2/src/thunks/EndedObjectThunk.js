@@ -1,6 +1,6 @@
 import { getEndedObjects, getEndedObjectsError, getEndedObjectsSuccess } from "../actions/ObjectActions"
 import { urlFormater } from "../utils/urlFormater"
-
+import {NOT_FOUND} from "../utils/errors"
 
 export const fetchEndedObjects = (userId) => {
     return (dispatch) => {
@@ -8,8 +8,8 @@ export const fetchEndedObjects = (userId) => {
 
         let url = urlFormater(
                         {model: "object",
-                         filter_fields: ['user', "isEnded"],
-                         filter_values: [userId, 1]}
+                         filter_fields: ['user', "isActive"],
+                         filter_values: [userId, 0]}
         )
 
         let parameters = parametersFormater("GET")

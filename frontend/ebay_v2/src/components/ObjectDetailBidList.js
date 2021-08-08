@@ -52,7 +52,7 @@ class ObjectDetailBidList extends Component {
         detailledObject: PropTypes.object.isRequired,
         bids: PropTypes.object.isRequired,
     
-        fetchBidsOfObject: PropTypes.func.isRequired,
+        // fetchBidsOfObject: PropTypes.func.isRequired,
     }
 
 export default ObjectDetailBidList

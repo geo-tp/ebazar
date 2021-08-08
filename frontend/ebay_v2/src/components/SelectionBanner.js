@@ -11,9 +11,9 @@ class SelectionBanner extends Component {
     constructor(props) {
         super(props)
 
-        if (!this.props.selections.length) {
-            this.props.fetchSelections()
-        }
+        // if (!this.props.selections.length) {
+        //     this.props.fetchSelections()
+        // }
     }
 
     render() {
@@ -36,19 +36,8 @@ class SelectionBanner extends Component {
     }
 }
 
-// const SelectionBannerStore = connect(
-//     (state) => ({
-//         selections: selectionSelector(state)
-//     }),
-
-//     (dispatch) => ({
-//         fetchSelections: () => dispatch(fetchSelections())
-//     })
-// )(SelectionBanner)
-
 SelectionBanner.propTypes = {
     selections: PropTypes.object.isRequired,
-    fetchSelections: PropTypes.func.isRequired
 }
 
 export default SelectionBanner
