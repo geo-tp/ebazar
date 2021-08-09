@@ -12,9 +12,9 @@ class ObjectList extends Component {
 
         return(
             <div className="main-object-list">
+                    <h4>{this.props.listLabel}</h4>
                     {this.props.objects.loaded && this.props.objects.items.results.length == 0 && 
                             <h4 className="main-object-list__no-object">Aucune enchère pour le moment.</h4>}
-                    <h4>{this.props.listLabel}</h4>
                     <div className="main-object-list__wrapper" >
                         {this.props.objects.loaded && 
                         this.props.objects.items != {} && 
@@ -30,6 +30,7 @@ class ObjectList extends Component {
                             onClick={e => this.props.fetchNextObjectsPage(this.props.objects.items.next)}>
                             View More
                         </button>}
+                    
                     </div>
                     
             </div>

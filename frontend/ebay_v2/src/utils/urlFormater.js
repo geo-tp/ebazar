@@ -2,7 +2,10 @@ import { API_URL } from "./APIConfig"
 
 export function urlFormater(kwargs) {
 
+    console.log(kwargs)
+
     let counter = 0
+    let char;
 
     let request = API_URL + kwargs["model"] + "/"
 
@@ -10,16 +13,13 @@ export function urlFormater(kwargs) {
         return request+kwargs['pk']+"/"
     }
 
-    if (kwargs["search"]) {
-        return request+"?search="+kwargs['search']
-    }
-
+    
     if (kwargs["filter_field"]) {
         request += "?"+kwargs['filter_field']+"="+kwargs["filter_value"]
         counter +=1
     }
 
-
+    
     if (kwargs["filter_fields"]) {
 
         let values = kwargs['filter_values']
@@ -39,12 +39,21 @@ export function urlFormater(kwargs) {
             }
         }
 
+    if (kwargs["search"]) {
+        if (counter) {
+            char = "&"
+        }
+
+        else{
+            char = '?'
+        }
+
+        request += char+"search="+kwargs['search']
     }
 
+    }
     if (kwargs["ordering"]) {
-
-        let char;
-
+        
         if (counter) {
             char = "&"
         }

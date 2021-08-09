@@ -15,6 +15,8 @@ import AccountPage from "./AccountPage";
 import CookieBannerContainer from "./CookieBannerContainer";
 import SellPage from "./SellPage";
 import AuthPage from "./AuthPage";
+import SearchPage from "./SearchPage";
+
 
 
 function App() {
@@ -34,6 +36,10 @@ function App() {
 
           <Route path="/sell">
             <SellPage/>
+          </Route>
+
+          <Route path={["/search/:query", "/search"]}>
+            <SearchPage/>
           </Route>
 
           <Route path="/category/:categoryId">

@@ -1,31 +1,73 @@
-let  BASIC_HEADER = "HEADERRS"
-let store = {token:"JLJLJKJLJL"}
+function urlFormater(kwargs) {
 
-const parametersFormater = (method, body=null) => {
+    let counter = 0
+    let char;
 
-    let headers = BASIC_HEADER
+    let request = API_URL + kwargs["model"] + "/"
 
-    if (store.token) {
-        headers["Authorization"] = "token " + store.token
+    if (kwargs['pk']) {
+        return request+kwargs['pk']+"/"
+    }
+
+    if (kwargs["search"]) {
+        return request+"?search="+kwargs['search']
+    }
+
+    if (kwargs["filter_field"]) {
+        request += "?"+kwargs['filter_field']+"="+kwargs["filter_value"]
+        counter +=1
     }
 
 
-    switch (method) {
-        case "GET":
-            return {method: method, headers:headers}
+    if (kwargs["filter_fields"]) {
 
+        let values = kwargs['filter_values']
+        let fields = kwargs["filter_fields"]
+        
+        for (let i = 0 ; i < values.length ; i++) {
 
-        case "PUT":
-        case "UPDATE":
-        case "POST":
-            return {method: method, headers:headers, body:JSON.stringify(body)}
+            if (i == 0) {
+                request += '?'
+            }
 
-        default:
-            return {};
+            request += fields[i]+"="+values[i]
+            counter +=1
+
+            if (i+1 != values.length) {
+                request += '&'
+            }
+        }
+
     }
+
+    if(kwargs["search"]) {
+
+        if (counter) {
+            char = "&"
+        }
+
+        else{
+            char = '?'
+        }
+
+        request += char+"search="+kwargs["search_value"]
+    }
+
+    if (kwargs["ordering"]) {
+
+        if (counter) {
+            char = "&"
+        }
+
+        else{
+            char = '?'
+        }
+        request += char+"ordering="+kwargs["ordering"]
+    }
+
+    return request
+
 }
 
 
-let obj = {id:1, title:"TEST", description:"description"}
-
-console.log(parametersFormater("PUT", obj))
+console.log(urlFormater({model: "category"}))
