@@ -63,7 +63,14 @@
 
     &__button{
         text-align: center;
-        // margin-right: 3em;
+
+        & button {
+            @include tablet-design {
+                height:50px;
+                width: 150px;
+            }
+
+        }
     }
 
 }

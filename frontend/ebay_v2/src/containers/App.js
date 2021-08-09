@@ -16,6 +16,7 @@ import CookieBannerContainer from "./CookieBannerContainer";
 import SellPage from "./SellPage";
 import AuthPage from "./AuthPage";
 import SearchPage from "./SearchPage";
+import UserPage from "./UserPage";
 
 
 
@@ -32,6 +33,10 @@ function App() {
 
           <Route path="/home">
             <HomePage/>
+          </Route>
+
+          <Route path="/user/:username">
+            <UserPage/>
           </Route>
 
           <Route path="/sell">

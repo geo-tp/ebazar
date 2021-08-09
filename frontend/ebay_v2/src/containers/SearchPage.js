@@ -7,14 +7,23 @@ import SearchForm from "../components/SearchForm";
 import { connect } from "react-redux";
 import ObjectList from "../components/ObjectList";
 import { objectSelector } from "../selectors/ObjectSelectors";
+import { withRouter } from "react-router";
 
 
 class Search extends Component {
 
     constructor(props) {
         super(props)
-        this.props.fetchCategories()
-        this.props.fetchObjects()
+
+        if (!this.props.categories.loaded) {
+
+            this.props.fetchCategories()
+        }
+
+        if (!this.props.match.params.query) {
+            this.props.fetchObjects()
+
+        }
     }
 
     render() {
@@ -22,7 +31,8 @@ class Search extends Component {
         return(
             <div className="main-search-page">
                 <SearchForm categories={this.props.categories}
-                            fetchObjects={this.props.fetchObjects}/>
+                            fetchObjects={this.props.fetchObjects}
+                            query={this.props.match.params.query ? this.props.match.params.query : null }/>
 
                 <ObjectList
                             objects={this.props.objects}
@@ -48,4 +58,4 @@ const SearchPage = connect (
     })
 )(Search)
 
-export default SearchPage
+export default withRouter(SearchPage)

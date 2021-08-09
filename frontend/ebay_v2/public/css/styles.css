@@ -460,7 +460,7 @@ button:hover {
 .nav-bar__user {
   position: absolute;
   top: 75px;
-  right: 1%;
+  right: 0%;
   width: 17%;
   z-index: 10;
   color: #272727;
@@ -947,6 +947,34 @@ select {
 }
 .main-search-form__button {
   text-align: center;
+}
+@media screen and (max-width: 1280px) {
+  .main-search-form__button button {
+    height: 50px;
+    width: 150px;
+  }
+}
+
+.main-user-profile {
+  margin: auto;
+  margin-top: 5%;
+  text-align: center;
+  width: 50%;
+}
+.main-user-profile__container {
+  border-radius: 20px;
+  box-shadow: 6px 6px 27px 19px rgba(194, 194, 194, 0.253);
+}
+.main-user-profile__container img {
+  margin: 2%;
+  width: 20%;
+}
+.main-user-profile__container button {
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+.main-user-profile__container p {
+  margin: 0;
 }
 
 .main-home-page {

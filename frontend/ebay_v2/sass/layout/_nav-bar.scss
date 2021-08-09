@@ -203,7 +203,7 @@
      &__user {
         position: absolute;
         top: $navigation-default-height+5px;
-        right: 1%;
+        right: 0%;
         width: 17%;
         z-index: 10;
         color: map-get($COLOR_PALETTE,font);

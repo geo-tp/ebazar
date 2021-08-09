@@ -13,9 +13,16 @@ class NavBar extends Component {
             accountMenuIsOpen: false,
 
             redirectToAuth: false,
+
+            query: false,
         }
     }
 
+    handleEnterPressed(e) {
+        if (e.keyCode === 13) {
+            window.location.href = "/search/"+this.state.query
+        }
+    }
 
     render() {
 
@@ -65,8 +72,10 @@ class NavBar extends Component {
                 }
 
                 <div className="nav-bar__search">
-                    <input className="nav-bar__search-bar" type="text"></input>
-                    <button className="fas fa fa-search button-search"></button>
+                    <input onChange={(e) => this.setState({query: e.target.value})}
+                           onKeyDown={(e) => this.handleEnterPressed(e)}
+                           className="nav-bar__search-bar" type="text"></input>
+                    <Link to={"/search/"+this.state.query}><button className="fas fa fa-search button-search"></button></Link>
                 </div>
 
                 <div 

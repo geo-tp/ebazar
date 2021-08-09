@@ -1,0 +1,30 @@
+
+.main-user-profile {
+    margin: auto;
+    margin-top: 5%;
+    text-align: center;
+    width: 50%;
+    
+    &__container {
+        border-radius: 20px;
+
+        box-shadow: 6px 6px 27px 19px rgba(194, 194, 194, 0.253);
+        
+        & img {
+            
+            margin: 2%;
+            width: 20%;
+        }
+
+        & button {
+            margin-top: 2%;
+            margin-bottom: 2%;
+        }
+
+        & p {
+            
+            margin: 0;
+        }
+    }
+}
+

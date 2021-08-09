@@ -7,13 +7,22 @@ class SearchForm extends Component {
 
     constructor(props) {
         super(props)
-
+        console.log("QUUEEERY", this.props.query)
+        
         this.state = {
             category: false,
-            query: "",
+            query: this.props.query,
             freeShipping: false,
             EndedObjects: false,
         }
+
+        {this.props.query && 
+            this.props.fetchObjects(
+                {
+                    filter_fields: [],
+                    filter_values: [],
+                    search: this.props.query}
+                )}
     }
 
     handleSearchBarChange(e) {
@@ -36,8 +45,6 @@ class SearchForm extends Component {
 
         let fields = []
         let values = []
-
-        console.log("query", this.state.query)
 
         if (this.state.category) {
             fields.push("category")
@@ -77,7 +84,8 @@ class SearchForm extends Component {
                 <input className="main-search-form__search-bar"
                        onChange={(e) => this.handleSearchBarChange(e)}
                        onKeyDown={(e) => this.handleEnterPressed(e)}
-                       placeholder="Iphone, PS5, Tshirt...">
+                       placeholder="Iphone, PS5, Tshirt..."
+                       value={this.state.query}>
                </input>
 
                 <select name="categories"
