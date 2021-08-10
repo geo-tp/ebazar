@@ -2,6 +2,7 @@ import { parametersFormater } from "../utils/parametersFormater"
 import { urlFormater } from "../utils/urlFormater"
 import { getCategories, getCategoriesError, getCategoriesSuccess} from "../actions/CategoryActions"
 import { NOT_FOUND } from "../utils/errors"
+import { API_CATEGORY } from "../utils/apiEndPoints"
 
 
 export const fetchCategories = () => {
@@ -9,7 +10,7 @@ export const fetchCategories = () => {
         dispatch(getCategories())
 
         let url = urlFormater({
-            model: "category"
+            model: API_CATEGORY
         })
 
         let params = parametersFormater("GET") 

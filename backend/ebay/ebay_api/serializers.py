@@ -6,7 +6,7 @@ from users.serializers import UserSerializer
 from users.serializers import BasicUserSerializer, ExpeditionUserSerializer
 from .functions_utils import isOwner
 from .glob import GLOBAL
-from .functions_utils import hidePartOfData
+from .functions_utils import hidePartOfData, hidePartOfPaymentMethod
 from rest_framework.response import Response
 from rest_framework import status
 from django.core import serializers as ser
@@ -420,143 +420,18 @@ class DetailledUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = '__all__'
-
-    def _get_url_of_host(self):
-        
-        request = self.context.get("request")
-        return request.scheme+"://"+request.get_host()
-
-    def _get_filtered_objects(self, instance, **kwargs):
-        
-        url = self._get_url_of_host()
-        kwargs["user"] = instance.id
-        
-        try:
-            objects = Object.objects.filter(**kwargs) 
-            nb_objects = len(objects)
-            objects = objects[:8]
-
-        except:
-            objects = []
-            nb_objects = 0
-
-        serialized_objects = []
-        for obj in objects:
-            serialized_obj = ObjectSerializer().to_representation(obj)
-            serialized_obj["mainImage"] = url+serialized_obj["mainImage"]
-
-            serialized_objects.append(serialized_obj)
-
-        return nb_objects, serialized_objects
-
-    def _get_purchased_objects(self, instance):
-
-        url = self._get_url_of_host()
-
-        try:
-            purchased_objects = PurchasedObject.objects.filter(user=instance.id, isPaid=0)
-            nb_purchased_objects = len(purchased_objects)
-            purchased_objects = purchased_objects[:8]
-
-        except:
-            purchased_objects = []
-            nb_purchased_objects = 0
-
-        objects = []
-        for purchased_object in purchased_objects:
-            serialized_obj = ObjectSerializer().to_representation(purchased_object.obj)
-            serialized_obj["mainImage"] = url+serialized_obj["mainImage"]
-            serialized_obj["isPaid"] = purchased_object.isPaid
-            serialized_obj["purchaseId"] = purchased_object.id
-            objects.append(serialized_obj)
-
-        return nb_purchased_objects, objects
-
-    def _get_followed_objects(self, instance):
-
-        url = self._get_url_of_host()
-
-        try:
-            followed_objects = FollowedObject.objects.filter(user=instance.id)
-            nb_followed_objects = len(followed_objects)
-            followed_objects = followed_objects[:8]
-        except:
-            followed_objects = None
-            nb_followed_objects = 0
-
-        objects = []
-        for followed_object in followed_objects:
-            serialized_obj = ObjectSerializer().to_representation(followed_object.obj)
-            serialized_obj["mainImage"] = url+serialized_obj["mainImage"]
-            objects.append(serialized_obj)
+        exclude = ("password", )
 
 
-        return nb_followed_objects, objects
-
-    def _get_bidded_objects(self, instance):
-
-        url = self._get_url_of_host()
-
-        try:
-            bids = Bid.objects.filter(user=instance.id)
-            nb_bidded_objects = len(bids)
-            bids = bids[:8]
-        except:
-            bids = []
-            nb_bidded_objects = 0
-
-        bidded_object = []
-        for bid in bids:
-            serialized_obj = ObjectSerializer().to_representation(bid.obj)
-            if serialized_obj not in bidded_object and serialized_obj["isActive"]:
-                serialized_obj["mainImage"] = url+serialized_obj["mainImage"]
-                bidded_object.append(serialized_obj)
-
-        return nb_bidded_objects, bidded_object
-
-    def _hide_parts_of_payment_method(self, payment_data):
-
-        if payment_data:
-
-            return "*"*12+payment_data[-4:]
-
-        else:
-            return payment_data
-    
     def to_representation(self, instance):
 
         rep = super().to_representation(instance)
 
-        rep["card_number"] = self._hide_parts_of_payment_method(rep["card_number"])
-        rep["iban"] = self._hide_parts_of_payment_method(rep["iban"])
+        rep["card_number"] = hidePartOfPaymentMethod(rep["card_number"])
+        rep["iban"] = hidePartOfPaymentMethod(rep["iban"])
 
         rep['balance'] = BalanceSerializer().to_representation(instance)
         
-        nb_active_objects, active_objects = self._get_filtered_objects(instance, isActive=1)
-        rep["active_objects"] = active_objects
-        rep["nb_active_objects"] = nb_active_objects
-
-        nb_ended_objects, ended_objects = self._get_filtered_objects(instance, isActive=0, isSelled=0)
-        rep["nb_ended_objects"] = nb_ended_objects
-        rep["ended_objects"] = ended_objects
-
-        nb_followed_objects, followed_objects = self._get_followed_objects(instance)
-        rep["nb_followed_objects"] = nb_followed_objects
-        rep["followed_objects"] = followed_objects
-
-        nb_bidded_objects, bidded_objects = self._get_bidded_objects(instance)
-        rep["nb_bidded_objects"] = nb_bidded_objects
-        rep["bidded_objects"] = bidded_objects
-
-        nb_saled_objects, saled_objects = self._get_filtered_objects(instance, isSelled=1)
-        rep["nb_saled_objects"] = nb_saled_objects
-        rep["saled_objects"] = saled_objects
-
-        nb_purchased_objects, purchased_objects = self._get_purchased_objects(instance)
-        rep["nb_purchased_objects"] = nb_purchased_objects
-        rep["purchased_objects"] = purchased_objects
-
         return rep
 
 class QuestionAndAnwserOfObjectSerializer(serializers.ModelSerializer):

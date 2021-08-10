@@ -19,7 +19,7 @@ export const API_PURCHASED_OBJECT = "purchased-object"
 export const API_OPERATION = "operation"
 export const API_OFFER_BANNER = "offer-banner"
 export const API_DETAILLED_USER = "detailled-user"
-export const API_DETAILLED_OBJECT = "detalled-object"
+export const API_DETAILLED_OBJECT = "detailled-object"
 
 export const API_LOGIN = "rest-auth/login"
 export const API_LOGOUT = "rest-auth/logout"

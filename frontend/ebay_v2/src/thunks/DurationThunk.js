@@ -1,4 +1,5 @@
 import { getDurations, getDurationsError, getDurationsSuccess } from "../actions/DurationActions"
+import { API_DURATION } from "../utils/apiEndPoints"
 import { NOT_FOUND } from "../utils/errors"
 import { parametersFormater } from "../utils/parametersFormater"
 import { urlFormater } from "../utils/urlFormater"
@@ -9,7 +10,7 @@ export const fetchDurations = () => {
         dispatch(getDurations)
 
         let url = urlFormater({
-            model: "duration"
+            model: API_DURATION
         })
 
         let params = parametersFormater("GET")

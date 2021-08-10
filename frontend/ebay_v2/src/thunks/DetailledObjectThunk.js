@@ -1,4 +1,5 @@
 import { getDetailledObjectError, getDetailledObjectSuccess, getDetailledObject } from "../actions/DetailledObjectActions";
+import { API_DETAILLED_OBJECT } from "../utils/apiEndPoints";
 import { NOT_FOUND } from "../utils/errors";
 import { parametersFormater } from "../utils/parametersFormater";
 import { urlFormater } from "../utils/urlFormater";
@@ -8,7 +9,7 @@ export const fetchDetailledObject = (objectId) => {
         dispatch(getDetailledObject(objectId))
         
         let url = urlFormater({
-            model: "detailled-object",
+            model: API_DETAILLED_OBJECT,
             pk: objectId
         })
 

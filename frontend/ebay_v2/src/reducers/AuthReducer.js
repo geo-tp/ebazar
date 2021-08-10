@@ -3,6 +3,7 @@ import { CREATE_ACCOUNT, CREATE_ACCOUNT_ERROR, CREATE_ACCOUNT_SUCCESS,
          GET_CONNECTED, GET_CONNECTED_ERROR, GET_CONNECTED_SUCCESS, 
          GET_DISCONNECTED, GET_DISCONNECTED_ERROR, GET_DISCONNECTED_SUCCESS,
          ACCEPT_COOKIE } from "../constants/AuthConstants";
+import { setCookieAccepted, setUserData } from "../utils/cookieHandler";
 
 import { initialState } from "./RootReducers";
 
@@ -17,6 +18,8 @@ export const AuthReducer = (state=initialState.auth, action) => {
             return {...state, loading:false, error:action.payload.error}
 
         case GET_CONNECTED_SUCCESS:
+
+            setUserData(action.payload.user, action.payload.token)
 
             return {...state, loading: false, connected:true, 
                     basicUser: action.payload.user, token: action.payload.token}
@@ -51,6 +54,7 @@ export const AuthReducer = (state=initialState.auth, action) => {
             return {...state, loading:false, connected: false, userInfos: {}}
 
         case ACCEPT_COOKIE:
+            setCookieAccepted()
             return {...state, cookieAccept:true}
 
         default:

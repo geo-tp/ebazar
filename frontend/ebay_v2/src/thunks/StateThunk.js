@@ -1,4 +1,5 @@
 import { getStates, getStatesError, getStatesSuccess } from "../actions/StateActions"
+import { API_STATE } from "../utils/apiEndPoints"
 import { NOT_FOUND } from "../utils/errors"
 import { parametersFormater } from "../utils/parametersFormater"
 import { urlFormater } from "../utils/urlFormater"
@@ -9,7 +10,7 @@ export const fetchStates = () => {
         dispatch(getStates())
 
         let url = urlFormater({
-            model: "state"
+            model: API_STATE
         })
 
         let params = parametersFormater('GET')

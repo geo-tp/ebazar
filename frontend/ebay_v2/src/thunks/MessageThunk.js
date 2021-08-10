@@ -1,6 +1,7 @@
 import { createMessage, createMessageError, createMessageSuccess, 
          getSendedMessages, getSendedMessagesError, getSendedMessagesSuccess,
          getReceivedMessages, getReceivedMessagesError, getReceivedMessagesSuccess } from "../actions/MessageAction"
+import { API_MESSAGE } from "../utils/apiEndPoints"
 
 import { NOT_FOUND } from "../utils/errors"
 import { parametersFormater } from "../utils/parametersFormater"
@@ -10,7 +11,7 @@ import { urlFormater } from "../utils/urlFormater"
 export const fetchMessage = (messageId) => {
 
         let url = urlFormater({
-            model: "message",
+            model: API_MESSAGE,
             pk: messageId
         })
 

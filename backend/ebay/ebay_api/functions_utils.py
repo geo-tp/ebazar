@@ -11,6 +11,15 @@ def hidePartOfData(data):
 
     return data[0:1] + '****' + data[-1:]
 
+def hidePartOfPaymentMethod(payment_data):
+
+    if payment_data:
+
+        return "*"*12+payment_data[-4:]
+
+    else:
+        return payment_data
+    
 
 
 def remaningTimeToBid(c_time, e_time):

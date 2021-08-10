@@ -1,5 +1,6 @@
 import { createAnswer } from "../actions/AnswerActions"
 import { createOperationError } from "../actions/OperationActions"
+import { API_ANSWER } from "../utils/apiEndPoints"
 import { NOT_FOUND } from "../utils/errors"
 import { parametersFormater } from "../utils/parametersFormater"
 import { urlFormater } from "../utils/urlFormater"
@@ -11,7 +12,7 @@ export const fetchCreateAnswer = (questionId, answer) => {
         dispatch(createAnswer(questionId, answer))
 
         let url = urlFormater({
-            model: "answer"
+            model: API_ANSWER
         })
 
         let params = parametersFormater(

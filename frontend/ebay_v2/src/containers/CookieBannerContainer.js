@@ -13,7 +13,7 @@ class CookieBanner extends Component{
                 <div className="main-banner-cookie__container">
                     <p>Veuillez accepter les conditions d'usage des cookies pour profiter pleinement d'EBAZAR. <a href="">Voir les conditions</a></p>
                     <div>
-                        <button onClick={() => this.props.acceptCookie()}>Accepter</button>
+                        <button onClick={() => this.props.setCookieAccept()}>Accepter</button>
                         <form action="https://google.fr">
                             <button type="submit">Refuser</button>
                         </form>
@@ -31,7 +31,7 @@ CookieBanner.propTypes = {
     setCookieAccept: PropTypes.func
  }
 
- export const CookieBannerStore = connect(
+ export const CookieBannerContainer= connect(
      (state) => ({
         cookieAccept: cookieAcceptSelector(state.auth)
      }),
@@ -41,4 +41,4 @@ CookieBanner.propTypes = {
  )(CookieBanner)
 
 
-export default CookieBannerStore
+export default CookieBannerContainer

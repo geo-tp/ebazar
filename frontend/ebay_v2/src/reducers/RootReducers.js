@@ -17,7 +17,7 @@ import { EndedObjectReducer } from "./EndedObjectReducer";
 import { FollowedObjectReducer } from "./FollowedObjectReducer";
 import { SelledObjectReducer } from "./SelledObjectReducer";
 import { PurchasedObjectReducer } from "./PurchasedObjectReducer";
-
+import { BiddedObjectReducer } from "./BiddedObjectReducer";
 
 export function initState() {
     
@@ -69,7 +69,7 @@ export function initState() {
                     error: false, 
                     loaded: false,
                     
-                    user: {}
+                    item: {}
                 }
                 break
 
@@ -104,6 +104,7 @@ export const RootReducer = (state=initialState, action) => {
         userFollowedObjects: FollowedObjectReducer(state.userFollowedObjects, action),
         userPurchasedObjects: PurchasedObjectReducer(state.userPurchasedObjects, action),
         userSelledObjects: SelledObjectReducer(state.userSelledObjects, action),
+        userBiddedObjects: BiddedObjectReducer(state.userBiddedObjects, action),
 
         sendedMessages: SendedMessageReducer(state.sendedMessages, action),
         receivedMessages: ReceivedMessageReducer(state.receivedMessages, action),

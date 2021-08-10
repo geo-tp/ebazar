@@ -2,8 +2,6 @@ import { API_URL } from "./APIConfig"
 
 export function urlFormater(kwargs) {
 
-    console.log(kwargs)
-
     let counter = 0
     let char;
 
@@ -38,6 +36,7 @@ export function urlFormater(kwargs) {
                 request += '&'
             }
         }
+    }
 
     if (kwargs["search"]) {
         if (counter) {
@@ -51,7 +50,7 @@ export function urlFormater(kwargs) {
         request += char+"search="+kwargs['search']
     }
 
-    }
+    
     if (kwargs["ordering"]) {
         
         if (counter) {

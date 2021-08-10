@@ -13,10 +13,14 @@
     color: map-get($COLOR_PALETTE, ter);
     height: 2em;
     border-radius: 0 10px 10px 0;
-    @include mobile-design {
+    @include tablet-design {
         text-align: center;
-        border-radius: 10px;
         width:70px;
+        
+    }
+    
+    @include mobile-design {
+        border-radius: 10px;
 
     }
 }

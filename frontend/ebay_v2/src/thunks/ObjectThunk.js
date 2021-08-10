@@ -4,6 +4,7 @@ import { getObjects, getObjectsSuccess, getObjectsError,
 import { urlFormater } from "../utils/urlFormater"
 import {parametersFormater} from "../utils/parametersFormater"
 import { NOT_FOUND } from "../utils/errors"
+import { API_OBJECT } from "../utils/apiEndPoints"
 
 
 // export const fetchObject = (objectId) => {
@@ -43,7 +44,7 @@ export const fetchObjects = (filter=null) => {
     return (dispatch) => {
         dispatch(getObjects())
 
-        let urlParams = {model: "object"}
+        let urlParams = {model:API_OBJECT}
         
         if (filter) {
             urlParams = {...urlParams, ...filter}

@@ -17,10 +17,15 @@ import SellPage from "./SellPage";
 import AuthPage from "./AuthPage";
 import SearchPage from "./SearchPage";
 import UserPage from "./UserPage";
+import { retrieveUserData } from "../utils/cookieHandler";
+
+import Cookie from "js-cookie"
 
 
 
 function App() {
+
+  retrieveUserData()
 
   return (
 

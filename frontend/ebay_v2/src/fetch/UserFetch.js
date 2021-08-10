@@ -1,3 +1,4 @@
+import { API_USER } from "../utils/apiEndPoints"
 import { NOT_FOUND } from "../utils/errors"
 import { urlFormater } from "../utils/urlFormater"
 
@@ -5,7 +6,7 @@ import { urlFormater } from "../utils/urlFormater"
 export const fetchUserByUsername = (username) => {
 
     let url =  urlFormater({
-        model: "user",
+        model: API_USER,
         filter_field: "username",
         filter_value: username
     })

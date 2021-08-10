@@ -170,18 +170,6 @@ button:hover {
   color: #d59c00;
 }
 
-.button-search {
-  color: #2046f2;
-  height: 2em;
-  border-radius: 0 10px 10px 0;
-}
-@media screen and (max-width: 590px) {
-  .button-search {
-    text-align: center;
-    border-radius: 10px;
-  }
-}
-
 .bid-list table {
   margin: 0 auto;
 }
@@ -194,11 +182,15 @@ button:hover {
   height: 2em;
   border-radius: 0 10px 10px 0;
 }
-@media screen and (max-width: 590px) {
+@media screen and (max-width: 1280px) {
   .button-search {
     text-align: center;
-    border-radius: 10px;
     width: 70px;
+  }
+}
+@media screen and (max-width: 590px) {
+  .button-search {
+    border-radius: 10px;
   }
 }
 
@@ -1102,15 +1094,24 @@ select {
 .main-account-shortcut {
   text-align: center;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   flex-wrap: wrap;
   padding: 2%;
+  width: 100%;
 }
 .main-account-shortcut div {
   width: 100%;
 }
 .main-account-shortcut button {
   margin: 1%;
+  border-radius: 0;
+  width: 30%;
+}
+@media screen and (max-width: 590px) {
+  .main-account-shortcut button {
+    width: 80%;
+    margin-bottom: 1em;
+  }
 }
 .main-account-shortcut__notification {
   position: relative;
@@ -1119,7 +1120,8 @@ select {
   position: absolute;
   border-radius: 100%;
   /* border: 3px solid blue; */
-  left: 80%;
+  left: 70%;
+  top: 3%;
   background-color: brown;
   width: 20px;
   color: white;

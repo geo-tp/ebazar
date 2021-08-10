@@ -1,4 +1,5 @@
 import { getSubCategories, getSubCategoriesError, getSubCategoriesSuccess } from "../actions/SubCategoryActions"
+import { API_SUBCATEGORY } from "../utils/apiEndPoints"
 import { NOT_FOUND } from "../utils/errors"
 import { parametersFormater } from "../utils/parametersFormater"
 import { urlFormater } from "../utils/urlFormater"
@@ -9,7 +10,7 @@ export const fetchSubCategories = (categoryId) => {
         dispatch(getSubCategories(categoryId))
 
         let url = urlFormater({
-            model: "subcategory",
+            model: API_SUBCATEGORY,
             filter_field: "category",
             filter_value: categoryId
         })

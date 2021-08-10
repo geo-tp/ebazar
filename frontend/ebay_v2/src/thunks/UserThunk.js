@@ -1,14 +1,16 @@
 import { editUser, editUserError, editUserSuccess, 
          getDetailledUser, getDetailledUserError, getDetailledUserSuccess, 
          getUser, getUserError, getUserSuccess } from "../actions/UserActions"
-
+import { API_USER } from "../utils/apiEndPoints"
+import { parametersFormater } from "../utils/parametersFormater"
+import { urlFormater } from "../utils/urlFormater"
 
 export const fetchUser = (userId) => {
     return(dispatch) => {
         dispatch(getUser(userId))
 
         let url = urlFormater({
-            model: "user",
+            model:API_USER,
             pk: userId
         })
 
@@ -33,35 +35,6 @@ export const fetchUser = (userId) => {
     }
 }
 
-export const fetchDetailledUser = (userId) => {
-    return(dispatch) => {
-        dispatch(getDetailledUser(userId))
-
-        let url = urlFormater({
-            model: "detailled-user",
-            pk: userId
-        })
-
-        let params = parametersFormater("GET")
-
-        return fetch(url, params)
-            .then(rslt => {
-                if (!rslt.ok) {
-                    throw new Error ("Error - 404 Not Found")
-                }
-
-                return rslt.json()
-            })
-
-            .then(user => {
-                dispatch(getDetailledUserSuccess(user))
-            })
-
-            .catch(error => {
-                dispatch(getDetailledUserError(error))
-            })
-    }
-}
 
 export const fetchEditUser = (userId, modification) => {
     return(dispatch) => {

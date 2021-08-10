@@ -3,16 +3,24 @@
 .main-account-shortcut {
     text-align: center;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     flex-wrap: wrap;
     padding: 2%;
+    width: 100%;
 
+    
     & div {
         width: 100%
     }
-
+    
     & button {
-        margin: 1%
+        margin: 1%;
+        border-radius: 0;
+        width:30%;
+        @include mobile-design {
+            width:80%;
+            margin-bottom: 1em;
+        }
     }
 
     &__notification {
@@ -23,7 +31,8 @@
             position: absolute;
             border-radius: 100%;
             /* border: 3px solid blue; */
-            left: 80%;
+            left: 70%;
+            top:3%;
             background-color: brown;
             width: 20px;
             color: white;

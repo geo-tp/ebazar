@@ -67,4 +67,3 @@ export const acceptCookie = () => ({
     type: ACCEPT_COOKIE,
     payload:{}
 })
-

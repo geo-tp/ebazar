@@ -1,4 +1,5 @@
 import { getSelections, getSelectionsError, getSelectionsSuccess } from "../actions/SelectionActions"
+import { API_SELECTION } from "../utils/apiEndPoints"
 import { NOT_FOUND } from "../utils/errors"
 import { parametersFormater } from "../utils/parametersFormater"
 import { urlFormater } from "../utils/urlFormater"
@@ -9,7 +10,7 @@ export const fetchSelections = () => {
         dispatch(getSelections())
 
         let url = urlFormater({
-            model: "selection"
+            model: API_SELECTION
         })
 
         let params = parametersFormater('GET')

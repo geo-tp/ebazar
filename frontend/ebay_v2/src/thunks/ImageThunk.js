@@ -1,4 +1,5 @@
 import { getImagesOfObject, getImagesOfObjectError, getImagesOfObjectSucces } from "../actions/ImageActions"
+import { API_IMAGE } from "../utils/apiEndPoints"
 import { NOT_FOUND } from "../utils/errors"
 import { parametersFormater } from "../utils/parametersFormater"
 import { urlFormater } from "../utils/urlFormater"
@@ -10,7 +11,7 @@ export const fetchImagesOfObject = (objectId) => {
         dispatch(getImagesOfObject(objectId))
 
         let url = urlFormater({
-            model: "image",
+            model: API_IMAGE,
             filter_field: "obj",
             filter_value: objectId
         })

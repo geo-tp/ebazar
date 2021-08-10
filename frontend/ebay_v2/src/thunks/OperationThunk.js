@@ -1,4 +1,5 @@
 import { getOperations, getOperationsError, getOperationsSuccess } from "../actions/OperationActions"
+import { API_OPERATION } from "../utils/apiEndPoints"
 import { NOT_FOUND } from "../utils/errors"
 import { parametersFormater } from "../utils/parametersFormater"
 import { urlFormater } from "../utils/urlFormater"
@@ -8,7 +9,7 @@ export const fetchOperations = (userId) => {
         dispatch(getOperations(userId))
 
         let url = urlFormater({
-            model: "operation",
+            model: API_OPERATION,
             filter_field: "user",
             filter_value: userId
 

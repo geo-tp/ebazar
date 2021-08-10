@@ -14,27 +14,71 @@ import { fetchBiddedObjects } from "../thunks/BiddedObjectThunk";
 import { fetchActiveObjects } from "../thunks/ActiveObjectThunk";
 import { fetchEndedObjects } from "../thunks/EndedObjectThunk";
 import { fetchSelledObjects } from "../thunks/SelledObjectThunk";
-
+import { activeObjectSelector, biddedObjectSelector, endedObjectSelector, 
+         followedObjectSelector, purchasedObjectSelector, selledObjectSelector } from "../selectors/ObjectSelectors";
+import { fetchUserByUsername } from "../fetch/UserFetch";
+import { fetchUser } from "../thunks/UserThunk";
+import { fetchReceivedMessages, fetchSendedMessages } from "../thunks/MessageThunk";
+import { fetchQuestionsOfUser } from "../thunks/QuestionThunk";
 
 class Account extends Component {
 
     constructor(props) {
         super(props)
 
-        this.props.fetchPurchasedObjects(3)
-        this.props.fetchActiveObjects(3)
-        this.props.fetchSelledObjects(3)
-        this.props.fetchBiddedObjects(3)
-        this.props.fetchFollowedObjects(3)
-        this.props.fetchEndedObjects(3)
+        let id = this.props.auth.basicUser.id
+
+        if (!this.props.user.loaded) {
+            this.props.fetchUser(id)
+        }
+
+        this.props.fetchSendedMessages(id)
+        this.props.fetchReceivedMessages(id)
+        this.props.fetchQuestionsOfUser(id)
+
+        this.props.fetchPurchasedObjects(id)
+        this.props.fetchActiveObjects(id)
+        this.props.fetchSelledObjects(id)
+        this.props.fetchBiddedObjects(id)
+        this.props.fetchFollowedObjects(id)
+        this.props.fetchEndedObjects(id)
+
+        this.state = {
+            activityInView: null,
+        }
+    }
+
+    handleActivityClick = (activity) => {
+
+        this.setState({
+            activityInView: this.props[activity]
+        })
     }
 
     render() {
         return(
             <div>
                 <h2>Compte</h2>
-                <AccountShortCut user={this.props.user}/>
-                <AccountActivity user={this.props.user}/>
+                <AccountShortCut questions={this.props.questions}
+                                 receivedMessages={this.props.receivedMessages}
+                                 user={this.props.user}/>
+                <AccountActivity
+                            handleActivityClick={this.handleActivityClick}
+                            activityInView={this.state.activityInView}
+
+
+                            purchasedObjects={ this.props.purchasedObjects}
+                            selledObjects= {this.props.selledObjects}
+                            activeObjects={this.props.activeObjects}
+                            followedObjects={this.props.followedObjects}
+                            endedObjects={this.props.endedObjects}
+                            biddedObjects={this.props.biddedObjects}
+
+                            user={this.props.user}
+                            sendedMessages={this.props.sendedMessages}
+                            receivedMessages={this.props.receivedMessages}
+                            questions={this.props.questions}/>
+
                 <AccountProfile user={this.props.user}/>
                 <AccountConfiguration user={this.props.user}/>
             </div>
@@ -46,6 +90,15 @@ const AccountStore = connect(
     (state) => ({
         auth: authSelector(state),
         user: userSelector(state),
+
+        purchasedObjects: purchasedObjectSelector(state),
+        selledObjects: selledObjectSelector(state),
+        activeObjects: activeObjectSelector(state),
+        followedObjects: followedObjectSelector(state),
+        biddedObjects: biddedObjectSelector(state),
+        endedObjects: endedObjectSelector(state),
+
+
         receivedMessages: receivedMessageSelector(state),
         sendedMessages: sendedMessageSelector(state),
         questions: questionSelector(state)
@@ -57,7 +110,12 @@ const AccountStore = connect(
         fetchEndedObjects: (userId) => dispatch(fetchEndedObjects(userId)),
         fetchFollowedObjects: (userId) => dispatch(fetchFollowedObjects(userId)),
         fetchBiddedObjects: (userId) => dispatch(fetchBiddedObjects(userId)),
-        fetchSelledObjects: (userId) => dispatch(fetchSelledObjects(userId))
+        fetchSelledObjects: (userId) => dispatch(fetchSelledObjects(userId)),
+
+        fetchUser: (userId) => dispatch(fetchUser(userId)),
+        fetchSendedMessages: (userId) => dispatch(fetchSendedMessages(userId)),
+        fetchReceivedMessages: (userId) => dispatch(fetchReceivedMessages(userId)),
+        fetchQuestionsOfUser: (userId) => dispatch(fetchQuestionsOfUser(userId)),
     })
 )(Account)
 

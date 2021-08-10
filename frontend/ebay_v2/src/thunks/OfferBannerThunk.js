@@ -2,6 +2,7 @@ import { getOfferBanner, getOfferBannerError, getOfferBannerSuccess } from "../a
 import { parametersFormater } from "../utils/parametersFormater";
 import { urlFormater } from "../utils/urlFormater";
 import {NOT_FOUND} from "../utils/errors"
+import { API_OFFER_BANNER } from "../utils/apiEndPoints";
 
 
 export const fetchOfferBanners = () => {
@@ -9,8 +10,7 @@ export const fetchOfferBanners = () => {
         dispatch(getOfferBanner()) 
         
         let url  = urlFormater({
-            model: "offer-banner"
-
+            model: API_OFFER_BANNER
         })
 
         let params = parametersFormater('GET')

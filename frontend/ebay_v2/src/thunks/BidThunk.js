@@ -2,6 +2,7 @@ import { getBidsOfObject, getBidsOfObjectError, getBidsOfObjectSuccess } from ".
 import { parametersFormater } from "../utils/parametersFormater";
 import { urlFormater } from "../utils/urlFormater";
 import {NOT_FOUND} from "../utils/errors"
+import { API_BID } from "../utils/apiEndPoints";
 
 
 export const fetchBidsOfObject = (objectId) => {
@@ -9,7 +10,7 @@ export const fetchBidsOfObject = (objectId) => {
         dispatch(getBidsOfObject(objectId))
 
         let url = urlFormater({
-            model: "bid",
+            model: API_BID,
             filter_field: "obj",
             filter_value: objectId,
             ordering: "-price"

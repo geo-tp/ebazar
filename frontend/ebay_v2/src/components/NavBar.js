@@ -104,7 +104,7 @@ class NavBar extends Component {
                            className=" fa fa-close fa-2x close-menu-cross">    
                         </i>
 
-                        {this.props.auth.isConnected?
+                        {this.props.auth.connected?
                         <ul>
                             <li id={id++}>
                                 <p>Profile</p>
