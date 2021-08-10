@@ -7,8 +7,7 @@ class SearchForm extends Component {
 
     constructor(props) {
         super(props)
-        console.log("QUUEEERY", this.props.query)
-        
+         
         this.state = {
             category: false,
             query: this.props.query,

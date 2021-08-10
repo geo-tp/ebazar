@@ -1,13 +1,15 @@
 import { getEndedObjects, getEndedObjectsError, getEndedObjectsSuccess } from "../actions/ObjectActions"
 import { urlFormater } from "../utils/urlFormater"
 import {NOT_FOUND} from "../utils/errors"
+import { parametersFormater } from "../utils/parametersFormater"
+import { API_OBJECT } from "../utils/apiEndPoints"
 
 export const fetchEndedObjects = (userId) => {
     return (dispatch) => {
         dispatch(getEndedObjects())
 
         let url = urlFormater(
-                        {model: "object",
+                        {model: API_OBJECT,
                          filter_fields: ['user', "isActive"],
                          filter_values: [userId, 0]}
         )

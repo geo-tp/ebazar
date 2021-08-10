@@ -1,4 +1,7 @@
 import { getActiveObjects, getActiveObjectsError, getActiveObjectsSuccess } from "../actions/ObjectActions"
+import { API_OBJECT } from "../utils/apiEndPoints"
+import { NOT_FOUND } from "../utils/errors"
+import { parametersFormater } from "../utils/parametersFormater"
 import { urlFormater } from "../utils/urlFormater"
 
 
@@ -7,7 +10,7 @@ export const fetchActiveObjects = (userId) => {
         dispatch(getActiveObjects())
 
         let url = urlFormater(
-                        {model: "object",
+                        {model: API_OBJECT,
                          filter_fields: ['user', "isActive"],
                          filter_values: [userId, 1]}
         )

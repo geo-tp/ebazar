@@ -2,7 +2,7 @@ import { GET_ACTIVE_OBJECTS, GET_ACTIVE_OBJECTS_ERROR, GET_ACTIVE_OBJECTS_SUCCES
 import { initialState } from "./RootReducers";
 
 
-export const ActiveObectReducer = (state=initialState.userActiveObjects, action) => {
+export const ActiveObjectReducer = (state=initialState.userActiveObjects, action) => {
 
     switch (action.type) {
         case GET_ACTIVE_OBJECTS:

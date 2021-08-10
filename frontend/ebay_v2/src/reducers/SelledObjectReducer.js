@@ -2,7 +2,7 @@ import { GET_SELLED_OBJECTS, GET_SELLED_OBJECTS_ERROR, GET_SELLED_OBJECTS_SUCCES
 import { initialState } from "./RootReducers";
 
 
-export const SelledObectReducer = (state=initialState.userSelledObjects, action) => {
+export const SelledObjectReducer = (state=initialState.userSelledObjects, action) => {
 
     switch (action.type) {
         case GET_SELLED_OBJECTS:

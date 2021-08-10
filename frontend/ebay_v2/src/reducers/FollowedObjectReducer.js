@@ -2,7 +2,7 @@ import { GET_FOLLOWED_OBJECTS, GET_FOLLOWED_OBJECTS_ERROR, GET_FOLLOWED_OBJECTS_
 import { initialState } from "./RootReducers";
 
 
-export const FollowedObectReducer = (state=initialState.userFollowedObjects, action) => {
+export const FollowedObjectReducer = (state=initialState.userFollowedObjects, action) => {
 
     switch (action.type) {
         case GET_FOLLOWED_OBJECTS:

@@ -1,5 +1,5 @@
 import { Component } from "react";
-import ObjectsList from "../components/ObjectList";
+import ObjectsListContainer from "./ObjectListContainer";
 import SubCategoryBanner from "../components/SubCategoryBanner";
 import PropTypes from "prop-types"
 import { connect } from "react-redux";
@@ -40,8 +40,7 @@ class Category extends Component {
 
                 {this.props.objects.loaded  && 
                 
-                    <ObjectsList listLabel="Enchères en cours"
-                                  objects={this.props.objects}/>}
+                    <ObjectsListContainer/>}
             </div>
         )
     }

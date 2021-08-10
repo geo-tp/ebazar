@@ -60,6 +60,10 @@ function App() {
           </Route>
 
           <Route path="/account">
+            <AccountPage />
+          </Route>
+
+          <Route path="/account">
             <AccountPage/>
           </Route>
 

@@ -17,7 +17,7 @@ import {detailledObjectSelector} from "../selectors/DetailledObjectSelector"
 import { fetchQuestionsOfObject, fetchQuestionsOfUser } from "../thunks/QuestionThunk";
 import CategoryBanner from "../components/CategoryBanner";
 import OfferBanner from "../components/OfferBanner";
-import ObjectList from "../components/ObjectList";
+import ObjectListContainer from "./ObjectListContainer";
 import SelectionBanner from "../components/SelectionBanner";
 import { selectionSelector } from "../selectors/SelectionSelectors";
 
@@ -47,8 +47,7 @@ class Home extends Component {
                 <CategoryBanner categories={this.props.categories}/>
                 <OfferBanner offerBanners={this.props.offerBanners}/>
                 <SelectionBanner selections={this.props.selections}/>
-                <ObjectList listLabel="Home" objects={this.props.objects}
-                            fetchNextObjectsPage={this.props.fetchNextObjectsPage}/>
+                <ObjectListContainer listLabel="Home"/>
             </div>
         )
     }

@@ -34,6 +34,11 @@ button {
       color: lighten(map-get($COLOR_PALETTE, ter), 15%);
       border-color: lighten(map-get($COLOR_PALETTE, ter), 15%);
     }
+
+    @include tablet-design {
+        height:50px;
+        width: 150px;
+    }
       
 }
 

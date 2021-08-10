@@ -161,11 +161,11 @@ class AccountProfile extends Component {
     }
     render() {
         return(
-            <div ref={this.props.profile_ref}>
+            <div className='main-account-profile' ref={this.props.profile_ref}>
                 <h3>Profile</h3>
-                <div className="main-profile">
-                    <form onSubmit={e => this.handleAdressChange(e)} className="profile-form">
-                        <table className="table-profile">
+                <div className="main-account-profile__user-infos">
+                    <form onSubmit={e => this.handleAdressChange(e)}>
+                        <table>
                             <tbody>
                                 <h4>Compte</h4>
                                 <tr>
@@ -225,11 +225,12 @@ class AccountProfile extends Component {
                                 </tr>
                             </tbody>
                         </table>
-                        <button className='profile-button' type="submit">Enregistrer</button>
+                        <button className='main-acount-profile__user-infos__save' type="submit">Enregistrer</button>
                         <p>{this.state.confirm_address_save}</p>
                     </form>
 
-                    <form onSubmit={(e) => this.handlePaymentSave(e)}>
+                    <form className="main-account-profile__user-payments" 
+                          onSubmit={(e) => this.handlePaymentSave(e)}>
                         <table>
                             <tbody>
                                 <h4>Recevoir vos paiements</h4>
@@ -245,11 +246,12 @@ class AccountProfile extends Component {
                                 </tr>
                             </tbody>
                         </table>
-                        <button className='paiement-button' type="submit">Enregistrer</button>
+                        <button className='main-acount-profile__user-payment__save' type="submit">Enregistrer</button>
                         <p>{this.state.confirm_payment_save}</p>
                         <p></p>
                     </form>
-                    <form onSubmit={(e) => this.handleCardSave(e)}>
+
+                    <form className="main-acount-profile__card" onSubmit={(e) => this.handleCardSave(e)}>
                         <table>
                             <tbody>
                                 <h4>Carte bancaire</h4>
@@ -270,7 +272,7 @@ class AccountProfile extends Component {
                                 </tr>
                             </tbody>
                         </table>
-                        <button className='paiement-button' type="submit">Enregistrer</button>
+                        <button className='main-acount-profile__card__save' type="submit">Enregistrer</button>
                         <p>{this.state.confirm_card_save}</p>
                     </form>
                         <p></p>

@@ -1,10 +1,9 @@
 import { Component } from "react";
-import Obj from "./Object"
 import PropTypes from "prop-types"
 import { connect } from "react-redux";
 import { objectSelector } from "../selectors/ObjectSelectors";
-import { fetchNextObjectsPage } from "../thunks/ObjectThunk";
-
+import { fetchNextObjectsPage, fetchObjects } from "../thunks/ObjectThunk";
+import Obj from "../components/Object"
 
 class ObjectList extends Component {
 
@@ -40,9 +39,21 @@ class ObjectList extends Component {
 
 ObjectList.propTypes = {
     objects: PropTypes.object.isRequired,
+    fetchObjects: PropTypes.object.isRequired,
     fetchNextObjectsPage: PropTypes.func.isRequired,
-    listLabel: PropTypes.string.isRequired,
+
+    listLabel: PropTypes.string,
 }
 
+export const ObjectListContainer = connect(
+    (state) => ({
+        objects: objectSelector(state)
+    }),
+    (dispatch) => ({
+        fetchObjects: (filter) => dispatch(fetchObjects(filter)),
+        fetchNextObjectsPage: (url) => dispatch(fetchNextObjectsPage(url)),
+    })
+)(ObjectList)
 
-export default ObjectList
+
+export default ObjectListContainer

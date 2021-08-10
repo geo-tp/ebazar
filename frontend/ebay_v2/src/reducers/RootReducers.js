@@ -12,6 +12,12 @@ import { SelectionReducer } from "./SelectionReducer";
 import { UserReducer } from "./UserReducer";
 import { DurationReducer } from "./DurationReducer";
 import { StateReducer } from "./StateReducer";
+import { ActiveObjectReducer } from "./ActiveObjectReducer";
+import { EndedObjectReducer } from "./EndedObjectReducer";
+import { FollowedObjectReducer } from "./FollowedObjectReducer";
+import { SelledObjectReducer } from "./SelledObjectReducer";
+import { PurchasedObjectReducer } from "./PurchasedObjectReducer";
+
 
 export function initState() {
     
@@ -93,6 +99,12 @@ export const RootReducer = (state=initialState, action) => {
         auth: AuthReducer(state.auth, action),
 
         user: UserReducer(state.user, action),
+        userActiveObjects: ActiveObjectReducer(state.userActiveObjects, action),
+        userEndedObjects : EndedObjectReducer(state.userEndedObjects, action),
+        userFollowedObjects: FollowedObjectReducer(state.userFollowedObjects, action),
+        userPurchasedObjects: PurchasedObjectReducer(state.userPurchasedObjects, action),
+        userSelledObjects: SelledObjectReducer(state.userSelledObjects, action),
+
         sendedMessages: SendedMessageReducer(state.sendedMessages, action),
         receivedMessages: ReceivedMessageReducer(state.receivedMessages, action),
         questions: QuestionReducer(state.questions, action),

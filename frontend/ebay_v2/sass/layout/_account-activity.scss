@@ -1,0 +1,82 @@
+
+
+.main-account-activity {
+
+    max-width: 800px;
+    margin: 0 auto;
+    margin-bottom: 3%;
+
+    text-align: center;
+
+    & h3 {
+        text-align: left;
+    }
+
+    &__buttons-list {
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+
+        & button {
+            height: 70px;
+            border-color: map-get($COLOR-PALETTE, price );
+            color: map-get($COLOR-PALETTE, price );
+            margin: 1em;
+
+        }
+        
+        & p {
+            margin: 0;
+            font-size: 120%;
+        }
+    }
+    
+    &__container {
+        text-align: center;
+
+        display: block;
+        justify-content: space-around;
+        width: 100%;
+        background-color: rgb(247, 247, 247);
+
+        & div {
+            width: 100%;
+        }
+
+        &__activity {
+            position: relative;
+            display: flex;
+            justify-content: space-around;
+            border-top: 10px solid rgb(255, 255, 255);
+
+            &__label {
+                position: absolute;
+                color: rgb(136, 132, 132);
+                left: 3%;
+            }
+        }
+
+    }
+}
+
+.activity-button {
+    cursor: pointer;
+    color: rgb(90, 90, 206);
+
+    
+    &:hover {
+        color: rgb(223, 171, 28);
+        
+    }
+}
+
+.activity-selected-button {
+    background-color: rgb(223, 171, 28);
+    /* padding: 20%; */
+    width: 80%;
+    height: 2%;
+    
+    & h2 {
+        color: rgb(223, 171, 28);
+    }
+}

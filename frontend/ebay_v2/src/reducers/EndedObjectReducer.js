@@ -2,7 +2,7 @@ import { GET_ENDED_OBJECTS, GET_ENDED_OBJECTS_ERROR, GET_ENDED_OBJECTS_SUCCES } 
 import { initialState } from "./RootReducers";
 
 
-export const EndedObectReducer = (state=initialState.userEndedObjects, action) => {
+export const EndedObjectReducer = (state=initialState.userEndedObjects, action) => {
 
     switch (action.type) {
         case GET_ENDED_OBJECTS:

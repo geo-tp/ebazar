@@ -5,6 +5,7 @@ import { getPurchasedObjects,
 import {NOT_FOUND} from "../utils/errors"
 import { urlFormater } from "../utils/urlFormater"
 import {parametersFormater} from "../utils/parametersFormater"
+import { API_PURCHASED_OBJECT } from "../utils/apiEndPoints"
 
 
 export const fetchPurchasedObjects = (userId) => {
@@ -14,7 +15,7 @@ export const fetchPurchasedObjects = (userId) => {
 
         let url = urlFormater(
             {
-                model: "purchased-object",
+                model: API_PURCHASED_OBJECT,
                 filter_field: "user",
                 filter_value: userId
             }
@@ -31,8 +32,17 @@ export const fetchPurchasedObjects = (userId) => {
                         return rslt.json()
                     })
 
-                    .then((objects) => {
-                        dispatch(getPurchasedObjectsSuccess(objects))
+                    .then((purchasedObjects) => {
+                        
+                        let objects = []
+                        purchasedObjects.results.length && 
+                            purchasedObjects.results.map((purchasedObject) => {
+                                objects.push(purchasedObject.obj)
+                            })
+
+                        purchasedObjects.results = objects
+
+                        dispatch(getPurchasedObjectsSuccess(purchasedObjects))
                     })
 
                     .catch((error) => {

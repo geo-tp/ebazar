@@ -14,7 +14,7 @@ class NavBar extends Component {
 
             redirectToAuth: false,
 
-            query: false,
+            query: null,
         }
     }
 

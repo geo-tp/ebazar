@@ -34,6 +34,12 @@ button:hover {
   color: #6882f6;
   border-color: #6882f6;
 }
+@media screen and (max-width: 1280px) {
+  button {
+    height: 50px;
+    width: 150px;
+  }
+}
 
 .App {
   box-shadow: 0px 100px 300px 0px rgba(186, 186, 186, 0.226);
@@ -181,6 +187,19 @@ button:hover {
 }
 .bid-list table td {
   width: 3%;
+}
+
+.button-search {
+  color: #2046f2;
+  height: 2em;
+  border-radius: 0 10px 10px 0;
+}
+@media screen and (max-width: 590px) {
+  .button-search {
+    text-align: center;
+    border-radius: 10px;
+    width: 70px;
+  }
 }
 
 .wrapper, .wrapper--large, .wrapper--small {
@@ -975,6 +994,143 @@ select {
 }
 .main-user-profile__container p {
   margin: 0;
+}
+
+.main-account-profile {
+  padding: 2%;
+  margin: 2%;
+  background-color: #f7f7f7;
+  margin: 0 auto;
+  box-shadow: 6px 6px 12px 12px rgba(194, 194, 194, 0.1);
+  max-width: 800px;
+}
+.main-account-profile form {
+  text-align: center;
+}
+.main-account-profile table {
+  width: 100%;
+}
+.main-account-profile button {
+  margin: 1%;
+  text-align: center;
+}
+.main-account-profile input {
+  width: 80%;
+}
+.main-account-profile tr {
+  margin: 2%;
+  padding: 2%;
+}
+.main-account-profile td {
+  border-bottom: 1px solid rgba(88, 84, 84, 0.219);
+  padding: 2%;
+}
+.main-account-profile__user-payment__save {
+  margin: 3%;
+}
+@media screen and (max-width: 980px) {
+  .main-profile input {
+    height: 30px;
+    padding: 3%;
+    font-size: 1.3em;
+  }
+}
+.main-account-activity {
+  max-width: 800px;
+  margin: 0 auto;
+  margin-bottom: 3%;
+  text-align: center;
+}
+.main-account-activity h3 {
+  text-align: left;
+}
+.main-account-activity__buttons-list {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+.main-account-activity__buttons-list button {
+  height: 70px;
+  border-color: #dfab1c;
+  color: #dfab1c;
+  margin: 1em;
+}
+.main-account-activity__buttons-list p {
+  margin: 0;
+  font-size: 120%;
+}
+.main-account-activity__container {
+  text-align: center;
+  display: block;
+  justify-content: space-around;
+  width: 100%;
+  background-color: #f7f7f7;
+}
+.main-account-activity__container div {
+  width: 100%;
+}
+.main-account-activity__container__activity {
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  border-top: 10px solid white;
+}
+.main-account-activity__container__activity__label {
+  position: absolute;
+  color: #888484;
+  left: 3%;
+}
+
+.activity-button {
+  cursor: pointer;
+  color: #5a5ace;
+}
+.activity-button:hover {
+  color: #dfab1c;
+}
+
+.activity-selected-button {
+  background-color: #dfab1c;
+  /* padding: 20%; */
+  width: 80%;
+  height: 2%;
+}
+.activity-selected-button h2 {
+  color: #dfab1c;
+}
+
+.main-account-shortcut {
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 2%;
+}
+.main-account-shortcut div {
+  width: 100%;
+}
+.main-account-shortcut button {
+  margin: 1%;
+}
+.main-account-shortcut__notification {
+  position: relative;
+}
+.main-account-shortcut__notification span {
+  position: absolute;
+  border-radius: 100%;
+  /* border: 3px solid blue; */
+  left: 80%;
+  background-color: brown;
+  width: 20px;
+  color: white;
+  font-weight: bold;
+}
+
+.main-account-configuration {
+  text-align: center;
+}
+.main-account-configuration button {
+  margin: 2%;
 }
 
 .main-home-page {

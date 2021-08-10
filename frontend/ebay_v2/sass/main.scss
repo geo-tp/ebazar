@@ -13,6 +13,7 @@
 @import "./components//site-logo";
 @import "./components/misc-buttons";
 @import "./components/bid-list";
+@import "./components/search-button";
 
 
 @import "./layout/grids";
@@ -32,6 +33,10 @@
 @import "./layout/object-form";
 @import "./layout/search-form";
 @import "./layout/main-user-profile";
+@import "./layout/account-profile";
+@import "./layout/account-activity";
+@import "./layout/account-shortcut";
+@import "./layout/account-configuration";
 
 
 @import "./pages/home";

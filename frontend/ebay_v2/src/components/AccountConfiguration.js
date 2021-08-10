@@ -7,7 +7,7 @@ class AccountConfiguration extends Component {
         return(
             <div>
                 <h3>Configuration</h3>
-                <div className="main-configuration">
+                <div className="main-account-configuration">
                     <button onClick={() => this.props.fetchLogout(this.props.userId)} class="delete-button">Déconnexion</button>                    
                     <button>Contacter EBAZAR</button>
                     <button>Verifier le compte</button>

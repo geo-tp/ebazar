@@ -5,7 +5,7 @@ import { fetchNextObjectsPage, fetchObjects } from "../thunks/ObjectThunk";
 import { fetchCategories } from "../thunks/CategoryThunk";
 import SearchForm from "../components/SearchForm";
 import { connect } from "react-redux";
-import ObjectList from "../components/ObjectList";
+import ObjectListContainer from "./ObjectListContainer";
 import { objectSelector } from "../selectors/ObjectSelectors";
 import { withRouter } from "react-router";
 
@@ -34,9 +34,7 @@ class Search extends Component {
                             fetchObjects={this.props.fetchObjects}
                             query={this.props.match.params.query ? this.props.match.params.query : null }/>
 
-                <ObjectList
-                            objects={this.props.objects}
-                            fetchNextObjectsPage={fetchNextObjectsPage}/>
+                <ObjectListContainer />
             </div>
         )
     }

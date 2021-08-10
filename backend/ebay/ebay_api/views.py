@@ -527,7 +527,7 @@ class DetailledUserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = DetailledUserSerializer
 
-    @checkUserIsOwner
+    # @checkUserIsOwner
     @method_decorator(cache_page(60))
     def retrieve(self, request, pk):
         
