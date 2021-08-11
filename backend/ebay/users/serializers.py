@@ -6,6 +6,8 @@ from rest_framework import serializers
 from rest_auth.models import TokenModel
 from rest_auth.registration.serializers import RegisterSerializer
 from .models import CustomUser
+
+from ebay_base.functions_utils import hidePartOfPaymentMethod
 # from rest_auth.utils import import_callable
 
 class BasicUserSerializer(serializers.ModelSerializer):
@@ -44,12 +46,6 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ['id',"username", 'email', 'first_name', 'last_name', 'date_of_birth',
                   "street_number", "street_type", "street_name", "city_number", "city", "phone_number"]
 
-# # This is to allow you to override the UserDetailsSerializer at any time.
-# # If you're sure you won't, you can skip this and use DefaultUserDetailsSerializer directly
-# rest_auth_serializers = getattr(settings, 'REST_AUTH_SERIALIZERS', {})
-# UserDetailsSerializer = import_callable(
-#     rest_auth_serializers.get('USER_DETAILS_SERIALIZER', DefaultUserDetailsSerializer)
-# )
 
 class CustomTokenSerializer(serializers.ModelSerializer):
     user = BasicUserSerializer(read_only=True)
@@ -57,3 +53,19 @@ class CustomTokenSerializer(serializers.ModelSerializer):
     class Meta:
         model = TokenModel
         fields = ('key', 'user', )
+
+class DetailledUserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = CustomUser
+        exclude = ("password", )
+
+
+    def to_representation(self, instance):
+
+        rep = super().to_representation(instance)
+
+        rep["card_number"] = hidePartOfPaymentMethod(rep["card_number"])
+        rep["iban"] = hidePartOfPaymentMethod(rep["iban"])
+        
+        return rep

@@ -101,8 +101,12 @@ INSTALLED_APPS = [
     'rest_auth.registration',
     'django_filters',
 
-    "ebay_api",
-    "users"
+    # "ebay_api",
+    "users",
+    "ebay_base",
+    "ebay_objects",
+    "ebay_account",
+    "ebay_messaging",
 
 ]
 

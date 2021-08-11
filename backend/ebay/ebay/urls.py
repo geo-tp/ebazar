@@ -16,8 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from ebay_api import views
+
+from ebay_base import views as base_views
+from ebay_account import views as account_views
+from ebay_objects import views as objects_views
+from ebay_messaging import views as messaging_views
 from users import views as users_views
+
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -28,34 +33,34 @@ from django.contrib import admin
 import debug_toolbar
 
 router = routers.DefaultRouter()
-router.register(r'state', views.StateOfObjectViewSet)
-router.register(r"duration", views.DurationViewSet)
-router.register(r'category', views.CategoryViewSet)
-router.register(r"selection", views.SelectionViewSet)
-router.register(r'subcategory', views.SubCategoryViewSet)
-router.register(r'object', views.ObjectViewSet)
-router.register(r'image', views.ImageViewSet)
-router.register(r'bid', views.BidViewSet)
-router.register(r'message', views.MessageViewSet)
-router.register(r'question', views.QuestionViewSet)
-router.register(r'question-and-answer', views.QuestionAndAnswerViewSet)
-router.register(r'answer', views.AnswerViewSet)
+router.register(r'state', objects_views.StateOfObjectViewSet)
+router.register(r"duration", base_views.DurationViewSet)
+router.register(r'category', base_views.CategoryViewSet)
+router.register(r"selection", base_views.SelectionViewSet)
+router.register(r'subcategory', base_views.SubCategoryViewSet)
+router.register(r'object', objects_views.ObjectViewSet)
+router.register(r'image', objects_views.ImageViewSet)
+router.register(r'bid', account_views.BidViewSet)
+router.register(r'message', messaging_views.MessageViewSet)
+router.register(r'question', messaging_views.QuestionViewSet)
+router.register(r'question-and-answer', messaging_views.QuestionAndAnswerViewSet)
+router.register(r'answer', messaging_views.AnswerViewSet)
 router.register(r"user", users_views.UserViewSet)
-router.register(r"followed-object", views.FollowedObjectViewSet)
-router.register(r"followed-object-by-user", views.FollowedObjectByUserViewSet)
-router.register(r"bidded-object-by-user", views.BiddedObjectByUserViewSet)
-router.register(r'purchased-object', views.PurchasedObjectViewsSet)
+router.register(r"followed-object", objects_views.FollowedObjectViewSet)
+router.register(r"followed-object-by-user", objects_views.FollowedObjectByUserViewSet)
+router.register(r"bidded-object-by-user", objects_views.BiddedObjectByUserViewSet)
+router.register(r'purchased-object', objects_views.PurchasedObjectViewsSet)
 # router.register(r'withdrawal', views.WithdrawalViewSet)
-router.register(r'operation', views.OperationViewSet)
-router.register(r"offer-banner", views.OfferBannerViewSet)
+router.register(r'operation', account_views.OperationViewSet)
+router.register(r"offer-banner", base_views.OfferBannerViewSet)
 
 
 # router.register(r'best-bid-of-object', views.BestBidOfObjectViewSet)
-router.register(r"messaging", views.MessagingViewSet)
-router.register(r"detailled-user", views.DetailledUserViewSet)
-router.register(r'detailled-object', views.DetailledObjectViewSet)
-router.register(r"account-user", views.AccountUserViewSet)
-router.register(r'balance-user', views.BalanceViewSet)
+# router.register(r"messaging", views.MessagingViewSet)
+router.register(r"detailled-user", users_views.DetailledUserViewSet)
+router.register(r'detailled-object', objects_views.DetailledObjectViewSet)
+# router.register(r"account-user", views.AccountUserViewSet)
+# router.register(r'balance-user', views.BalanceViewSet)
 
 urlpatterns = [
     path("", include(router.urls)),

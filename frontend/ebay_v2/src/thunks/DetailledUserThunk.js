@@ -1,4 +1,6 @@
 import { getDetailledUser, getDetailledUserError, getDetailledUserSuccess } from "../actions/UserActions"
+import { API_DETAILLED_USER } from "../utils/apiEndPoints"
+import { NOT_FOUND } from "../utils/errors"
 import { parametersFormater } from "../utils/parametersFormater"
 import { urlFormater } from "../utils/urlFormater"
 
@@ -8,7 +10,7 @@ export const fetchDetailledUser = (userId) => {
         dispatch(getDetailledUser(userId))
 
         let url = urlFormater({
-            model: "detailled-user",
+            model: API_DETAILLED_USER,
             pk: userId
         })
 
@@ -17,7 +19,7 @@ export const fetchDetailledUser = (userId) => {
         return fetch(url, params)
             .then(rslt => {
                 if (!rslt.ok) {
-                    throw new Error ("Error - 404 Not Found")
+                    throw new Error (NOT_FOUND)
                 }
 
                 return rslt.json()
