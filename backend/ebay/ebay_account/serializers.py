@@ -2,15 +2,21 @@ from rest_framework import serializers
 from users.models import CustomUser
 from .models import *
 from users.serializers import BasicUserSerializer
+from ebay_base.functions_utils import hidePartOfData
 
 class AccountUserSerializer(serializers.ModelSerializer):
+    """
+    Serialize User Operations
+    """
 
     class Meta:
         model = CustomUser
         fields = ['id', "username", "paypal_email", "iban"]
 
     def serialize_operation(self, queryset):
+        """
 
+        """
         paymment_methods = PaymentMethod.objects.all()
         operation_types = OperationType.objects.all()
 
@@ -50,7 +56,9 @@ class BalanceSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
     def calculate_queryset_amount(self, queryset):
-
+        """
+         Sum of all amount in a queryset
+        """
         result = 0
         for query in queryset:
             result += int(query.amount)
@@ -58,7 +66,9 @@ class BalanceSerializer(serializers.ModelSerializer):
         return result
 
     def calculate_queryset_object_total_price(self, queryset):
-        
+        """
+           Sum of all price in a queryset 
+        """
         result = 0
         for query in queryset:
             result += int(query.obj.actualPrice)
@@ -66,6 +76,9 @@ class BalanceSerializer(serializers.ModelSerializer):
         return result
 
     def to_representation(self, instance):
+        """
+        Add waitingConfirmation, payable and paid amount
+        """
 
         rep = {"waitingConfirmationAmount":0, "payableAmount":0, "paidAmount":0}
 
@@ -97,6 +110,9 @@ class BidSerializer(serializers.ModelSerializer):
     def to_representation(self, instance, request=None):
 
         rep = super().to_representation(instance)
+
+        # Payment data are hide for confidentiality, 
+        # Others bidders cant know exactly against who they are fighting
         rep["user"]["username"] = hidePartOfData(rep["user"]["username"])
 
         return rep

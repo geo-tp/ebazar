@@ -94,7 +94,8 @@ class NavBar extends Component {
                                                   :
                         <i className="fas fa fa-angle-down nav-bar__account-angle"></i>
                     }
-                    {this.props.auth.isConnected && <p className="nav-bar__account-pseudo">PsuedoUser</p>}
+                    {this.props.auth.connected && 
+                        <p className="nav-bar__account-pseudo">{this.props.auth.basicUser.username}</p>}
                 </div>
 
 

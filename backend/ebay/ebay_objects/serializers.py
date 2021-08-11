@@ -8,6 +8,8 @@ from ebay_base.models import Category, SubCategory
 from ebay_base.serializers import CategorySerializer, SubCategorySerializer
 from ebay_objects.models import FollowedObject, StateOfObject
 
+from ebay_base.functions_utils import isOwner
+
 class StateOfObjectSerializer(serializers.ModelSerializer):
 
     class Meta:

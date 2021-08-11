@@ -27,6 +27,9 @@ class AnswerSerializer(serializers.ModelSerializer):
 
 
 class QuestionAndAnwserOfObjectSerializer(serializers.ModelSerializer):
+    """
+    Serialize Question and add answer if exist
+    """
 
     class Meta:
         model = Question

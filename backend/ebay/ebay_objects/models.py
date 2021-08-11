@@ -5,6 +5,8 @@ from ebay_account.models import Operation
 
 class StateOfObject(models.Model):
 
+    """State of an object: example : Good Condition, Used, New..."""
+
     title= models.CharField(max_length=50)
     description = models.CharField(max_length=1500, blank=True)
 
@@ -38,15 +40,21 @@ class Object(models.Model):
 
 class Image(models.Model):
 
+    """Additionnal image of object"""
+
     imageOfObject = models.ImageField()
     obj = models.ForeignKey(Object, on_delete=models.CASCADE)
 
 class FollowedObject(models.Model):
 
+    """Association table for Object followed by user"""
+
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     obj = models.ForeignKey(Object, on_delete=models.CASCADE)
 
 class PurchasedObject(models.Model):
+
+    """Purchased object with delivery and payment informations"""
 
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     obj = models.ForeignKey(Object, on_delete=models.CASCADE)
