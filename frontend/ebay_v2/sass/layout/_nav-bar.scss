@@ -212,14 +212,30 @@
 
         // @include small-border-default;
         @include small-shadow;
-
+        & ul {
+            margin: 1em auto;
+            padding:0;
+            text-align: center;
+        }
         & li {
-            margin: $small;
+            margin: $medium;
             padding: $small;
             cursor:pointer;
+
+            & button {
+                width:70%;
+                border-radius: 5px;
+                border-color: map-get($COLOR-PALETTE, bg2 );
+                font-size: 1em;
+
+                &:hover {
+                    border-color: lighten(map-get($COLOR_PALETTE, ter), 35%);
+                }
+            }
+
         }
         & li:hover {
-            color: map-get($COLOR_PALETTE, ter);
+            color: lighten(map-get($COLOR_PALETTE, ter), 20%);
             border-bottom: 0;
         }
 
@@ -228,7 +244,6 @@
             margin: 0 auto;
             & button {
             margin: $medium;
-            margin-left: 0;
             }
 
             @include tablet-design {

@@ -108,28 +108,65 @@ class NavBar extends Component {
                         {this.props.auth.connected?
                         <ul>
                             <li id={id++}>
-                                <p>Profile</p>
+                            <Link to="/account/"
+                                  onClick={() => this.setState({accountMenuIsOpen: false})}>
+                                
+                                <button>Mon Compte</button>
+
+                            </Link>
+
+                            </li>
+
+                            <li id={id++}>
+                            <Link to="/selled/"
+                                  onClick={() => this.setState({accountMenuIsOpen: false})}>
+                                
+                                <button>Vente</button>
+
+                            </Link>
+                            </li>
+
+                            <li id={id++}>
+                            <Link to="/purchased/"
+                                  onClick={() => this.setState({accountMenuIsOpen: false})}>
+                                
+                                <button>Achat</button>
+
+                            </Link>
                             </li>
                             <li id={id++}>
-                                <p>Achat</p>
+                                <Link to="/balance/"
+                                      onClick={() => this.setState({accountMenuIsOpen: false})}>
+                                    
+                                    <button>Balance</button>
+                                </Link>
                             </li>
                             <li id={id++}>
-                                <p>Vente</p>
-                            </li>
-                            <li id={id++}>
-                                <p>Solde</p>
-                            </li>
-                            <li id={id++}>
-                                <p>Messagerie</p>
+                               <Link to="/messaging/"
+                                     onClick={() => this.setState({accountMenuIsOpen: false})}>
+                                         
+                                    <button>Messagerie</button>
+                                </Link>
                             </li>
                         </ul>
                                         :
                         <ul className="nav-bar__user-button">
                             <li id={id++}>
                                 <p>Connectez vous :</p>
-                                <Link to="/auth/"><button>Connexion</button></Link>
+                                <Link to="/auth/"
+                                      onClick={() => this.setState({accountMenuIsOpen: false})}>
+                                          
+                                    <button>Connexion</button>
+                                
+                                </Link>
+
                                 <p>Pas de compte ?</p>
-                                <Link to="/auth/"><button>Inscription</button></Link>
+                                <Link to="/auth/"
+                                      onClick={() => this.setState({accountMenuIsOpen: false})}>
+                                    
+                                    <button>Inscription</button>
+                                
+                                </Link>
                             </li>
                         </ul>
                         

@@ -3,11 +3,13 @@
     margin: 0 auto;
 
     &__no-object {
+        
         text-align: center;
         margin: 100px;
     }
 
     &__wrapper {
+
         display: flex;
         justify-content: space-around;
         flex-wrap: wrap;

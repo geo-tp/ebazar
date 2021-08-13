@@ -46,6 +46,9 @@ class User extends Component {
     //     this.request_profile_user_details()
     // }
 
+    componentDidMount() {
+        window.scrollTo(0, 0);
+    }
 
     render() {
 

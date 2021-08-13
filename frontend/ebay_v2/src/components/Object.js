@@ -3,6 +3,8 @@ import { convertDateToTimeLeft } from "../utils/timeConverters";
 import {Redirect} from 'react-router';
 import PropTypes from 'prop-types'
 
+import {Link} from "react-router-dom";
+
 class Obj extends Component{
 
     constructor(props) {
@@ -14,11 +16,10 @@ class Obj extends Component{
             redirect_to_index: null,
         }
     }
+    // handleObjectClick(id) {
 
-    handleObjectClick(id) {
-
-        window.location = window.location.origin + "/detail/"+ id
-    }   
+    //     window.location = window.location.origin + "/detail/"+ id
+    // }   
         
 
     render() {
@@ -28,11 +29,9 @@ class Obj extends Component{
         // }
 
         return(
-            <div className="main-object"
-                 onClick={() => this.handleObjectClick(this.props.object.id)}>
-
+            <div className="main-object">
                 <div className="main-object__image">
-                    <img src={this.props.object.mainImage}/>
+                    <Link to ={"/detail/"+this.props.object.id}><img src={this.props.object.mainImage}/></Link>
                 </div>
                 <div className="main-object__informations">
                     <h3 className="main-object__informations__title">{this.props.object.title}</h3>

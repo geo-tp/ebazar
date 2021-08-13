@@ -52,6 +52,11 @@ class Account extends Component {
         }
     }
 
+
+    componentDidMount() {
+        window.scrollTo(0, 0);
+    }
+
     handleActivityClick = (activity) => {
 
         this.setState({

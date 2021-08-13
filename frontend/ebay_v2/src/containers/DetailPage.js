@@ -19,7 +19,7 @@ class Detail extends Component {
 
     constructor(props) {
         super(props)
-        props.fetchObjects({filter_field: "category", filter_value:1})
+        props.fetchObjects()
 
         props.fetchDetailledObject(this.props.match.params.objectId)
         props.fetchQuestionsOfObject(this.props.match.params.objectId)
@@ -31,11 +31,26 @@ class Detail extends Component {
 
     }
 
+    componentDidUpdate(prevProps) {
+
+        if(prevProps.match.params.objectId !== this.props.match.params.objectId){
+            this.props.fetchDetailledObject(this.props.match.params.objectId)
+            this.props.fetchQuestionsOfObject(this.props.match.params.objectId)
+            this.props.fetchImagesOfObject(this.props.match.params.objectId)
+            this.props.fetchBidsOfObject(this.props.match.params.objectId)
+            
+            window.scrollTo(0,0)
+        }
+      }
+     
+
     render() {
         return(
             <div>
                 {this.props.detailledObject.loaded && this.props.detailledObjectImages.loaded && 
-                 this.props.detailledObjectQuestions.loaded && this.props.detailledObjectBids.loaded ?
+                 this.props.detailledObjectQuestions.loaded && this.props.detailledObjectBids.loaded &&
+                 !this.props.detailledObject.loading ?
+
                 <ObjectDetail   detailledObject={this.props.detailledObject}
                                 detailledObjectBids={this.props.detailledObjectBids}
                                 detailledObjectQuestions={this.props.detailledObjectQuestions}

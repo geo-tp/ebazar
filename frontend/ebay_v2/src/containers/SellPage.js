@@ -34,6 +34,10 @@ class Sell extends Component {
 
     }
 
+    componentDidMount() {
+        window.scrollTo(0, 0);
+    }
+
     render() {
         if (this.props.user == null) {
             return <Redirect to="/auth"/>
