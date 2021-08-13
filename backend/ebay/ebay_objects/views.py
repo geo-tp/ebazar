@@ -14,6 +14,9 @@ from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
 from rest_framework import permissions
 
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
+
 
 from ebay_base.functions_utils import checkUserMatching, checkUserIsOwner,\
                              checkSenderIsNotReceiver, restrictedEndPoint, checkUserIsReceiver
@@ -72,7 +75,7 @@ class ObjectViewSet(viewsets.ModelViewSet):
 
     permission_classes = [AllowAny]
 
-
+    @method_decorator(cache_page(60))
     def list(self, request, *args, **kwargs):
 
         return super().list(request, *args, **kwargs)
@@ -151,6 +154,10 @@ class PurchasedObjectViewsSet(viewsets.ModelViewSet):
 
         return super().create(request, *args, **kwargs)
 
+    @method_decorator(cache_page(60))
+    def list(self, request):
+        return super().list(request)
+
 # class WithdrawalViewSet(viewsets.ModelViewSet):
 
 #     queryset = Withdrawal.objects.all()
@@ -190,6 +197,7 @@ class FollowedObjectByUserViewSet(viewsets.ModelViewSet):
     queryset = CustomUser.objects.all()
     serializer_class = FollowedObjectsByUserSerializer
 
+    @method_decorator(cache_page(60))
     def retrieve(self, request, pk):
         
         rep = self.serializer_class().to_representation(pk, request)
@@ -210,6 +218,7 @@ class BiddedObjectByUserViewSet(viewsets.ModelViewSet):
     queryset = CustomUser.objects.all()
     serializer_class = BiddedObjectByUserSerializer
 
+    @method_decorator(cache_page(60))
     def retrieve(self, request, pk):
         rep = self.serializer_class().to_representation(request, pk)
         page = self.paginate_queryset(rep)

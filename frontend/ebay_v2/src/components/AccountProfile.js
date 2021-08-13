@@ -1,5 +1,8 @@
 import {Component} from "react"
 import PropType from "prop-types"
+import { MESSAGE_SENDED_SUCCESS, UPDATE_PROFILE_SUCCESS } from "../utils/success"
+import { MESSAGE_SENDED_ERROR, UPDATE_PROFILE_ERROR } from "../utils/errors"
+import { API_USER } from "../utils/apiEndPoints"
 
 // import {request_formatter,BASIC_HEADER } from "../../../GLOBAL"
 
@@ -10,158 +13,119 @@ class AccountProfile extends Component {
     constructor(props) {
         super(props)
 
-        // this.props.user.item = {
-            // username: this.props.user.username,
-            // first_name: this.props.user.first_name,
-            // last_name: this.props.user.last_name,
-            // email: this.props.user.email,
-            // date_of_birth: this.props.user.date_of_birth,
-            // street_number: this.props.user.street_number,
-            // street_type: this.props.user.street_type,
-            // street_name: this.props.user.street_name,
-            // city_number: this.props.user.city_number,
-            // city: this.props.user.city,
-            // phone_number: this.props.user.phone_number,
-            // paypal_email: this.props.user.paypal_email,
-            // iban: this.props.user.iban,
-            // card_number: this.props.user.card_number,
-            // card_expiration: this.props.user.card_expiration,
-            // card_owner_name: this.props.user.card_owner_name,
+        this.state = {
+            street_number: this.props.user.item.street_number,
+            street_type: this.props.user.item.street_type,
+            street_name: this.props.user.item.street_name,
+            city_number: this.props.user.item.city_number,
+            city: this.props.user.item.city,
+            paypal_email: this.props.user.item.paypal_email,
+            iban: this.props.user.item.iban,
+            card_number: this.props.user.item.card_number,
+            card_expiration: this.props.user.item.card_expiration,
+            card_owner_name: this.props.user.item.card_owner_name,
 
-            // confirm_address_save : "",
-            // confirm_card_save : "",
-            // confirm_payment_save: ""
+            message_address_save : "",
+            message_card_save : "",
+            message_payment_save: ""
 
-        // }
+        }
     }
 
-    handleCardSave = (e) => {
+    checkUpdateSuccess(response, type) {
+
+        if (response) {
+            
+            switch (type) {
+                case "card":
+                    this.setState({message_card_save: UPDATE_PROFILE_SUCCESS})
+                    break;
+                
+                case "payment":
+                    this.setState({message_payment_save: UPDATE_PROFILE_SUCCESS})
+                    break;
+
+                case "address":
+                    
+                    this.setState({message_address_save: UPDATE_PROFILE_SUCCESS})
+                    break;
+            }
+        }
+
+        else {
+            switch (type) {
+                case "card":
+                    this.setState({message_card_save: UPDATE_PROFILE_ERROR})
+                    break;
+                
+                case "payment":
+                    this.setState({message_payment_save: UPDATE_PROFILE_ERROR})
+                    break;
+
+                case "address":
+                    
+                    this.setState({message_address_save: UPDATE_PROFILE_ERROR})
+                    break;
+            }
+        }
+    }
+
+    async handleCardSave(e)  {
         
 
         e.preventDefault()
 
-        // let card_number = e.target['card-number'].value
-        // let card_expiration = e.target["card-expiration"].value
-        // let card_owner_name = e.target["card-owner-name"].value
 
-        // let url = request_formatter({
-        //     model: "user",
-        //     pk: this.props.user.id
-        // })
+        let response = await this.props.fetchEditUser(
+            this.props.user.item.id,
+            {
+                card_number: this.state.card_number,
+                card_expiration: this.state.card_expiration,
+                card_owner_name: this.state.card_owner_name,
+            }
+        )
 
-        // let headers = BASIC_HEADER
-        // headers["Authorization"] = "token " + this.props.token
-        // headers["Content-Type"] = "application/json"
-
-        // // delete headers["Content-Type"]
-
-        // fetch(url, {
-        //     method: "PATCH",
-        //     headers: headers,
-        //     body: JSON.stringify({
-        //         card_number: card_number,
-        //         card_expiration: card_expiration,
-        //         card_owner_name: card_owner_name
-
-        //     })
-        // })
-        //     .then(rslt => {
-        //         if (rslt.status == 200) {
-        //             this.setState({confirm_card_save: "Vos modifications ont été enregistrées"})
-        //         }
-
-        //         else {
-        //             this.setState({confirm_card_save: "Une erreur s'est produite"})
-        //         }
-        //     })
-
-        //     .catch(() => {
-        //         this.setState({confirm_card_save: "Une erreur s'est produite"})
-
-            // })
+        this.checkUpdateSuccess(response, "card")
+        
 
     }
 
-    handleAdressChange = (e) => {
+    async handleAdressChange(e) {
         
         e.preventDefault()
 
-        // let url = request_formatter({
-        //     model: "user",
-        //     pk: this.props.user.id
-        // })
+        let response = await this.props.fetchEditUser(
+            this.props.user.item.id,
+            {
+                street_number: this.state.street_number,
+                street_type: this.state.street_type,
+                street_name: this.state.street_name,
+                city: this.state.city,
+                city_number: this.state.city_number
+            }
+        )
 
-        // let headers = BASIC_HEADER
-        // headers["Authorization"] = "token " + this.props.token
-        // headers["Content-Type"] = "application/json"
-
-        // fetch(url, {
-        //     method: "PATCH",
-        //     headers: headers,
-        //     body: JSON.stringify({
-        //         street_number: this.props.user.item.street_number,
-        //         street_type: this.props.user.item.street_type,
-        //         street_name: this.props.user.item.street_name,
-        //         city_number: this.props.user.item.city_number,
-        //         city: this.props.user.item.city
-        // })})
-        //     .then(rslt => {
-        //         if (rslt.status == 200) {
-        //             this.setState({confirm_address_save: "Vos modifications ont été enregistrées"})
-        //         }
-
-        //         else {
-        //             this.setState({confirm_address_save: "Une erreur s'est produite"})
-        //         }
-        //     })
-
-        //     .catch(() => {
-        //         this.setState({confirm_address_save: "Une erreur s'est produite"})
-
-        //     })
-
-    
+        this.checkUpdateSuccess(response, 'address')
         
     }
 
-    handlePaymentSave = (e) => {
+    async handlePaymentSave(e) {
         e.preventDefault()
 
-        // let url = request_formatter({
-        //     model: "user",
-        //     pk: this.props.user.id
-        // })
+        let response = await this.props.fetchEditUser(
+            this.props.user.item.id,
+            {
+                paypal_email: this.state.paypal_email,
+                iban: this.state.iban,
+            }
+        )
 
-        // let headers = BASIC_HEADER
-        // headers["Authorization"] = "token " + this.props.token
-        // headers["Content-Type"] = "application/json"
-
-
-        // fetch(url, {
-        //     method: "PATCH",
-        //     headers: headers,
-        //     body: JSON.stringify({
-        //         paypal: this.props.user.item.paypal,
-        //         iban: this.props.user.item.iban,
-        // })})
-        // .then(rslt => {
-        //     if (rslt.status == 200) {
-        //         this.setState({confirm_payment_save: "Vos modifications ont été enregistrées"})
-        //     }
-
-        //     else {
-        //         this.setState({confirm_payment_save: "Une erreur s'est produite"})
-        //     }
-        // })
-
-        // .catch(() => {
-        //     this.setState({confirm_payment_save: "Une erreur s'est produite"})
-
-        // })
+        this.checkUpdateSuccess(response, "payment")
+        
     }
-    render() {
+    render = () => {
         return(
-            <div className='main-account-profile' ref={this.props.profile_ref}>
+            <div className='main-account-profile'>
                 <h3>Profile</h3>
                 <div className="main-account-profile__user-infos">
                     <form onSubmit={e => this.handleAdressChange(e)}>
@@ -196,37 +160,37 @@ class AccountProfile extends Component {
                                 <tr>
                                     <td>Numero de voie</td>
                                     <td><input onChange={(e) => this.setState({street_number:e.target.value})} 
-                                               name="street-number" value={this.props.user.item.street_number}
+                                               name="street-number" value={this.state.street_number}
                                                maxLength="10" type="text" required></input></td>
                                 </tr>
                                 <tr>
                                     <td>Type de voie</td>
                                     <td><input onChange={(e) => this.setState({street_type:e.target.value})}
-                                               name="street-type" value={this.props.user.item.street_type}
+                                               name="street-type" value={this.state.street_type}
                                                maxLength="20" type="text" required></input></td>
                                 </tr>
                                 <tr>
                                     <td>Adresse</td>
                                     <td><input onChange={(e) => this.setState({street_name:e.target.value})}
-                                               name="street-name" value={this.props.user.item.street_name} 
+                                               name="street-name" value={this.state.street_name} 
                                                maxLength="200" type="text" required></input></td>
                                 </tr>
                                 <tr>
                                     <td>Nom de ville</td>
                                     <td><input onChange={(e) => this.setState({city:e.target.value})}
-                                               name="city" value={this.props.user.item.city}
+                                               name="city" value={this.state.city}
                                                maxLength="100" type="text" required></input></td>
                                 </tr>
                                 <tr>
                                     <td>Code postal</td>
                                     <td><input onChange={(e) => this.setState({city_number:e.target.value})}
-                                               name = "city-number" value={this.props.user.item.city_number}
+                                               name = "city-number" value={this.state.city_number}
                                                maxLength="100" type="text" required></input></td>
                                 </tr>
                             </tbody>
                         </table>
                         <button className='main-acount-profile__user-infos__save' type="submit">Enregistrer</button>
-                        <p>{this.props.user.item.confirm_address_save}</p>
+                        <p>{this.state.message_address_save}</p>
                     </form>
 
                     <form className="main-account-profile__user-payments" 
@@ -237,17 +201,17 @@ class AccountProfile extends Component {
                                 <tr>
                                     <td>Paypal</td>
                                     <td><input name="paypal" onChange={(e) => this.setState({paypal_email:e.target.value})}
-                                               value={this.props.user.item.paypal_email} type="email" maxLength="100" ></input></td>
+                                               value={this.state.paypal_email} type="email" maxLength="100" ></input></td>
                                 </tr>
                                 <tr>
                                     <td>IBAN</td>
                                     <td><input onChange={(e) => this.setState({iban:e.target.value})}
-                                               name="iban" value={this.props.user.item.iban} type="text" maxLength="20"></input></td>
+                                               name="iban" value={this.state.iban} type="text" maxLength="20"></input></td>
                                 </tr>
                             </tbody>
                         </table>
                         <button className='main-acount-profile__user-payment__save' type="submit">Enregistrer</button>
-                        <p>{this.props.user.item.confirm_payment_save}</p>
+                        <p>{this.state.message_payment_save}</p>
                         <p></p>
                     </form>
 
@@ -275,7 +239,7 @@ class AccountProfile extends Component {
                             </tbody>
                         </table>
                         <button className='main-acount-profile__card__save' type="submit">Enregistrer</button>
-                        <p>{this.props.user.item.confirm_card_save}</p>
+                        <p>{this.state.message_card_save}</p>
                     </form>
                         <p></p>
                 </div>
@@ -286,6 +250,7 @@ class AccountProfile extends Component {
 
 AccountProfile.propTypes = {
     user: PropType.object.isRequired,
+    fetchEditUser: PropType.object.isRequired
     
 }
 

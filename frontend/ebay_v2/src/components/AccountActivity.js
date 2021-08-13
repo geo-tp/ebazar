@@ -14,6 +14,7 @@ class AccountActivity extends Component {
 
 
     render() {
+
         return(
             <div className="main-account-activity">
                 <div className="main-account-activity__buttons-list">
@@ -28,8 +29,8 @@ class AccountActivity extends Component {
                         <span className="main-account-activity__container__activity__label">Enchères en cours</span>
                         <div>
                             { this.props.biddedObjects.loaded ?
-                            <a className={this.props.activityInView == this.props.biddedObjects ? "activity-selected-button" : "activity-button"} 
-                               onClick={() => this.props.handleActivityClick(this.props.biddedObjects)}>
+                            <a className={this.props.objectsInView == this.props.biddedObjects ? "activity-selected-button" : "activity-button"} 
+                               onClick={() => this.props.handleActivityClick("biddedObjects")}>
                                 <h2>{this.props.biddedObjects.items.count}</h2>
                             </a>
                                                              :
@@ -39,8 +40,8 @@ class AccountActivity extends Component {
                         </div>
                         <div>
                             { this.props.followedObjects.loaded ?
-                            <a className={this.state.activityInView == this.props.followedObjects ? "activity-selected-button" : "activity-button"}
-                               onClick={() => this.props.handleActivityClick(this.props.followedObjects)}>
+                            <a className={this.props.objectsInView == this.props.followedObjects ? "activity-selected-button" : "activity-button"}
+                               onClick={() => this.props.handleActivityClick("followedObjects")}>
                                 <h2>{this.props.followedObjects.items.count}</h2>
                             </a>
                                                                 :
@@ -50,8 +51,8 @@ class AccountActivity extends Component {
                         </div>
                         <div>
                         { this.props.purchasedObjects.loaded ?
-                            <a className={this.state.activityInView == this.props.purchasedObjects ? "activity-selected-button" : "activity-button"}
-                               onClick={() => this.props.handleActivityClick("purchased_objects", 3)}>
+                            <a className={this.props.objectsInView == this.props.purchasedObjects ? "activity-selected-button" : "activity-button"}
+                               onClick={() => this.props.handleActivityClick("purchasedObjects")}>
                                 <h2>{this.props.purchasedObjects.items.count}</h2>
                             </a>
                                                             :
@@ -64,8 +65,8 @@ class AccountActivity extends Component {
                         <span className="main-account-activity__container__activity__label">Ventes en cours</span>
                         <div>
                         { this.props.activeObjects.loaded ? 
-                            <a className={this.state.activityIndex == 4 ? "activity-selected-button" : "activity-button"} 
-                               onClick={() => this.props.handleActivityClick("active_objects", 4)}>
+                            <a className={this.props.objectsInView == this.props.activeObjects ? "activity-selected-button" : "activity-button"} 
+                               onClick={() => this.props.handleActivityClick("activeObjects")}>
                                 <h2>{this.props.activeObjects.items.count}</h2>
                             </a>
 
@@ -76,8 +77,8 @@ class AccountActivity extends Component {
                         </div>
                         <div>
                         { this.props.selledObjects.loaded ?
-                            <a className={this.state.activityIndex == 5 ? "activity-selected-button" : "activity-button"}
-                               onClick={() => this.props.handleActivityClick("saled_objects", 5)}>
+                            <a className={this.props.objectsInView == this.props.selledObjects ? "activity-selected-button" : "activity-button"}
+                               onClick={() => this.props.handleActivityClick("selledObjects")}>
                                 <h2>{this.props.selledObjects.items.count}</h2>
                             </a>
                                                         :
@@ -88,8 +89,8 @@ class AccountActivity extends Component {
                         </div>
                         <div>
                         { this.props.endedObjects.loaded ? 
-                            <a className={this.state.activityIndex == 6 ? "activity-selected-button" : "activity-button"}
-                               onClick={() => this.props.handleActivityClick("ended_objects", 6)}>
+                            <a className={this.props.objectsInView == this.props.endedObjects ? "activity-selected-button" : "activity-button"}
+                               onClick={() => this.props.handleActivityClick("endedObjects")}>
                                 <h2>{this.props.endedObjects.items.count}</h2>
                             </a>
                                                         :

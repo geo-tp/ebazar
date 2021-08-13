@@ -58,6 +58,8 @@ class QuestionViewSet(viewsets.ModelViewSet):
     # @checkUserIsReceiver("question")
     def retrieve(self, request, pk):
         question = Question.objects.get(id=pk)
+
+        #Marked as viewed when user request for question
         question.viewed = 1
         question.save()
 
@@ -67,8 +69,14 @@ class QuestionViewSet(viewsets.ModelViewSet):
     #     pass
 
 class QuestionAndAnswerViewSet(viewsets.ModelViewSet):
+    """
+        Return nested question and answer
+    """
 
     class CustomPaginate(pagination.PageNumberPagination):
+        """
+        Customize numbers of results returned by pagination
+        """
         page_size = 3
 
     # http_method_names = ["get"]

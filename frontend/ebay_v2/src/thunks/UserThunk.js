@@ -2,6 +2,7 @@ import { editUser, editUserError, editUserSuccess,
          getDetailledUser, getDetailledUserError, getDetailledUserSuccess, 
          getUser, getUserError, getUserSuccess } from "../actions/UserActions"
 import { API_USER } from "../utils/apiEndPoints"
+import { NOT_FOUND } from "../utils/errors"
 import { parametersFormater } from "../utils/parametersFormater"
 import { urlFormater } from "../utils/urlFormater"
 
@@ -41,7 +42,7 @@ export const fetchEditUser = (userId, modification) => {
         dispatch(editUser(userId, modification))
 
         let url = urlFormater({
-            model: "user",
+            model: API_USER,
             pk: userId
         })
 
@@ -50,7 +51,7 @@ export const fetchEditUser = (userId, modification) => {
         return fetch(url, params)
             .then(rslt => {
                 if (!rslt.ok) {
-                    throw new Error("Error - 404 Not Found")
+                    throw new Error(NOT_FOUND)
                 }
 
                 return rslt.json()
@@ -58,10 +59,14 @@ export const fetchEditUser = (userId, modification) => {
 
             .then(userModified => {
                 dispatch(editUserSuccess(userModified))
+
+                return true
             })
 
             .catch(error => {
                 dispatch(editUserError(error))
+
+                return false
             })
     }
 }

@@ -17,9 +17,11 @@ import { fetchSelledObjects } from "../thunks/SelledObjectThunk";
 import { activeObjectSelector, biddedObjectSelector, endedObjectSelector, 
          followedObjectSelector, purchasedObjectSelector, selledObjectSelector } from "../selectors/ObjectSelectors";
 import { fetchUserByUsername } from "../fetch/UserFetch";
-import { fetchUser } from "../thunks/UserThunk";
+import { fetchEditUser, fetchUser } from "../thunks/UserThunk";
+import {fetchDetailledUser} from "../thunks/DetailledUserThunk"
 import { fetchReceivedMessages, fetchSendedMessages } from "../thunks/MessageThunk";
 import { fetchQuestionsOfUser } from "../thunks/QuestionThunk";
+import AccountObjectList from "../components/AccountObjectList";
 
 class Account extends Component {
 
@@ -29,7 +31,7 @@ class Account extends Component {
         let id = this.props.auth.basicUser.id
 
         if (!this.props.user.loaded) {
-            this.props.fetchUser(id)
+            this.props.fetchDetailledUser(id)
         }
 
         this.props.fetchSendedMessages(id)
@@ -44,18 +46,28 @@ class Account extends Component {
         this.props.fetchEndedObjects(id)
 
         this.state = {
-            activityInView: null,
+            objectsInView: null,
+            objectsType: null,
+
         }
     }
 
     handleActivityClick = (activity) => {
 
         this.setState({
-            activityInView: this.props[activity]
+            objectsInView: this.props[activity],
+            objectsType: activity
+        })
+    }
+    
+    handleResetClick = () => {
+        this.setState({
+            objectsInView: null,
         })
     }
 
     render() {
+        console.log("acti", this.state.objectsInView)
         return(
             <div>
                 <h2>Compte</h2>
@@ -64,7 +76,7 @@ class Account extends Component {
                                  user={this.props.user}/>
                 <AccountActivity
                             handleActivityClick={this.handleActivityClick}
-                            activityInView={this.state.activityInView}
+                            objectsInView={this.state.objectsInView}
 
 
                             purchasedObjects={ this.props.purchasedObjects}
@@ -79,7 +91,19 @@ class Account extends Component {
                             receivedMessages={this.props.receivedMessages}
                             questions={this.props.questions}/>
 
-                <AccountProfile user={this.props.user}/>
+               {this.state.objectsInView && 
+               
+                        <AccountObjectList user={this.props.user}
+                                           handleResetClick={this.handleResetClick}
+                                           objects={this.state.objectsInView}
+                                           objectsType={this.state.objectsType}/>}
+
+                {this.props.user.loaded && 
+                        <AccountProfile 
+                            fetchEditUser={this.props.fetchEditUser}
+                            user={this.props.user}/>}
+                
+
                 <AccountConfiguration user={this.props.user}/>
             </div>
         )
@@ -112,7 +136,8 @@ const AccountStore = connect(
         fetchBiddedObjects: (userId) => dispatch(fetchBiddedObjects(userId)),
         fetchSelledObjects: (userId) => dispatch(fetchSelledObjects(userId)),
 
-        fetchUser: (userId) => dispatch(fetchUser(userId)),
+        fetchDetailledUser: (userId) => dispatch(fetchDetailledUser(userId)),
+        fetchEditUser: (userId, modification) => dispatch(fetchEditUser(userId, modification)),
         fetchSendedMessages: (userId) => dispatch(fetchSendedMessages(userId)),
         fetchReceivedMessages: (userId) => dispatch(fetchReceivedMessages(userId)),
         fetchQuestionsOfUser: (userId) => dispatch(fetchQuestionsOfUser(userId)),

@@ -194,6 +194,14 @@ button:hover {
   }
 }
 
+#close-object-list {
+  position: absolute;
+  top: 0%;
+  right: 1%;
+  cursor: pointer;
+  color: #2046f2;
+}
+
 .wrapper, .wrapper--large, .wrapper--small {
   position: relative;
   height: 100%;
@@ -1133,6 +1141,38 @@ select {
 }
 .main-account-configuration button {
   margin: 2%;
+}
+
+.main-account-object-list {
+  margin: 0 auto;
+  position: relative;
+}
+.main-account-object-list__wrapper {
+  padding-top: 5%;
+  margin-bottom: 3%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  background-color: #f7f7f7;
+  box-shadow: 6px 6px 12px 12px rgba(194, 194, 194, 0.1);
+  border: 1px solid rgba(128, 128, 131, 0.13);
+}
+.main-account-object-list__wrapper div {
+  flex-basis: 20%;
+}
+@media screen and (max-width: 1280px) {
+  .main-account-object-list__wrapper div {
+    flex-basis: 40%;
+  }
+}
+@media screen and (max-width: 590px) {
+  .main-account-object-list__wrapper div {
+    flex-basis: 100%;
+  }
+}
+.main-account-object-list__wrapper__view-more {
+  text-align: center;
+  margin: 1em;
 }
 
 .main-home-page {

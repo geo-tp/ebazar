@@ -111,7 +111,7 @@ class BidSerializer(serializers.ModelSerializer):
 
         rep = super().to_representation(instance)
 
-        # Payment data are hide for confidentiality, 
+        # Payment data are hided for confidentiality, 
         # Others bidders cant know exactly against who they are fighting
         rep["user"]["username"] = hidePartOfData(rep["user"]["username"])
 

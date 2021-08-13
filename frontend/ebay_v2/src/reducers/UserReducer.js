@@ -8,13 +8,13 @@ export const UserReducer = (state=initialState.user, action) => {
 
     switch (action.type) {
 
-        case GET_USER:
+        case GET_DETAILLED_USER:
             return {...state, loading: true}
 
-        case GET_USER_ERROR:
+        case GET_DETAILLED_USER_ERROR:
             return {...state, loading: false, error:action.payload.error}
         
-        case GET_USER_SUCCESS:
+        case GET_DETAILLED_USER_SUCCESS:
             return {...state, loading: false, loaded:true, 
                     item:action.payload.user}
 
@@ -26,11 +26,7 @@ export const UserReducer = (state=initialState.user, action) => {
         
         case EDIT_USER_SUCCESS:
 
-            let userInfos = {...state.userInfos, user:action.payload.user}
-
-            let newUserInfos = {...userInfos, userInfos}
-
-            return {...state, loading: false, userInfos:newUserInfos}
+            return {...state, loading: false, item:action.payload.user}
         default:
             return state
     }

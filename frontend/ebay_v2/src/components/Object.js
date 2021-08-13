@@ -3,7 +3,6 @@ import { convertDateToTimeLeft } from "../utils/timeConverters";
 import {Redirect} from 'react-router';
 import PropTypes from 'prop-types'
 
-
 class Obj extends Component{
 
     constructor(props) {
