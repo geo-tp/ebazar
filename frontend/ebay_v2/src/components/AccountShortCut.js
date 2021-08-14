@@ -26,11 +26,11 @@ class AccountShortCut extends Component {
             <div className="main-account-shortcut">
                 <div>
                     <span class="main-account-shortcut__notification">
-                        <Link to={"/account/messagerie/"+this.props.user.id+"/questions/0"}><button>Questions</button></Link>
+                        <Link to={"/messaging/questions/"}><button>Questions</button></Link>
                         <span>{this.countUnviewed(this.props.questions)}</span>
                     </span>
                     <span class="main-account-shortcut__notification">
-                        <Link to={"/account/messagerie/"+this.props.user.id+"/messages/0"}><button>Messages</button></Link>
+                        <Link to={"/messaging/receivedMessages/"+this.props.user.id+"/messages/0"}><button>Messages</button></Link>
                         <span>{this.countUnviewed(this.props.receivedMessages)}</span>
                     </span>
                 </div>

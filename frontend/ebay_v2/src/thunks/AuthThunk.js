@@ -33,11 +33,15 @@ export const fetchLogin = (mail, password) => {
             .then(userAndToken => {
                 console.log("USERANDTO", userAndToken)
                 dispatch(getConnectedSuccess(userAndToken))
+
+                return 1
             })
 
             .catch(error => {
                 console.log(error)
                 dispatch(getConnectedError(error))
+
+                return 0
             })
 
     }

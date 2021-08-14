@@ -1,0 +1,39 @@
+.main-message-response {
+    /* height: 3OOpx; */
+    padding: 2%;
+    background-color: rgb(255, 255, 255);
+    text-align: center;
+    /* border-bottom: 12px solid lightgray;
+    border-right: 12px solid lightgray; */
+    box-shadow: 6px 6px 34px 34px rgba(194, 194, 194, 0.1);
+    // background-color: rgb(246, 246, 246);
+    border-top: 1px solid rgba(211, 211, 211, 0.623);
+
+
+    & input {
+        background-color: rgb(246, 246, 246);
+        margin-bottom: 1%;
+        width: 100%;
+
+
+        @include tablet-design {
+            height: 24px;
+        }
+    }
+
+    & form {
+    }
+    
+    & table {
+        width: 100%;
+    }
+
+    & textarea {
+        margin-bottom: 2%;
+        width: 100%;
+
+        @include tablet-design {
+            margin-bottom: 5%;
+        }
+    }
+}

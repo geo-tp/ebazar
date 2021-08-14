@@ -1,0 +1,44 @@
+.delete-message-button {
+    margin: 2%;
+
+    @include tablet-design {
+
+        max-width: 70px;
+        position: relative;
+    }
+
+}
+
+.main-message-view {
+    position: relative;
+
+    @include tablet-design {
+        width: 100%;
+        height: 100%;
+    }
+
+    &__top-view {
+        background-color: rgb(214, 214, 212);
+        width: 100%;
+
+        &__user-date {
+            text-align: right;
+            padding-right: 3%;
+            background-color: white;
+        }
+        &__title {
+            margin-left: 5%;
+
+
+        }
+    
+        &__text {
+            margin: 5%;
+
+            // @include tablet-design {
+            //     margin: 10%;
+            //     padding: 3%
+            // }
+        }
+    }
+}

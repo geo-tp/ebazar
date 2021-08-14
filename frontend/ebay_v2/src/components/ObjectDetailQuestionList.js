@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { questionOfObjectSelector, questionSelector } from "../selectors/QuestionSelectors";
 import { fetchNextQuestionsOfObjectPage, fetchQuestionsOfObject } from "../thunks/QuestionThunk";
 import { detailledObjectSelector } from "../selectors/DetailledObjectSelector";
+import { NO_QUESTION_ERROR } from "../utils/errors";
 
 
 class ObjectDetailQuestionList extends Component {
@@ -82,7 +83,7 @@ class ObjectDetailQuestionList extends Component {
                         </button>
                     }
                     {this.props.questions.loaded && this.props.questions.items.results.length == 0 && 
-                                    <p>Aucune question pour le moment</p>}
+                                    <p>{NO_QUESTION_ERROR}</p>}
                 </div>
             </div>
         )

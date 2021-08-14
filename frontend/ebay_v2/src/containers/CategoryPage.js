@@ -10,6 +10,7 @@ import { fetchObjects } from "../thunks/ObjectThunk";
 import { withRouter } from "react-router";
 import { subCategorySelector } from "../selectors/SubCategorySelectors";
 import { fetchSubCategories } from "../thunks/SubCategoryThunk";
+import CategoryBanner from "../components/CategoryBanner";
 
 class Category extends Component {
 
@@ -27,6 +28,15 @@ class Category extends Component {
 
     }
 
+    componentDidUpdate(prevProps) {
+
+        if(prevProps.match.params.categoryId !== this.props.match.params.categoryId){
+            this.props.fetchSubCategories(this.props.match.params.categoryId)
+
+            
+        }
+      }
+
     componentDidMount() {
         window.scrollTo(0, 0);
     }
@@ -37,6 +47,8 @@ class Category extends Component {
             <div className="main-category-page">
                 <h3 className="main-category-page__selected-category" >{this.props.categories.loaded && 
                         <img src={this.props.categories.items[this.props.match.params.categoryId-1].img}/>}</h3>
+                <CategoryBanner categories={this.props.categories}/>
+
 
                 <SubCategoryBanner  categoryId={this.props.match.params.categoryId}
                                     fetchObjects={this.props.fetchObjects}

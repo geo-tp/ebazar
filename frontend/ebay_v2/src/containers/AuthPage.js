@@ -4,6 +4,8 @@ import PropTypes from "prop-types"
 import { connect } from "react-redux";
 import { authSelector } from "../selectors/AuthSelectors";
 import { fetchLogin, fetchRegistration } from "../thunks/AuthThunk";
+import { LOGIN_SUCCESS } from "../utils/success";
+import { LOGIN_ERROR } from "../utils/errors";
 
 
 
@@ -18,18 +20,41 @@ class Auth extends Component {
 
             connection_email: "",
             connection_password: "",
+
+            redirectToAccount: false
         }
     }
 
-    handleLogin = (e) => {
+    async handleLogin(e) {
 
         e.preventDefault()
 
-        this.props.fetchLogin(this.state.connection_email, this.state.connection_password)
+        let response = await this.props.fetchLogin(
+                                this.state.connection_email, 
+                                this.state.connection_password
+        )
+
+        if (response) {
+            this.setState({connection_message: LOGIN_SUCCESS,
+                           redirectToAccount: true})
+        }
+
+        else {
+            this.setState({connection_message: LOGIN_ERROR})
+        }
+
+
+
+
     }
 
 
     render = () => {
+
+        if (this.state.redirectToAccount) {
+            return <Redirect to='/account/'/>
+        }
+
         return(
             <div className="main-auth">
                 <div className="main-auth__connection-box">

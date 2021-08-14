@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types"
-import Loading from "./Loading"
+import LoadingSmall from "./LoadingSmall"
 
 class AccountActivity extends Component {
 
@@ -34,7 +34,7 @@ class AccountActivity extends Component {
                                 <h2>{this.props.biddedObjects.items.count}</h2>
                             </a>
                                                              :
-                            <Loading/> 
+                            <LoadingSmall/> 
                             }
                             <p>Enchèri(s)</p>
                         </div>
@@ -45,7 +45,7 @@ class AccountActivity extends Component {
                                 <h2>{this.props.followedObjects.items.count}</h2>
                             </a>
                                                                 :
-                            <Loading/> 
+                            <LoadingSmall/> 
                             }
                             <p>A suivre</p>
                         </div>
@@ -56,7 +56,7 @@ class AccountActivity extends Component {
                                 <h2>{this.props.purchasedObjects.items.count}</h2>
                             </a>
                                                             :
-                            <Loading/> 
+                            <LoadingSmall/> 
                         }
                             <p>A Payer</p>
                         </div>
@@ -71,7 +71,7 @@ class AccountActivity extends Component {
                             </a>
 
                                                         :
-                            <Loading/> 
+                            <LoadingSmall/> 
                         }
                             <p>Vente(s)</p>
                         </div>
@@ -83,7 +83,7 @@ class AccountActivity extends Component {
                             </a>
                                                         :
                                                         
-                            <Loading/> 
+                            <LoadingSmall/> 
                         }
                             <p>Vendu(s)</p>
                         </div>
@@ -94,7 +94,7 @@ class AccountActivity extends Component {
                                 <h2>{this.props.endedObjects.items.count}</h2>
                             </a>
                                                         :
-                            <Loading/> 
+                            <LoadingSmall/> 
                         }
                             <p>Invendu(s)</p>
                         </div>

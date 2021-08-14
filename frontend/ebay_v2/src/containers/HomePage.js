@@ -52,7 +52,7 @@ class Home extends Component {
                 <CategoryBanner categories={this.props.categories}/>
                 <OfferBanner offerBanners={this.props.offerBanners}/>
                 <SelectionBanner selections={this.props.selections}/>
-                <ObjectListContainer listLabel="Home"/>
+                <ObjectListContainer listLabel="Enchères en cours"/>
             </div>
         )
     }

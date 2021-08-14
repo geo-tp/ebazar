@@ -50,7 +50,7 @@ Link {
   padding: 20px;
 }
 
-.center {
+.align-center {
   text-align: center;
   justify-content: center;
 }
@@ -484,7 +484,7 @@ Link {
   position: absolute;
   top: 75px;
   right: 0%;
-  width: 17%;
+  width: 13%;
   z-index: 10;
   color: #272727;
   background-color: #fafafa;
@@ -492,7 +492,7 @@ Link {
   box-shadow: 0px 10px 20px 5px rgba(58, 58, 58, 0.226);
 }
 .nav-bar__user ul {
-  margin: 1em auto;
+  width: 100%;
   padding: 0;
   text-align: center;
 }
@@ -502,10 +502,11 @@ Link {
   cursor: pointer;
 }
 .nav-bar__user li button {
-  width: 70%;
+  width: 90%;
   border-radius: 5px;
   border-color: #f7f7f7;
   font-size: 1em;
+  text-align: left;
 }
 .nav-bar__user li button:hover {
   border-color: #c9d2fc;
@@ -533,7 +534,7 @@ Link {
 }
 @media screen and (max-width: 590px) {
   .nav-bar__user {
-    width: 50%;
+    width: 40%;
   }
 }
 
@@ -841,8 +842,8 @@ Link {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  background-color: white;
   z-index: 30;
+  background-color: rgba(255, 255, 255, 0.212);
   box-shadow: 0px 10px 30px 0px rgba(58, 58, 58, 0.226);
 }
 @media screen and (max-width: 1280px) {
@@ -860,6 +861,11 @@ Link {
 }
 .main-loading img {
   width: 40%;
+}
+
+.main-loading-small img {
+  width: 50px;
+  height: 50px;
 }
 
 .main-sale-form {
@@ -1174,6 +1180,9 @@ select {
   box-shadow: 6px 6px 12px 12px rgba(194, 194, 194, 0.1);
   border: 1px solid rgba(128, 128, 131, 0.13);
 }
+.main-account-object-list__wrapper h3 {
+  text-align: center;
+}
 .main-account-object-list__wrapper div {
   flex-basis: 20%;
 }
@@ -1190,6 +1199,223 @@ select {
 .main-account-object-list__wrapper__view-more {
   text-align: center;
   margin: 1em;
+}
+
+.main-message-panel {
+  margin: 2%;
+  padding: 2%;
+  box-shadow: 8px 3px 70px 0px rgba(194, 194, 194, 0.774);
+  border: 1px solid rgba(211, 211, 211, 0.623);
+}
+.main-message-panel__messages-wrapper {
+  border: 2px solid rgba(211, 211, 211, 0.377);
+  /* height: 600px; */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+@media screen and (max-width: 1280px) {
+  .main-message-panel__messages-wrapper {
+    display: block;
+  }
+}
+.main-message-panel__messages-wrapper__container {
+  position: relative;
+  width: 100%;
+}
+.main-message-panel__messages-wrapper__container__messages-details {
+  height: 100%;
+  width: 100%;
+}
+.main-message-panel__messages-wrapper__container__messages-response {
+  position: absolute;
+  bottom: 0%;
+  width: 100%;
+}
+@media screen and (max-width: 1280px) {
+  .main-message-panel__messages-wrapper__container__messages-response {
+    position: relative;
+  }
+}
+
+.table-selected-row {
+  background-color: #dfe2f0;
+  box-shadow: inset 3px 3px 3px 0px rgba(138, 151, 168, 0.75);
+  box-shadow: inset 0 -3px 0 0 #2961db;
+}
+
+.table-row {
+  background-color: #f6f6f6;
+}
+.table-row:hover {
+  box-shadow: inset 0 -3px 0 0 #2961db;
+  background-color: #dfe2f0;
+  cursor: pointer;
+}
+
+.unviewed-row {
+  font-weight: bold;
+  color: #1a1818;
+}
+
+.unviewed-message {
+  background-color: #f0f0e4;
+}
+
+#selected-table-index {
+  background-color: #2961db;
+  color: white;
+}
+
+.main-table-messages {
+  background-color: #f1f1f1;
+  width: 40%;
+}
+@media screen and (max-width: 1280px) {
+  .main-table-messages {
+    width: 100%;
+  }
+}
+.main-table-messages table {
+  box-shadow: 6px 6px 12px 12px rgba(194, 194, 194, 0.1);
+}
+.main-table-messages th {
+  text-align: center;
+}
+.main-table-messages tr {
+  border-bottom: 1px solid #cacaca;
+  margin: 2%;
+}
+@media screen and (max-width: 1280px) {
+  .main-table-messages td {
+    height: 60px;
+    width: 100%;
+  }
+}
+.main-table-messages__button-box {
+  text-align: center;
+  margin-top: 3%;
+  margin-bottom: 2%;
+}
+.main-table-messages__button-box button {
+  margin: 1%;
+  width: 90%;
+}
+.main-table-messages__table-box {
+  overflow-y: scroll;
+  height: 423px;
+  background-color: white;
+  padding: 2%;
+}
+@media screen and (max-width: 1280px) {
+  .main-table-messages__table-box {
+    height: 200px;
+    min-height: 200px;
+    font-size: 1em;
+  }
+}
+
+.main-message-response {
+  /* height: 3OOpx; */
+  padding: 2%;
+  background-color: white;
+  text-align: center;
+  /* border-bottom: 12px solid lightgray;
+  border-right: 12px solid lightgray; */
+  box-shadow: 6px 6px 34px 34px rgba(194, 194, 194, 0.1);
+  border-top: 1px solid rgba(211, 211, 211, 0.623);
+}
+.main-message-response input {
+  background-color: #f6f6f6;
+  margin-bottom: 1%;
+  width: 100%;
+}
+@media screen and (max-width: 1280px) {
+  .main-message-response input {
+    height: 24px;
+  }
+}
+.main-message-response table {
+  width: 100%;
+}
+.main-message-response textarea {
+  margin-bottom: 2%;
+  width: 100%;
+}
+@media screen and (max-width: 1280px) {
+  .main-message-response textarea {
+    margin-bottom: 5%;
+  }
+}
+
+.delete-message-button {
+  margin: 2%;
+}
+@media screen and (max-width: 1280px) {
+  .delete-message-button {
+    max-width: 70px;
+    position: relative;
+  }
+}
+
+.main-message-view {
+  position: relative;
+}
+@media screen and (max-width: 1280px) {
+  .main-message-view {
+    width: 100%;
+    height: 100%;
+  }
+}
+.main-message-view__top-view {
+  background-color: #d6d6d4;
+  width: 100%;
+}
+.main-message-view__top-view__user-date {
+  text-align: right;
+  padding-right: 3%;
+  background-color: white;
+}
+.main-message-view__top-view__title {
+  margin-left: 5%;
+}
+.main-message-view__top-view__text {
+  margin: 5%;
+}
+
+@media screen and (max-width: 1280px) {
+  .main-question-view {
+    width: 100%;
+    height: 100%;
+  }
+}
+.main-question-view__top-view {
+  background-color: #d6d6d4;
+  width: 100%;
+}
+.main-question-view__top-view__user-date {
+  text-align: right;
+  padding-right: 3%;
+  background-color: white;
+}
+.main-question-view__question-box {
+  display: flex;
+}
+.main-question-view__question-box__img {
+  width: 20%;
+  margin: 3%;
+}
+.main-question-view__question-box__title {
+  margin: 5%;
+}
+.main-question-view__question-box__text {
+  margin: 5%;
+}
+@media screen and (max-width: 1280px) {
+  .main-question-view__question-box__text {
+    margin: 10%;
+    padding: 3%;
+  }
 }
 
 .main-home-page {

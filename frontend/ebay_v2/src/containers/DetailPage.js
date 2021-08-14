@@ -26,9 +26,11 @@ class Detail extends Component {
         props.fetchImagesOfObject(this.props.match.params.objectId)
         props.fetchBidsOfObject(this.props.match.params.objectId)
 
+    }
 
 
-
+    componentDidMount() {
+        window.scrollTo(0, 0);
     }
 
     componentDidUpdate(prevProps) {

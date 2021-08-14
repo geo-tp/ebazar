@@ -16,7 +16,6 @@ class MessageResponse extends Component {
 
         e.preventDefault()
 
-        console.log("MESS", this.state.message)
         if (this.state.message === "") {
             this.setState({data_is_missing: "Veuillez remplir le formulaire"})
             return
@@ -42,7 +41,7 @@ class MessageResponse extends Component {
                                 <td><input
                                         value={this.state.sujet}
                                         onChange={(e) => this.setState({sujet:e.target.value})} 
-                                        placeholder="Sujet">
+                                        placeholder="Sujet de votre réponse">
                                     </input>
                                 </td>
                             </tr>
@@ -51,7 +50,7 @@ class MessageResponse extends Component {
                                 <td>
                                     <textarea 
                                         value={this.state.message}
-                                        placeholder='Votre message'
+                                        placeholder='Votre réponse'
                                         onChange={(e) => this.setState({message:e.target.value})}>
                                     </textarea>
                                 </td>

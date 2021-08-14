@@ -5,6 +5,7 @@ import {
     BrowserRouter as Router,
     Link
   } from "react-router-dom";
+import { NO_OBJECT_TO_RENDER } from "../utils/errors";
 import AccountObj from "./AccountObj";
 
 class ObjectsAccountListe extends Component {
@@ -54,7 +55,7 @@ class ObjectsAccountListe extends Component {
         return(
             <div className="main-account-object-list">
                 <div className="main-account-object-list__wrapper">
-                    <h3>{this.props.title}</h3>
+                    <h3 className="align-center">{!! !this.props.objects.items.count && NO_OBJECT_TO_RENDER}</h3>
                         <i onClick={() => this.props.handleResetClick()} id="close-object-list" className="fa fa-2x fa-close"/>
                         {this.props.objects.loaded && this.props.objects.items.results.map((object, index) => {
                             if (index > 7) {

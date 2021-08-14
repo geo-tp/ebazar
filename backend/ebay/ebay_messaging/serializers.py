@@ -1,11 +1,13 @@
 from rest_framework import serializers
 from .models import *
-
+from users.serializers import BasicUserSerializer
 
 class MessageSerializer(serializers.ModelSerializer):
 
     # sender = UserSerializer()
     # reciever = UserSerializer()
+    sender = BasicUserSerializer()
+    receiver = BasicUserSerializer()
 
     class Meta:
         model = Message
@@ -13,6 +15,8 @@ class MessageSerializer(serializers.ModelSerializer):
         read_only_fields = ["answered"]
 
 class QuestionSerializer(serializers.ModelSerializer):
+
+    sender = BasicUserSerializer()
 
     class Meta:
         model = Question

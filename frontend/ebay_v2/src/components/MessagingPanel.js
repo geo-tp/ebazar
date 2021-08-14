@@ -11,6 +11,7 @@ import { questionSelector } from "../selectors/QuestionSelectors";
 import { fetchSendedMessages, fetchReceivedMessages } from "../thunks/MessageThunk";
 import {fetchQuestionsOfUser} from "../thunks/QuestionThunk"
 
+const SELECTED_DATA = {"questions": 1, "receivedMessages": 2, "sendedMessages": 3}
 
 class MessagingPanel extends Component {
 
@@ -21,9 +22,14 @@ class MessagingPanel extends Component {
         this.state = {
             isInit: 0,    
 
-            dataSetInView: this.props[this.props.dataSetType]
+            dataSetInView: this.props[this.props.dataSetType],
+            dataInView: this.props[this.props.dataSetType][this.props.dataIndex],
+            dataInViewIndex: this.props.dataIndex,
+            dataSetType: this.props.dataSetType,
+            selectedData: SELECTED_DATA[this.props.dataSetType]
 
         }
+        
 
     }
 
@@ -32,88 +38,98 @@ class MessagingPanel extends Component {
         this.setState({
             isInit: 1,
 
-            dataInView: this.state.dataSetInView.items.results[this.props.dataInViewIndex ? this.props.dataInViewIndex : 0],
-        }, console.log("STATE", this.state))
+            dataInView: this.state.dataSetInView.items.results[
+                    this.state.dataIndex ? this.state.dataIndex : 0
+            ],
+
+        })
 
           
     }
 
     handleDataChange = (set_name) => {
         this.setState ({
-            dataSetType: this.props[set_name],
+            dataSetInView: this.props[set_name],
             // actual_type : set_name,
-            dataInViewIndex: 1,
-            dataInView: this.props.receivedMessages.results[0]
+            dataInViewIndex: null,
+            dataInView: null,
+            dataSetType: set_name,
+            selectedData: SELECTED_DATA[set_name]
         })
     }
 
-    handleDataInViewChange = (data_id, table_index) => {
+    handleDataInViewChange = (dataId, tableIndex) => {
+
         this.setState({
-            dataInView: this.state.dataSetInView[table_index],
-            selected_data_index: table_index
+            dataInView: this.state.dataSetInView.items.results[tableIndex],
+            dataInViewIndex: tableIndex
         })
 
-        this.requestDataViewed(table_index, data_id)
+        // this.requestDataViewed(tableIndex, dataId)
 
     }
 
     render = () => {
 
-        console.log("RECEIVED MESS", this.props[this.props.dataSetType])
+        // if (this.state.dataSetInView.loaded && !this.state.isInit) {
 
-        if (this.state.dataSetInView.loaded && !this.state.isInit) {
-
-            this.initView()
-        }
+        //     this.initView()
+        // }
 
 
             return(
-                <div className="main-message-panel">
+                <div>
                     <h3>Messagerie</h3>
-                    <div className="main-message-panel__messages-wrapper">
-                            {this.state.dataSetInView && <MessagesTable
-                                handleDataChange={this.handleDataChange}
-                                handleDataInViewChange={this.handleDataInViewChange}
-                                data={this.state.dataSetInView}
-                                selected_data_index={this.state.dataInViewIndex}
-                                type={this.state.dataSetType}
-                                data_in_view={this.state.dataInView}/>}
-                        <div className="main-message-panel__messages-wrapper__messages-details">
-                            {this.state.dataSetInView && this.state.dataSetInView.hasOwnProperty("questions") ? 
-                            
-                            this.props.questions && <QuestionView question={this.state.dataInView}/>
-                            :
+                    <div className="main-message-panel">
+                        <div className="main-message-panel__messages-wrapper">
+                                    
+                                    <MessagesTable
+                                        handleDataChange={this.handleDataChange}
+                                        handleDataInViewChange={this.handleDataInViewChange}
+                                        data={this.state.dataSetInView}
+                                        selectedData={this.state.selectedData}
+                                        selectedIndex={this.state.dataInViewIndex}
+                                        type={this.state.dataSetType}
+                                        dataInView={this.state.dataInView}/>
 
-                            this.state.dataInView && <MessageView message={this.state.dataInView}/>}
-                            {!this.state.dataSetInView && <div style={{"text-align":"center"}}><Loading/></div>}
-
-                        
-                            {this.state.dataSetInView != "sendedMessages" && 
-                                this.state.dataSetInView && <MessageResponse 
-                                    confirmation_data_send={this.state.confirmation_data_send}
-                                    requestSendData={this.requestSendData}/>}
-                                    </div>
+                            <div className="main-message-panel__messages-wrapper__container">
+                                <div className="main-message-panel__messages-wrapper__container_messages-details">
+                                    {this.state.dataSetType.includes("Messages") ? 
+                                    
+                                    <MessageView message={this.state.dataInView}/>
+                                    :
+                                    this.props.questions && <QuestionView question={this.state.dataInView}/> }
+                                    
+                                </div>
+                                <div className="main-message-panel__messages-wrapper__container__messages-response">
+                                    {this.state.dataSetType != "sendedMessages" && 
+                                        this.state.dataSetInView && <MessageResponse 
+                                            confirmation_data_send={this.state.confirmation_data_send}
+                                            requestSendData={this.requestSendData}/>}
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             )
         }
 }
 
-export const MessagingPanelStore = connect(
+// export const MessagingPanel = connect(
 
-    (state) => ({
+//     (state) => ({
 
-        sendedMessages: sendedMessageSelector(state),
-        receivedMessages: receivedMessageSelector(state),
-        questions: questionSelector(state)
-    }),
-    (dispatch) => ({
-        fetchSendedMessages: dispatch((userId) => fetchSendedMessages(userId)),
-        fetchReceivedMessages: dispatch((userId) => fetchReceivedMessages(userId)),
-        fetchQuestionsOfUser: dispatch((userId) => fetchQuestionsOfUser(userId))
-    })
+//         sendedMessages: sendedMessageSelector(state),
+//         receivedMessages: receivedMessageSelector(state),
+//         questions: questionSelector(state)
+//     }),
+//     (dispatch) => ({
+//         fetchSendedMessages: dispatch((userId) => fetchSendedMessages(userId)),
+//         fetchReceivedMessages: dispatch((userId) => fetchReceivedMessages(userId)),
+//         fetchQuestionsOfUser: dispatch((userId) => fetchQuestionsOfUser(userId))
+//     })
 
-)(MessagingPanel)
+// )(MessagingPanel)
 
 MessagingPanel.propTypes = {
 
@@ -125,9 +141,9 @@ MessagingPanel.propTypes = {
     receivedMessages: PropTypes.object.isRequired,
     questions: PropTypes.object.isRequired,
 
-    fetchSendedMessages: PropTypes.func.isRequired,
-    fetchReceivedMessages: PropTypes.func.isRequired,
-    fetchQuestionsOfUser: PropTypes.func.isRequired
+    // fetchSendedMessages: PropTypes.func.isRequired,
+    // fetchReceivedMessages: PropTypes.func.isRequired,
+    // fetchQuestionsOfUser: PropTypes.func.isRequired
 }
 
-export default MessagingPanelStore
+export default MessagingPanel

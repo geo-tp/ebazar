@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { objectSelector } from "../selectors/ObjectSelectors";
 import { fetchNextObjectsPage, fetchObjects } from "../thunks/ObjectThunk";
 import Obj from "../components/Object"
+import { NO_OBJECT_TO_RENDER } from "../utils/errors";
 
 class ObjectList extends Component {
 
@@ -13,7 +14,7 @@ class ObjectList extends Component {
             <div className="main-object-list">
                     <h4>{this.props.listLabel}</h4>
                     {this.props.objects.loaded && this.props.objects.items.results.length == 0 && 
-                            <h4 className="main-object-list__no-object">Aucune enchère pour le moment.</h4>}
+                            <h4 className="main-object-list__no-object">{NO_OBJECT_TO_RENDER}</h4>}
                     <div className="main-object-list__wrapper" >
                         {this.props.objects.loaded && 
                         this.props.objects.items != {} && 

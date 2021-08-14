@@ -204,7 +204,7 @@
         position: absolute;
         top: $navigation-default-height+5px;
         right: 0%;
-        width: 17%;
+        width: 13%;
         z-index: 10;
         color: map-get($COLOR_PALETTE,font);
         background-color: map-get($COLOR_PALETTE,sec );
@@ -213,7 +213,8 @@
         // @include small-border-default;
         @include small-shadow;
         & ul {
-            margin: 1em auto;
+            // margin: 1em auto;
+            width:100%;
             padding:0;
             text-align: center;
         }
@@ -223,10 +224,11 @@
             cursor:pointer;
 
             & button {
-                width:70%;
+                width:90%;
                 border-radius: 5px;
                 border-color: map-get($COLOR-PALETTE, bg2 );
                 font-size: 1em;
+                text-align: left;
 
                 &:hover {
                     border-color: lighten(map-get($COLOR_PALETTE, ter), 35%);
@@ -259,7 +261,7 @@
         }
 
         @include mobile-design {
-            width: 50%;
+            width: 40%;
         }
      }
 }

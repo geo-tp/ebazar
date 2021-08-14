@@ -3,6 +3,7 @@ import { detailledObjectBidSelector, detailledObjectSelector } from "../selector
 import { fetchBidsOfObject } from "../thunks/BidThunk";
 import PropTypes from "prop-types"
 import { connect } from "react-redux";
+import { NO_OBJECT_TO_RENDER } from "../utils/errors";
 
 
 class ObjectDetailBidList extends Component {
@@ -31,7 +32,7 @@ class ObjectDetailBidList extends Component {
                         </tbody>
                     </table>
                     
-                {!!this.props.bids.items.count == 0 && <p>Aucune enchère pour le moment</p>}
+                {!!this.props.bids.items.count == 0 && <p>{NO_OBJECT_TO_RENDER}</p>}
             </div>
         )
     }

@@ -19,23 +19,29 @@ import { store } from ".."
 
   export const retrieveUserData = () => {
 
+    console.log("STORE GET STATE",store.getState().auth.connected)
 
-    let token = Cookie.get("EBAZARTOKEN")
-    let user = Cookie.get("EBAZARUSER")
-    let cookieAccepted = Cookie.get("EBAZARACCEPTCOOKIE")
+    if (!store.getState().auth.connected) {
 
-    
-    
-    if (user && token) {
-      user = JSON.parse(user)
-      store.dispatch(getConnectedSuccess({user:user, key:token}))
+      let token = Cookie.get("EBAZARTOKEN")
+      let user = Cookie.get("EBAZARUSER")
+      let cookieAccepted = Cookie.get("EBAZARACCEPTCOOKIE")
+  
       
+      
+      if (user && token) {
+        user = JSON.parse(user)
+        store.dispatch(getConnectedSuccess({user:user, key:token}))
+        
+      }
+      
+      if (cookieAccepted) {
+        console.log("écoookiiie", cookieAccepted)
+        store.dispatch(acceptCookie())
+      }
+
     }
-    
-    if (cookieAccepted) {
-      console.log("écoookiiie", cookieAccepted)
-      store.dispatch(acceptCookie())
-    }
+
 
   }
 

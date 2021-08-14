@@ -50,7 +50,11 @@ class NavBar extends Component {
             )
         }
 
+        let path = this.state.query ? "/search/"+this.state.query : '/search'
+
         return(
+
+
             <div className="nav-bar">
 
                 <div className="nav-bar__nav-site" 
@@ -75,7 +79,7 @@ class NavBar extends Component {
                     <input onChange={(e) => this.setState({query: e.target.value})}
                            onKeyDown={(e) => this.handleEnterPressed(e)}
                            className="nav-bar__search-bar" type="text"></input>
-                    <Link to={"/search/"+this.state.query}><button className="fas fa fa-search button-search"></button></Link>
+                    <Link to={path}><button className="fas fa fa-search button-search"></button></Link>
                 </div>
 
                 <div 
@@ -111,7 +115,7 @@ class NavBar extends Component {
                             <Link to="/account/"
                                   onClick={() => this.setState({accountMenuIsOpen: false})}>
                                 
-                                <button>Mon Compte</button>
+                                <button>Compte</button>
 
                             </Link>
 

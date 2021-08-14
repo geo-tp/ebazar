@@ -17,11 +17,6 @@ class Obj extends Component{
         }
     }
 
-    handleObjectClick(id) {
-
-        window.location = window.location.origin + "/detail/"+ id
-    }
-
     determineWhereToRedirect() {
 
         console.log("TYPE", this.props.objectsType)

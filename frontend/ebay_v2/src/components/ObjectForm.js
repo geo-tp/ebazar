@@ -13,6 +13,7 @@ import { fetchStates } from "../thunks/StateThunk"
 import { fetchCategories } from "../thunks/CategoryThunk"
 import { fetchSubCategories } from "../thunks/SubCategoryThunk"
 import { subCategorySelector } from "../selectors/SubCategorySelectors";
+import { CAT_OR_SUBCAT_ERROR } from "../utils/errors";
 
 class ObjectForm extends Component {
 
@@ -110,7 +111,7 @@ class ObjectForm extends Component {
         e.preventDefault()
 
         if (!this.state.category && !this.state.subcategory) {
-            this.setState({ confirmation_message: "Veuillez choisir une catégorie et sous catégorie" })
+            this.setState({ confirmation_message: CAT_OR_SUBCAT_ERROR })
             return
         }
 

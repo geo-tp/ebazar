@@ -11,3 +11,4 @@ export const REGISTRATION_SUCCESS = "Votre inscription a été validée. Veuille
 
 export const PASSWORD_RESET_SUCCESS = "Votre mot de passe a été réinitilisé."
 
+export const LOGIN_SUCCESS = "Authentification réussie."
