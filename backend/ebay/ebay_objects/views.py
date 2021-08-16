@@ -8,7 +8,6 @@ from django.views.decorators.cache import cache_page
 
 from .models import *
 from .serializers import *
-from ebay_objects.serializers import PurchasedObjectSerializer
 from users.models import CustomUser
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
@@ -132,31 +131,6 @@ class ObjectViewSet(viewsets.ModelViewSet):
 
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
-
-
-class PurchasedObjectViewsSet(viewsets.ModelViewSet):
-
-    # http_method_names = ['get', 'post', 'put', 'patch', 'delete', 'head', 'options']
-
-
-    queryset = PurchasedObject.objects.all()
-    serializer_class = PurchasedObjectSerializer
-    
-    filter_backends = [filters.OrderingFilter, django_filters.rest_framework.DjangoFilterBackend]
-
-    filterset_fields = ["user", "obj", "obj__user__id"]
-    ordering_fields = ["id"]
-
-    permission_classes = [AllowAny]
-
-    @checkUserMatching
-    def create(self, request, *args, **kwargs):
-
-        return super().create(request, *args, **kwargs)
-
-    @method_decorator(cache_page(60))
-    def list(self, request):
-        return super().list(request)
 
 # class WithdrawalViewSet(viewsets.ModelViewSet):
 

@@ -3,6 +3,9 @@ from users.models import CustomUser
 from .models import *
 from users.serializers import BasicUserSerializer
 from ebay_base.functions_utils import hidePartOfData
+from users.serializers import ExpeditionUserSerializer, BasicUserSerializer
+from ebay_objects.serializers import ObjectSerializer
+from ebay_objects.models import Object
 
 class AccountUserSerializer(serializers.ModelSerializer):
     """
@@ -40,6 +43,28 @@ class AccountUserSerializer(serializers.ModelSerializer):
         rep["balance"] = BalanceSerializer().to_representation(instance)
         rep["credits"] = self.serialize_operation(credits)
         rep["debits"] = self.serialize_operation(debits)
+
+        return rep
+
+class TransactionSerializer(serializers.ModelSerializer):
+
+    # user = BasicUserSerializer()
+    # obj = ObjectSerializer(read_only=True)
+
+    class Meta:
+        model = Transaction
+        fields = ["id", "isPaid", "isComplete", "isCancelled", "isShipped",
+                  "shippingCompany", "shippingNumber", "user", "obj"]
+                  
+    def to_representation(self, instance):
+
+        rep = super().to_representation(instance)
+        rep["user"] = ExpeditionUserSerializer().to_representation(CustomUser.objects.get(id=int(rep["user"])))
+        rep["obj"] = ObjectSerializer().to_representation(Object.objects.get(id=int(rep['obj'])))
+        rep["obj"]["user"] = BasicUserSerializer().to_representation(CustomUser.objects.get(id=int(rep["obj"]["user"])))
+
+        request = self.context.get("request")
+        rep['obj']["mainImage"] = "http://" + request.get_host() + rep["obj"]["mainImage"]
 
         return rep
 

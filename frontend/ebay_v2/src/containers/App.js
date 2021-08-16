@@ -19,8 +19,9 @@ import SearchPage from "./SearchPage";
 import UserPage from "./UserPage";
 import { retrieveUserData } from "../utils/cookieHandler";
 
-import Cookie from "js-cookie"
 import MessagingPage from "./MessagingPage";
+import SelledPage from "./SelledPage";
+import PurchasedPage from "./PurchasedPage";
 
 
 
@@ -47,6 +48,14 @@ function App() {
 
           <Route path="/sell">
             <SellPage/>
+          </Route>
+
+          <Route path="/selled">
+            <SelledPage/>
+          </Route>
+
+          <Route path="/purchased">
+            <PurchasedPage/>
           </Route>
 
           <Route path={["/messaging/:dataSet/:dataIndex", "/messaging"]}>

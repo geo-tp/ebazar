@@ -1,0 +1,118 @@
+.main-selled-detail {
+    background-color: white;
+    display: flex;
+    border: 2px solid rgba(211, 211, 211, 0.685);
+    border-top: 0px;
+
+
+    @include mobile-design {
+        display: block;
+    }
+
+    & div {
+        padding: 2%;
+        text-align: center;
+    }
+
+    &__detail-box1 {
+        width: 30%;
+
+        & button {
+            width: 100px;
+            height: 100px;
+        }
+
+        @include mobile-design {
+            width:90%
+        }
+        
+        & div {
+            
+        }
+        
+        &__actions {
+            text-align:center;
+            
+            & ul {
+                margin:0;
+                padding:0;
+            }
+
+            & li {
+                margin-bottom: 5%;
+            }
+        }
+    }
+    
+    &__detail-box2 {
+        width: 30%;
+
+        @include mobile-design {
+            width:90%
+        }
+
+        & img {
+            margin-top: 3%;
+            width: 50%
+        }
+
+    }
+    
+    &__detail-box3 {
+        width: 30%;
+        margin-top: 2%;
+
+        @include mobile-design {
+            width:90%
+        }
+        
+        & table {
+            margin: 0 auto;
+            
+            & tr {
+                & td:first-child  {
+                    text-align: left;
+                    font-weight: bold;   
+                }
+                    
+                & td:last-child {
+                    text-align: right;
+
+                }
+
+            }
+            
+        }
+
+        &__purchase-is-completed {
+            background-color: rgb(71, 136, 71);
+            color: white
+        }
+
+        &__purchase-is-shipped {
+            background-color: rgb(231, 213, 133);
+            color: white
+        }
+        
+        &__purchase-is-paid {
+            background-color: rgb(71, 136, 71);
+            color: white
+        }
+        
+        &__purchase-is-unpaid {
+            background-color: #d06767;
+            color: white
+        
+        }
+
+        &__purchase-cancel-link {
+            margin: 15%;
+
+            & a {
+                color: #d06767
+            }
+        }
+
+    }
+}
+

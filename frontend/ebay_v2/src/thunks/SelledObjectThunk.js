@@ -1,5 +1,5 @@
 import { getSelledObjects, getSelledObjectsError, getSelledObjectsSuccess } from "../actions/ObjectActions"
-import { API_OBJECT } from "../utils/apiEndPoints"
+import { API_TRANSACTION } from "../utils/apiEndPoints"
 import { NOT_FOUND } from "../utils/errors"
 import { parametersFormater } from "../utils/parametersFormater"
 import { urlFormater } from "../utils/urlFormater"
@@ -10,9 +10,11 @@ export const fetchSelledObjects = (userId) => {
         dispatch(getSelledObjects())
 
         let url = urlFormater({
-            model: API_OBJECT,
-            filter_fields: ["user","isSelled"],
-            filter_values: [userId, true]
+            // transaction endpoint with filter to get objects saled by user
+            model: API_TRANSACTION,
+            filter_field: "obj__user__id",
+            filter_value: userId,
+            ordering: "-id"
 
         })
 
@@ -29,11 +31,15 @@ export const fetchSelledObjects = (userId) => {
 
                     .then((objects) => {
                         dispatch(getSelledObjectsSuccess(objects))
+
+                        return 1
                     })
 
                     .catch((error) => {
                         console.log(error)
                         dispatch(getSelledObjectsError(error))
+
+                        return 0
                     })
     }
 }

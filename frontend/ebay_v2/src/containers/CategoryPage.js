@@ -45,9 +45,9 @@ class Category extends Component {
 
         return(
             <div className="main-category-page">
+                <CategoryBanner categories={this.props.categories}/>
                 <h3 className="main-category-page__selected-category" >{this.props.categories.loaded && 
                         <img src={this.props.categories.items[this.props.match.params.categoryId-1].img}/>}</h3>
-                <CategoryBanner categories={this.props.categories}/>
 
 
                 <SubCategoryBanner  categoryId={this.props.match.params.categoryId}

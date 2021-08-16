@@ -6,7 +6,16 @@
     // width: 100%;
     margin: auto;
     
-    &___question-form {
+    &__question-form {
+
+        & input {
+
+            @include tablet-design {
+                height:34px;
+                font-size: 1.2em;
+            }
+        }
+
         
     }
     

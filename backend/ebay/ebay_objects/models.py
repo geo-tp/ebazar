@@ -52,20 +52,3 @@ class FollowedObject(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     obj = models.ForeignKey(Object, on_delete=models.CASCADE)
 
-class PurchasedObject(models.Model):
-
-    """Purchased object with delivery and payment informations"""
-
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    obj = models.ForeignKey(Object, on_delete=models.CASCADE)
-
-    isCancelled = models.BooleanField(default=0, blank=True, null=True)
-    isComplete = models.BooleanField(default=0, blank=True, null=True)
-
-    isShipped = models.BooleanField(default=0, blank=True, null=True)
-    shippingNumber = models.CharField(max_length=120, blank=True, null=True)
-    shippingCompany = models.CharField(max_length=120, blank=True, null=True)
-
-    isPaid = models.BooleanField(default=0, blank=True, null=True)
-
-    operation = models.ForeignKey(Operation, on_delete=models.CASCADE, blank=True, null=True)

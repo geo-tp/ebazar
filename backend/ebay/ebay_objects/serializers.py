@@ -7,7 +7,6 @@ from ebay_account.models import Bid
 from ebay_base.models import Category, SubCategory
 from ebay_base.serializers import CategorySerializer, SubCategorySerializer
 from ebay_objects.models import FollowedObject, StateOfObject
-
 from ebay_base.functions_utils import isOwner
 
 class StateOfObjectSerializer(serializers.ModelSerializer):
@@ -55,28 +54,6 @@ class FollowedObjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = FollowedObject
         fields = "__all__"
-        
-class PurchasedObjectSerializer(serializers.ModelSerializer):
-
-    # user = BasicUserSerializer()
-    # obj = ObjectSerializer(read_only=True)
-
-    class Meta:
-        model = PurchasedObject
-        fields = ["id", "isPaid", "isComplete", "isCancelled", "isShipped",
-                  "shippingCompany", "shippingNumber", "user", "obj"]
-                  
-    def to_representation(self, instance):
-
-        rep = super().to_representation(instance)
-        rep["user"] = ExpeditionUserSerializer().to_representation(User.objects.get(id=int(rep["user"])))
-        rep["obj"] = ObjectSerializer().to_representation(Object.objects.get(id=int(rep['obj'])))
-        rep["obj"]["user"] = BasicUserSerializer().to_representation(User.objects.get(id=int(rep["obj"]["user"])))
-
-        request = self.context.get("request")
-        rep['obj']["mainImage"] = "http://" + request.get_host() + rep["obj"]["mainImage"]
-
-        return rep
 
 class BiddedObjectByUserSerializer(serializers.ModelSerializer):
 

@@ -5,7 +5,7 @@ import { getPurchasedObjects,
 import {NOT_FOUND} from "../utils/errors"
 import { urlFormater } from "../utils/urlFormater"
 import {parametersFormater} from "../utils/parametersFormater"
-import { API_PURCHASED_OBJECT } from "../utils/apiEndPoints"
+import { API_TRANSACTION } from "../utils/apiEndPoints"
 
 
 export const fetchPurchasedObjects = (userId) => {
@@ -15,7 +15,7 @@ export const fetchPurchasedObjects = (userId) => {
 
         let url = urlFormater(
             {
-                model: API_PURCHASED_OBJECT,
+                model: API_TRANSACTION,
                 filter_field: "user",
                 filter_value: userId
             }
@@ -34,20 +34,16 @@ export const fetchPurchasedObjects = (userId) => {
 
                     .then((purchasedObjects) => {
                         
-                        let objects = []
-                        purchasedObjects.results.length && 
-                            purchasedObjects.results.map((purchasedObject) => {
-                                objects.push(purchasedObject.obj)
-                            })
-
-                        purchasedObjects.results = objects
-
                         dispatch(getPurchasedObjectsSuccess(purchasedObjects))
+
+                        return 1
                     })
 
                     .catch((error) => {
                         console.log(error)
                         dispatch(getPurchasedObjectsError(error))
+
+                        return 0
                     })
     }
 }

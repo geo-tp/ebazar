@@ -741,6 +741,12 @@ Link {
   background-color: white;
   margin: auto;
 }
+@media screen and (max-width: 1280px) {
+  .main-detailled-object-questions__question-form input {
+    height: 34px;
+    font-size: 1.2em;
+  }
+}
 .main-detailled-object-questions__box {
   display: flex;
   justify-content: space-around;
@@ -843,7 +849,7 @@ Link {
   top: 50%;
   transform: translate(-50%, -50%);
   z-index: 30;
-  background-color: rgba(255, 255, 255, 0.212);
+  background-color: white;
   box-shadow: 0px 10px 30px 0px rgba(58, 58, 58, 0.226);
 }
 @media screen and (max-width: 1280px) {
@@ -1416,6 +1422,239 @@ select {
     margin: 10%;
     padding: 3%;
   }
+}
+
+.main-transaction-list td {
+  padding: 2%;
+  margin: 2%;
+}
+.main-transaction-list__table {
+  background-color: #fcfcfc;
+  width: 100%;
+  padding: 2%;
+}
+@media screen and (max-width: 590px) {
+  .main-transaction-list__table {
+    width: 90%;
+  }
+}
+.main-transaction-list__table__purchased {
+  max-height: 30px;
+  width: 100%;
+}
+@media screen and (max-width: 590px) {
+  .main-transaction-list__table__purchased button {
+    width: 100px;
+  }
+}
+.main-transaction-list__table__purchased:hover {
+  background-color: #dfe2f0;
+  cursor: pointer;
+}
+.main-transaction-list__table__purchased__container {
+  border-bottom: 2px solid rgba(211, 211, 211, 0.685);
+}
+.main-transaction-list__table__purchased__container__id {
+  width: 10%;
+}
+.main-transaction-list__table__purchased__container__title {
+  width: 30%;
+  text-overflow: hidden;
+}
+@media screen and (max-width: 590px) {
+  .main-transaction-list__table__purchased__container__title {
+    width: 20%;
+  }
+}
+.main-transaction-list__table__purchased__container__img {
+  width: 20%;
+  text-align: center;
+}
+@media screen and (max-width: 590px) {
+  .main-transaction-list__table__purchased__container__img {
+    display: none;
+    width: 0%;
+  }
+}
+.main-transaction-list__table__purchased__container__img img {
+  width: 30%;
+}
+@media screen and (max-width: 1280px) {
+  .main-transaction-list__table__purchased__container__img img {
+    width: 60%;
+  }
+}
+.main-transaction-list__table__purchased__container__price {
+  width: 10%;
+}
+@media screen and (max-width: 590px) {
+  .main-transaction-list__table__purchased__container__price {
+    width: 20%;
+    text-align: center;
+  }
+}
+.main-transaction-list__table__purchased__container__status {
+  text-align: center;
+  width: 10%;
+}
+@media screen and (max-width: 590px) {
+  .main-transaction-list__table__purchased__container__status button {
+    max-width: 100%;
+  }
+}
+@media screen and (max-width: 590px) {
+  .main-transaction-list__table__purchased__container__status {
+    width: 100%;
+  }
+}
+.main-transaction-list__table__purchased__container__date {
+  width: 20%;
+  text-align: right;
+}
+@media screen and (max-width: 590px) {
+  .main-transaction-list__table__purchased__container__date {
+    display: none;
+    width: 0%;
+  }
+}
+
+.main-selection-button {
+  position: relative;
+  display: flex;
+  justify-content: space-evenly;
+  margin: 2%;
+  margin-bottom: 5%;
+}
+.main-selection-button button {
+  box-shadow: 6px 6px 12px 12px rgba(194, 194, 194, 0.1);
+  /* background-color: rgb(85, 85, 201); */
+  color: #5555c9;
+  width: 150%;
+  height: 120%;
+  /* color: white; */
+  margin: 1%;
+}
+@media screen and (max-width: 1280px) {
+  .main-selection-button button {
+    width: 120%;
+    height: 100%;
+  }
+}
+@media screen and (max-width: 590px) {
+  .main-selection-button button {
+    width: 90%;
+    height: 90%;
+  }
+}
+.main-selection-button button:hover {
+  background-color: #5555c9;
+  color: white;
+}
+.main-selection-button i {
+  margin-top: 10%;
+}
+.main-selection-button__paid-number {
+  background-color: #bd2929;
+  margin: 5%;
+  border-radius: 30%;
+  font-weight: bold;
+  font-size: 120%;
+}
+.main-selection-button__selected button {
+  background-color: #5a5ace;
+  box-shadow: 0px 10px 10px 10px rgba(211, 211, 211, 0.322);
+  color: white;
+}
+
+.main-selled-detail {
+  background-color: white;
+  display: flex;
+  border: 2px solid rgba(211, 211, 211, 0.685);
+  border-top: 0px;
+}
+@media screen and (max-width: 590px) {
+  .main-selled-detail {
+    display: block;
+  }
+}
+.main-selled-detail div {
+  padding: 2%;
+  text-align: center;
+}
+.main-selled-detail__detail-box1 {
+  width: 30%;
+}
+.main-selled-detail__detail-box1 button {
+  width: 100px;
+  height: 100px;
+}
+@media screen and (max-width: 590px) {
+  .main-selled-detail__detail-box1 {
+    width: 90%;
+  }
+}
+.main-selled-detail__detail-box1__actions {
+  text-align: center;
+}
+.main-selled-detail__detail-box1__actions ul {
+  margin: 0;
+  padding: 0;
+}
+.main-selled-detail__detail-box1__actions li {
+  margin-bottom: 5%;
+}
+.main-selled-detail__detail-box2 {
+  width: 30%;
+}
+@media screen and (max-width: 590px) {
+  .main-selled-detail__detail-box2 {
+    width: 90%;
+  }
+}
+.main-selled-detail__detail-box2 img {
+  margin-top: 3%;
+  width: 50%;
+}
+.main-selled-detail__detail-box3 {
+  width: 30%;
+  margin-top: 2%;
+}
+@media screen and (max-width: 590px) {
+  .main-selled-detail__detail-box3 {
+    width: 90%;
+  }
+}
+.main-selled-detail__detail-box3 table {
+  margin: 0 auto;
+}
+.main-selled-detail__detail-box3 table tr td:first-child {
+  text-align: left;
+  font-weight: bold;
+}
+.main-selled-detail__detail-box3 table tr td:last-child {
+  text-align: right;
+}
+.main-selled-detail__detail-box3__purchase-is-completed {
+  background-color: #478847;
+  color: white;
+}
+.main-selled-detail__detail-box3__purchase-is-shipped {
+  background-color: #e7d585;
+  color: white;
+}
+.main-selled-detail__detail-box3__purchase-is-paid {
+  background-color: #478847;
+  color: white;
+}
+.main-selled-detail__detail-box3__purchase-is-unpaid {
+  background-color: #d06767;
+  color: white;
+}
+.main-selled-detail__detail-box3__purchase-cancel-link {
+  margin: 15%;
+}
+.main-selled-detail__detail-box3__purchase-cancel-link a {
+  color: #d06767;
 }
 
 .main-home-page {
