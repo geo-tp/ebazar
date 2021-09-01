@@ -16,10 +16,11 @@ class PurchasedDetail extends Component {
 
     render() {
         return(
-            <div className="detailled-purchase">
-                <div className="detail-box2">
+            <div className="main-selled-detail">
+
+                <div className="main-selled-detail__detail-box2">
                     {/* <p className="paypal-detail-box"> */}
-                    <div className="detail-list-box">
+                    <div className="main-selled-detail__detail-box2__box">
                         <ul>
                             <h4>Actions</h4>
                             {this.props.purchase.isShipped && this.props.purchase.isComplete ?
@@ -37,7 +38,7 @@ class PurchasedDetail extends Component {
 
 
 
-                <div className="detail-box3">
+                <div className="main-selled-detail__detail-box3">
                     <table>
                         <tbody>
                             <tr>
@@ -63,15 +64,15 @@ class PurchasedDetail extends Component {
 
                         </tbody>
                     </table>
-                    <p className="purchase-is-completed">{this.props.purchase.isComplete && "La vente a été finalisée"}</p>
-                    <p className="purchase-is-shipped">{this.props.purchase.isShipped && !this.props.purchase.isComplete && "Le colis a été envoyé"}</p>
-                    <p className="purchase-is-unpaid">{!this.props.purchase.isPaid && "Paiement de l'achat en attente"}</p>
-                    <p className="purchase-is-paid">{this.props.purchase.isPaid && !this.props.purchase.isShipped && "Paiement effectué"}</p>
-                    <p className="purchase-cancel-link"><a>{!this.props.purchase.isComplete && "Annuler l'achat" }</a></p>
+                    <p className="main-selled-detail__detail-box3__purchase-is-completed">{this.props.purchase.isComplete && "La vente a été finalisée"}</p>
+                    <p className="main-selled-detail__detail-box3__purchase-is-shipped">{this.props.purchase.isShipped && !this.props.purchase.isComplete && "Le colis a été envoyé"}</p>
+                    <p className="main-selled-detail__detail-box3__purchase-is-unpaid">{!this.props.purchase.isPaid && "Paiement de l'achat en attente"}</p>
+                    <p className="main-selled-detail__detail-box3__purchase-is-paid">{this.props.purchase.isPaid && !this.props.purchase.isShipped && "Paiement effectué"}</p>
+                    <p className="main-selled-detail__detail-box3__purchase-cancel-link"><a>{!this.props.purchase.isComplete && "Annuler l'achat" }</a></p>
 
                 </div>
-                <div className="detail-box1">
-                    <p className="paypal-detail-box">
+                <div className="main-selled-detail__detail-box1">
+                    <p className="main-selled-detail__detail-box1__box">
                        {this.props.purchase.isPaid ? <div><h4>Expédition</h4></div> : <div><h4>Paiement</h4><PayPal value={this.props.purchase.obj.actualPrice}
                                                                                                                     item_table_index={this.props.index}
                                                                                                                     purchase_id={this.props.purchase.id}

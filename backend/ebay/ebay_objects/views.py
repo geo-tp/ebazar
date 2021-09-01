@@ -69,8 +69,8 @@ class ObjectViewSet(viewsets.ModelViewSet):
     serializer_class = ObjectSerializer
     filter_backends = [filters.SearchFilter, filters.OrderingFilter, django_filters.rest_framework.DjangoFilterBackend]
     search_fields = ['title', 'description']
-    ordering_fields = ["endingDate", "actual_price", "shippingPrice"]
-    filterset_fields = ["shippingPrice", 'title', 'user', "state", "category", "subcategory", "isActive"]
+    ordering_fields = ["endingDate", "actualPrice", "shippingPrice", "creationDate"]
+    filterset_fields = ["shippingPrice", 'title', 'user', "views", "state", "category", "subcategory", "isActive"]
 
     permission_classes = [AllowAny]
 

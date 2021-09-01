@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import logo from "./../assets/img/logo.png"
 
 let id = 0
@@ -33,16 +33,25 @@ class NavBar extends Component {
                    className=" fa fa-close fa-2x close-menu-cross"></i>
                 <ul className="nav-bar__menu__link-list">
                     <li id={id++}>
-                        <p>Populaires</p>
+                        <NavLink className="no-underline" 
+                                 to="/choice/popular">
+                            <p>Populaires</p>
+                        </NavLink>
                     </li>
                     <li id={id++}>
-                        <p>Séléctions</p>
+                        <NavLink className="no-underline" 
+                                    to="/choice/new">
+                                <p>Nouveautés</p>
+                        </NavLink>
                     </li>
                     <li id={id++}>
-                        <p>Nouveautés</p>
+                        <NavLink className="no-underline" 
+                                    to="/choice/cheap">
+                                <p>Prix Mini</p>
+                        </NavLink>
                     </li>
                     <li id={id++}>
-                        <p>Bon plans</p>
+                        <p>Aide</p>
                     </li>
                 </ul>
 

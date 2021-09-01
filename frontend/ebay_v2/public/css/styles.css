@@ -50,6 +50,10 @@ Link {
   padding: 20px;
 }
 
+.no-underline {
+  text-decoration: none;
+}
+
 .align-center {
   text-align: center;
   justify-content: center;
@@ -350,8 +354,8 @@ Link {
   opacity: 0.95;
   z-index: 9;
   width: 100%;
+  box-shadow: 0px 10px 20px 5px rgba(211, 211, 211, 0.534);
   border-bottom: 1px solid #d8d8d8;
-  box-shadow: 0px 10px 30px 0px rgba(58, 58, 58, 0.226);
 }
 @media screen and (min-width: 1400px) {
   .nav-bar {
@@ -426,6 +430,7 @@ Link {
 .nav-bar__menu__link-list {
   display: flex;
   justify-content: space-evenly;
+  text-decoration: none;
 }
 .nav-bar__menu__link-list li {
   cursor: pointer;
@@ -1610,6 +1615,9 @@ select {
   .main-selled-detail__detail-box2 {
     width: 90%;
   }
+}
+.main-selled-detail__detail-box2__box li {
+  margin: 2%;
 }
 .main-selled-detail__detail-box2 img {
   margin-top: 3%;

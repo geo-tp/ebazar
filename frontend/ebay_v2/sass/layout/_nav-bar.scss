@@ -12,6 +12,8 @@
      opacity: .95;
      z-index: 9;
      width: 100%;
+     box-shadow: 0px 10px 20px 5px rgba(211, 211, 211, 0.534);
+
 
     @include wide-screen-design {
 
@@ -23,7 +25,6 @@
 
 
      @include border-bottom-default;
-     @include small-bottom-shadow;
 
      
      &__nav-site {
@@ -115,6 +116,7 @@
         &__link-list {
             display: flex;
             justify-content: space-evenly;
+            text-decoration: none;
 
             & li {
                 cursor: pointer;

@@ -22,6 +22,7 @@ import { retrieveUserData } from "../utils/cookieHandler";
 import MessagingPage from "./MessagingPage";
 import SelledPage from "./SelledPage";
 import PurchasedPage from "./PurchasedPage";
+import ChoicePage from "./ChoicePage";
 
 
 
@@ -40,6 +41,10 @@ function App() {
 
           <Route path="/home">
             <HomePage/>
+          </Route>
+
+          <Route path="/choice/:choice">
+            <ChoicePage/>
           </Route>
 
           <Route path="/user/:username">

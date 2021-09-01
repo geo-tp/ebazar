@@ -51,6 +51,13 @@
             width:90%
         }
 
+        &__box {
+            
+            & li {
+                margin: 2%;
+            }
+        }
+
         & img {
             margin-top: 3%;
             width: 50%
