@@ -142,7 +142,6 @@ class Purchased extends Component {
 
 
     render() {
-        console.log("STATE", this.state)
         return(
             <div className="main-selled">
                 <h3>Vos Achats</h3>

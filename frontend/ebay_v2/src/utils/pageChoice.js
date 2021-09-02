@@ -6,6 +6,8 @@ export const PAGE_CHOICE_TITLE={
     "popular": "Populaires sur EBAZAR",
     "new": "Nouvelles enchères",
     "cheap": "Les prix les plus bas",
+    "bidded": "Objets enchéris",
+    "followed": "Vos affaires à suivre"
 }
 
 export const PAGE_CHOICE_QUERY={

@@ -1,5 +1,5 @@
 import { Component } from "react";
-import ObjectsListContainer from "./ObjectListContainer";
+import ObjectList from "../components/ObjectList";
 import SubCategoryBanner from "../components/SubCategoryBanner";
 import PropTypes from "prop-types"
 import { connect } from "react-redux";
@@ -56,7 +56,9 @@ class Category extends Component {
 
                 {this.props.objects.loaded  && 
                 
-                    <ObjectsListContainer/>}
+                    <ObjectList listLabel="Enchères en cours" 
+                                objects={this.props.objects}
+                                fetchNextObjectsPage={this.props.fetchNextObjectsPage}/> }
             </div>
         )
     }
@@ -71,7 +73,8 @@ const CategoryPage = connect(
     (dispatch) => ({
         fetchCategories: () => dispatch(fetchCategories()),
         fetchSubCategories: (categoryId) => dispatch(fetchSubCategories(categoryId)),
-        fetchObjects: (filter) => dispatch(fetchObjects(filter))
+        fetchObjects: (filter) => dispatch(fetchObjects(filter)),
+        fetchNextObjectsPage: (url) => dispatch(fetchNextObjectsPage(url)),
     })
 )(Category)
 

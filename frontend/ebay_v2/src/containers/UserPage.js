@@ -1,7 +1,7 @@
 import { Component } from "react";
 import { Redirect, withRouter } from "react-router-dom"
 import UserProfile from "./../components/UserProfile"
-import ObjectListContainer from "./ObjectListContainer"
+import ObjectList from "./../components/ObjectList"
 import PropTypes from "prop-types"
 import { fetchUserByUsername } from "../fetch/UserFetch";
 import { connect } from "react-redux";
@@ -61,7 +61,7 @@ class User extends Component {
             <div>
                 {this.state.userProfile && <UserProfile auth={this.props.auth}
                                                         userProfile={this.state.userProfile} />}
-                <ObjectListContainer listLabel="Ses ventes en cours"/>
+                <ObjectList objects={this.props.objects} listLabel="Ses ventes en cours"/>
             </div>
         )
     }

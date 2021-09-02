@@ -17,9 +17,9 @@ import {detailledObjectSelector} from "../selectors/DetailledObjectSelector"
 import { fetchQuestionsOfObject, fetchQuestionsOfUser } from "../thunks/QuestionThunk";
 import CategoryBanner from "../components/CategoryBanner";
 import OfferBanner from "../components/OfferBanner";
-import ObjectListContainer from "./ObjectListContainer";
 import SelectionBanner from "../components/SelectionBanner";
 import { selectionSelector } from "../selectors/SelectionSelectors";
+import ObjectList from "../components/ObjectList";
 
 class Home extends Component {
 
@@ -52,7 +52,9 @@ class Home extends Component {
                 <CategoryBanner categories={this.props.categories}/>
                 <OfferBanner offerBanners={this.props.offerBanners}/>
                 <SelectionBanner selections={this.props.selections}/>
-                <ObjectListContainer listLabel="Enchères en cours"/>
+                <ObjectList listLabel="Enchères en cours" 
+                            objects={this.props.objects}
+                            fetchNextObjectsPage={this.props.fetchNextObjectsPage}/>
             </div>
         )
     }
@@ -66,6 +68,7 @@ Home.propTypes = {
     selections: PropTypes.object.isRequired,
 
     fetchObjects: PropTypes.func.isRequired,
+    fetchNextObjectsPage: PropTypes.func.isRequired,
     fetchCategories: PropTypes.func.isRequired,
     fetchOfferBanners: PropTypes.func.isRequired,
     fetchSubCategories: PropTypes.func.isRequired,

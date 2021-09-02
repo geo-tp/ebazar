@@ -8,7 +8,7 @@ import { detailledObjectBidSelector, detailledObjectImageSelector,
 import { fetchQuestionsOfObject } from "../thunks/QuestionThunk";
 import { fetchBidsOfObject } from "../thunks/BidThunk";
 import { objectSelector } from "../selectors/ObjectSelectors";
-import ObjectList from "./ObjectListContainer";
+import ObjectList from "../components/ObjectList";
 import ObjectDetail from "../components/ObjectDetail";
 import { fetchImagesOfObject } from "../thunks/ImageThunk";
 import { withRouter } from "react-router";
