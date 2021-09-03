@@ -3,7 +3,7 @@ from .models import *
 
 from ebay_objects.models import Object
 from users.models import CustomUser
-from ebay_account.models import Bid
+from ebay_account.models import Bid, Transaction
 from ebay_base.models import Category, SubCategory
 from ebay_base.serializers import CategorySerializer, SubCategorySerializer
 from ebay_objects.models import FollowedObject, StateOfObject
@@ -83,6 +83,41 @@ class BiddedObjectByUserSerializer(serializers.ModelSerializer):
                     bidded_object.append(serialized_obj)
 
         return bidded_object
+
+    def to_representation(self, instance, request=None):
+
+        objects = self.get_bidded_objects(request, instance)
+
+        return objects
+
+class PurchasedObjectByUserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = CustomUser
+        fields = "__all__"
+
+    def get_url_of_host(self, request):
+        return request.scheme+"://"+request.get_host()
+
+    def get_bidded_objects(self, instance, request):
+
+        url = self.get_url_of_host(request)
+
+        try:
+            purchases = Transaction.objects.filter(user=instance)
+        except:
+            purchases = []
+
+        purchased_objects = []
+        for purchase in purchases:
+            if ObjectSerializer().to_representation(purchase.obj) not in purchased_objects:
+                serialized_obj = ObjectSerializer().to_representation(purchase.obj)
+                serialized_obj["mainImage"] = url+serialized_obj["mainImage"]
+
+                if serialized_obj not in purchased_objects:
+                    purchased_objects.append(serialized_obj)
+
+        return purchased_objects
 
     def to_representation(self, instance, request=None):
 

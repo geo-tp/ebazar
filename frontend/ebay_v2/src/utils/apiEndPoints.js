@@ -15,6 +15,7 @@ export const API_USER = 'user'
 export const API_FOLLOWED_OBJECT = "followed-object"
 export const API_FOLLOWED_OBJECT_BY_USER = "followed-object-by-user"
 export const API_BIDDED_OBJECT_BY_USER = "bidded-object-by-user"
+export const API_PURCHASED_OBJECT_BY_USER = "purchased-object-by-user"
 export const API_TRANSACTION = "transaction"
 export const API_OPERATION = "operation"
 export const API_OFFER_BANNER = "offer-banner"

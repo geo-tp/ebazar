@@ -1,10 +1,17 @@
 import { getObjects, getObjectsSuccess, getObjectsError,
          editObject, editObjectSuccess, editObjectError, 
-         getNextObjectPage, getNextObjectPageSuccess, getNextObjectPageError} from "../actions/ObjectActions"
+         getNextObjectPage, getNextObjectPageSuccess, getNextObjectPageError, 
+         getNextFollowedObjectPage, getNextFollowedObjectPageSuccess, getNextFollowedObjectPageError, 
+         getBiddedObjects, getBiddedObjectsError, getBiddedObjectsSuccess, 
+         getNextFollowedObjectsPage, getNextFollowedObjectsPageError, getNextFollowedObjectsPageSuccess, 
+         getNextBiddedObjectPage, getNextBiddedObjectPageSuccess, getNextBiddedObjectPageError
+        } from "../actions/ObjectActions"
+
 import { urlFormater } from "../utils/urlFormater"
 import {parametersFormater} from "../utils/parametersFormater"
 import { NOT_FOUND } from "../utils/errors"
 import { API_OBJECT } from "../utils/apiEndPoints"
+import { fetchNextPage } from "./UtilsThunk"
 
 
 // export const fetchObject = (objectId) => {
@@ -123,27 +130,9 @@ export const fetchCreateObject = (objectForm) => {
 }
 
 export const fetchNextObjectsPage = (nextUrl) => {
-    return(dispatch) => {
-        dispatch(getNextObjectPage())
-
-        let params = parametersFormater("GET")
-
-        return fetch(nextUrl, params)
-            .then((rslt )=> {
-                console.log("rslt", rslt)
-                if (!rslt.ok) {
-                    throw new Error(NOT_FOUND)
-                }
-
-                return rslt.json()
-            })
-
-            .then((objects) => {
-                dispatch(getNextObjectPageSuccess(objects))
-            })
-
-            .catch((error) => {
-                dispatch(getNextObjectPageError(error))
-            })
-    }
+    return fetchNextPage(nextUrl, getNextObjectPage, 
+                                  getNextObjectPageError,
+                                  getNextObjectPageSuccess)
+    
 }
+

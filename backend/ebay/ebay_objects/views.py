@@ -206,6 +206,27 @@ class BiddedObjectByUserViewSet(viewsets.ModelViewSet):
     def list(self, request):
         pass
 
+class PurchasedObjectByUserViewSet(viewsets.ModelViewSet):
+    
+    http_method_names = ["get"]
+    queryset = CustomUser.objects.all()
+    serializer_class = PurchasedObjectByUserSerializer
+
+    @method_decorator(cache_page(60))
+    def retrieve(self, request, pk):
+        rep = self.serializer_class().to_representation(request, pk)
+        page = self.paginate_queryset(rep)
+
+        if page is not None:
+            return self.get_paginated_response(rep)
+
+        return Response(rep, status=status.HTTP_200_OK)
+
+    @restrictedEndPoint
+    def list(self, request):
+        pass
+
+
 class DetailledObjectViewSet(viewsets.ModelViewSet):
 
     http_method_names = ["get"]

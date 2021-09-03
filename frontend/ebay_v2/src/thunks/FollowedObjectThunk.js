@@ -1,9 +1,13 @@
 
-import { getFollowedObjects, getFollowedObjectsError, getFollowedObjectsSuccess } from "../actions/ObjectActions"
+import { getFollowedObjects, getFollowedObjectsError, getFollowedObjectsSuccess, 
+         getNextFollowedObjectsPage, getNextFollowedObjectsPageError, getNextFollowedObjectsPageSuccess } 
+         from "../actions/ObjectActions"
+         
 import { API_FOLLOWED_OBJECT_BY_USER } from "../utils/apiEndPoints"
 import {NOT_FOUND} from "../utils/errors"
 import { parametersFormater } from "../utils/parametersFormater"
 import { urlFormater } from "../utils/urlFormater"
+import { fetchNextPage } from "./UtilsThunk"
 
 
 
@@ -36,4 +40,12 @@ export const fetchFollowedObjects = (userId) => {
                         dispatch(getFollowedObjectsError(error))
                     })
     }
+}
+
+
+export const fetchNextFollowedObjectsPage = (nextUrl) => {
+    return fetchNextPage(nextUrl, getNextFollowedObjectsPage, 
+                                  getNextFollowedObjectsPageError,
+                                  getNextFollowedObjectsPageSuccess)
+    
 }

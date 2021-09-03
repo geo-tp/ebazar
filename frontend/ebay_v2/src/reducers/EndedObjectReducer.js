@@ -1,4 +1,4 @@
-import { GET_ENDED_OBJECTS, GET_ENDED_OBJECTS_ERROR, GET_ENDED_OBJECTS_SUCCES } from "../constants/ObjectConstants";
+import { GET_ENDED_OBJECTS, GET_ENDED_OBJECTS_ERROR, GET_ENDED_OBJECTS_SUCCESS } from "../constants/ObjectConstants";
 import { initialState } from "./RootReducers";
 
 
@@ -11,7 +11,7 @@ export const EndedObjectReducer = (state=initialState.userEndedObjects, action) 
         case GET_ENDED_OBJECTS_ERROR:
             return {...state, loading:false, error:action.payload.error}
 
-        case GET_ENDED_OBJECTS_SUCCES:
+        case GET_ENDED_OBJECTS_SUCCESS:
             return {...state, loading:false, loaded:true, items:action.payload.objects}
 
         default:

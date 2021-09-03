@@ -37,15 +37,15 @@ class ObjectsAccountListe extends Component {
             case "purchasedObjects":
                 return(<Link to="/purchased"><button>{buttonText}</button></Link>)
             case 'biddedObjects':
-                return(<Link to="/bidded"><button>{buttonText}</button></Link>)
+                return(<Link to="/choice/bidded"><button>{buttonText}</button></Link>)
             case 'followedObjects':
-                return(<Link to="/affaires"><button>{buttonText}</button></Link>)
+                return(<Link to="/choice/followed"><button>{buttonText}</button></Link>)
             case 'activeObjects':
-                return(<Link to="/active"><button>{buttonText}</button></Link>)
+                return(<Link to="/choice/active"><button>{buttonText}</button></Link>)
             case 'endedbjects':
-                return(<Link to="/ended"><button>{buttonText}</button></Link>)
+                return(<Link to="/choice/ended"><button>{buttonText}</button></Link>)
             case 'activeObjects':
-                return(<Link to="/active"><button>{buttonText}</button></Link>)
+                return(<Link to="/choice/active"><button>{buttonText}</button></Link>)
             case 'selledObjects':
                 return(<Link to="/selled"><button>{buttonText}</button></Link>)
         }

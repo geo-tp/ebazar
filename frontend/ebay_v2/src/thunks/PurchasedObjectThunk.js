@@ -1,11 +1,13 @@
-import { getPurchasedObjects, 
+import { getNextPurchasedObjectsPage, getNextPurchasedObjectsPageError, getNextPurchasedObjectsPageSuccess, 
+         getPurchasedObjects, 
          getPurchasedObjectsError, 
          getPurchasedObjectsSuccess } from "../actions/ObjectActions"
 
 import {NOT_FOUND} from "../utils/errors"
 import { urlFormater } from "../utils/urlFormater"
 import {parametersFormater} from "../utils/parametersFormater"
-import { API_TRANSACTION } from "../utils/apiEndPoints"
+import { API_PURCHASED_OBJECT_BY_USER, API_TRANSACTION } from "../utils/apiEndPoints"
+import { fetchNextPage } from "./UtilsThunk"
 
 
 export const fetchPurchasedObjects = (userId) => {
@@ -15,9 +17,8 @@ export const fetchPurchasedObjects = (userId) => {
 
         let url = urlFormater(
             {
-                model: API_TRANSACTION,
-                filter_field: "user",
-                filter_value: userId
+                model: API_PURCHASED_OBJECT_BY_USER,
+                pk: userId,
             }
         )
 
@@ -46,4 +47,11 @@ export const fetchPurchasedObjects = (userId) => {
                         return 0
                     })
     }
+}
+
+export const fetchNextPurchasedObjectsPage = (nextUrl) => {
+    return fetchNextPage(nextUrl, getNextPurchasedObjectsPage, 
+                                  getNextPurchasedObjectsPageError,
+                                  getNextPurchasedObjectsPageSuccess)
+    
 }
