@@ -51,7 +51,7 @@ router.register(r"followed-object-by-user", objects_views.FollowedObjectByUserVi
 router.register(r"purchased-object-by-user", objects_views.PurchasedObjectByUserViewSet)
 router.register(r"bidded-object-by-user", objects_views.BiddedObjectByUserViewSet)
 router.register(r'transaction', account_views.TransactionViewsSet)
-# router.register(r'withdrawal', views.WithdrawalViewSet)
+router.register(r'account-balance', account_views.BalanceViewSet)
 router.register(r'operation', account_views.OperationViewSet)
 router.register(r"offer-banner", base_views.OfferBannerViewSet)
 

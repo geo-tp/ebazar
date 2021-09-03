@@ -116,10 +116,10 @@ class BalanceViewSet(viewsets.ModelViewSet):
 
     http_method_names = ["get"]
 
-    queryset = Operation.objects.all()
+    queryset = CustomUser.objects.all()
     serializer_class = BalanceSerializer
 
-    @checkUserIsOwner
+    # @checkUserIsOwner
     def retrieve(self, request, pk):
         
         return super().retrieve(request, pk)

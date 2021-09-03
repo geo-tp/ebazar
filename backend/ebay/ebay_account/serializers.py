@@ -110,7 +110,7 @@ class BalanceSerializer(serializers.ModelSerializer):
         solde_debit_queryset = Operation.objects.filter(user=instance.id, isType__name="Debit")
         solde_withdrawal_queryset = Operation.objects.filter(user=instance.id, isWithdrawal=True)
         solde_credit_queryset = Operation.objects.filter(user=instance.id, isType__name="Credit")
-        solde_waiting_confirmation_queryset = PurchasedObject.objects.filter(user=instance.id, isComplete=0, isPaid=1)
+        solde_waiting_confirmation_queryset = Transaction.objects.filter(user=instance.id, isComplete=0, isPaid=1)
 
         result_debit = self.calculate_queryset_amount(solde_debit_queryset)
         result_credit = self.calculate_queryset_amount(solde_credit_queryset)

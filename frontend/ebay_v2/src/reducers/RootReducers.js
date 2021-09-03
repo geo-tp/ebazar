@@ -18,6 +18,9 @@ import { FollowedObjectReducer } from "./FollowedObjectReducer";
 import { SelledObjectReducer } from "./SelledObjectReducer";
 import { PurchasedObjectReducer } from "./PurchasedObjectReducer";
 import { BiddedObjectReducer } from "./BiddedObjectReducer";
+import { PurchasedTransactionReducer } from "./PurchasedTransactionReducer";
+import { SelledTransactionReducer } from "./SelledTransactionReducer";
+
 
 export function initState() {
     
@@ -28,7 +31,8 @@ export function initState() {
                          "objects", 
                          "detailledObject", "detailledObjectBids", "detailledObjectQuestions", "detailledObjectImages",
                          "offerBanners", "categories", "subCategories", 
-                         "states", "operations", "durations", "selections" ]
+                         "states", "operations", "durations", "selections",
+                         "userSelledTransactions", "userPurchasedTransactions" ]
 
     let store = {}
     for (let field of storeFields) {
@@ -106,6 +110,9 @@ export const RootReducer = (state=initialState, action) => {
         userSelledObjects: SelledObjectReducer(state.userSelledObjects, action),
         userBiddedObjects: BiddedObjectReducer(state.userBiddedObjects, action),
 
+        userPurchasedTransactions: PurchasedTransactionReducer(state.userPurchasedTransactions, action),
+        userSelledTransactions: SelledTransactionReducer(state.userSelledTransactions, action),
+
         sendedMessages: SendedMessageReducer(state.sendedMessages, action),
         receivedMessages: ReceivedMessageReducer(state.receivedMessages, action),
         questions: QuestionReducer(state.questions, action),
@@ -120,7 +127,6 @@ export const RootReducer = (state=initialState, action) => {
         durations: DurationReducer(state.durations, action),
         states: StateReducer(state.states, action),
 
-        
         offerBanners: OfferBannerReducer(state.offerBanners, action),
         selections: SelectionReducer(state.selections, action),
         categories: CategoryReducer(state.categories, action),
