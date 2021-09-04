@@ -3,10 +3,10 @@ import TransactionList from "../components/TransactionList"
 import Loading from "../components/Loading"
 
 import { connect } from "react-redux";
-import { purchasedObjectSelector } from "../selectors/ObjectSelectors";
 import { authSelector } from "../selectors/AuthSelectors";
-import { fetchPurchasedObjects } from "../thunks/PurchasedObjectThunk";
 import PurchasedSelectionButton from "../components/PurchasedSelectionButton";
+import { purchasedTransactionSelector } from "../selectors/TransactionSelectors";
+import { fetchPurchasedTransaction } from "../thunks/PurchasedTransactionThunk";
 
 
 class Purchased extends Component {
@@ -23,7 +23,7 @@ class Purchased extends Component {
             actualCatInViewIndex: 4,
         }
 
-        this.fetchAndOrganizePurchasedObjects()
+        this.fetchAndOrganizePurchasedTransactions()
 
 
     }
@@ -64,13 +64,13 @@ class Purchased extends Component {
     //         .then(() => this.organizePurchasedObjects())
     // }
 
-    async fetchAndOrganizePurchasedObjects() {
+    async fetchAndOrganizePurchasedTransactions() {
         
         let response;
 
-        if (!this.props.purchasedObjects.loaded) {
+        if (!this.props.purchasedTransactions.loaded) {
             
-            response = await this.props.fetchPurchasedObjects(this.props.auth.basicUser.id)
+            response = await this.props.fetchPurchasedTransaction(this.props.auth.basicUser.id)
         }
 
         else {
@@ -83,22 +83,22 @@ class Purchased extends Component {
             let catInProgress = [];
             let catComplete = [];
             let catAll = [];
-            this.props.purchasedObjects.loaded &&
-            this.props.purchasedObjects.items.results.map((selledObject, index) => {
+            this.props.purchasedTransactions.loaded &&
+            this.props.purchasedTransactions.items.results.map((selledTransaction, index) => {
 
-                if (selledObject.isComplete) {
-                    catComplete.push(selledObject)
+                if (selledTransaction.isComplete) {
+                    catComplete.push(selledTransaction)
                 }
 
-                else if (selledObject.isPaid && !selledObject.isShipped) {
-                    catUnpaid.push(selledObject)
+                else if (selledTransaction.isPaid && !selledTransaction.isShipped) {
+                    catUnpaid.push(selledTransaction)
                 }
 
-                else if (selledObject.isPaid && !selledObject.isComplete) {
-                    catInProgress.push(selledObject)
+                else if (selledTransaction.isPaid && !selledTransaction.isComplete) {
+                    catInProgress.push(selledTransaction)
                 }
 
-                catAll.push(selledObject)
+                catAll.push(selledTransaction)
 
             })
 
@@ -146,13 +146,13 @@ class Purchased extends Component {
             <div className="main-selled">
                 <h3>Vos Achats</h3>
          
-                {this.props.purchasedObjects.loaded && <PurchasedSelectionButton
+                {this.props.purchasedTransactions.loaded && <PurchasedSelectionButton
                                         handleCatChange={this.handleCatChange}
                                         selected={this.state.actualCatInViewIndex}/>}
                 {this.state.actualObjectsInView && <TransactionList type="purchased"
                                                                     objects={this.state.actualObjectsInView}/>}
 
-                {!this.props.purchasedObjects.loaded && <Loading/>}
+                {!this.props.purchasedTransactions.loaded && <Loading/>}
 
             </div>
         )
@@ -162,11 +162,11 @@ class Purchased extends Component {
 const PurchasedPage = connect(
     (state) => ({
         auth: authSelector(state),
-        purchasedObjects: purchasedObjectSelector(state)
+        purchasedTransactions: purchasedTransactionSelector(state)
     }),
 
     (dispatch) => ({
-        fetchPurchasedObjects: (userId) => dispatch(fetchPurchasedObjects(userId))
+        fetchPurchasedTransaction: (userId) => dispatch(fetchPurchasedTransaction(userId))
     })
 
 )(Purchased)

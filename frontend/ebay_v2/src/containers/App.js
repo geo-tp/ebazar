@@ -23,6 +23,7 @@ import MessagingPage from "./MessagingPage";
 import SelledPage from "./SelledPage";
 import PurchasedPage from "./PurchasedPage";
 import ChoicePage from "./ChoicePage";
+import SoldePage from "./SoldePage";
 
 
 
@@ -61,6 +62,10 @@ function App() {
 
           <Route path="/purchased">
             <PurchasedPage/>
+          </Route>
+
+          <Route path="/solde">
+            <SoldePage/>
           </Route>
 
           <Route path={["/messaging/:dataSet/:dataIndex", "/messaging"]}>

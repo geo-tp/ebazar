@@ -18,12 +18,11 @@ class Choice extends Component {
         this.state = {
             objects: null,
         }
-
         this.fetchObjectsChoice()
     }
 
     componentDidUpdate(prevProps) {
-        console.log("STATE", this.state)
+        console.log(" OBJ", this.state.objects)
         if(prevProps.match.params.choice !== this.props.match.params.choice){
             
             this.fetchObjectsChoice()
@@ -31,11 +30,24 @@ class Choice extends Component {
         }
 
         // else if(this.props.objects !== this.state.objects) {
-        //     this.setState({objects:this.props.objects})
+        //     this.fetchNextChoicePage()
         // }
       }
 
+    
+    getChoice() {
 
+        switch (this.props.match.params.choice) {
+            case "bidded":
+                return [this.props.biddedObjects, this.props.fetchNextBiddedObjectsPage]
+      
+            case "followed":
+                return [this.props.purchasedObjects, this.props.fetchNextPurchasedObjectsPage]
+
+            default:
+                return [this.props.objects, this.props.fetchNextObjectsPage]
+        }
+    }
 
     async fetchObjectsChoice() {
         
@@ -62,13 +74,17 @@ class Choice extends Component {
 
 
     render() {
+
+        let rslt = this.getChoice()
+        let objects = rslt[0]
+        let funcNextPage = rslt[1]
         
         return( 
             <div className="main-choice-page">
                 { this.state.objects ?
                     <ObjectList listLabel={PAGE_CHOICE_TITLE[this.props.match.params.choice]}
-                                objects={this.state.objects}
-                                fetchNextObjectsPage={this.state.fetchNextPage}/>
+                                objects={objects}
+                                fetchNextObjectsPage={funcNextPage}/>
                                     :
                     <Loading/>}
             </div>

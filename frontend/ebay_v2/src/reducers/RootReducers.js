@@ -20,6 +20,8 @@ import { PurchasedObjectReducer } from "./PurchasedObjectReducer";
 import { BiddedObjectReducer } from "./BiddedObjectReducer";
 import { PurchasedTransactionReducer } from "./PurchasedTransactionReducer";
 import { SelledTransactionReducer } from "./SelledTransactionReducer";
+import { OperationReducer } from "./OperationReducer";
+import { BalanceReducer } from "./BalanceReducer";
 
 
 export function initState() {
@@ -28,10 +30,11 @@ export function initState() {
                          "user", "questions", "sendedMessages", "receivedMessages", 
                          "userActiveObjects", "userEndedObjects", "userFollowedObjects",
                          "userPurchasedObjects", "userSelledObjects", "userBiddedObjects",
+                         "userOperations", "userBalance",
                          "objects", 
                          "detailledObject", "detailledObjectBids", "detailledObjectQuestions", "detailledObjectImages",
                          "offerBanners", "categories", "subCategories", 
-                         "states", "operations", "durations", "selections",
+                         "states", "durations", "selections",
                          "userSelledTransactions", "userPurchasedTransactions" ]
 
     let store = {}
@@ -112,6 +115,9 @@ export const RootReducer = (state=initialState, action) => {
 
         userPurchasedTransactions: PurchasedTransactionReducer(state.userPurchasedTransactions, action),
         userSelledTransactions: SelledTransactionReducer(state.userSelledTransactions, action),
+
+        userOperations: OperationReducer(state.userOperations, action),
+        userBalance: BalanceReducer(state.userBalance, action),
 
         sendedMessages: SendedMessageReducer(state.sendedMessages, action),
         receivedMessages: ReceivedMessageReducer(state.receivedMessages, action),

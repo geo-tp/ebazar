@@ -1,0 +1,1 @@
+export const balanceSelector = ({userBalance}) => userBalance

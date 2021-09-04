@@ -11,7 +11,7 @@ export const OperationReducer = (state=initialState.operations, action) => {
             return {...state, loading:false, error:action.payload.error}
 
         case GET_OPERATIONS_SUCCESS:
-            return {...state, loading:true, items:action.payload.operations}
+            return {...state, loading:false, loaded:true, items:action.payload.operations}
         
         default:
             return state

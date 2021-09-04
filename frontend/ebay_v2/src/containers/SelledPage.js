@@ -5,9 +5,8 @@ import Loading from "../components/Loading"
 import { connect } from "react-redux";
 import { selledObjectSelector } from "../selectors/ObjectSelectors";
 import SelledSelectionButton from "../components/SelledSelectionButton";
-import { fetchSelledObjects } from "../thunks/SelledObjectThunk";
 import { authSelector } from "../selectors/AuthSelectors";
-
+import { fetchSelledTransaction } from "../thunks/SelledTransactionThunk";
 
 class Selled extends Component {
 
@@ -23,18 +22,18 @@ class Selled extends Component {
             actualCatInViewIndex: 4,
         }
 
-        this.fetchAndOrganizeSelledObjects()
+        this.fetchAndFormat()
 
 
     }
 
-    async fetchSelledObjects() {
+    async fetchAndFormat() {
 
-        let response = await this.props.fetchSelledObjects(this.props.auth.basicUser.id)
+        let response = await this.props.fetchSelledTransaction(this.props.auth.basicUser.id)
 
         if (await response) {
             
-            await this.organizeSelledObjects()
+            await this.fetchAndOrganizeSelledTransactions()
         }
     }
 
@@ -64,13 +63,13 @@ class Selled extends Component {
     //         .then(() => this.organizePurchasedObjects())
     // }
 
-    async fetchAndOrganizeSelledObjects() {
+    async fetchAndOrganizeSelledTransactions() {
         
         let response;
 
         if (!this.props.selledObjects.loaded) {
             
-            response = await this.props.fetchSelledObjects(this.props.auth.basicUser.id)
+            response = await this.props.fetchSelledTransaction(this.props.auth.basicUser.id)
         }
 
         else {
@@ -167,7 +166,7 @@ const SelledPage = connect(
     }),
 
     (dispatch) => ({
-        fetchSelledObjects: (userId) => dispatch(fetchSelledObjects(userId))
+        fetchSelledTransaction: (userId) => dispatch(fetchSelledTransaction(userId))
     })
 
 )(Selled)
