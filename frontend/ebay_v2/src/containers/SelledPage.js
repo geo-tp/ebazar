@@ -1,6 +1,7 @@
 import { Component } from "react";
 import TransactionList from "../components/TransactionList"
 import Loading from "../components/Loading"
+import PropTypes from "prop-types"
 
 import { connect } from "react-redux";
 import { selledObjectSelector } from "../selectors/ObjectSelectors";
@@ -159,6 +160,10 @@ class Selled extends Component {
     }
 }
 
+Selled.propsType= {
+    
+}
+
 const SelledPage = connect(
     (state) => ({
         auth: authSelector(state),
@@ -166,7 +171,7 @@ const SelledPage = connect(
     }),
 
     (dispatch) => ({
-        fetchSelledTransaction: (userId) => dispatch(fetchSelledTransaction(userId))
+        fetchSelledTransaction: (userId) => dispatch(fetchSelledTransaction(userId)),
     })
 
 )(Selled)

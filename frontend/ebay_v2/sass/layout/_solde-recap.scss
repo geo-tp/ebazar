@@ -1,0 +1,70 @@
+.main-solde-recap{
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+
+    select {
+        height: 30px;
+        font-size:1em;
+        width: 80%
+    }
+
+    input {
+        height: 30px;
+        font-size:1em;
+        width: 80%
+
+    }   
+
+    @include tablet-design {
+        width: 100%;
+
+        select {
+            height: 50px;
+            font-size:1.6em;
+        }
+    
+        input {
+            height: 50px;
+            font-size:1.6em;
+    
+        }   
+    }
+
+    &__buyer-activity {
+        display: flex;
+        justify-content: space-around;
+
+        &__solde-recap-payable  {
+            color: rgb(213, 156, 0);
+        }
+
+        &__solde-recap-waiting {
+            color: rgb(90, 90, 206);
+
+        }
+
+        &__solde-recap-paid {
+            color: rgb(90, 90, 206);
+
+        }
+    }
+
+    &__solde-box-form {
+        // text-align: center;
+        
+        & table {
+            border-radius: 10px;
+            box-shadow: 0px 10px 22px 22px rgba(216, 213, 213, 0.24);
+            margin: 0 auto;
+
+        }
+
+        & td {
+            padding: 1%;
+        }
+
+        
+    
+    }
+}

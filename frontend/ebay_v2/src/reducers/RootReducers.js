@@ -42,6 +42,8 @@ export function initState() {
 
         switch (field) {
 
+            case "user":
+            case "userBalance":
             case "detailledObject":
 
                 store[field] = {
@@ -67,20 +69,6 @@ export function initState() {
                     basicUser: {}
                 }
                 break
-
-            case "user":
-
-                store[field] = {
-
-                    loading: false,
-                    error: false, 
-                    loaded: false,
-                    
-                    item: {}
-                }
-                break
-
-
         
             default:                
                 store[field] = {

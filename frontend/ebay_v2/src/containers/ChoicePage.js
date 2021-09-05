@@ -42,7 +42,7 @@ class Choice extends Component {
                 return [this.props.biddedObjects, this.props.fetchNextBiddedObjectsPage]
       
             case "followed":
-                return [this.props.purchasedObjects, this.props.fetchNextPurchasedObjectsPage]
+                return [this.props.followedObjects, this.props.fetchNextPurchasedObjectsPage]
 
             default:
                 return [this.props.objects, this.props.fetchNextObjectsPage]
@@ -78,6 +78,7 @@ class Choice extends Component {
         let rslt = this.getChoice()
         let objects = rslt[0]
         let funcNextPage = rslt[1]
+        console.log("OBJ", objects)
         
         return( 
             <div className="main-choice-page">

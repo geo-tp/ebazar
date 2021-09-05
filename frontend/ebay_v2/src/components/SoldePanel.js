@@ -9,7 +9,7 @@ class SoldePanel extends Component {
     render() {
         return(
             <div>
-                <h3 style={{"text-align":"center"}}>Solde de votre compte</h3>
+                <h3>Solde de votre compte</h3>
                 <SoldeRecap
                         user={this.props.user}
                         balance={this.props.balance}

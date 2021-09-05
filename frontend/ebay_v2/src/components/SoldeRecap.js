@@ -5,11 +5,11 @@ class SoldeRecap extends Component {
 
     render = () => {
         return(<div className="main-solde-recap">
-                    <div className="buyer-activity">
-                        <div className="activity-button-box">
+                    <div className="main-solde-recap__buyer-activity">
+                        <div>
                             <a
                                onClick={null}>
-                                <h2 className="solde-recap-waiting">{this.props.balance.waitingConfirmationAmount}</h2>
+                                <h2 className="main-solde-recap__buyer-activity__solde-recap-waiting">{this.props.balance.item.waitingConfirmationAmount}</h2>
                             </a>
                             <p><i class="fa fa-2x fa-euro"></i></p>
                             <p>En Attente</p>
@@ -17,7 +17,7 @@ class SoldeRecap extends Component {
                         <div>
                             <a
                                onClick={() => this.props.handleActivityClick("followed_objects", 2)}>
-                                <h2 className={"solde-recap-payable"}>{this.props.balance.payableAmount}</h2>
+                                <h2 className="main-solde-recap__buyer-activity__solde-recap-payable">{this.props.balance.item.payableAmount}</h2>
                             </a>
                             <p><i class="fa fa-2x fa-euro"></i></p>
                             <p>Payable</p>
@@ -25,14 +25,14 @@ class SoldeRecap extends Component {
                         <div>
                             <a
                                onClick={() => this.props.handleActivityClick("followed_objects", 2)}>
-                                <h2 className="solde-recap-paid">{this.props.balance.paidAmount}</h2>
+                                <h2 className="main-solde-recap__buyer-activity__solde-recap-paid">{this.props.balance.item.paidAmount}</h2>
                             </a>
                             <p><i class="fa fa-2x fa-euro"></i></p>
                             <p>Deja payé</p>
                         </div>
                     </div>
 
-                    <div className="solde-box-form">
+                    <div className="main-solde-recap__solde-box-form">
                         <form onSubmit={(e) => this.props.handleWithdrawClick(e)}>
                             <h4>Effectuer un reversement</h4>
                             {(this.props.user.item.paypal_email != ""  || this.props.user.item.iban != "") ?

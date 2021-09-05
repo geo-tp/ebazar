@@ -8,18 +8,18 @@ class SoldeList extends Component {
             <div className="main-solde-list">
                 <h4>Crédits</h4>
                 
-                <div className="operations">
-                    <table className="main-operations-table">
+                <div className="main-solde-list__operations">
+                    <table>
                         <tbody>
                             { this.props.operations.items.results.map((credit) => {
                                 if (credit.isType == 2) {
-                                    return(<tr className="purchased">
+                                    return(<tr>
 
                                                 <div>
-                                                    <td className="purchased-object-id">{credit.id}</td>
-                                                    <td className="purchased-object-title">{credit.paymentMethod}</td>
+                                                    <td>{credit.id}</td>
+                                                    <td>{credit.paymentMethod}</td>
                                                     <td>{convertRawDateToCondensed(credit.date)}</td>
-                                                    <td className="purchased-object-img">+{credit.amount} €</td>
+                                                    <td>+{credit.amount} €</td>
                                                 </div>
                                             </tr>)
                                 }
@@ -31,8 +31,8 @@ class SoldeList extends Component {
 
                 <h4>Débits</h4>
                 
-                <div className="operations">
-                    <table className="main-operations-table">
+                <div className="main-solde-list__operations">
+                    <table>
                         <tbody>
                             { this.props.operations.items.results.map((debit) => {
                                 if (debit.id == 1) {

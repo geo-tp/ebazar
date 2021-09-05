@@ -58,7 +58,6 @@ class Solde extends Component {
     }
 
     render() {
-        console.log("BALANCE", this.props.balance)
 
         return(
             <div>
@@ -68,6 +67,7 @@ class Solde extends Component {
                             operations={this.props.operations}
                             withdrawal_confirmation={this.state.withdrawal_confirmation}
                             handleWithdrawClick={this.handleWithdrawClick}/>}
+
             </div>
         )
     }
