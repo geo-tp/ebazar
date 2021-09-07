@@ -66,16 +66,17 @@ class NavBar extends Component {
 
             <div className="nav-bar">
 
-                <div className="nav-bar__nav-site" 
-                    onClick={() => this.setState({menuIsOpen: !this.state.menuIsOpen,
-                                                        accountMenuIsOpen: false})}>
+                <div className="nav-bar__nav-site" >
                     <span className="nav-bar__nav-site__nav-burger">
- 
-                        <i className="fas fa fa-2x fa-bars"></i>
+
+                        <i className="fas fa fa-2x fa-bars" 
+                           onClick={() => this.setState({menuIsOpen: !this.state.menuIsOpen,
+                           accountMenuIsOpen: false})}></i>
+
                     </span>
-                    <Link className="nav-bar__logo" to="/home/">
-                        <h2 > <img alt="logo" src={logo}/> EBAZAR</h2>
-                    </Link>
+                    <NavLink className="no-underline" to="/home/">
+                        <h2><img className="nav-bar__logo" alt="logo" src={logo}/> EBAZAR</h2>
+                    </NavLink>
                 </div>
                 
                 {this.state.menuIsOpen ? 
@@ -148,7 +149,7 @@ class NavBar extends Component {
                             </Link>
                             </li>
                             <li id={id++}>
-                                <Link to="/balance/"
+                                <Link to="/solde/"
                                       onClick={() => this.setState({accountMenuIsOpen: false})}>
                                     
                                     <button>Balance</button>

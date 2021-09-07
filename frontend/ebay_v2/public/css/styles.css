@@ -52,6 +52,7 @@ Link {
 
 .no-underline {
   text-decoration: none;
+  color: #272727;
 }
 
 .align-center {
@@ -352,7 +353,7 @@ Link {
   color: #2046f2;
   background-color: #fafafa;
   opacity: 0.95;
-  z-index: 9;
+  z-index: 90;
   width: 100%;
   box-shadow: 0px 10px 20px 5px rgba(211, 211, 211, 0.534);
   border-bottom: 1px solid #d8d8d8;
@@ -372,27 +373,25 @@ Link {
   align-items: center;
   cursor: pointer;
 }
-.nav-bar__nav-site:hover {
-  opacity: 0.8;
-}
 .nav-bar__nav-site__nav-burger {
   display: none;
   margin-right: 0.5em;
 }
+.nav-bar__nav-site__nav-burger:hover {
+  opacity: 0.8;
+}
 @media screen and (max-width: 1280px) {
   .nav-bar__nav-site__nav-burger {
-    display: block;
+    display: flex;
   }
 }
 .nav-bar__logo {
   color: #272727;
   text-decoration: none;
-}
-.nav-bar__logo img {
   width: 12%;
 }
 @media screen and (max-width: 1280px) {
-  .nav-bar__logo img {
+  .nav-bar__logo {
     display: none;
   }
 }
@@ -431,13 +430,22 @@ Link {
   display: flex;
   justify-content: space-evenly;
   text-decoration: none;
+  padding: 0%;
+  text-align: center;
+  padding-top: 7%;
 }
 .nav-bar__menu__link-list li {
   cursor: pointer;
-  border-bottom: 1px solid white;
+  border-radius: 50px;
 }
-.nav-bar__menu__link-list li:hover {
-  border-bottom: 1px solid #d8d8d8;
+.nav-bar__menu__link-list li p {
+  border-color: #f7f7f7;
+  color: #2046f2;
+  font-weight: bold;
+}
+.nav-bar__menu__link-list li p:hover {
+  border-radius: 20px;
+  border-color: #c9d2fc;
 }
 .nav-bar__menu i {
   display: none;
@@ -499,7 +507,7 @@ Link {
 .nav-bar__user ul {
   width: 100%;
   padding: 0;
-  text-align: center;
+  padding-top: 5%;
 }
 .nav-bar__user li {
   margin: 0.5em;
@@ -507,6 +515,7 @@ Link {
   cursor: pointer;
 }
 .nav-bar__user li button {
+  text-align: center;
   width: 90%;
   border-radius: 5px;
   border-color: #f7f7f7;
@@ -515,10 +524,6 @@ Link {
 }
 .nav-bar__user li button:hover {
   border-color: #c9d2fc;
-}
-.nav-bar__user li:hover {
-  color: #8096f8;
-  border-bottom: 0;
 }
 .nav-bar__user-button {
   margin: 0 auto;
@@ -533,7 +538,7 @@ Link {
 }
 @media screen and (max-width: 1280px) {
   .nav-bar__user {
-    width: 35%;
+    width: 25%;
     right: 3%;
   }
 }

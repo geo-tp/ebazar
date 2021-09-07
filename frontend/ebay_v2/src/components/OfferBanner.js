@@ -53,22 +53,20 @@ class OfferBanner extends Component {
     
 
     handleLeftClick = () => {
+        
+        let i = 0
 
         switch (this.state.actual_index) {
             case 0:
-
-                this.setState({
-                    actual_index: this.props.offerBanners.length-1,
-                    actual_banner: this.props.offerBanners[this.props.offerBanners.length-1]
-                })
+                i = this.state.refs_table.length-1
                 break;
 
             default:
-                this.setState({
-                    actual_index: this.state.actual_index - 1,
-                    actual_banner: this.props.offerBanners[this.state.actual_index-1]
-                })
+                i = this.state.actual_index-1
         }
+
+        this.state.refs_table[i].current.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' })
+        this.setState({actual_index: i})
 
     }
 
@@ -82,8 +80,6 @@ class OfferBanner extends Component {
         else {
             i = +1
         }
-        console.log(this.state.actual_index)
-        console.log(i)
 
         this.state.refs_table[this.state.actual_index+i].current.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' })
         this.setState({actual_index: this.state.actual_index+i})

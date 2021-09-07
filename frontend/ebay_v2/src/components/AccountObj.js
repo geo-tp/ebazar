@@ -19,8 +19,6 @@ class Obj extends Component{
 
     determineWhereToRedirect() {
 
-        console.log("TYPE", this.props.objectsType)
-
         switch (this.props.objectsType) {
             case "purchasedObjects":
                 return "/purchased/"

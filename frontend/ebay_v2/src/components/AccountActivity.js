@@ -19,7 +19,7 @@ class AccountActivity extends Component {
             <div className="main-account-activity">
                 <div className="main-account-activity__buttons-list">
                     <Link to='/sell'><button className="account-sale-button"><p>VENDRE</p><i className="fa fa-2x fa-euro"></i></button></Link>
-                    <Link to='solde'><button><p>SOLDE</p><i className="fa fa-2x fa-money"></i></button></Link>
+                    <Link to='/solde'><button><p>SOLDE</p><i className="fa fa-2x fa-money"></i></button></Link>
                     <Link to='/purchased'><button><p>ACHATS</p><i className="fa fa-2x fa-shopping-cart"></i></button></Link>
                     <Link to='/selled'><button><p>VENTES</p><i className="fa fa-2x fa-balance-scale"></i></button></Link>
                 </div>

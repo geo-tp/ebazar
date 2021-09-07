@@ -14,6 +14,7 @@ import { fetchImagesOfObject } from "../thunks/ImageThunk";
 import { withRouter } from "react-router";
 import Loading from "../components/Loading";
 import { RECOMMANDED } from "../utils/listLabels";
+import { authSelector } from "../selectors/AuthSelectors";
 
 class Detail extends Component {
 
@@ -53,7 +54,8 @@ class Detail extends Component {
                  this.props.detailledObjectQuestions.loaded && this.props.detailledObjectBids.loaded &&
                  !this.props.detailledObject.loading ?
 
-                <ObjectDetail   detailledObject={this.props.detailledObject}
+                <ObjectDetail   auth={this.props.auth}
+                                detailledObject={this.props.detailledObject}
                                 detailledObjectBids={this.props.detailledObjectBids}
                                 detailledObjectQuestions={this.props.detailledObjectQuestions}
                                 detailledObjectImages={
@@ -77,6 +79,7 @@ class Detail extends Component {
 const DetailPage = connect(
     (state) => ({
         objects: objectSelector(state),
+        auth: authSelector(state),
         
         detailledObject: detailledObjectSelector(state),
         detailledObjectQuestions: detailledObjectQuestionSelector(state),
@@ -99,6 +102,7 @@ const DetailPage = connect(
 Detail.propTypes = {
 
     objects: PropTypes.object.isRequired,
+    auth: PropTypes.object.isRequired,
 
     detailledObject: PropTypes.object.isRequired,
     detailledObjectQuestions: PropTypes.object.isRequired,

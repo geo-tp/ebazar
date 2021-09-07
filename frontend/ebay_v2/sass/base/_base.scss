@@ -53,5 +53,6 @@ Link {
 }
 
 .no-underline {
-    text-decoration: none
+    text-decoration: none;
+    color: map-get($COLOR-PALETTE, font);
 }

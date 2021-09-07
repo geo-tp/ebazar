@@ -16,7 +16,7 @@ import { fetchDetailledObject } from "../thunks/DetailledObjectThunk";
 import { fetchObjects } from "../thunks/ObjectThunk";
 import { fetchBidsOfObject } from "../thunks/BidThunk";
 import { fetchQuestionsOfObject } from "../thunks/QuestionThunk";
-
+import { fetchCreateFollowing, fetchRemoveFollowing } from "../fetch/FollowingFetch";
 
 class ObjectDetail extends Component {
 
@@ -25,6 +25,7 @@ class ObjectDetail extends Component {
         this.state = {
             remainingTime: null,
             remainingText: "",
+            isFollowed: false, 
             showBidBox: false,
             showBidList: false,
             intervalStarted : false
@@ -89,6 +90,31 @@ class ObjectDetail extends Component {
 
     }
 
+    async handleFollowedClick(e) {
+
+        e.preventDefault()
+
+        let rslt = await fetchCreateFollowing(this.props.auth.basicUser.id, this.props.detailledObject.item.id)
+        
+        if (rslt == 1) {
+            this.setState({isFollowed:true})
+        }
+
+    }
+
+    async handleUnfollowedClick(e) {
+
+        e.preventDefault()
+
+        let rslt = await fetchRemoveFollowing(this.props.auth.basicUser.id, this.props.detailledObject.item.id)
+        console.log("RSLT", rslt)
+        if (rslt == 1) {
+            this.setState({isFollowed:false})
+        }
+
+
+    }
+
 
     render() {
 
@@ -118,11 +144,11 @@ class ObjectDetail extends Component {
                                     <div className="main-detailled-object__content">
                                         <div className="main-detailled-object__content-blurb">
                                             <h3 className="main-detailled-object__content-blurb__heading">{this.props.detailledObject.item.actualPrice} €</h3>
-                                            {this.props.detailledObject.item.isFollowed ?
-                                                        <p><button onClick={() => this.requestUnfollowObject()} class="button-unfollow">Ne plus suivre</button></p>
+                                            {this.props.detailledObject.item.isFollowed || this.state.isFollowed ?
+                                                        <p><button onClick={(e) => this.handleUnfollowedClick(e)} class="button-unfollow">Ne plus suivre</button></p>
                                                         :
-                                                        this.props.isConnected && this.props.detailledObject.item.isActive ?
-                                                            <p><button onClick={() => this.requestFollowObject()} class="button-follow">Suivre</button></p>
+                                                        this.props.auth.connected && this.props.detailledObject.item.isActive ?
+                                                            <p><button onClick={(e) => this.handleFollowedClick(e)} class="button-follow">Suivre</button></p>
                                                             :
                                                             <p><Link to="/auth"><button class="button-follow">Suivre</button></Link></p>
                                             }
@@ -216,6 +242,8 @@ class ObjectDetail extends Component {
 // )(ObjectDetail)
 
 ObjectDetail.propTypes = {
+
+    auth: PropTypes.object.isRequired,
 
     detailledObject: PropTypes.object.isRequired,
     detailledObjectQuestions: PropTypes.object.isRequired,

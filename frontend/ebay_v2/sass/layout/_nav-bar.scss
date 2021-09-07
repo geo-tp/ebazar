@@ -10,7 +10,7 @@
      color: map-get($COLOR-PALETTE, ter );
      background-color: map-get($COLOR-PALETTE, sec);
      opacity: .95;
-     z-index: 9;
+     z-index: 90;
      width: 100%;
      box-shadow: 0px 10px 20px 5px rgba(211, 211, 211, 0.534);
 
@@ -34,20 +34,21 @@
          align-items: center;
          cursor: pointer;
 
-         &:hover {
-             opacity: .8;
-         }
-
+         
          
          &__nav-burger {
              display: none;
              margin-right: $medium;
+             
+             &:hover {
+                 opacity: .8;
+             }
          }
 
          @include tablet-design {
 
             &__nav-burger {
-                display: block;
+                display: flex;
             }  
          }
      }
@@ -55,15 +56,13 @@
      &__logo {
          color: map-get($COLOR-PALETTE, font );
          text-decoration: none;
+         width:12%;
 
          & img {
-             width:12%;
          }
 
          @include tablet-design {
-             & img {
-                 display: none;
-             }
+            display: none;
          }
      }
 
@@ -117,20 +116,35 @@
             display: flex;
             justify-content: space-evenly;
             text-decoration: none;
-
+            padding: 0%;
+            text-align: center;
+            padding-top: 7%;
+            
+            &:hover {
+            }
             & li {
                 cursor: pointer;
-                border-bottom: 1px solid white;
+                border-radius: 50px;
+                & p {
+                    border-color: map-get($COLOR-PALETTE, bg2 );
+                    
+                    color: map-get($COLOR-PALETTE, ter);
+                    font-weight: bold;
+                    
+                    &:hover {
+                        // background-color: yellow;
+                        border-radius: 20px;
+                        border-color: lighten(map-get($COLOR_PALETTE, ter), 35%);
+                        // padding-left: $small;
+                        // padding-right: $small;
+                        // color: map-get($COLOR_PALETTE, sec );
+                        // padding:0;
+                        // @include border-bottom-default;
+                    }
+                }
+                // border-bottom: 1px solid white;
             }
-
-            & li:hover {
-                // border-radius: 20px;
-                // padding-left: $small;
-                // padding-right: $small;
-                // color: map-get($COLOR_PALETTE, sec );
-                // padding:0;
-                @include border-bottom-default;
-            }
+            
         }
 
         & i {
@@ -211,21 +225,22 @@
         color: map-get($COLOR_PALETTE,font);
         background-color: map-get($COLOR_PALETTE,sec );
         border-radius: 20px;
-
+        
         // @include small-border-default;
         @include small-shadow;
         & ul {
             // margin: 1em auto;
             width:100%;
             padding:0;
-            text-align: center;
+            padding-top: 5%;
         }
         & li {
             margin: $medium;
             padding: $small;
             cursor:pointer;
-
+            
             & button {
+                text-align: center;
                 width:90%;
                 border-radius: 5px;
                 border-color: map-get($COLOR-PALETTE, bg2 );
@@ -238,10 +253,10 @@
             }
 
         }
-        & li:hover {
-            color: lighten(map-get($COLOR_PALETTE, ter), 20%);
-            border-bottom: 0;
-        }
+        // & li:hover {
+        //     color: lighten(map-get($COLOR_PALETTE, ter), 20%);
+        //     border-bottom: 0;
+        // }
 
         &-button {
             // width: 20%;
@@ -258,7 +273,7 @@
 
         @include tablet-design  {
             
-            width: 35%;
+            width: 25%;
             right: 3%;
         }
 
