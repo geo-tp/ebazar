@@ -1,5 +1,6 @@
-***EBAZAR is an auction site where people can sell and bid on items.***
-------------------------------------------------------------
+***EBAZAR***
+*auction site where people can sell and bid on items.*
+
 
 FRONTEND : 
 - React
