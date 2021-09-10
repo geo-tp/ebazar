@@ -4,6 +4,7 @@
 FRONTEND : 
 - React
 - Redux
+- Sass
 
 BANCKEND : 
 - Django
