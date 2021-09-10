@@ -35,23 +35,23 @@ class NavBar extends Component {
                     <li id={id++}>
                         <NavLink className="no-underline" 
                                  to="/choice/popular">
-                            <p>Populaires</p>
+                            <button>Populaires</button>
                         </NavLink>
                     </li>
                     <li id={id++}>
                         <NavLink className="no-underline" 
                                     to="/choice/new">
-                                <p>Nouveautés</p>
+                                <button>Nouveautés</button>
                         </NavLink>
                     </li>
                     <li id={id++}>
                         <NavLink className="no-underline" 
                                     to="/choice/cheap">
-                                <p>Prix Mini</p>
+                                <button>Prix Mini</button>
                         </NavLink>
                     </li>
                     <li id={id++}>
-                        <p>Aide</p>
+                        <button>Aide</button>
                     </li>
                 </ul>
 
@@ -120,7 +120,7 @@ class NavBar extends Component {
                         </i>
 
                         {this.props.auth.connected?
-                        <ul>
+                        <ul className="nav-bar__user-button">
                             <li id={id++}>
                             <Link to="/account/"
                                   onClick={() => this.setState({accountMenuIsOpen: false})}>

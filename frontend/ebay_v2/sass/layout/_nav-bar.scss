@@ -118,30 +118,15 @@
             text-decoration: none;
             padding: 0%;
             text-align: center;
+            // padding-top: 7%;
             
-            &:hover {
+            & button {
+                border-color: map-get($COLOR-PALETTE, bg2 );
             }
             & li {
                 cursor: pointer;
                 border-radius: 50px;
-                & p {
-                    border-color: map-get($COLOR-PALETTE, bg2 );
-                    
-                    color: map-get($COLOR-PALETTE, ter);
-                    font-weight: bold;
-                    
-                    &:hover {
-                        // background-color: yellow;
-                        border-radius: 20px;
-                        border-color: lighten(map-get($COLOR_PALETTE, ter), 35%);
-                        // padding-left: $small;
-                        // padding-right: $small;
-                        // color: map-get($COLOR_PALETTE, sec );
-                        // padding:0;
-                        // @include border-bottom-default;
-                    }
-                }
-                // border-bottom: 1px solid white;
+
             }
             
         }
@@ -155,16 +140,19 @@
 
         }
 
-        &__link-list {
-            & li {
+        // &__link-list {
+        //     & li {
+        //         background-color: map-get($COLOR_PALETTE,sec );
+                
+        //         margin: .5em;
 
-                margin: .5em;
-
-                &:hover {
-                    opacity: .7;
-                }
-            }
-        }
+        //         &
+        //         &:hover {
+        //             // opacity: .7;
+        //                 border-color: lighten(map-get($COLOR_PALETTE, ter), 35%);
+        //         }
+        //     }
+        // }
 
         @include tablet-design  {
             
@@ -197,6 +185,20 @@
                 justify-content: space-evenly;
                 // background-color: red;
                 // padding-left: 10%;
+                padding-top: 7%;
+
+
+                & button {
+                    text-align: center;
+                    width:90%;
+                    border-radius: 5px;
+                    border-color: lighten(map-get($COLOR_PALETTE, ter), 15%);
+                    font-size: 1em;
+                    text-align: center;
+                    &:hover {
+                        border-color: lighten(map-get($COLOR_PALETTE, ter), 35%);
+                    }
+                }
             }
     
             & i {
@@ -231,20 +233,21 @@
             // margin: 1em auto;
             width:100%;
             padding:0;
-            padding-top: 5%;
+            padding-top: 15%;
         }
         & li {
             margin: $medium;
-            padding: $small;
+            // padding: $small;
             cursor:pointer;
+            // margin-top: 7%;
             
             & button {
                 text-align: center;
+                border-color: lighten(map-get($COLOR_PALETTE, ter), 15%);
                 width:90%;
                 border-radius: 5px;
-                border-color: map-get($COLOR-PALETTE, bg2 );
                 font-size: 1em;
-                text-align: left;
+                text-align: center;
 
                 &:hover {
                     border-color: lighten(map-get($COLOR_PALETTE, ter), 35%);
@@ -252,17 +255,19 @@
             }
 
         }
-        // & li:hover {
-        //     color: lighten(map-get($COLOR_PALETTE, ter), 20%);
-        //     border-bottom: 0;
-        // }
 
         &-button {
             // width: 20%;
             margin: 0 auto;
             & button {
-            margin: $medium;
+                margin: $medium;
+                border-color: map-get($COLOR-PALETTE, bg2 );
+                &:hover {
+                    border-color: lighten(map-get($COLOR_PALETTE, ter), 35%);
+                }
+            
             }
+            
 
             @include tablet-design {
                 // width: 30%;

@@ -433,27 +433,15 @@ Link {
   padding: 0%;
   text-align: center;
 }
+.nav-bar__menu__link-list button {
+  border-color: #f7f7f7;
+}
 .nav-bar__menu__link-list li {
   cursor: pointer;
   border-radius: 50px;
 }
-.nav-bar__menu__link-list li p {
-  border-color: #f7f7f7;
-  color: #2046f2;
-  font-weight: bold;
-}
-.nav-bar__menu__link-list li p:hover {
-  border-radius: 20px;
-  border-color: #c9d2fc;
-}
 .nav-bar__menu i {
   display: none;
-}
-.nav-bar__menu__link-list li {
-  margin: 0.5em;
-}
-.nav-bar__menu__link-list li:hover {
-  opacity: 0.7;
 }
 @media screen and (max-width: 1280px) {
   .nav-bar__menu {
@@ -478,6 +466,18 @@ Link {
   .nav-bar__menu__link-list {
     display: block;
     justify-content: space-evenly;
+    padding-top: 7%;
+  }
+  .nav-bar__menu__link-list button {
+    text-align: center;
+    width: 90%;
+    border-radius: 5px;
+    border-color: #6882f6;
+    font-size: 1em;
+    text-align: center;
+  }
+  .nav-bar__menu__link-list button:hover {
+    border-color: #c9d2fc;
   }
   .nav-bar__menu i {
     display: block;
@@ -506,20 +506,19 @@ Link {
 .nav-bar__user ul {
   width: 100%;
   padding: 0;
-  padding-top: 5%;
+  padding-top: 15%;
 }
 .nav-bar__user li {
   margin: 0.5em;
-  padding: 0.2em;
   cursor: pointer;
 }
 .nav-bar__user li button {
   text-align: center;
+  border-color: #6882f6;
   width: 90%;
   border-radius: 5px;
-  border-color: #f7f7f7;
   font-size: 1em;
-  text-align: left;
+  text-align: center;
 }
 .nav-bar__user li button:hover {
   border-color: #c9d2fc;
@@ -529,6 +528,10 @@ Link {
 }
 .nav-bar__user-button button {
   margin: 0.5em;
+  border-color: #f7f7f7;
+}
+.nav-bar__user-button button:hover {
+  border-color: #c9d2fc;
 }
 @media screen and (max-width: 1280px) {
   .nav-bar__user-button {
