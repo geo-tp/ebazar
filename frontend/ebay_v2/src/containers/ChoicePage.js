@@ -42,7 +42,7 @@ class Choice extends Component {
                 return [this.props.biddedObjects, this.props.fetchNextBiddedObjectsPage]
       
             case "followed":
-                return [this.props.followedObjects, this.props.fetchNextPurchasedObjectsPage]
+                return [this.props.followedObjects, this.props.fetchNextFollowedObjectsPage]
 
             default:
                 return [this.props.objects, this.props.fetchNextObjectsPage]

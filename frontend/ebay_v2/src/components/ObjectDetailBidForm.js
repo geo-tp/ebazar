@@ -1,5 +1,8 @@
 import { Component } from "react";
 import { connect } from "react-redux";
+import { fetchCreateBid } from "../fetch/BidFetch";
+import { BID_ERROR } from "../utils/errors";
+import { BID_SUCCESS } from "../utils/success";
 
 
 
@@ -14,37 +17,24 @@ class ObjectDetailBidForm extends Component {
     }
 
 
-    // handleBidClick = (e) => {
+    async handleBidClick(e) {
 
-    //     let url = request_formatter({model: "bid"})
-    //     fetch(url, {
-    //         method: "POST",
-    //         headers: {
-    //           "Accept": "application/json",
-    //           'Content-Type': 'application/json',
-    //           "Authorization": "token "+this.props.token
-    //         },
-    //         body: JSON.stringify({obj: this.props.obj_id,
-    //                               price: this.state.bid_price,
-    //                               user: this.props.user.id
-    //                               })
-    //     })
-    //         .then(rslt => rslt.json())
-    //         .then(json_data => {
-    //             if (json_data.hasOwnProperty('detail')) {
-    //                 this.setState({info:json_data.detail})
-    //                 this.props.request_for_detailled_object(this.props.obj_id)
+        e.preventDefault()
 
-    //             }
-    //             else if (json_data.hasOwnProperty('id')) {
-    //                 this.setState({info: "L'enchère a été validé"})
-    //                 this.props.request_for_detailled_object(this.props.obj_id)
-    //             }
-    //             else {
-    //                 this.setState({info:"Vous devez renseigner un nombre valide."})
-    //             }
-    //         })
-    // }
+        let rslt = await fetchCreateBid(this.state.bid_price, this.props.userId, this.props.objectId)
+        let info;
+
+        if (rslt == 1) {
+            info = BID_SUCCESS
+            this.props.update()
+        }
+        else {
+
+            info = BID_ERROR
+        }
+
+        
+    }
 
 
     render() {

@@ -68,6 +68,9 @@ class Solde extends Component {
                             withdrawal_confirmation={this.state.withdrawal_confirmation}
                             handleWithdrawClick={this.handleWithdrawClick}/>}
 
+                {!this.props.balance.loaded || !this.props.operations.loaded && 
+                            <Loading/>}
+
             </div>
         )
     }

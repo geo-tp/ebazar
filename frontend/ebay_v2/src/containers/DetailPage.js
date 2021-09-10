@@ -61,7 +61,9 @@ class Detail extends Component {
                                 detailledObjectImages={
                                     {...this.props.detailledObjectImages, 
                                     items: [{imageOfObject: this.props.detailledObject.item.mainImage},
-                                                ...this.props.detailledObjectImages.items]}  }/>
+                                                ...this.props.detailledObjectImages.items]} }
+                                fetchDetailledObject={this.props.fetchDetailledObject}
+                                fetchBidsOfObject={this.props.fetchBidsOfObject}/>
                 :                           
                 
                 <Loading/>

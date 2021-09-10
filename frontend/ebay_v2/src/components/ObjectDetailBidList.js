@@ -23,7 +23,7 @@ class ObjectDetailBidList extends Component {
                 {this.props.bids.loaded && this.props.bids.items.results.map((bid) => {
                     return(
                                 <tr>
-                                    <td>{bid.user.username}</td>
+                                    <td>{bid.user}</td>
                                     <td>{bid.price}€</td>
                                 </tr>
                             )

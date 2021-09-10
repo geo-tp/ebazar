@@ -25,7 +25,7 @@ class ObjectDetail extends Component {
         this.state = {
             remainingTime: null,
             remainingText: "",
-            isFollowed: false, 
+            isFollowed: this.props.detailledObject.item.isFollowed, 
             showBidBox: false,
             showBidList: false,
             intervalStarted : false
@@ -78,6 +78,12 @@ class ObjectDetail extends Component {
                 remainingTime: remaining - 1
             })
         }
+    }
+
+    updateObject = () => {
+        this.props.fetchDetailledObject(this.props.detailledObject.item.id)
+        this.props.fetchBidsOfObject(this.props.detailledObject.item.id)
+        
     }
 
     handleBidBoxClick = () => {
@@ -144,7 +150,7 @@ class ObjectDetail extends Component {
                                     <div className="main-detailled-object__content">
                                         <div className="main-detailled-object__content-blurb">
                                             <h3 className="main-detailled-object__content-blurb__heading">{this.props.detailledObject.item.actualPrice} €</h3>
-                                            {this.props.detailledObject.item.isFollowed || this.state.isFollowed ?
+                                            {this.state.isFollowed ?
                                                         <p><button onClick={(e) => this.handleUnfollowedClick(e)} class="button-unfollow">Ne plus suivre</button></p>
                                                         :
                                                         this.props.auth.connected && this.props.detailledObject.item.isActive ?
@@ -168,12 +174,14 @@ class ObjectDetail extends Component {
                                                     <div className="remaining-time-box">
                                                         <p id="ramaining-time-box__time"> Il reste {this.state.remainingText}</p>
                                                     </div>
-                                                    {this.props.isConnected ?
-                                                        <button onClick={() => this.handleBidBoxClick()} className="button-open-bid">Enchérir</button>
+                                                    {this.props.auth.connected ?
+                                                        <button onClick={(e) => this.handleBidBoxClick(e)} className="button-open-bid">Enchérir</button>
                                                         :
                                                         <Link to="/auth"><button className="button-open-bid">Enchérir</button></Link>
                                                     }
-                                                    {!!this.state.showBidBox && <ObjectDetailBidForm />}
+                                                    {!!this.state.showBidBox && <ObjectDetailBidForm userId={this.props.auth.basicUser.id}
+                                                                                                     objectId={this.props.detailledObject.item.id}
+                                                                                                     update={this.updateObject}/>}
                                                 </div>
                                             }
                                             <div className="description-box">
@@ -250,8 +258,8 @@ ObjectDetail.propTypes = {
     detailledObjectBids: PropTypes.object.isRequired,
     detailledObjectImages: PropTypes.object.isRequired,
 
-    // fetchDetailledObject: PropTypes.func.isRequired,
-    // fetchBidsOfObject: PropTypes.func.isRequired,
+    fetchDetailledObject: PropTypes.func.isRequired,
+    fetchBidsOfObject: PropTypes.func.isRequired,
     // fetchQuestionsOfObject: PropTypes.func.isRequired
 
 }

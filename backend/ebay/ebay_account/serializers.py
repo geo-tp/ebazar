@@ -126,11 +126,9 @@ class BalanceSerializer(serializers.ModelSerializer):
 
 class BidSerializer(serializers.ModelSerializer):
 
-    user = BasicUserSerializer()
-
     class Meta:
         model = Bid
-        fields = ["id", "price", "user"]
+        fields = ["id", "price", "user", "obj"]
 
     def to_representation(self, instance, request=None):
 
@@ -138,6 +136,7 @@ class BidSerializer(serializers.ModelSerializer):
 
         # Payment data are hided for confidentiality, 
         # Others bidders cant know exactly against who they are fighting
-        rep["user"]["username"] = hidePartOfData(rep["user"]["username"])
+        user = CustomUser.objects.get(id=rep["user"])
+        rep["user"] = hidePartOfData(user.username)
 
         return rep

@@ -2,7 +2,8 @@ from django.shortcuts import render
 from rest_framework import viewsets
 from rest_framework import filters
 import django_filters
-
+from rest_framework.response import Response
+from rest_framework import status
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
 
@@ -71,7 +72,7 @@ class BidViewSet(viewsets.ModelViewSet):
 
         headers = self.get_success_headers(serializer.data)
         return Response({"detail": error,
-                         "actual_price": maxBid}, status=status.HTTP_200_OK)
+                         "actual_price": maxBid}, status=status.HTTP_401_UNAUTHORIZED)
 
 
 class TransactionViewsSet(viewsets.ModelViewSet):
