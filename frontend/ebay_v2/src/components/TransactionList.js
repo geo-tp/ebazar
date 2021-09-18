@@ -41,7 +41,7 @@ class TransactionList extends Component {
         }
 
         else if (object.isPaid) {
-            answer = "A Envoyer"
+            answer = "En cours"
         }
 
         else {

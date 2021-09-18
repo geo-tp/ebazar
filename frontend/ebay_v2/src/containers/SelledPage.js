@@ -4,10 +4,11 @@ import Loading from "../components/Loading"
 import PropTypes from "prop-types"
 
 import { connect } from "react-redux";
-import { selledObjectSelector } from "../selectors/ObjectSelectors";
+import { selledTransactionselector } from "../selectors/ObjectSelectors";
 import SelledSelectionButton from "../components/SelledSelectionButton";
 import { authSelector } from "../selectors/AuthSelectors";
 import { fetchSelledTransaction } from "../thunks/SelledTransactionThunk";
+import { selledTransactionSelector } from "../selectors/TransactionSelectors";
 
 class Selled extends Component {
 
@@ -60,7 +61,7 @@ class Selled extends Component {
     //         headers: headers
     //     })
     //         .then(rslt => rslt.json())
-    //         .then(rslt_json => this.setState({selledObjects: rslt_json.results}, console.log(this.state.selledObjects)))
+    //         .then(rslt_json => this.setState({selledTransactions: rslt_json.results}, console.log(this.state.selledTransactions)))
     //         .then(() => this.organizePurchasedObjects())
     // }
 
@@ -68,7 +69,7 @@ class Selled extends Component {
         
         let response;
 
-        if (!this.props.selledObjects.loaded) {
+        if (!this.props.selledTransactions.loaded) {
             
             response = await this.props.fetchSelledTransaction(this.props.auth.basicUser.id)
         }
@@ -83,8 +84,8 @@ class Selled extends Component {
             let catInProgress = [];
             let catComplete = [];
             let catAll = [];
-            this.props.selledObjects.loaded &&
-            this.props.selledObjects.items.results.map((selledObject, index) => {
+            this.props.selledTransactions.loaded &&
+            this.props.selledTransactions.items.results.map((selledObject, index) => {
 
                 if (selledObject.isComplete) {
                     catComplete.push(selledObject)
@@ -142,18 +143,17 @@ class Selled extends Component {
 
 
     render() {
-        console.log("STATE", this.state)
         return(
             <div className="main-selled">
                 <h3>Vos Ventes</h3>
          
-                {this.props.selledObjects.loaded && <SelledSelectionButton
+                {this.props.selledTransactions.loaded && <SelledSelectionButton
                                         handleCatChange={this.handleCatChange}
                                         selected={this.state.actualCatInViewIndex}/>}
                 {this.state.actualObjectsInView && <TransactionList type="selled"
                                                                     objects={this.state.actualObjectsInView}/>}
 
-                {!this.props.selledObjects.loaded && <Loading/>}
+                {!this.props.selledTransactions.loaded && <Loading/>}
 
             </div>
         )
@@ -167,7 +167,7 @@ Selled.propsType= {
 const SelledPage = connect(
     (state) => ({
         auth: authSelector(state),
-        selledObjects: selledObjectSelector(state)
+        selledTransactions: selledTransactionSelector(state)
     }),
 
     (dispatch) => ({
