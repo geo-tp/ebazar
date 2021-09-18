@@ -150,9 +150,5 @@ const AccountStore = connect(
 )(Account)
 
 
-Account.propTypes = {
-
-}
-
 
 export default AccountStore
