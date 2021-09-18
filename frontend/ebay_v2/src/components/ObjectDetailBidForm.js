@@ -21,16 +21,21 @@ class ObjectDetailBidForm extends Component {
 
         e.preventDefault()
 
+        if (this.props.objectPrice <= this.state.bid_price) {
+            this.setState({info:"L'enchère est trop basse, prix minimum : "+ this.props.objectPrice + " €"})
+            return
+        }
+
         let rslt = await fetchCreateBid(this.state.bid_price, this.props.userId, this.props.objectId)
-        let info;
 
         if (rslt == 1) {
-            info = BID_SUCCESS
+            this.setState({info:BID_SUCCESS})
             this.props.update()
         }
         else {
-
-            info = BID_ERROR
+            console.log(rslt)
+            this.setState({info:BID_ERROR})
+            
         }
 
         

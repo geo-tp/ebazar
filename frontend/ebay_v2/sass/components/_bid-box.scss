@@ -1,0 +1,16 @@
+
+.bid-box {
+    & input {
+        margin: 10px;
+        margin-left: 0;
+
+        @include tablet-design {
+            font-size: 1.4em;
+            width: 80%;
+            height: 50px;
+
+        }
+        
+    }
+
+}

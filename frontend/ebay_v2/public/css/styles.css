@@ -186,6 +186,18 @@ Link {
   width: 3%;
 }
 
+.bid-box input {
+  margin: 10px;
+  margin-left: 0;
+}
+@media screen and (max-width: 1280px) {
+  .bid-box input {
+    font-size: 1.4em;
+    width: 80%;
+    height: 50px;
+  }
+}
+
 .button-search {
   color: #2046f2;
   height: 2em;

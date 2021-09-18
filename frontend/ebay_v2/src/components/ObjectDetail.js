@@ -181,6 +181,7 @@ class ObjectDetail extends Component {
                                                     }
                                                     {!!this.state.showBidBox && <ObjectDetailBidForm userId={this.props.auth.basicUser.id}
                                                                                                      objectId={this.props.detailledObject.item.id}
+                                                                                                    objectPrice={this.props.detailledObject.item.actualPrice}
                                                                                                      update={this.updateObject}/>}
                                                 </div>
                                             }
