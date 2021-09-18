@@ -24,6 +24,7 @@ import SelledPage from "./SelledPage";
 import PurchasedPage from "./PurchasedPage";
 import ChoicePage from "./ChoicePage";
 import SoldePage from "./SoldePage";
+import HelpPage from "./HelpPage";
 
 
 
@@ -94,6 +95,10 @@ function App() {
 
           <Route path="/account">
             <AccountPage/>
+          </Route>
+
+          <Route path="/Help">
+            <HelpPage/>
           </Route>
 
         </Switch>

@@ -223,6 +223,12 @@ Link {
   color: #2046f2;
 }
 
+.ebazar-contact {
+  margin: 0 auto;
+  text-align: center;
+  width: 50%;
+}
+
 .wrapper, .wrapper--large, .wrapper--small {
   position: relative;
   height: 100%;

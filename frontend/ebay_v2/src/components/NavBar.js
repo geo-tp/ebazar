@@ -51,7 +51,10 @@ class NavBar extends Component {
                         </NavLink>
                     </li>
                     <li id={id++}>
-                        <button>Aide</button>
+                        <NavLink className="no-underline" 
+                            to="/help">
+                            <button>Aide</button>
+                        </NavLink>
                     </li>
                 </ul>
 
