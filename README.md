@@ -1,4 +1,15 @@
+***EBAZAR***
+-----------
+*auction site where people can sell and bid on items.*
 
-```
-eee
-```
+
+FRONTEND : 
+- React
+- Redux
+- Sass
+
+BANCKEND : 
+- Django
+- Rest Framework
+
+
