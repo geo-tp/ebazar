@@ -7,27 +7,10 @@ import {
   } from "react-router-dom";
 import { NO_OBJECT_TO_RENDER } from "../utils/errors";
 import AccountObj from "./AccountObj";
+import PropTypes from 'prop-types'
+
 
 class ObjectsAccountListe extends Component {
-
-    // constructor(props) {
-    //     super(props)
-
-    //     this.state = {
-    //         ObjectsListe : this.props.ObjectsListe
-    //     }
-    // }
-
-
-    // handlePaidConfirmation = (index) => {
-    //    let objectsListe  = this.state.ObjectsListe
-    //    objectsListe[index].isPaid =1
-
-    //    this.setState({
-    //        ObjectsListe:objectsListe
-    //    })
-
-    // }
 
     determineButtonToUse() {
 
@@ -72,6 +55,14 @@ class ObjectsAccountListe extends Component {
             </div>
         )
     }
+}
+
+ObjectsAccountListe.propTypes = {
+    object: PropTypes.object.isRequired,
+    objectsType: PropTypes.string.isRequired,
+
+    handleResetClick: PropTypes.func.isRequired
+
 }
 
 export default ObjectsAccountListe

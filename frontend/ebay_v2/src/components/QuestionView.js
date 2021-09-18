@@ -1,5 +1,6 @@
 import { Component } from "react";
 import { NO_SELECTION_ERROR } from "../utils/errors";
+import PropTypes from 'prop-types'
 
 class QuestionView extends Component {
 
@@ -32,6 +33,10 @@ class QuestionView extends Component {
             </div>
         )
     }
+}
+
+QuestionView.propTypes = {
+    question : PropTypes.object.isRequired
 }
 
 export default QuestionView

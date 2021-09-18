@@ -18,37 +18,6 @@ class ObjectDetailQuestionList extends Component {
 
     }
 
-    // handleQuestionClick = (e) => {
-
-    //     let url = request_formatter({
-    //         model:"question"
-    //     })
-
-    //     fetch(url, {
-    //         method: "POST",
-    //         headers: {
-    //             "Accept": "application/json",
-    //             'Content-Type': 'application/json',
-    //             "Authorization": "token "+this.props.token
-    //           },
-    //           body: JSON.stringify({questionText: this.state.questionText,
-    //                                 obj: this.props.object_id,
-    //                                 user: this.props.user.id})
-    //     })
-    //         .then(rslt => rslt.json())
-    //         .then(json_data => {
-    //             if (json_data.hasOwnProperty("id")) {
-    //                 this.setState({error: "Votre question a été envoyée",
-    //                                questionText: ""})
-    //             }
-    //             else {
-    //                 this.setState({error:"Une erreur s'est produite"})
-    //             }
-    //         })
-    // }
-
-
-
     render() {
         return(
             <div className='wrapper'>
@@ -96,17 +65,6 @@ ObjectDetailQuestionList.propType = {
 
     fetchQuestionsOfObject: PropTypes.func.isRequired,
 }
-// export const ObjectDetailQuestionListStore = connect (
-//     (state) => ({
-//         detailledObject: detailledObjectSelector(state),
-//         questions: questionOfObjectSelector(state),
-//     }),
-//     (dispatch) => ({
-//         fetchQuestionsOfObject: (objectId) => dispatch(fetchQuestionsOfObject(objectId)),
-//         fetchNextQuestionsOfObjectPage: (url) => dispatch(fetchNextQuestionsOfObjectPage(url))
-//     })
-
-// )(ObjectDetailQuestionList)
 
 export default ObjectDetailQuestionList
 

@@ -18,29 +18,9 @@ class ImageCaroussel extends Component {
 
         }
         
-        // this.initImages()
         
     }
     
-    // initImages() {
-        
-    //     console.log("images", this.props.images)
-    //     let images =  [{imageOfObject: this.props.detailledObject.item.mainImage}]
-
-    //     if (this.props.images.items.length) {
-    //         images = [...this.props.images.items, ...images]
-            
-    //     }
-
-    //     this.setState({
-    //         images : images,
-    //         isInit: true
-    //     })
-
-    //     console.log()
-
-    // }
-
     handleFullResolutionDisplay = () => {
         this.setState({
             displayFullResolution: !this.state.displayFullResolution})
@@ -78,8 +58,6 @@ class ImageCaroussel extends Component {
                 break;
         }
     }
-
-
 
     render() {
 

@@ -1,6 +1,7 @@
 import { Component } from "react";
 import { NO_MESSAGE_ERROR } from "../utils/errors";
 import { convertDateToDuration } from "../utils/timeConverters";
+import PropTypes from 'prop-types'
 
 
 class MessagesTable extends Component {
@@ -94,6 +95,13 @@ class MessagesTable extends Component {
             </div>
         )
     }
+}
+
+MessagesTable.propTypes = {
+    selectedIndex: PropTypes.number.isRequired,
+    handleDataChange: PropTypes.func.isRequired,
+    data: PropTypes.object.isRequired,
+  
 }
 
 export default MessagesTable

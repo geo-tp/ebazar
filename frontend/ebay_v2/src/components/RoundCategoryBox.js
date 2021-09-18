@@ -1,6 +1,6 @@
 
 import { Component } from "react";
-// import "./style.css"
+import PropTypes from 'prop-types'
 import {Link} from "react-router-dom"
 
 class RoundCategorieBox extends Component {
@@ -15,6 +15,10 @@ class RoundCategorieBox extends Component {
             </div>
         )
     }
+}
+
+RoundCategorieBox.propTypes = {
+    category: PropTypes.object.isRequired
 }
 
 export default RoundCategorieBox

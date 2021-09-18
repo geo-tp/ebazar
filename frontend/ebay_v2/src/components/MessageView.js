@@ -1,14 +1,11 @@
 import { Component } from "react";
 import { NO_SELECTION_ERROR } from "../utils/errors";
+import PropTypes from "prop-types"
 
 class MessageView extends Component {
 
     render() {
 
-        // if (this.props.message && this.props.message.hasOwnProperty("questionText")) {
-        //     return null
-        // }
-        console.log("MESSAGE", this.props.message)
         return(
             <div className="main-message-view">
                 <div className="main-message-view__top-view">
@@ -31,6 +28,10 @@ class MessageView extends Component {
             </div>
         )
     }
+}
+
+MessageView.propTypes = {
+    message: PropTypes.object.isRequired
 }
 
 export default MessageView

@@ -1,17 +1,9 @@
 import { Component } from "react";
-import { detailledObjectBidSelector, detailledObjectSelector } from "../selectors/DetailledObjectSelector";
-import { fetchBidsOfObject } from "../thunks/BidThunk";
 import PropTypes from "prop-types"
-import { connect } from "react-redux";
 import { NO_OBJECT_TO_RENDER } from "../utils/errors";
 
 
 class ObjectDetailBidList extends Component {
-
-    // constructor(props) {
-    //     super(props)
-    //     this.props.fetchBidsOfObject(this.props.detailledObject.item.id)
-    // }
 
     render() {
         return(

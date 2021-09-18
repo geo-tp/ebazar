@@ -14,7 +14,6 @@ export const fetchCreateBid = (price, userId, objectId) => {
     return fetch(url, params)
                 .then(rslt => {
                     if (!rslt.ok) {
-                        
                         throw new Error(NOT_FOUND)
                     }
 

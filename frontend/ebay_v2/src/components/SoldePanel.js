@@ -1,7 +1,7 @@
 import { Component } from "react";
-import Loading from "./Loading";
 import SoldeList from "./SoldeList"
 import SoldeRecap from "./SoldeRecap"
+import PropTypes from 'prop-types'
 
 
 class SoldePanel extends Component {
@@ -20,6 +20,14 @@ class SoldePanel extends Component {
             </div>
         )
     }
+}
+
+SoldePanel.propTypes = {
+    user: PropTypes.object.isRequired,
+    balance: PropTypes.object.isRequired,
+    operations: PropTypes.object.isRequired,
+    withdrawal_confirmation: PropTypes.object.isRequired,
+    handleWithdrawClick: PropTypes.func.isRequired,
 }
 
 export default SoldePanel

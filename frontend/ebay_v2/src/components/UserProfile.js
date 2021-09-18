@@ -1,6 +1,7 @@
 import { Component } from "react";
 import { Link } from "react-router-dom";
 import UserMessageForm from "./UserMessageForm";
+import PropTypes from 'prop-types'
 
 
 
@@ -33,6 +34,10 @@ class UserProfile extends Component {
                 </div>
         )
     }
+}
+
+UserProfile.propTypes = {
+    userProfile: PropTypes.object.isRequired
 }
 
 

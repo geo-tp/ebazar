@@ -1,9 +1,5 @@
 import { Component } from "react";
 import PropTypes from "prop-types"
-import { connect } from "react-redux";
-import { subCategorySelector } from "../selectors/SubCategorySelectors";
-import {fetchSubCategories} from "../thunks/SubCategoryThunk"
-import { fetchObjects } from "../thunks/ObjectThunk";
 
 class SubCategoryBanner extends Component {
 
@@ -31,16 +27,6 @@ class SubCategoryBanner extends Component {
     }
 }
 
-
-// const SubCategoryBannerStore = connect(
-//     (state) => ({
-//         subCategories: subCategorySelector(state)
-//     }),
-//     (dispatch) => ({
-//         fetchSubCategories: (categoryId) => dispatch(fetchSubCategories(categoryId)),
-//         fetchObjects: (filter) => dispatch(fetchObjects(filter)),
-//     })
-// )(SubCategoryBanner)
 
 SubCategoryBanner.propTypes = {
     

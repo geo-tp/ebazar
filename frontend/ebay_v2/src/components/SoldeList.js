@@ -1,5 +1,6 @@
 import { Component } from "react";
 import { convertRawDateToCondensed } from "../utils/timeConverters";
+import PropTypes from 'prop-types'
 
 class SoldeList extends Component {
 
@@ -56,6 +57,10 @@ class SoldeList extends Component {
             
         )
     }
+}
+
+SoldeList.propTypes = {
+    operations: PropTypes.object.isRequired
 }
 
 export default SoldeList

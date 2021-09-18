@@ -23,12 +23,7 @@ class OfferBanner extends Component {
         this.scroll_box_ref = createRef()
 
     }
-    
 
-    // componentDidMount() {
-    //     this.generateRefs()
-    // }
-    
     scrollInterval =() => {
         this.scrollInterval  = setInterval(() => {
             this.handleRightClick();
@@ -119,15 +114,6 @@ class OfferBanner extends Component {
         )
     }
 }
-
-// const OfferBannerStore = connect (
-//     (state) => ({
-//         offerBanners: offerBannerSelector(state)
-//     }),
-//     (dispatch) => ({
-//         fetchOfferBanners : () => dispatch(fetchOfferBanners())
-//     })
-// )(OfferBanner)
 
 OfferBanner.propType = {
     offerBanners: PropTypes.object.isRequired,

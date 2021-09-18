@@ -1,6 +1,5 @@
 import { Component } from "react";
 import { convertDateToTimeLeft } from "../utils/timeConverters";
-import {Redirect} from 'react-router';
 import PropTypes from 'prop-types'
 
 import {Link} from "react-router-dom"
@@ -36,10 +35,6 @@ class Obj extends Component{
         
 
     render() {
-
-        // if (this.state.redirection) {
-        //     return <Redirect to={"/object/"+this.state.redirect_to_index}/>
-        // }
 
         return(
             <div className="main-object">

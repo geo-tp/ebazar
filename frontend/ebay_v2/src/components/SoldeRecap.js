@@ -1,4 +1,5 @@
 import { Component } from "react";
+import PropTypes from 'prop-types'
 
 
 class SoldeRecap extends Component {
@@ -69,4 +70,12 @@ class SoldeRecap extends Component {
     
     }
 }
+
+SoldeRecap.propTypes = {
+    user: PropTypes.object.isRequired,
+    balance: PropTypes.object.isRequired,
+    operations: PropTypes.object.isRequired,
+    withdrawal_confirmation: PropTypes.object.isRequired,
+}
+
 export default SoldeRecap

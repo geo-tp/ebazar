@@ -19,7 +19,6 @@ class ObjectList extends Component {
                             return <Obj object={object}/>
                         })}
                     </div>
-                    {/* {this.props.objects.items.results.length == 0 && <p style={{"text-align": "center"}}>Aucune enchère pour le moment</p>} */}
                     <div className="main-object-list__container">
                         {this.props.objects && this.props.objects.items.next && 
                         <button 
@@ -41,16 +40,5 @@ ObjectList.propTypes = {
 
     listLabel: PropTypes.string,
 }
-
-// export const ObjectListContainer = connect(
-//     (state) => ({
-//         objects: objectSelector(state)
-//     }),
-//     (dispatch) => ({
-//         fetchObjects: (filter) => dispatch(fetchObjects(filter)),
-//         fetchNextObjectsPage: (url) => dispatch(fetchNextObjectsPage(url)),
-//     })
-// )(ObjectList)
-
 
 export default ObjectList

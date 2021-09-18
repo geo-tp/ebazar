@@ -5,11 +5,6 @@ import MessagesTable from "./MessagesTable";
 import MessageView from "./MessageView";
 import QuestionView from "./QuestionView";
 import PropTypes from "prop-types"
-import { connect } from "react-redux";
-import { receivedMessageSelector, sendedMessageSelector } from "../selectors/MessageSelector";
-import { questionSelector } from "../selectors/QuestionSelectors";
-import { fetchSendedMessages, fetchReceivedMessages } from "../thunks/MessageThunk";
-import {fetchQuestionsOfUser} from "../thunks/QuestionThunk"
 
 const SELECTED_DATA = {"questions": 1, "receivedMessages": 2, "sendedMessages": 3}
 
@@ -50,7 +45,6 @@ class MessagingPanel extends Component {
     handleDataChange = (set_name) => {
         this.setState ({
             dataSetInView: this.props[set_name],
-            // actual_type : set_name,
             dataInViewIndex: null,
             dataInView: null,
             dataSetType: set_name,
@@ -65,17 +59,9 @@ class MessagingPanel extends Component {
             dataInViewIndex: tableIndex
         })
 
-        // this.requestDataViewed(tableIndex, dataId)
-
     }
 
     render = () => {
-
-        // if (this.state.dataSetInView.loaded && !this.state.isInit) {
-
-        //     this.initView()
-        // }
-
 
             return(
                 <div>
@@ -115,22 +101,6 @@ class MessagingPanel extends Component {
         }
 }
 
-// export const MessagingPanel = connect(
-
-//     (state) => ({
-
-//         sendedMessages: sendedMessageSelector(state),
-//         receivedMessages: receivedMessageSelector(state),
-//         questions: questionSelector(state)
-//     }),
-//     (dispatch) => ({
-//         fetchSendedMessages: dispatch((userId) => fetchSendedMessages(userId)),
-//         fetchReceivedMessages: dispatch((userId) => fetchReceivedMessages(userId)),
-//         fetchQuestionsOfUser: dispatch((userId) => fetchQuestionsOfUser(userId))
-//     })
-
-// )(MessagingPanel)
-
 MessagingPanel.propTypes = {
 
 
@@ -141,9 +111,6 @@ MessagingPanel.propTypes = {
     receivedMessages: PropTypes.object.isRequired,
     questions: PropTypes.object.isRequired,
 
-    // fetchSendedMessages: PropTypes.func.isRequired,
-    // fetchReceivedMessages: PropTypes.func.isRequired,
-    // fetchQuestionsOfUser: PropTypes.func.isRequired
 }
 
 export default MessagingPanel

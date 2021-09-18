@@ -1,4 +1,6 @@
 import { Component } from "react";
+import PropTypes from 'prop-types'
+
 
 class Footer extends Component {
 
@@ -38,6 +40,5 @@ class Footer extends Component {
         )
     }
 }
-
 
 export default Footer

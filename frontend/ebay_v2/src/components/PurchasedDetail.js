@@ -1,8 +1,7 @@
 import { Component } from "react";
 import { convertRawDateToCondensed } from "../utils/timeConverters";
 import PayPal from "./Paypal";
-
-
+import PropTypes from 'prop-types'
 
 
 class PurchasedDetail extends Component {
@@ -19,7 +18,6 @@ class PurchasedDetail extends Component {
             <div className="main-selled-detail">
 
                 <div className="main-selled-detail__detail-box2">
-                    {/* <p className="paypal-detail-box"> */}
                     <div className="main-selled-detail__detail-box2__box">
                         <ul>
                             <h4>Actions</h4>
@@ -32,8 +30,6 @@ class PurchasedDetail extends Component {
                             <li><a>Signaler un problème</a></li>
                         </ul>
                     </div>
-
-                    {/* </p> */}
                 </div>
 
 
@@ -105,6 +101,10 @@ class PurchasedDetail extends Component {
         )
     }
 } 
+
+PurchasedDetail.propTypes = {
+    purchase: PropTypes.object.isRequired
+}
 
 
 export default PurchasedDetail

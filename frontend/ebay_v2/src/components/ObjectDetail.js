@@ -3,10 +3,6 @@ import { Link } from "react-router-dom"
 import Loading from "../components/Loading";
 import PropTypes from 'prop-types'
 import { convertSecondsToDays, convertSecondsToHours } from "../utils/timeConverters";
-import {
-    detailledObjectBidSelector, detailledObjectImageSelector,
-    detailledObjectQuestionSelector, detailledObjectSelector
-} from "../selectors/DetailledObjectSelector";
 import ImageCaroussel from "./ImageCaroussel";
 import ObjectDetailQuestionList from "./ObjectDetailQuestionList"
 import ObjectDetailBidList from "./ObjectDetailBidList"
@@ -181,7 +177,7 @@ class ObjectDetail extends Component {
                                                     }
                                                     {!!this.state.showBidBox && <ObjectDetailBidForm userId={this.props.auth.basicUser.id}
                                                                                                      objectId={this.props.detailledObject.item.id}
-                                                                                                    objectPrice={this.props.detailledObject.item.actualPrice}
+                                                                                                     objectPrice={this.props.detailledObject.item.actualPrice}
                                                                                                      update={this.updateObject}/>}
                                                 </div>
                                             }
@@ -233,23 +229,6 @@ class ObjectDetail extends Component {
     }
 }
 
-// export const ObjectDetailStore = connect(
-//     (state) => ({
-//         detailledObject: detailledObjectSelector(state),
-//         detailledObjectQuestions: detailledObjectQuestionSelector(state),
-//         detailledObjectBids: detailledObjectBidSelector(state),
-//         detailledObjectImages: detailledObjectImageSelector(state),
-//     }),
-//     (dispatch) => ({
-//         fetchObjects: (filter) => dispatch(fetchObjects(filter)),
-
-//         fetchDetailledObject: (objectId) => dispatch(fetchDetailledObject(objectId)),
-//         fetchBidsOfObject: (objectId) => dispatch(fetchBidsOfObject(objectId)),
-//         fetchQuestionsOfObject: (objectId) => dispatch(fetchQuestionsOfObject(objectId))
-
-//     })
-// )(ObjectDetail)
-
 ObjectDetail.propTypes = {
 
     auth: PropTypes.object.isRequired,
@@ -261,7 +240,6 @@ ObjectDetail.propTypes = {
 
     fetchDetailledObject: PropTypes.func.isRequired,
     fetchBidsOfObject: PropTypes.func.isRequired,
-    // fetchQuestionsOfObject: PropTypes.func.isRequired
 
 }
 

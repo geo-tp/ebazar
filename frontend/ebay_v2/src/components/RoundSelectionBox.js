@@ -1,5 +1,6 @@
 
 import { Component } from "react";
+import PropTypes from 'prop-types'
 
 class RoundSelectionBox extends Component {
 
@@ -11,6 +12,10 @@ class RoundSelectionBox extends Component {
             </div>
         )
     }
+}
+
+RoundSelectionBox.propTypes = {
+    object: PropTypes.object.isRequired
 }
 
 export default RoundSelectionBox

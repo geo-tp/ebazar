@@ -41,10 +41,6 @@ function App() {
 
         <Switch>
 
-          <Route path="/home">
-            <HomePage/>
-          </Route>
-
           <Route path="/choice/:choice">
             <ChoicePage/>
           </Route>
@@ -97,8 +93,12 @@ function App() {
             <AccountPage/>
           </Route>
 
-          <Route path="/Help">
+          <Route path="/help">
             <HelpPage/>
+          </Route>
+
+          <Route path={["/home", "/" ]}>
+            <HomePage/>
           </Route>
 
         </Switch>

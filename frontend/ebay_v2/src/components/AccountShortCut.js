@@ -1,5 +1,6 @@
 import { Component } from "react";
 import { Link } from "react-router-dom";
+import PropTypes from 'prop-types'
 
 class AccountShortCut extends Component {
 
@@ -37,6 +38,12 @@ class AccountShortCut extends Component {
             </div>
         )
     }
+}
+
+AccountShortCut.propTypes = {
+    questions: PropTypes.object.isRequired,
+    receivedMessages: PropTypes.object.isRequired
+
 }
 
 export default AccountShortCut

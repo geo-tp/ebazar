@@ -1,6 +1,7 @@
 import { Component } from "react";
 import { Link, NavLink } from "react-router-dom";
 import logo from "./../assets/img/logo.png"
+import PropTypes from 'prop-types'
 
 let id = 0
 
@@ -194,6 +195,10 @@ class NavBar extends Component {
         </div>
         )
     }
+}
+
+NavBar.propTypes = {
+    auth: PropTypes.object.isRequired
 }
 
 export default NavBar

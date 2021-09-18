@@ -1,8 +1,6 @@
 import { Component } from "react";
 import { convertDateToTimeLeft } from "../utils/timeConverters";
-import {Redirect} from 'react-router';
 import PropTypes from 'prop-types'
-
 import {NavLink} from "react-router-dom";
 
 class Obj extends Component{
@@ -16,17 +14,8 @@ class Obj extends Component{
             redirect_to_index: null,
         }
     }
-    // handleObjectClick(id) {
-
-    //     window.location = window.location.origin + "/detail/"+ id
-    // }   
-        
 
     render() {
-
-        // if (this.state.redirection) {
-        //     return <Redirect to={"/object/"+this.state.redirect_to_index}/>
-        // }
 
         return(
             <div className="main-object">
@@ -56,12 +45,10 @@ class Obj extends Component{
         )
     }
 
-
 }
 
 Obj.propTypes = {
     object: PropTypes.object.isRequired
-
 }
 
 export default Obj

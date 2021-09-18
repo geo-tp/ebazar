@@ -1,4 +1,5 @@
 import { Component } from "react";
+import PropTypes from 'prop-types'
 
 class UserMessageForm extends Component {
 
@@ -10,40 +11,6 @@ class UserMessageForm extends Component {
             error: "",
         })
     }
-    
-    // handleMessageSubmit = (e) => {
-
-    //     e.preventDefault()
-
-    //     let url = request_formatter({
-    //         model: "message",
-    //     })
-
-    //     fetch(url, {
-    //         method: "POST",
-    //         headers: {
-    //           "Accept": "application/json",
-    //           'Content-Type': 'application/json',
-    //           'Authorization': "token "+this.props.token
-    //         },
-    //         body: JSON.stringify({title: this.state.title,
-    //                               text: this.state.message,
-    //                               sender: this.props.user.id,
-    //                               reciever: this.props.profile_user.id})
-    //     })
-    //         .then(rslt => rslt.json())
-    //         .then(json_data => {
-    //             if(json_data.hasOwnProperty("id")) {
-    //                 this.setState({error: "Votre message a bien été envoyé",
-    //                               title: "",
-    //                               message: ""})
-    //             }
-
-    //             else {
-    //                 this.setState({error: "Une erreur s'est produite"})
-    //             }
-    //         })
-    // }
 
     render() {
         return(
@@ -69,5 +36,9 @@ class UserMessageForm extends Component {
     }
 }
 
+
+UserMessageForm.propTypes = {
+    viewedUserId: PropTypes.number.isRequired
+}
 
 export default UserMessageForm

@@ -1,12 +1,7 @@
 import {Component} from "react"
 import PropType from "prop-types"
-import { MESSAGE_SENDED_SUCCESS, UPDATE_PROFILE_SUCCESS } from "../utils/success"
-import { MESSAGE_SENDED_ERROR, UPDATE_PROFILE_ERROR } from "../utils/errors"
-import { API_USER } from "../utils/apiEndPoints"
-
-// import {request_formatter,BASIC_HEADER } from "../../../GLOBAL"
-
-
+import { UPDATE_PROFILE_SUCCESS } from "../utils/success"
+import { UPDATE_PROFILE_ERROR } from "../utils/errors"
 
 class AccountProfile extends Component {
 

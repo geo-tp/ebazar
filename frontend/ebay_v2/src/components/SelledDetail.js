@@ -18,7 +18,6 @@ class DetailledSelled extends Component {
         return(
             <div className="main-selled-detail">
                 <div className="main-selled-detail__detail-box2">
-                    {/* <p className="paypal-detail-box"> */}
                         <h4>Expédition</h4>
                         <p>
                             {this.props.selled.user.first_name+ ' ' + this.props.selled.user.last_name}
@@ -85,7 +84,6 @@ class DetailledSelled extends Component {
                 <div className="main-selled-detail__detail-box1">
                     
                     <div>
-                        {/* <h4>Envoi</h4> */}
                         {this.props.selled.isShipped ?
                                                     <div>
                                                         {!this.props.selled.isComplete && <p><button>Marquer non envoyé</button></p>}
@@ -113,5 +111,8 @@ class DetailledSelled extends Component {
     }
 } 
 
+DetailledSelled.propTypes = {
+    selled: PropTypes.object.isRequired
+}
 
 export default DetailledSelled

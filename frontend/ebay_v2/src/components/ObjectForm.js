@@ -20,8 +20,6 @@ class ObjectForm extends Component {
     constructor(props) {
         super(props)
 
-        // { !this.props.categories.loaded && this.props.fetchCategories() }
-
         if (this.props.object) {
 
             this.state = ({
@@ -298,27 +296,6 @@ class ObjectForm extends Component {
         )
     }
 }
-
-// export const ObjectFormStore = connect(
-//     (state) => ({
-
-//         user: userSelector(state),
-//         states: stateSelector(state),
-//         durations: durationSelector(state),
-
-//         categories: categorySelector(state),
-//         subcategories: subCategorySelector(state)
-
-
-//     }),
-//     (dispatch) => ({
-//         fetchStates: () => dispatch(fetchStates()),
-//         fetchDurations: () => dispatch(fetchDurations()),
-//         fetchCreateObject: (objectForm) => dispatch(fetchCreateObject(objectForm)),
-//         fetchCategories: () => dispatch(fetchCategories()),
-//         fetchSubCategories: (categoryId) => dispatch(fetchSubCategories(categoryId))
-//     })
-// )(ObjectForm)
 
 ObjectForm.propTypes = {
 

@@ -1,8 +1,8 @@
 import { Component } from "react";
-import { connect } from "react-redux";
 import { fetchCreateBid } from "../fetch/BidFetch";
 import { BID_ERROR } from "../utils/errors";
 import { BID_SUCCESS } from "../utils/success";
+import PropTypes from 'prop-types'
 
 
 
@@ -53,17 +53,10 @@ class ObjectDetailBidForm extends Component {
     }
 }
 
-ObjectDetailBidForm.propType = {
-
+ObjectDetailBidForm.propTypes = {
+    objectPrice: PropTypes.number.isRequired,
+    objectId: PropTypes.number.isRequired,
 }
 
-// const ObjectDetailBidFormStore = connect(
-//     (state) => ({
-
-//     }),
-//     (dispatch) => ({
-
-//     })
-// )(ObjectDetailBidForm)
 
 export default ObjectDetailBidForm

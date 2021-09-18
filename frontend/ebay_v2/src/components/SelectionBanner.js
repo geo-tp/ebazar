@@ -11,9 +11,6 @@ class SelectionBanner extends Component {
     constructor(props) {
         super(props)
 
-        // if (!this.props.selections.length) {
-        //     this.props.fetchSelections()
-        // }
     }
 
     render() {
