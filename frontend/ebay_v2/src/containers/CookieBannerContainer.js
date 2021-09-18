@@ -1,7 +1,7 @@
 import {Component} from "react"
 import PropTypes from "prop-types"
 import { connect } from "react-redux"
-import { cookieAcceptSelector } from "../selectors/AuthSelectors"
+import { authSelector } from "../selectors/AuthSelectors"
 import { acceptCookie } from "../actions/AuthActions"
 
 class CookieBanner extends Component{
@@ -9,7 +9,7 @@ class CookieBanner extends Component{
     render() {
         return(
             <div className="main-banner-cookie">
-            { !this.props.cookieAccept &&
+            { !this.props.auth.cookieAccept || !this.props.auth.connected &&
                 <div className="main-banner-cookie__container">
                     <p>Veuillez accepter les conditions d'usage des cookies pour profiter pleinement d'EBAZAR. <a href="">Voir les conditions</a></p>
                     <div>
@@ -28,12 +28,13 @@ class CookieBanner extends Component{
 
 CookieBanner.propTypes = {
     cookieAccept: PropTypes.number,
+    auth: PropTypes.object,
     setCookieAccept: PropTypes.func
  }
 
  export const CookieBannerContainer= connect(
      (state) => ({
-        cookieAccept: cookieAcceptSelector(state.auth)
+        auth: authSelector(state),
      }),
      (dispatch) => ({
          setCookieAccept: () => dispatch(acceptCookie())
