@@ -22,6 +22,8 @@ import {fetchDetailledUser} from "../thunks/DetailledUserThunk"
 import { fetchReceivedMessages, fetchSendedMessages } from "../thunks/MessageThunk";
 import { fetchQuestionsOfUser } from "../thunks/QuestionThunk";
 import AccountObjectList from "../components/AccountObjectList";
+import { fetchLogout } from "../thunks/AuthThunk";
+
 
 class Account extends Component {
 
@@ -83,7 +85,6 @@ class Account extends Component {
                             handleActivityClick={this.handleActivityClick}
                             objectsInView={this.state.objectsInView}
 
-
                             purchasedObjects={ this.props.purchasedObjects}
                             selledObjects= {this.props.selledObjects}
                             activeObjects={this.props.activeObjects}
@@ -109,7 +110,7 @@ class Account extends Component {
                             user={this.props.user}/>}
                 
 
-                <AccountConfiguration user={this.props.user}/>
+                <AccountConfiguration user={this.props.user} fetchLogout={this.props.fetchLogout}/>
             </div>
         )
     }
@@ -146,6 +147,8 @@ const AccountStore = connect(
         fetchSendedMessages: (userId) => dispatch(fetchSendedMessages(userId)),
         fetchReceivedMessages: (userId) => dispatch(fetchReceivedMessages(userId)),
         fetchQuestionsOfUser: (userId) => dispatch(fetchQuestionsOfUser(userId)),
+        fetchLogout: () => dispatch(fetchLogout()),
+
     })
 )(Account)
 

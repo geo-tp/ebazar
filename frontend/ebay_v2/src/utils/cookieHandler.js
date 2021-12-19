@@ -3,56 +3,59 @@ import Cookie from 'js-cookie'
 import { store } from ".."
 
 
-  export const deleteUserData = () => {
+export const deleteUserData = () => {
 
-    Cookie.set("EBAZARTOKEN", "")
-    Cookie.set("EBAZARUSER", "")
-
-    this.setState({token: null,
-                   user: null,
-                   isConnected: 0})
+    console.log("IN DELETEUSERDATA")
+    Cookie.set("EBAZARTOKEN", "1")
+    Cookie.set("EBAZARUSER", "1")
   
     window.location = window.location.origin
 
 
-  }
+}
 
-  export const retrieveUserData = () => {
+export const retrieveUserData = () => {
 
-    console.log("STORE GET STATE",store.getState().auth.connected)
+  console.log("STORE GET STATE", store.getState().auth.connected)
 
-    if (!store.getState().auth.connected) {
+  if (!store.getState().auth.connected) {
 
-      let token = Cookie.get("EBAZARTOKEN")
-      let user = Cookie.get("EBAZARUSER")
-      let cookieAccepted = Cookie.get("EBAZARACCEPTCOOKIE")
-  
-      
-      
-      if (user && token) {
+    let token = Cookie.get("EBAZARTOKEN")
+    let user = Cookie.get("EBAZARUSER")
+    console.log( "TYPEOF USER",typeof user)
+    console.log("TYPEOF TOKEN", typeof token)
+    console.log("USER VALUE", user)
+    
+    let cookieAccepted = Cookie.get("EBAZARACCEPTCOOKIE")
+    
+    if (user && token) {
+      if (token.length == 0 && user.length == 0) {
+        console.log("IN USER AND token")
         user = JSON.parse(user)
-        store.dispatch(getConnectedSuccess({user:user, key:token}))
-        
-      }
-      
-      if (cookieAccepted) {
-        console.log("écoookiiie", cookieAccepted)
-        store.dispatch(acceptCookie())
+        store.dispatch(getConnectedSuccess({ user: user, key: token }))
+
       }
 
     }
 
+    if (cookieAccepted) {
+      console.log("écoookiiie", cookieAccepted)
+      store.dispatch(acceptCookie())
+    }
 
   }
 
 
-  export const setUserData = (user, token) => {
+}
 
-    Cookie.set("EBAZARTOKEN", token)
-    Cookie.set("EBAZARUSER", JSON.stringify(user))
 
-  }
+export const setUserData = (user, token) => {
 
-  export const setCookieAccepted = () => {
-    Cookie.set("EBAZARACCEPTCOOKIE", 1)
-  }
+  Cookie.set("EBAZARTOKEN", token)
+  Cookie.set("EBAZARUSER", JSON.stringify(user))
+
+}
+
+export const setCookieAccepted = () => {
+  Cookie.set("EBAZARACCEPTCOOKIE", 1)
+}

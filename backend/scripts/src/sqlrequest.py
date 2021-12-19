@@ -1,6 +1,6 @@
 import datetime
 
-get_all_objects = "SELECT * FROM ebay_api_object"
+get_all_objects = "SELECT * FROM ebay_objects_object"
 
 
 def get_active_objects():
@@ -19,7 +19,7 @@ def get_active_objects():
 def get_bids_of_object(object_id):
     
     return("""
-        SELECT * from ebay_api_bid
+        SELECT * from ebay_account_bid
         WHERE id={}
         """.format(object_id)
     )
@@ -36,7 +36,7 @@ def set_object_to_inactive(object_id):
 
     return( 
         """
-        UPDATE ebay_api_object
+        UPDATE ebay_ojbjects_object
         SET isActive=0
         WHERE id={}
         """.format(object_id)
@@ -45,7 +45,7 @@ def set_object_to_inactive(object_id):
 def set_new_creation_and_ending_date(object_id, creation, ending):
     return( 
         """
-        UPDATE ebay_api_object
+        UPDATE ebay_objects_object
         SET creationDate='{}', endingDate='{}'
         WHERE id={}
         """.format(creation, ending, object_id)
@@ -55,7 +55,7 @@ def set_object_to_selled(object_id):
 
     return( 
         """
-        UPDATE ebay_api_object
+        UPDATE ebay_objects_object
         SET isSelled=1
         WHERE id={}
         """.format(object_id)
@@ -66,7 +66,7 @@ def create_purchased_object(obj, user):
 
     return(
         """
-        INSERT INTO ebay_api_purchasedobject (obj_id, user_id, isPaid)
+        INSERT INTO ebay_objects_purchasedobject (obj_id, user_id, isPaid)
         VALUES ({}, {}, 0)
         """.format(obj, user)
     )

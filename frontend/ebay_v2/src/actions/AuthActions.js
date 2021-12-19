@@ -18,9 +18,9 @@ export const getConnectedSuccess = (userAndToken) => ({
     payload: {token: userAndToken["key"], user: userAndToken["user"]}
 })
 
-export const getDisconnected = (userId) => ({
+export const getDisconnected = () => ({
     type: GET_DISCONNECTED,
-    payload: {userId:userId}
+    payload: {}
 })
 
 export const getDisconnectedError = (error) => ({

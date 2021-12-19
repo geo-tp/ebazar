@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { fetchCategories } from "../thunks/CategoryThunk";
 import { categorySelector } from "../selectors/CategorySelectors";
 import { objectSelector } from "../selectors/ObjectSelectors";
-import { fetchObjects } from "../thunks/ObjectThunk";
+import { fetchNextObjectsPage, fetchObjects } from "../thunks/ObjectThunk";
 import { withRouter } from "react-router";
 import { subCategorySelector } from "../selectors/SubCategorySelectors";
 import { fetchSubCategories } from "../thunks/SubCategoryThunk";

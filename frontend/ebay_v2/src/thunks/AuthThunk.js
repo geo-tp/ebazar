@@ -5,6 +5,7 @@ import { createAccount, createAccountSuccess, createAccountError,
 import { addTokenToBasicHeader } from "../utils/APIConfig";
 
 import {API_LOGIN, API_LOGOUT, API_REGISTRATION, API_USER} from "../utils/apiEndPoints"
+import { deleteUserData } from "../utils/cookieHandler";
 
 import { NOT_FOUND } from "../utils/errors";
          
@@ -47,9 +48,9 @@ export const fetchLogin = (mail, password) => {
     }
 }
 
-export const fetchLogout = (userId) => {
+export const fetchLogout = () => {
     return(dispatch) => {
-        dispatch(getDisconnected(userId))
+        dispatch(getDisconnected())
 
         let url = urlFormater({
             model: API_LOGOUT
@@ -67,7 +68,11 @@ export const fetchLogout = (userId) => {
             })
 
             .then(() => {
-               dispatch(getDisconnectedSuccess())
+                dispatch(getDisconnectedSuccess())
+            })
+
+            .then(() => {
+                deleteUserData()
             })
 
             .catch(error => {
