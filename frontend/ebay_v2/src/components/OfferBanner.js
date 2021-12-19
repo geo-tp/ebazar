@@ -21,14 +21,23 @@ class OfferBanner extends Component {
         }
 
         this.scroll_box_ref = createRef()
+        this.interval = null;
 
     }
 
     scrollInterval =() => {
-        this.scrollInterval  = setInterval(() => {
+        this.interval  = setInterval(() => {
             this.handleRightClick();
           }, 6000);
 
+    }
+
+    componentDidMount() {
+        this.scrollInterval()
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.interval)
     }
 
     generateRefs = () => {
