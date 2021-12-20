@@ -69,10 +69,12 @@ export const fetchLogout = () => {
 
             .then(() => {
                 dispatch(getDisconnectedSuccess())
+
             })
 
             .then(() => {
                 deleteUserData()
+
             })
 
             .catch(error => {
@@ -94,20 +96,16 @@ export const fetchRegistration = (registrationInfos) => {
 
         return fetch(url, params)
             .then(rslt => {
-                if(!rslt.ok) {
-                    throw new Error(NOT_FOUND)
-                }
 
                 return rslt.json()
             })
 
-            .then(() => {
-                dispatch(createAccountSuccess())
+            .then((response) => {
+                return response
             })
 
             .catch((error) => {
-                console.log(error)
-                dispatch(createAccountError(error))
+                return false
             })
     }
 }

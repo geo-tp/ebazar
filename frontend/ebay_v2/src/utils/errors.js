@@ -9,6 +9,14 @@ export const MESSAGE_SENDED_ERROR = ISSUE_MESSAGE+"l'envoi de votre message."
 
 export const QUESTION_SENDED_ERROR = ISSUE_MESSAGE+"l'envoi de votre question."
 
+export const REGISTRATION_ERROR = ISSUE_MESSAGE + "l'inscription, veuillez essayez dans quelques instants."
+
+export const PASSWORDS_NOT_EQUALS = "Les mots de passes saisis sont différents."
+
+export const MAIL_IS_ALREADY_REGISTERED = "L'email est déja utilisé, veuillez le modifier"
+
+export const PASSWORD_TOO_SMALL = "Le mot de passe est trop court."
+
 export const BID_ERROR = ISSUE_MESSAGE+"le traitement de l'enchère."
 
 export const UPDATE_PROFILE_ERROR = ISSUE_MESSAGE+"l'enregistrement de vos informations."

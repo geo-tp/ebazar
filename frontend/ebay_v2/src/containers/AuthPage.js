@@ -4,8 +4,8 @@ import PropTypes from "prop-types"
 import { connect } from "react-redux";
 import { authSelector } from "../selectors/AuthSelectors";
 import { fetchLogin, fetchRegistration } from "../thunks/AuthThunk";
-import { LOGIN_SUCCESS } from "../utils/success";
-import { LOGIN_ERROR } from "../utils/errors";
+import { LOGIN_SUCCESS, REGISTRATION_SUCCESS } from "../utils/success";
+import { LOGIN_ERROR, MAIL_IS_ALREADY_REGISTERED, PASSWORDS_NOT_EQUALS, PASSWORD_TOO_SMALL, REGISTRATION_ERROR } from "../utils/errors";
 
 
 
@@ -43,9 +43,53 @@ class Auth extends Component {
             this.setState({connection_message: LOGIN_ERROR})
         }
 
+    }
 
+    async handleRegistration(e) {
+        e.preventDefault()
 
+        let fields = []
+        for (let field of e.target) {
+            if (field.value) {
 
+                fields.push(field.value)
+            }
+        }
+
+        let [nom, prenom, pseudo, mail, birthDate, pwd1, pwd2] = fields
+        console.log(fields)
+        if (pwd1 != pwd2) {
+            this.setState({registration_message: PASSWORDS_NOT_EQUALS})
+            return
+        }
+
+        if (pwd1.length < 8) {
+            this.setState({registration_message: PASSWORD_TOO_SMALL})
+            return
+        }
+
+        let response = await this.props.fetchRegistration({
+            last_name:nom,
+            first_name: prenom,
+            email: mail,
+            date_of_birth: birthDate,
+            password1: pwd1,
+            password2: pwd2
+        })
+
+        console.log(await response)
+        if (response) {
+
+            if (response.hasOwnProperty("email")) {
+                this.setState({registration_message: MAIL_IS_ALREADY_REGISTERED})
+                return
+            }
+            this.setState({registration_message: REGISTRATION_SUCCESS})
+        }
+        
+        else {
+            this.setState({registration_message: REGISTRATION_ERROR})
+        }
     }
 
 
@@ -89,7 +133,7 @@ class Auth extends Component {
 
                 <div className="main-auth__register-box">
                     <h2>S'inscrire</h2>
-                    <form>
+                    <form onSubmit={(e) => this.handleRegistration(e) }>
 
                         <div className="main-auth__register__fields">
                             <p>Un compte pour acheter et vendre</p>

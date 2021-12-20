@@ -23,6 +23,8 @@ class OfferBanner extends Component {
         this.scroll_box_ref = createRef()
         this.interval = null;
 
+        // this.generateRefs()
+
     }
 
     scrollInterval =() => {
