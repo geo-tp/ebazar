@@ -63,18 +63,12 @@ export const fetchLogout = () => {
                 if (!rslt.ok) {
                     throw new Error('Error - 404 Not Found')
                 }
-
+                
                 return rslt.json()
             })
 
             .then(() => {
                 dispatch(getDisconnectedSuccess())
-
-            })
-
-            .then(() => {
-                deleteUserData()
-
             })
 
             .catch(error => {

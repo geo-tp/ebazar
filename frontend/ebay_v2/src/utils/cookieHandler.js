@@ -5,9 +5,8 @@ import { store } from ".."
 
 export const deleteUserData = () => {
 
-    console.log("IN DELETEUSERDATA")
-    Cookie.set("EBAZARTOKEN", "1")
-    Cookie.set("EBAZARUSER", "1")
+    Cookie.remove("EBAZARTOKEN")
+    Cookie.remove("EBAZARUSER")
   
     window.location = window.location.origin
 
@@ -29,7 +28,7 @@ export const retrieveUserData = () => {
     let cookieAccepted = Cookie.get("EBAZARACCEPTCOOKIE")
     
     if (user && token) {
-      if (token.length == 0 && user.length == 0) {
+      if (token && user) {
         console.log("IN USER AND token")
         user = JSON.parse(user)
         store.dispatch(getConnectedSuccess({ user: user, key: token }))

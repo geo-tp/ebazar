@@ -26,7 +26,7 @@ class ObjectDetailBidForm extends Component {
             return
         }
 
-        let rslt = await fetchCreateBid(this.state.bid_price, this.props.userId, this.props.objectId)
+        let rslt = await fetchCreateBid(Number(this.state.bid_price), this.props.userId, this.props.objectId)
 
         if (rslt == 1) {
             this.setState({info:BID_SUCCESS})

@@ -27,20 +27,20 @@ class OfferBanner extends Component {
 
     }
 
-    scrollInterval =() => {
-        this.interval  = setInterval(() => {
-            this.handleRightClick();
-          }, 6000);
+    // scrollInterval =() => {
+    //     this.interval  = setInterval(() => {
+    //         this.handleRightClick();
+    //       }, 6000);
 
-    }
+    // }
 
-    componentDidMount() {
-        this.scrollInterval()
-    }
+    // componentDidMount() {
+    //     this.scrollInterval()
+    // }
 
-    componentWillUnmount() {
-        clearInterval(this.interval)
-    }
+    // componentWillUnmount() {
+    //     clearInterval(this.interval)
+    // }
 
     generateRefs = () => {
         
@@ -112,7 +112,6 @@ class OfferBanner extends Component {
                     {this.state.refs_table &&
                             <div className="main-offer-banner__scroll-box__container">
                                 {this.props.offerBanners.loaded && this.props.offerBanners.items.map((banner, index) => {
-                                    console.log("banner", banner)
                                     return <img key={keyHandler()} ref={this.state.refs_table[index]} 
                                                 className="main-offer-banner__scroll-box__container__image" 
                                                 src={banner.image} />
