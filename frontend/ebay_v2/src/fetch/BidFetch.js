@@ -13,15 +13,11 @@ export const fetchCreateBid = (price, userId, objectId) => {
 
     return fetch(url, params)
                 .then(rslt => {
-                    if (!rslt.ok) {
-                        throw new Error(NOT_FOUND)
-                    }
-
                     return rslt.json()
                 })
 
-                .then(confirmation => {
-                    return 1
+                .then(response => {
+                    return response 
                 })
 
                 .catch(error => {
