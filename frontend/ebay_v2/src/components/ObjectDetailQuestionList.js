@@ -4,7 +4,9 @@ import { connect } from "react-redux";
 import { questionOfObjectSelector, questionSelector } from "../selectors/QuestionSelectors";
 import { fetchNextQuestionsOfObjectPage, fetchQuestionsOfObject } from "../thunks/QuestionThunk";
 import { detailledObjectSelector } from "../selectors/DetailledObjectSelector";
-import { NO_QUESTION_ERROR } from "../utils/errors";
+import { FILL_FORM, NO_QUESTION_ERROR } from "../utils/errors";
+import { fetchCreateQuestion } from "../fetch/CreateQuestionFetch";
+import { MESSAGE_SENDED_SUCCESS } from "../utils/success";
 
 
 class ObjectDetailQuestionList extends Component {
@@ -18,6 +20,25 @@ class ObjectDetailQuestionList extends Component {
 
     }
 
+    handleCreateQuestionClick = async () => {
+
+        if (this.state.questionText == "") {
+            this.setState({error: FILL_FORM})
+            return
+        }
+
+        let response = await fetchCreateQuestion(this.props.auth.basicUser.id,
+                                                 this.props.detailledObject.userId,
+                                                 this.props.questionText,
+                                                 this.props.detailledObject.id)
+
+        if (response) {
+            this.setState({error: MESSAGE_SENDED_SUCCESS,
+                           questionText: ""})
+        }
+
+    }
+
     render() {
         return(
             <div className='wrapper'>
@@ -25,11 +46,13 @@ class ObjectDetailQuestionList extends Component {
                 <div className="main-detailled-object-questions">
 
                     <h4>QUESTIONS SUR L'OBJET</h4>
-                    <div className="main-detailled-object-questions__question-form">
-                        <p><input  onChange={e => this.setState({questionText:e.target.value})} value={this.state.questionText} placeholder="Poser votre question"/></p>
-                        <button onClick={e => this.handleQuestionClick(e)}>Envoyer</button>
-                        <p>{this.state.error}</p>
-                    </div>
+                    {this.props.auth.connected &&
+                        <div className="main-detailled-object-questions__question-form">
+                            <p><input  onChange={e => this.setState({questionText:e.target.value})} value={this.state.questionText} placeholder="Poser votre question"/></p>
+                            <button onClick={e => this.handleCreateQuestionClick(e)}>Envoyer</button>
+                            <p>{this.state.error}</p>
+                        </div>
+                    }
                     <div className="main-detailled-object-questions__box">
                     {this.props.questions.loaded && this.props.questions.items.results.map((question) => {
                         return (

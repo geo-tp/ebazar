@@ -9,7 +9,6 @@ export const fetchCreateMessage = (sender, receiver, title, text) => {
     })
 
     let params = parametersFormater("POST", {sender:sender, receiver:receiver, title:title, text:text})
-    console.log("S R",sender, receiver)
     return fetch(url, params)
                 .then(rslt => {
                     return rslt.json()

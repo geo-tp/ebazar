@@ -91,7 +91,8 @@ class MessagingPanel extends Component {
                                     {this.state.dataSetType != "sendedMessages" && 
                                         this.state.dataSetInView && <MessageResponse
                                             user={this.props.user}
-                                            message={this.state.dataInView}/>}
+                                            message={this.state.dataInView}
+                                            dataType={this.state.dataSetType}/>}
                                 </div>
                             </div>
                         </div>

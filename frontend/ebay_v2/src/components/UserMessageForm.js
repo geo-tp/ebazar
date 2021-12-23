@@ -35,7 +35,7 @@ class UserMessageForm extends Component {
                                 <td> <textarea required value={this.state.message} onChange={(e) => this.setState({message: e.target.value})} required></textarea></td>
                             </tr>
                             <tr>
-                                <td colspan="2"><input type="submit" value="Envoyer"/></td>
+                                <td colspan="2"><button type="submit" value="Envoyer">Envoyer</button></td>
                             </tr>
                         </table>
                         <p>{this.state.error}</p>

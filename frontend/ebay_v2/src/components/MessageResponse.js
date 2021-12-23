@@ -1,7 +1,10 @@
 import { Component } from "react"
 import { fetchCreateMessage } from "../fetch/CreateMessageFetch"
+import { fetchCreateQuestion } from "../fetch/CreateQuestionFetch"
 import { FILL_FORM } from "../utils/errors"
 import { MESSAGE_SENDED_SUCCESS } from "../utils/success"
+import PropTypes from "prop-types"
+
 
 class MessageResponse extends Component {
 
@@ -25,10 +28,22 @@ class MessageResponse extends Component {
             return
         }
 
-        let response = await fetchCreateMessage(this.props.user.item.id, 
-                                                this.props.message.sender.id,
-                                                this.state.title,
-                                                this.state.message)
+        let response
+        if (this.props.datainViewType == "questions") {
+            response = await fetchCreateQuestion(this.props.user.item.id,
+                                                     this.props.message.sender.id,
+                                                     this.state.message,
+                                                     this.props.message.obj.id)
+        }
+
+        else {
+            response = await fetchCreateMessage(this.props.user.item.id, 
+                                                    this.props.message.sender.id,
+                                                    this.state.title,
+                                                    this.state.message)
+
+        }
+
 
         if (response) {
             this.setState({confirmation_data_send: MESSAGE_SENDED_SUCCESS})
@@ -88,3 +103,12 @@ class MessageResponse extends Component {
 }
 
 export default MessageResponse
+
+
+
+MessageResponse.propTypes = {
+
+    user: PropTypes.object.isRequired,
+    datainViewType: PropTypes.string.isRequired,
+    message: PropTypes.object.isRequired
+}

@@ -68,26 +68,26 @@ class User extends Component {
 }
 
 
-User.propTypes = {
-    isConnected: PropTypes.number,
-    user: PropTypes.arrayOf(
-        PropTypes.shape({
-            id: PropTypes.string.isRequired,
-            username: PropTypes.string.isRequired,
-            email: PropTypes.string.isRequired,
-            first_name: PropTypes.string,
-            last_name: PropTypes.string,
-            date_of_birth: PropTypes.string,
-            street_number: PropTypes.string,
-            street_type: PropTypes.string,
-            street_name: PropTypes.string,
-            city_number: PropTypes.string,
-            city: PropTypes.string,
-        })
-        ).isRequired,
+// User.propTypes = {
+//     isConnected: PropTypes.number,
+//     user: PropTypes.arrayOf(
+//         PropTypes.shape({
+//             id: PropTypes.string.isRequired,
+//             username: PropTypes.string.isRequired,
+//             email: PropTypes.string.isRequired,
+//             first_name: PropTypes.string,
+//             last_name: PropTypes.string,
+//             date_of_birth: PropTypes.string,
+//             street_number: PropTypes.string,
+//             street_type: PropTypes.string,
+//             street_name: PropTypes.string,
+//             city_number: PropTypes.string,
+//             city: PropTypes.string,
+//         })
+//         ).isRequired,
 
-        token: PropTypes.string.isRequired,
-}
+//         token: PropTypes.string.isRequired,
+// }
 
 export const UserPage = connect(
     (state) => ({

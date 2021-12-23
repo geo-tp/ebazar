@@ -24,7 +24,8 @@ class ObjectDetail extends Component {
             isFollowed: this.props.detailledObject.item.isFollowed, 
             showBidBox: false,
             showBidList: false,
-            intervalStarted : false
+            intervalStarted : false,
+            actualPrice: this.props.detailledObject.item.actualPrice
         }
 
         this.interval = setInterval(() => this.updateRemainingTime(), 1000)
@@ -75,12 +76,11 @@ class ObjectDetail extends Component {
             })
         }
     }
-
-    updateObject = () => {
-        this.props.fetchDetailledObject(this.props.detailledObject.item.id)
-        this.props.fetchBidsOfObject(this.props.detailledObject.item.id)
-        
+    
+    updatePrice = (price) => {
+        this.setState({actualPrice: price})
     }
+
 
     handleBidBoxClick = () => {
 
@@ -145,7 +145,7 @@ class ObjectDetail extends Component {
                                 <li className="main-detailled-object__list-el main-detailled-object__list-el--is-active">
                                     <div className="main-detailled-object__content">
                                         <div className="main-detailled-object__content-blurb">
-                                            <h3 className="main-detailled-object__content-blurb__heading">{this.props.detailledObject.item.actualPrice} €</h3>
+                                            <h3 className="main-detailled-object__content-blurb__heading">{this.state.actualPrice} €</h3>
                                             {this.state.isFollowed ?
                                                         <p><button onClick={(e) => this.handleUnfollowedClick(e)} class="button-unfollow">Ne plus suivre</button></p>
                                                         :
@@ -177,8 +177,8 @@ class ObjectDetail extends Component {
                                                     }
                                                     {!!this.state.showBidBox && <ObjectDetailBidForm userId={this.props.auth.basicUser.id}
                                                                                                      objectId={this.props.detailledObject.item.id}
-                                                                                                     objectPrice={this.props.detailledObject.item.actualPrice}
-                                                                                                     update={this.updateObject}/>}
+                                                                                                     objectPrice={this.state.actualPrice}
+                                                                                                     updatePrice={this.updatePrice}/>}
                                                 </div>
                                             }
                                             <div className="description-box">
@@ -219,7 +219,9 @@ class ObjectDetail extends Component {
                                                                                         images={this.props.detailledObjectImages} />}
                                 </li>
                             </ul>
-                            {this.props.detailledObject.loaded && <ObjectDetailQuestionList questions={this.props.detailledObjectQuestions} />}
+                            {this.props.detailledObject.loaded && <ObjectDetailQuestionList questions={this.props.detailledObjectQuestions} 
+                                                                                            auth={this.props.auth}
+                                                                                            detailledObject={this.props.detailledObject} />}
                             
                         </div>
                     </section>

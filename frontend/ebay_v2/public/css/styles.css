@@ -1760,6 +1760,16 @@ select {
   overflow-y: scroll;
 }
 
+.main-user-message table {
+  margin: 0 auto;
+}
+.main-user-message table input {
+  width: 100%;
+}
+.main-user-message table textarea {
+  width: 100%;
+}
+
 .main-home-page {
   padding-top: 30px;
 }

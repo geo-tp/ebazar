@@ -98,32 +98,32 @@ export const fetchQuestionsOfUser = (userId) => {
 }
 
 
-export const fetchCreateQuestion = (senderId, receiverId, text, obj) => {
-    return(dispatch) => {
+// export const fetchCreateQuestion = (senderId, receiverId, text, obj) => {
+//     return(dispatch) => {
 
-        dispatch(createQuestionsOfObject())
+//         dispatch(createQuestionsOfObject())
 
-        let url = urlFormater({
-            model: "question",
-        })
+//         let url = urlFormater({
+//             model: "question",
+//         })
 
-        let params = parametersFormater('POST', {sender:senderId, receiver:receiverId,
-                                                 text:text, obj:obj})
+//         let params = parametersFormater('POST', {sender:senderId, receiver:receiverId,
+//                                                  text:text, obj:obj})
 
-        fetch(url, params)
-            .then(rslt => {
-                if (!rslt.ok) {
-                    throw new Error(NOT_FOUND)
-                }
+//         fetch(url, params)
+//             .then(rslt => {
+//                 if (!rslt.ok) {
+//                     throw new Error(NOT_FOUND)
+//                 }
 
-                return rslt.json()
-            })
+//                 return rslt.json()
+//             })
 
-            .then(() => dispatch(createQuestionsOfObjectSuccess()))
+//             .then(() => dispatch(createQuestionsOfObjectSuccess()))
 
-            .catch(error => {
-                dispatch(createQuestionsOfObjectError(error))
-            })
+//             .catch(error => {
+//                 dispatch(createQuestionsOfObjectError(error))
+//             })
 
-    }
-}
+//     }
+// }

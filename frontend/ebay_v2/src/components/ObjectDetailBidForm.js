@@ -33,15 +33,15 @@ class ObjectDetailBidForm extends Component {
             this.setState({info:rslt.detail})
         }
 
+        else if (rslt.hasOwnProperty("id")) {
+            this.setState({info:BID_SUCCESS})
+            this.props.updatePrice(rslt.price)
+            
+        }
         else if (rslt.hasOwnProperty("price")) {
             this.setState({info:rslt.price})
         }
 
-        else {
-            this.setState({info:BID_SUCCESS})
-            this.props.update()
-            
-        }
         
     }
 
@@ -58,9 +58,11 @@ class ObjectDetailBidForm extends Component {
 }
 
 ObjectDetailBidForm.propTypes = {
+    userId:PropTypes.number.isRequired,
     objectPrice: PropTypes.number.isRequired,
-    objectId: PropTypes.number.isRequired,
+    updatePrice: PropTypes.number.isRequired,
 }
+
 
 
 export default ObjectDetailBidForm

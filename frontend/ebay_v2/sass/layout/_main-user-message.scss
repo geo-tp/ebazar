@@ -1,0 +1,14 @@
+.main-user-message {
+
+    & table {
+        margin: 0 auto;
+
+        & input {
+            width: 100%;
+        }
+
+        & textarea {
+            width: 100%;
+        }
+    }
+}

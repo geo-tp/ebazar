@@ -205,6 +205,7 @@ class DetailledObjectSerializer(serializers.ModelSerializer):
         full_details_object["mainImage"] = mainImage
         full_details_object["state"] = state
         full_details_object["user"] = user.username
+        full_details_object["userId"] = user.id
         full_details_object["category"] = category
         full_details_object["subcategory"] = subcategory
         full_details_object["isFollowed"] = self.is_item_followed(request.user, obj)
