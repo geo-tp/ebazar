@@ -1,5 +1,6 @@
 import { Component } from "react";
 import PropTypes from 'prop-types'
+import { fetchCreateMessage } from "../fetch/CreateMessageFetch";
 
 class UserMessageForm extends Component {
 
@@ -10,6 +11,14 @@ class UserMessageForm extends Component {
             message:"",
             error: "",
         })
+    }
+
+    handleMessageSubmit = async (e) => {
+        e.preventDefault()
+        console.log("CEST OK")
+        let response = await fetchCreateMessage(this.props.auth.basicUser.id,this.props.viewedUser.id, this.state.title, this.state.message)
+        console.log(response)
+        this.setState({error: "Message envoyé"})
     }
 
     render() {
@@ -38,7 +47,8 @@ class UserMessageForm extends Component {
 
 
 UserMessageForm.propTypes = {
-    viewedUserId: PropTypes.number.isRequired
+    viewedUser: PropTypes.object.isRequired,
+    auth: PropTypes.object.isRequired
 }
 
 export default UserMessageForm

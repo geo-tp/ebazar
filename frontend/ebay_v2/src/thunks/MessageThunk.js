@@ -106,32 +106,32 @@ export const fetchReceivedMessages = (userId) => {
 
 
 
-export const fetchCreateMessage = (senderId, receiverId, title, text) => {
-    return(dispatch) => {
+// export const fetchCreateMessage = (senderId, receiverId, title, text) => {
+//     return(dispatch) => {
 
-        dispatch(createMessage())
+//         dispatch(createMessage())
 
-        let url = urlFormater({
-            model: "message",
-        })
+//         let url = urlFormater({
+//             model: "message",
+//         })
 
-        let params = parametersFormater('POST', {sender:senderId, receiverId:receiverId,
-                                                 title:title, text:text})
+//         let params = parametersFormater('POST', {sender:senderId, receiverId:receiverId,
+//                                                  title:title, text:text})
 
-        fetch(url, params)
-            .then(rslt => {
-                if (!rslt.ok) {
-                    throw new Error(NOT_FOUND)
-                }
+//         fetch(url, params)
+//             .then(rslt => {
+//                 if (!rslt.ok) {
+//                     throw new Error(NOT_FOUND)
+//                 }
 
-                return rslt.json()
-            })
+//                 return rslt.json()
+//             })
 
-            .then(() => dispatch(createMessageSuccess()))
+//             .then(() => dispatch(createMessageSuccess()))
 
-            .catch(error => {
-                dispatch(createMessageError(error))
-            })
+//             .catch(error => {
+//                 dispatch(createMessageError(error))
+//             })
 
-    }
-}
+//     }
+// }

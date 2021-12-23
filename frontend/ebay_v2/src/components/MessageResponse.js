@@ -1,4 +1,7 @@
 import { Component } from "react"
+import { fetchCreateMessage } from "../fetch/CreateMessageFetch"
+import { FILL_FORM } from "../utils/errors"
+import { MESSAGE_SENDED_SUCCESS } from "../utils/success"
 
 class MessageResponse extends Component {
 
@@ -7,22 +10,35 @@ class MessageResponse extends Component {
         this.state = {
             sujet: "",
             message: "",
+            
 
             data_is_missing: null
         }
     }
 
-    sendData = (e) => {
+    sendData = async (e) => {
 
         e.preventDefault()
 
         if (this.state.message === "") {
-            this.setState({data_is_missing: "Veuillez remplir le formulaire"})
+            this.setState({data_is_missing: FILL_FORM})
             return
         }
 
-        this.props.requestSendData(this.state.sujet, this.state.message)
+        let response = await fetchCreateMessage(this.props.user.item.id, 
+                                                this.props.message.sender.id,
+                                                this.state.title,
+                                                this.state.message)
 
+        if (response) {
+            this.setState({confirmation_data_send: MESSAGE_SENDED_SUCCESS})
+        }
+
+        else {
+
+        }
+        
+        console.log(response)
         this.setState({
             sujet: "",
             message: ""
@@ -60,7 +76,7 @@ class MessageResponse extends Component {
                                 <td>
                                     <button onClick={(e) => this.sendData(e)}>Envoyer</button>
                                     <p>{this.state.data_is_missing}</p>
-                                    <p>{this.props.confirmation_data_send}</p>
+                                    <p>{this.state.confirmation_data_send}</p>
                                 </td>
                             </tr>
                         </tbody>

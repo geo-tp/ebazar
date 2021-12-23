@@ -1,6 +1,6 @@
 import { getQuestionsOfObject, getQuestionsOfObjectError, getQuestionsOfObjectSuccess,
          getNextQuestionsOfObjectPage, getNextQuestionsOfObjectPageError, getNextQuestionsOfObjectPageSuccess,
-         getQuestionsOfUser, getQuestionsOfUserError, getQuestionsOfUserSuccess } from "../actions/QuestionActions.js"
+         getQuestionsOfUser, getQuestionsOfUserError, getQuestionsOfUserSuccess, createQuestionsOfObject, createQuestionsOfObjectError, createQuestionsOfObjectSuccess } from "../actions/QuestionActions.js"
 import { parametersFormater } from "../utils/parametersFormater"
 import { urlFormater } from "../utils/urlFormater"
 import {NOT_FOUND} from "../utils/errors"
@@ -94,5 +94,36 @@ export const fetchQuestionsOfUser = (userId) => {
             .catch(error => {
                 dispatch(getQuestionsOfUserError(error))
             })
+    }
+}
+
+
+export const fetchCreateQuestion = (senderId, receiverId, text, obj) => {
+    return(dispatch) => {
+
+        dispatch(createQuestionsOfObject())
+
+        let url = urlFormater({
+            model: "question",
+        })
+
+        let params = parametersFormater('POST', {sender:senderId, receiver:receiverId,
+                                                 text:text, obj:obj})
+
+        fetch(url, params)
+            .then(rslt => {
+                if (!rslt.ok) {
+                    throw new Error(NOT_FOUND)
+                }
+
+                return rslt.json()
+            })
+
+            .then(() => dispatch(createQuestionsOfObjectSuccess()))
+
+            .catch(error => {
+                dispatch(createQuestionsOfObjectError(error))
+            })
+
     }
 }

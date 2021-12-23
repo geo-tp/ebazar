@@ -29,10 +29,14 @@ class ObjectDetailBidForm extends Component {
 
         let rslt = await fetchCreateBid(Number(this.state.bid_price), this.props.userId, this.props.objectId)
 
-        if (rslt.hasOwnProperty("details")) {
-            console.log(rslt)
+        if (rslt.hasOwnProperty("detail")) {
             this.setState({info:rslt.detail})
         }
+
+        else if (rslt.hasOwnProperty("price")) {
+            this.setState({info:rslt.price})
+        }
+
         else {
             this.setState({info:BID_SUCCESS})
             this.props.update()

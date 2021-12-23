@@ -18,7 +18,7 @@ class QuestionView extends Component {
                 <div className="main-question-view__top-view">
                     <p className="main-question-view__top-view__user-date">
                         {this.props.question && <span>
-                                                    {this.props.question && this.props.question.user.username} le {this.props.question.date.split("T")[0]}
+                                                    {this.props.question && this.props.question.sender_username} le {this.props.question.date.split("T")[0]}
                                                     <button className='delete-message-button fa fa-trash'></button>
                                                 </span>}
                     </p>

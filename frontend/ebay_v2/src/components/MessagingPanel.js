@@ -89,9 +89,9 @@ class MessagingPanel extends Component {
                                 </div>
                                 <div className="main-message-panel__messages-wrapper__container__messages-response">
                                     {this.state.dataSetType != "sendedMessages" && 
-                                        this.state.dataSetInView && <MessageResponse 
-                                            confirmation_data_send={this.state.confirmation_data_send}
-                                            requestSendData={this.requestSendData}/>}
+                                        this.state.dataSetInView && <MessageResponse
+                                            user={this.props.user}
+                                            message={this.state.dataInView}/>}
                                 </div>
                             </div>
                         </div>
@@ -103,6 +103,7 @@ class MessagingPanel extends Component {
 
 MessagingPanel.propTypes = {
 
+    user: PropTypes.object.isRequired,
 
     dataInViewIndex: PropTypes.string,
     datainViewType: PropTypes.string,

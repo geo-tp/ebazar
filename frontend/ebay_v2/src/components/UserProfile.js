@@ -23,13 +23,13 @@ class UserProfile extends Component {
                         <img src="https://freepngimg.com/download/google/66726-customer-account-google-service-button-search-logo.png"></img>
                         <p>{this.props.userProfile.username}</p>
 
-                        { this.props.auth.isConnected ?
+                        { this.props.auth.connected ?
                         <button onClick={() => this.setState({showMessageForm: !this.state.showMessageForm})}>Contacter</button>
                                                  :
                         <Link to="/auth"><button>Contacter</button></Link>
 
                         }
-                        {!!this.state.showMessageForm && <UserMessageForm/>}
+                        {!!this.state.showMessageForm && <UserMessageForm auth={this.props.auth} viewedUser = {this.props.userProfile}/>}
                     </div>
                 </div>
         )
@@ -37,6 +37,7 @@ class UserProfile extends Component {
 }
 
 UserProfile.propTypes = {
+    auth: PropTypes.object.isRequired,
     userProfile: PropTypes.object.isRequired
 }
 

@@ -29,10 +29,10 @@ class MessageViewSet(viewsets.ModelViewSet):
 
     permission_classes = [AllowAny]
 
-    @checkUserMatching
-    @checkSenderIsNotReceiver
+    # @checkUserMatching
+    # @checkSenderIsNotReceiver
     def create(self, request, *args, **kwargs):
-
+        # print(request["data"])
         return super().create(request, *args, **kwargs)
 
     # @restrictedEndPoint
@@ -49,8 +49,8 @@ class QuestionViewSet(viewsets.ModelViewSet):
 
     permission_classes = [AllowAny]
 
-    @checkUserMatching
-    @checkSenderIsNotReceiver
+    # @checkUserMatching
+    # @checkSenderIsNotReceiver
     def create(self, request, *args, **kwargs):
 
         return super().create(request, *args, **kwargs)

@@ -38,3 +38,5 @@ export const CAT_OR_SUBCAT_ERROR = "Veuillez choisir une catégorie et sous cat�
 export const LOGIN_ERROR = "Mail ou mot de passe invalides."
 
 export const NO_SELECTION_ERROR = "Aucun élément selectionné"
+
+export const FILL_FORM = "Veuillez remplir le formulaire"
