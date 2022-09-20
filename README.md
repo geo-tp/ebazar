@@ -2,6 +2,10 @@
 -----------
 *auction site where people can sell and bid on items.*
 
+![](presentation1.png)
+![](presentation2.png)
+![](presentation3.png)
+
 FRONTEND : 
 - React
 - Redux
