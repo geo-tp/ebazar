@@ -1,4 +1,7 @@
 ***EBAZAR***
+
+### DEPRECATED 
+
 -----------
 *auction site where people can sell and bid on items.*
 
